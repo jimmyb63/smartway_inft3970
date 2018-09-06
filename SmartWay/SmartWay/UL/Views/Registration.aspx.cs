@@ -37,9 +37,9 @@ namespace SmartWay.UL.Views
                 Address newAddress = new Address(sNum, sName, city, state, pCode, country);
                 AddressControls AC = new AddressControls();
                 UserControls UC = new UserControls();
-                //AC.addAddress(sNum, sName, city, state, pCode, country);
-                //UC.addUser(fName, lName, email, password, phoneNumber);
-                String verificationCode = "JEFF";
+                AC.addAddress(sNum, sName, city, state, pCode, country);
+                UC.addUser(fName, lName, email, password, phoneNumber);
+                string verificationCode = "JEFF";
                 MailSender MS = new MailSender();
                 MS.sendVerificationEmail(email, fName, verificationCode);
                 // Add in some verification stuff

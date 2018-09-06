@@ -1,4 +1,5 @@
 ﻿using System;
+using SmartWay.BL.Controllers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,14 @@ namespace SmartWay.UL.Views
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void forgotPassword(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text;
+            MailSender MS = new MailSender();
+            MS.sendForgotPasswordEmail(email);
+            Response.Redirect("Index.aspx");
         }
     }
 }

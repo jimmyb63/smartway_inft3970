@@ -32,7 +32,7 @@ namespace SmartWay.DAL.Controllers
 
         public string getConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["JapallumConnectionString"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["SmartWayConnectionString"].ConnectionString;
         }
     }
 }
