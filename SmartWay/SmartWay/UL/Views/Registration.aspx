@@ -14,7 +14,7 @@
                     First Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtFirstName" text="First Name" runat="server" onclick="this.value='';"/>
+                    <asp:TextBox ID="txtFirstName" placeholder="First Name" runat="server"/>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtFirstName"
@@ -27,7 +27,7 @@
                     Last Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtLastName" text="Last Name" runat="server" onclick="this.value='';"/>
+                    <asp:TextBox ID="txtLastName" placeholder="Last Name" runat="server" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtLastName"
@@ -39,7 +39,7 @@
                     Phone Number:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPhone" text="Phone Number" runat="server" onclick="this.value='';"/>
+                    <asp:TextBox ID="txtPhone" placeholder="Phone Number" runat="server" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPhone"
@@ -66,11 +66,10 @@
                     Street Number:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtStreetNumber" runat="server" />
+                    <asp:TextBox ID="txtStreetNumber" placeholder="Street number" runat="server" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtStreetNumber"
-                        runat="server" />
+                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtStreetNumber" runat="server" />
                 </td>
             </tr>
             <!-- Residential street name textbox with validators -->
@@ -79,7 +78,7 @@
                     Street Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtStreetName" runat="server" />
+                    <asp:TextBox ID="txtStreetName" placeholder="Street name" runat="server" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtStreetName"
@@ -92,7 +91,7 @@
                     City:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCity" runat="server" />
+                    <asp:TextBox ID="txtCity" placeholder="City" runat="server" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtCity"
@@ -105,7 +104,7 @@
                     State:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtState" runat="server" />
+                    <asp:TextBox ID="txtState" placeholder="State" runat="server" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtState"
@@ -118,7 +117,7 @@
                     Post Code:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPostcode" runat="server" />
+                    <asp:TextBox ID="txtPostcode" placeholder="Postcode" runat="server" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPostcode"
@@ -131,11 +130,26 @@
                     Country:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCountry" text="Australia" runat="server" onClick="this.value = 'Australia'" />
+                    <asp:TextBox ID="txtCountry" value="Australia" runat="server" onClick="this.value = 'Australia'" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPostcode"
+                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtCountry"
                         runat="server" />
+                </td>
+            </tr>
+            <!-- Email address textbox with validators -->
+            <tr>
+                <td>
+                    Email
+                </td>
+                <td>
+                    <asp:TextBox ID="txtEmail" placeholder="Email address" runat="server" />
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ErrorMessage="Required" Display="Dynamic" ForeColor="Red"
+                        ControlToValidate="txtEmail" runat="server" />
+                    <asp:RegularExpressionValidator runat="server" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                        ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Invalid email address." />
                 </td>
             </tr>
             <!-- Password textbox with validators -->
@@ -144,7 +158,7 @@
                     Password
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" />
+                    <asp:TextBox ID="txtPassword" placeholder="Password" runat="server" TextMode="Password" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPassword"
@@ -157,46 +171,11 @@
                     Confirm Password
                 </td>
                 <td>
-                    <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" />
+                    <asp:TextBox ID="txtConfirmPassword" placeholder="Confirm password" runat="server" TextMode="Password" />
                 </td>
                 <td>
                     <asp:CompareValidator ErrorMessage="Passwords do not match." ForeColor="Red" ControlToCompare="txtPassword"
                         ControlToValidate="txtConfirmPassword" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <p>Please enter your Email and then press validate email,<br />
-                        We will email you a code which you must input below for the registration to work.
-                    </p>
-                </td>
-            </tr>
-            <!-- Email address textbox with validators -->
-            <tr>
-                <td>
-                    Email
-                </td>
-                <td>
-                    <asp:TextBox ID="txtEmail" runat="server" />
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" Display="Dynamic" ForeColor="Red"
-                        ControlToValidate="txtEmail" runat="server" />
-                    <asp:RegularExpressionValidator runat="server" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                        ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Invalid email address." />
-                </td>
-            </tr>
-            <%--<tr>
-                <td colspan="3">
-                    <asp:Button ID="btnValidation" runat="server" Text="Send Validation Code" OnClick="sendValidation" />
-                </td>
-            </tr>--%>
-            <tr>
-                <td>
-                    <p>Validation Code</p>
-                </td>
-                <td>
-                    <asp:TextBox ID="tbxValidation" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>

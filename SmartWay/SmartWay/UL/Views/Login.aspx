@@ -1,5 +1,15 @@
 ﻿<%@ Page Title="SmartWay - Login" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SmartWay.UL.Views.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function showPassword() {
+            var x = document.getElementById("txtPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table>
@@ -13,7 +23,7 @@
                 Email:
             </td>
             <td>
-                <asp:TextBox ID="txtEmail" text="Email Address" runat="server" onclick="this.value='';"/>
+                <asp:TextBox ID="txtEmail" placeholder="Email Address" runat="server"/>
             </td>
             <td>
                 <asp:RequiredFieldValidator ErrorMessage="Required" Display="Dynamic" ForeColor="Red"
@@ -28,11 +38,14 @@
                 Password:
             </td>
             <td>
-                <asp:TextBox ID="txtPassword" text="Password" runat="server" TextMode="Password" onclick="this.value='';" />
+                <asp:TextBox ID="txtPassword" placeholder="Password" runat="server" TextMode="Password"/>
             </td>
             <td>
                 <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPassword"
                     runat="server" />
+            </td>
+            <td>
+                <input type="checkbox" onclick="showPassword()" />Show Password
             </td>
         </tr>
         <tr>
