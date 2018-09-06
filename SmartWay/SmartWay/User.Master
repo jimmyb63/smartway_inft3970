@@ -1,0 +1,113 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="SmartWay.User" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="no-js">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'/>
+    <link href="Content/reset.css" rel="stylesheet" />
+    <link href="Content/style.css" rel="stylesheet" />
+    <script src="../../scripts/jquery-2.1.4.js"></script>
+    <script src="../../scripts/modernizr.js"></script>
+    <script src="../../scripts/jquery.menu-aim.js"></script>
+    <script src="../../scripts/main.js"></script>
+    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <header class="cd-main-header">
+		<a href="Index.aspx" class="cd-logo"><img  src="../Images/smartway-logo.png" alt="SmartWay"/></a>
+		
+		<div class="cd-search is-hidden">
+				<input type="search" placeholder="Search..."/>
+		</div> <!-- cd-search -->
+
+		<a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+
+		<nav class="cd-nav">
+			<ul class="cd-top-nav">
+				<li><a href="About.aspx">About Us</a></li>
+				<li><a href="Contact.aspx">Contact Us</a></li>
+                <% if (Session["log"] != null)
+                    { %>
+				    <li class="has-children account">
+					    <a href="#0"><img src="../Images/cd-avatar.png" alt="avatar" />Account</a>
+					    <ul>
+                            <li><a href="Account.aspx">My Account</a></li>
+					        <li><a href="EditAccount.aspx">Edit Account</a></li>
+						    <li><asp:LinkButton runat="server" Text="Logout" OnClick="userLogout" /></li>
+                        </ul>
+                    </li>
+                  <%}
+                   else
+                    {%>
+                      <li class="has-children account">
+					      <a href="#0"><img src="../Images/user-circle-regular.svg" alt="avatar" />Register/Login</a>
+					      <ul>
+                             <li><a href="Registration.aspx">Register</a></li>
+                             <li><a href="Login.aspx">Login</a></li>   
+					      </ul>
+				      </li>
+                 <% } %>
+			</ul>
+		</nav>
+	</header> <!-- .cd-main-header -->
+
+	<main class="cd-main-content">
+		<nav class="cd-side-nav border">
+			<ul>
+				<li class="cd-label">New</li>
+				<li class="action-btn"><a href="AddService.aspx">Add Service</a></li>
+                <br />
+				<li class="action-btn"><a href="AddGood.aspx">Add Goods</a></li>
+				
+				<li class="cd-label">SmartWay</li>
+				
+				<li class="has-children services">
+					<a href="Services.aspx">View Services</a>
+					<ul>
+						<li><a href="ServicesMap.aspx">Services Map</a></li>
+						<li><a href="#0">Services Category</a></li>
+					</ul>
+				</li>
+				<li class="has-children goods">
+					<a href="Goods.aspx">View Goods</a>
+					<ul>
+					  <li><a href="GoodsMap.aspx">Goods Map</a></li>
+						<li><a href="#0">Goods Category</a></li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul>
+				<li class="cd-label">Account</li>
+				<li class="has-children account">
+					<a href="MyProfile.aspx">My Profile</a>
+					<ul>
+						<li><a href="MyMessages.aspx">Messages</a></li>
+						<li><a href="#0">Settings</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</nav>
+      
+    <div class="content-wrapper">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <%-- Page content goes here --%>
+        </asp:ContentPlaceHolder>
+    </div>
+        </main>
+    </form>
+</body>
+</html>
