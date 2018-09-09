@@ -98,6 +98,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
     <Content Include="User.Master" />
     <None Include="Web.Debug.config">
@@ -217,6 +218,13 @@
     </Compile>
     <Compile Include="UL\Views\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
