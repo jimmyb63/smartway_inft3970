@@ -60,7 +60,7 @@ create table StateName	(	ID int NOT NULL IDENTITY primary key,
 						)
 
 --Add comments
-create table PostalAddress	(	ID int primary key,
+create table PostalAddress	(	ID int IDENTITY(1000,1) primary key,
 								unitNumber varchar(4), -- unit number can be letter or number
 								streetAddress varchar(20) NOT NULL,
 								streetName varchar(35) NOT NULL,
@@ -74,14 +74,14 @@ create table PostalAddress	(	ID int primary key,
 							)
 
 --Add comments
-create table PhoneNumber (	ID int primary key,
+create table PhoneNumber (	ID int IDENTITY(1000,1) primary key,
 							phoneNumber int,
 							creationDate date NOT NULL DEFAULT GETDATE(),
 							active bit DEFAULT 1,
 						)
 
 --Add comments
-create table Person		(	ID int primary key,
+create table Person		(	ID int IDENTITY(1000,1) primary key,
 							firstName varchar(20) NOT NULL,
 							lastName varchar(20) NOT NULL,
 							email varchar(320),
@@ -97,7 +97,7 @@ create table Person		(	ID int primary key,
 						)
 
 --Add comments
-create table Staff		(	ID int primary key,
+create table Staff		(	ID int IDENTITY(1000,1) primary key,
 							personID int,
 							postion varchar(30) NOT NULL,
 							creationDate date NOT NULL DEFAULT GETDATE(),
@@ -106,7 +106,7 @@ create table Staff		(	ID int primary key,
 						)
 
 --This might not be needed--
-create table PaypalDetails (	ID int primary key,
+create table PaypalDetails (	ID int IDENTITY(1000,1) primary key,
 								personID int,
 								paypalUserName varchar(32) NOT NULL,
 								paypalAccountNumber varchar(32),
@@ -117,14 +117,14 @@ create table PaypalDetails (	ID int primary key,
 								)
 
 --Add comments
-create table AddStatus (		ID int primary key,
+create table AddStatus (		ID int IDENTITY(1000,1) primary key,
 								StatusName varchar(30) NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1
 								)
 
 --Add comments
-create table AddCategory (		ID int primary key,
+create table AddCategory (		ID int IDENTITY(1000,1) primary key,
 								addType varchar(30) NOT NULL,
 								category varchar(30) NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
@@ -132,7 +132,7 @@ create table AddCategory (		ID int primary key,
 								)
 
 --Add comments
-create table Advertisement (	ID int primary key,
+create table Advertisement (	ID int IDENTITY(1000,1) primary key,
 								sellerID int NOT NULL,
 								buyerID int,
 								title varchar(50) NOT NULL,
@@ -153,13 +153,13 @@ create table Advertisement (	ID int primary key,
 								)
 
 --Add comments
-create table SavedImage (		ID int primary key,
+create table SavedImage (		ID int IDENTITY(1000,1) primary key,
 								filePath varchar(260) NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1
 								)
 --Add comments
-create table AddImage	(		ID int primary key,
+create table AddImage	(		ID int IDENTITY(1000,1) primary key,
 								imageID int NOT NULL,
 								addID int NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
@@ -170,7 +170,7 @@ create table AddImage	(		ID int primary key,
 								)
 
 --Add comments
-create table FeedBack (			ID int primary key,
+create table FeedBack (			ID int IDENTITY(1000,1) primary key,
 								sellerID int NOT NULL,
 								buyerID int,
 								addID int NOT NULL,
@@ -183,7 +183,7 @@ create table FeedBack (			ID int primary key,
 								foreign key (addID) references Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 --Add comments
-create table RecycleLocations (	ID int primary key,
+create table RecycleLocations (	ID int IDENTITY(1000,1) primary key,
 								title varchar(30) NOT NULL,
 								shortDescription varchar(50) NOT NULL,
 								imageID int NOT NULL,
@@ -198,7 +198,7 @@ create table RecycleLocations (	ID int primary key,
 								)		
 									
 --Add comments							
-create table ForumPost	 (		ID int primary key,
+create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
 								userID int NOT NULL,
 								title varchar(30) NOT NULL,
 								forumDescription varchar(50) NOT NULL,
@@ -213,7 +213,7 @@ create table ForumPost	 (		ID int primary key,
 								)
 								
 --Add comments	
-create table ForumComment	 (	ID int primary key,
+create table ForumComment	 (	ID int IDENTITY(1000,1) primary key,
 								forumPostID int NOT NULL,
 								comment varchar(50) NOT NULL,
 								imageID int NOT NULL,

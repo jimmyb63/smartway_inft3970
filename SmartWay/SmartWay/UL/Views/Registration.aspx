@@ -63,6 +63,15 @@
             <!-- Residential street number textbox with validators -->
             <tr>
                 <td>
+                    Unit Number:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtUnitNumber" placeholder="Unit number" runat="server" />
+                </td>
+            </tr>
+            <!-- Residential street number textbox with validators -->
+            <tr>
+                <td>
                     Street Number:
                 </td>
                 <td>

@@ -13,21 +13,53 @@ namespace SmartWay.DAL.Controllers
     public class AddressControls
     {
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public void addAddress(int sNum, String sName, String city, String state, int pCode, String country)
+        public int addAddress(string uNum, string sNum, string sName, string city, string state, int pCode, string country, bool active)
         {
             // Add address to database
             SqlConnection connection = new SqlConnection(getConnectionString());
-            String query = "INSERT into PostalAddress VALUES (@sNum, @sName, @city, @state, @pCode, @country)";
+            String query = "INSERT into PostalAddress VALUES (@uNum, @sNum, @sName, @city, @state, @pCode, @country, @active)";
             SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@sNum", SqlDbType.SmallInt).Value = sNum;
-            cmd.Parameters.Add("@sName", SqlDbType.VarChar, 255).Value = sName;
-            cmd.Parameters.Add("@city", SqlDbType.VarChar, 255).Value = city;
+            cmd.Parameters.Add("@uNum", SqlDbType.VarChar, 4).Value = uNum;
+            cmd.Parameters.Add("@sNum", SqlDbType.VarChar, 20).Value = sNum;
+            cmd.Parameters.Add("@sName", SqlDbType.VarChar, 35).Value = sName;
+            cmd.Parameters.Add("@city", SqlDbType.VarChar, 35).Value = city;
             cmd.Parameters.Add("@state", SqlDbType.VarChar, 30).Value = state;
             cmd.Parameters.Add("@pCode", SqlDbType.SmallInt).Value = pCode;
             cmd.Parameters.Add("@country", SqlDbType.VarChar, 30).Value = country;
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+            int addressID = getAddressID(uNum, sNum, sName, pCode);
+            return addressID;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int getAddressID(string uNum, string sNum, string sName, int pCode)
+        {
+            SqlConnection connection = new SqlConnection(getConnectionString());
+            SqlCommand cmd = new SqlCommand();
+            if (uNum != null)
+            {
+                String query = "SELECT ID FROM PostalAddress WHERE unitNumber = @uNum AND streetAddress = @sNum AND streetName = @sNum AND postCode = @pCode";
+                cmd = new SqlCommand(query, connection);
+                cmd.Parameters.Add("@uNum", SqlDbType.VarChar, 4).Value = uNum;
+                cmd.Parameters.Add("@sNum", SqlDbType.VarChar, 20).Value = sNum;
+                cmd.Parameters.Add("@sName", SqlDbType.VarChar, 35).Value = sName;
+                cmd.Parameters.Add("@uNum", SqlDbType.Int).Value = pCode;
+            }
+            else
+            {
+                String query = "SELECT ID FROM PostalAddress WHERE streetAddress = @sNum AND streetName = @sNum AND postCode = @pCode";
+                cmd = new SqlCommand(query, connection);
+                cmd.Parameters.Add("@sNum", SqlDbType.VarChar, 20).Value = sNum;
+                cmd.Parameters.Add("@sName", SqlDbType.VarChar, 35).Value = sName;
+                cmd.Parameters.Add("@uNum", SqlDbType.Int).Value = pCode;
+            }
+            connection.Open();
+            int addressID = (int)cmd.ExecuteScalar();
+            connection.Close();
+            return addressID;
         }
 
         public string getConnectionString()
