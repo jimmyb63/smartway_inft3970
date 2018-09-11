@@ -1,15 +1,5 @@
 ﻿<%@ Page Title="SmartWay - Login" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SmartWay.UL.Views.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script>
-        function showPassword() {
-            var x = document.getElementById("txtPassword");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table>

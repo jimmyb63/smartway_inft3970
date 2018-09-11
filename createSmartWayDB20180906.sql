@@ -53,7 +53,7 @@ IF OBJECT_ID('dbo.StateName', 'U') IS NOT NULL
 
 --Create Tables
 --Add comments
-create table StateName	(	ID int NOT NULL IDENTITY primary key,
+create table StateName	(	ID int NOT NULL IDENTITY(1,1) primary key,
 							stateName varchar(20) NOT NULL,
 							creationDate date NOT NULL DEFAULT GETDATE(),
 							active bit DEFAULT 1,
@@ -223,6 +223,14 @@ create table ForumComment	 (	ID int IDENTITY(1000,1) primary key,
 								foreign key (forumPostID) references ForumPost(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (imageID) references SavedImage(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
+
+INSERT INTO StateName VALUES('NSW');
+INSERT INTO StateName VALUES('QLD');
+INSERT INTO StateName VALUES('WA');
+INSERT INTO StateName VALUES('VIC');
+INSERT INTO StateName VALUES('SA');
+INSERT INTO StateName VALUES('NT');
+INSERT INTO StateName VALUES('TAS');
 								
 								
  

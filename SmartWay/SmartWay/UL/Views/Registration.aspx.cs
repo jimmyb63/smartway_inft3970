@@ -39,7 +39,8 @@ namespace SmartWay.UL.Views
                 //Address newAddress = new Address(sNum, sName, city, state, pCode, country);
                 AddressControls AC = new AddressControls();
                 UserControls UC = new UserControls();
-                int addressID = AC.addAddress(uNum, sNum, sName, city, state, pCode, country, true);
+                int stateID = AC.getStateID(state);
+                int addressID = AC.addAddress(uNum, sNum, sName, city, stateID, pCode, country, true);
                 int phoneID = UC.addPhoneNumber(phoneNumber);
                 UC.addUser(fName, lName, email, phoneID, addressID, paypalID, password, regoDate);
                 string verificationCode = "JEFF";

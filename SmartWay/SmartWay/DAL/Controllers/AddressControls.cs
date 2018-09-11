@@ -13,17 +13,17 @@ namespace SmartWay.DAL.Controllers
     public class AddressControls
     {
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public int addAddress(string uNum, string sNum, string sName, string city, string state, int pCode, string country, bool active)
+        public int addAddress(string uNum, string sNum, string sName, string city, int stateID, int pCode, string country, bool active)
         {
             // Add address to database
             SqlConnection connection = new SqlConnection(getConnectionString());
-            String query = "INSERT into PostalAddress VALUES (@uNum, @sNum, @sName, @city, @state, @pCode, @country, @active)";
+            String query = "INSERT into PostalAddress VALUES (@uNum, @sNum, @sName, @city, @pCode, @state, @country, @active)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@uNum", SqlDbType.VarChar, 4).Value = uNum;
             cmd.Parameters.Add("@sNum", SqlDbType.VarChar, 20).Value = sNum;
             cmd.Parameters.Add("@sName", SqlDbType.VarChar, 35).Value = sName;
-            cmd.Parameters.Add("@city", SqlDbType.VarChar, 35).Value = city;
-            cmd.Parameters.Add("@state", SqlDbType.VarChar, 30).Value = state;
+            cmd.Parameters.Add("@city", SqlDbType.VarChar, 50).Value = city;
+            cmd.Parameters.Add("@state", SqlDbType.Int).Value = stateID;
             cmd.Parameters.Add("@pCode", SqlDbType.SmallInt).Value = pCode;
             cmd.Parameters.Add("@country", SqlDbType.VarChar, 30).Value = country;
             cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
@@ -60,6 +60,20 @@ namespace SmartWay.DAL.Controllers
             int addressID = (int)cmd.ExecuteScalar();
             connection.Close();
             return addressID;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int getStateID(string state)
+        {
+            SqlConnection connection = new SqlConnection(getConnectionString());
+            SqlCommand cmd = new SqlCommand();
+            String query = "SELECT ID FROM StateName WHERE stateName = @state";
+            cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@state", SqlDbType.VarChar, 20).Value = state;
+            connection.Open();
+            int stateID = (int)cmd.ExecuteScalar();
+            connection.Close();
+            return stateID;
         }
 
         public string getConnectionString()
