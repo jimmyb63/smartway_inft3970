@@ -76,6 +76,7 @@ Main Page Content
 @media only screen and (min-width: 1170px) {
   .cd-main-content .content-wrapper {
     margin-left: 200px;
+    /*height: 100%;*/
   }
   .cd-main-content::before {
     content: 'desktop';
@@ -749,10 +750,33 @@ Sidebar
         visibility: visible;
     }
 }
+/*----------------------------------
 
-.map-right{
-    overflow: hidden;
+        MAP CONTAINER
+
+------------------------------------*/
+
+.map-container{
+    /*position: absolute;
+    width: 100%;
+    height: 50%;*/
+    position: absolute; 
+        left: 58%; 
+        width: 42%; 
+        height: 92%;
 }
+
+@media only screen and (min-width: 768px) {
+    .map-container{
+        position: absolute; 
+        left: 58%; 
+        width: 42%; 
+        height: 92%;
+    }
+}
+
+
+
 
    
 
