@@ -27,18 +27,20 @@ INSERT INTO StateName (stateName) VALUES('TAS');
 
 --With Store Procedure
 --Insert New Person
-EXEC sp_NewPerson 'Dave', 'Smith', 'davesemail@yahoo.com'
+EXEC sp_NewPerson 'Dave', 'Smith', 'davesemail@yahoo.com', 'password', '2004/05/21'
 GO
 
+INSERT INTO VerificationCode (code, personID) VALUES ('abcd1234', '1000');
+
 --Insert Statenames
-EXEC state_insert 'NSW';
-EXEC state_insert 'QLD';
-EXEC state_insert 'WA';
-EXEC state_insert 'VIC';
-EXEC state_insert 'SA';
-EXEC state_insert 'NT';
-EXEC state_insert 'TAS';
-EXEC state_insert 'ACT';
+EXEC sp_state_insert 'NSW';
+EXEC sp_state_insert 'QLD';
+EXEC sp_state_insert 'WA';
+EXEC sp_state_insert 'VIC';
+EXEC sp_state_insert 'SA';
+EXEC sp_state_insert 'NT';
+EXEC sp_state_insert 'TAS';
+EXEC sp_state_insert 'ACT';
 GO
 
 --Insert New Address

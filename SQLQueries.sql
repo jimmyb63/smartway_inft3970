@@ -29,5 +29,8 @@ From PostalAddress
 Select * 
 From PhoneNumber
 
+Select *
+From VerificationCode
+
 
 

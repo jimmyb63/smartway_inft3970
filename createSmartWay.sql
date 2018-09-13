@@ -89,12 +89,20 @@ create table Person		(	ID int IDENTITY(1000,1) primary key,
 							addressId int,
 							paypalID int,
 							SWPassword varchar(30),
-							regDate date,
+							verificationDate date,
 							creationDate date NOT NULL DEFAULT GETDATE(),
 							active bit default 1,
 							foreign key (PhoneNumberId) references PhoneNumber(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							foreign key (addressId) references PostalAddress(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 						)
+
+create table VerificationCode (	ID int IDENTITY(1,1) primary key,
+								code varchar(8) NOT NULL,
+								personID int,
+								creationDate date NOT NULL DEFAULT GETDATE(),
+								active bit default 1,
+								foreign key (personID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+							  )
 
 --Add comments
 create table Staff		(	ID int IDENTITY(1000,1) primary key,
@@ -199,7 +207,7 @@ create table RecycleLocations (	ID int IDENTITY(1000,1) primary key,
 									
 --Add comments							
 create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
-								userID int NOT NULL,
+								personID int NOT NULL,
 								title varchar(30) NOT NULL,
 								forumDescription varchar(50) NOT NULL,
 								imageID int NOT NULL,
@@ -207,7 +215,7 @@ create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1,
 								--foreignkeys	
-								foreign key (userID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (personID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (imageID) references SavedImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)

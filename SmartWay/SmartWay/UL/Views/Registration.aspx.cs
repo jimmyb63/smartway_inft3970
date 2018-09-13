@@ -32,26 +32,44 @@ namespace SmartWay.UL.Views
                 string sNum = txtStreetNumber.Text;
                 string sName = txtStreetName.Text;
                 string city = txtCity.Text;
-                //string state = txtState.Text;
                 int state = Convert.ToInt32(ddState.SelectedValue);
                 string country = txtCountry.Text;
                 int pCode = Convert.ToInt32(txtPostcode.Text);
-                string regoDate = DateTime.Now.ToString("yyyy/MM/dd");
-                //BL.Models.User newUser = new BL.Models.User(fName, lName, email, password, phoneNumber, payPalID);
-                //Address newAddress = new Address(sNum, sName, city, state, pCode, country);
                 AddressControls AC = new AddressControls();
                 UserControls UC = new UserControls();
-                //int stateID = AC.getStateID(state);
-                int stateID = 1;
-                AC.addAddress(uNum, sNum, sName, city, pCode, stateID, country);
-                //int phoneID = UC.addPhoneNumber(phoneNumber);
-                //UC.addUser(fName, lName, email, phoneID, addressID, paypalID, password, regoDate);
+                int userID = UC.newRegistration(fName, lName, email, password, phoneNumber, uNum, sNum, sName, city, pCode, state, country);
+                Session["userID"] = userID;
+                string verificationCode = randomCodeGen();
+                UC.newVerficationCode(verificationCode, userID);
+                MailSender MS = new MailSender();
+                MS.sendVerificationEmail(email, fName, verificationCode);
+                Response.Redirect("AccountVerification.aspx");
+                //BL.Models.User newUser = new BL.Models.User(fName, lName, email, password, phoneNumber, payPalID);
+                //Address newAddress = new Address(sNum, sName, city, state, pCode, country);
+                //AC.addAddress(uNum, sNum, sName, city, pCode, state, country);
+                //UC.addPhoneNumber(phoneNumber);
+                //UC.addUser(fName, lName, email, password, regoDate);
                 //string verificationCode = "JEFF";
-                //MailSender MS = new MailSender();
+                
                 //MS.sendVerificationEmail(email, fName, verificationCode);
                 //// Add in some verification stuff
                 //Response.Redirect("RegistrationConfirmation.aspx");
             }
+        }
+
+        protected string randomCodeGen()
+        {
+            string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            char[] stringChars = new char[8];
+            Random random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            string finalString = new string(stringChars);
+            return finalString;
         }
     }
 }
