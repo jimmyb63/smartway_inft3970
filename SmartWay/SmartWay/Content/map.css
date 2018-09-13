@@ -1,0 +1,59 @@
+﻿/* The page is split between map and sidebar - the sidebar gets 1/3, map
+gets 2/3 of the page. You can adjust this to your personal liking. */
+body {
+  color: #404040;
+  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.sidebar {
+  width: 33.3333%;
+}
+
+.map {
+  position: absolute;
+  left: 33.3333%;
+  width: 66.6666%;
+  top: 0;
+  bottom: 0;
+}
+
+.pad2 {
+  padding: 20px;
+}
+
+/*@media only screen and (max-width: 1170){
+
+}*/
+
+@media only screen and (max-width: 768px)
+    {
+        .sidebar {
+      height: 50%;
+      width:100%;
+      bottom: 50%;
+      position: absolute;
+    }
+
+    .map {
+      border-left: 1px solid #fff;
+      position: absolute;
+      top: 50%;
+      height: 50%;
+      width: 100%;
+      left: 0;
+    }
+
+    .pad2 {
+      padding: 0px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+} 

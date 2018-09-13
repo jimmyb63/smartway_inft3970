@@ -113,12 +113,23 @@
                     State:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtState" placeholder="State" runat="server" />
+                    <%--<asp:TextBox ID="txtState" placeholder="State" runat="server" />--%>
+                    <asp:DropDownList ID="ddState" runat="server">
+                        <asp:ListItem Enabled="true" Text="Select State" Value="-1"></asp:ListItem>
+                        <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="WA" Value="3"></asp:ListItem>
+                        <asp:ListItem Text="VIC" Value="4"></asp:ListItem>
+                        <asp:ListItem Text="SA" Value="5"></asp:ListItem>
+                        <asp:ListItem Text="NT" Value="6"></asp:ListItem>
+                        <asp:ListItem Text="TAS" Value="7"></asp:ListItem>
+                        <asp:ListItem Text="ACT" Value="8"></asp:ListItem>
+                    </asp:DropDownList>
                 </td>
-                <td>
+                <%--<td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtState"
                         runat="server" />
-                </td>
+                </td>--%>
             </tr>
             <!-- Residential postcode textbox with validators -->
             <tr>

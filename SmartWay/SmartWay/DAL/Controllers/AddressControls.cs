@@ -13,11 +13,11 @@ namespace SmartWay.DAL.Controllers
     public class AddressControls
     {
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public int addAddress(string uNum, string sNum, string sName, string city, int stateID, int pCode, string country, bool active)
+        public void addAddress(string uNum, string sNum, string sName, string city, int pCode, int stateID, string country)
         {
             // Add address to database
             SqlConnection connection = new SqlConnection(getConnectionString());
-            String query = "INSERT into PostalAddress VALUES (@uNum, @sNum, @sName, @city, @pCode, @state, @country, @active)";
+            String query = "EXEC sp_NewAddress @uNum, @sNum, @sName, @city, @pCode, @state, @country";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@uNum", SqlDbType.VarChar, 4).Value = uNum;
             cmd.Parameters.Add("@sNum", SqlDbType.VarChar, 20).Value = sNum;
@@ -26,12 +26,11 @@ namespace SmartWay.DAL.Controllers
             cmd.Parameters.Add("@state", SqlDbType.Int).Value = stateID;
             cmd.Parameters.Add("@pCode", SqlDbType.SmallInt).Value = pCode;
             cmd.Parameters.Add("@country", SqlDbType.VarChar, 30).Value = country;
-            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            int addressID = getAddressID(uNum, sNum, sName, pCode);
-            return addressID;
+            //int addressID = getAddressID(uNum, sNum, sName, pCode);
+            //return addressID;
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]

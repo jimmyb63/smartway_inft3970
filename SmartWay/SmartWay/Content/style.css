@@ -46,8 +46,8 @@ input[type="search"]::-webkit-search-results-decoration {
 Main Page Content
 
 -------------------------------- */
-.cd-main-content .content-wrapper {
-  /*padding: 45px 5% 3em;*/
+.content-wrapper {
+  padding-top: 45px;
 }
 .cd-main-content .content-wrapper h1 {
   text-align: center;
@@ -750,30 +750,7 @@ Sidebar
         visibility: visible;
     }
 }
-/*----------------------------------
 
-        MAP CONTAINER
-
-------------------------------------*/
-
-.map-container{
-    /*position: absolute;
-    width: 100%;
-    height: 50%;*/
-    position: absolute; 
-        left: 58%; 
-        width: 42%; 
-        height: 92%;
-}
-
-@media only screen and (min-width: 768px) {
-    .map-container{
-        position: absolute; 
-        left: 58%; 
-        width: 42%; 
-        height: 92%;
-    }
-}
 
 
 

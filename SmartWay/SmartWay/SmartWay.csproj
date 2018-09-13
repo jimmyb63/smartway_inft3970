@@ -116,13 +116,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\content.css" />
+    <Content Include="Content\map.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="UL\Views\Map.aspx" />
+    <Content Include="UL\Views\MapPage.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
     <Content Include="User.Master" />
+    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -178,6 +182,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
     <Compile Include="UL\Views\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,6 +258,13 @@
     </Compile>
     <Compile Include="UL\Views\Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\MapPage.aspx.cs">
+      <DependentUpon>MapPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\MapPage.aspx.designer.cs">
+      <DependentUpon>MapPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
