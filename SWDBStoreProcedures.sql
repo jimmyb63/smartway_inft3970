@@ -110,12 +110,12 @@ AS
 	DECLARE @tempPostalAddressID INT;
 	DECLARE @tempPhoneID INT;
 BEGIN
-	SET @tempPostalAddressID =(select max(ID) + 1 from PostalAddress)
-	SET @tempPhoneID =(select max(ID) + 1 from PhoneNumber)
 	INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country) 
 	VALUES(@tempUnitNumber, @tempStreetAddress, @tempStreetName, @tempCity, @tempPostCode, @tempStateName, @tempCountry );
 	INSERT INTO PhoneNumber (phoneNumber) 
 	VALUES(@tempPhone);
+	SET @tempPostalAddressID =(select max(ID) from PostalAddress)
+	SET @tempPhoneID =(select max(ID) from PhoneNumber)
 	INSERT INTO Person (firstName, lastName, email, phoneNumberId, addressId) 
 	VALUES(@tempFirstname, @tempLastName, @tempEmail, @tempPhoneID, @tempPostalAddressID  );
 END
