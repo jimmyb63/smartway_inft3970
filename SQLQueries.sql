@@ -7,9 +7,27 @@
 		Creates the Database For SmartWay Project
 */
 
+/*TODO
+		--Need a all person passing ID, fName,lName, James
+
+
+*/
 
 USE SmartwayDataBase;
 GO
 
 
 Select * FROM StateName;
+
+
+Select * 
+From Person
+
+Select * 
+From PostalAddress
+
+Select * 
+From PhoneNumber
+
+
+
