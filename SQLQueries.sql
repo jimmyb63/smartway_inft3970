@@ -32,5 +32,10 @@ From PhoneNumber
 Select *
 From VerificationCode
 
+--Shouldn't work
+EXEC sp_verifyPerson 'abcd1234', 1001
+--Should work
+EXEC sp_verifyPerson 'abcd1234', 1000
 
+EXEC sp_verifyPerson 'abcd1234', 1003
 

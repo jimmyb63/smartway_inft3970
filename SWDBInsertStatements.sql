@@ -30,7 +30,10 @@ INSERT INTO StateName (stateName) VALUES('TAS');
 EXEC sp_NewPerson 'Dave', 'Smith', 'davesemail@yahoo.com', 'password', '2004/05/21'
 GO
 
+--INSERT INTO VerificationCode (code, personID) VALUES(@tempVerificationCode, @tempPersonID);
 INSERT INTO VerificationCode (code, personID) VALUES ('abcd1234', '1000');
+
+EXEC sp_newVerificationCode 'abcd4321', '1001';
 
 --Insert Statenames
 EXEC sp_state_insert 'NSW';
@@ -48,7 +51,15 @@ EXEC sp_NewAddress '5', '181-183', 'Michael Street', 'Jesmond', 2299, 1, 'Austra
 
 
 --Insert New Registration
-EXEC sp_NewRegistration 'Jerry', 'Seinfield', 'jerry@Email.com', 
-						'1A' , '35', 'Janet Street', 'Jesmond', 2299, 1, 'Australia',
-						0404999444
+EXEC sp_NewRegistration 'Jerry', 'Seinfield', 'jerry@Email.com', 'Password1', 0404999444,
+						'1A' , '35', 'Janet Street', 'Jesmond', 2299, 1, 'Australia', 'abcd1234'
 
+EXEC sp_NewRegistration 'Whitney', 'Houston', 'singer@Email.com', 'Password2', 0299444444,
+						'10A' , '16', 'West Street', 'Jesmond', 2299, 1, 'Australia', 'abcd4321'
+
+
+EXEC sp_NewRegistration 'Ethan', 'Hunt', 'danger@Email.com', 'Password3', 0299449999,
+						'1' , '12', 'Smith Street', 'Jesmond', 2299, 1, 'Australia', 'abcd9876'
+
+EXEC sp_NewRegistration 'Dollie', 'Parton', 'banjo@Email.com', 'Password4', 0404980808,
+						'1A' , '35', 'Janet Street', 'Jesmond', 2299, 1, 'Australia', 'abcd1234'

@@ -119,8 +119,8 @@ CREATE PROCEDURE sp_NewRegistration(
 	@tempCity varchar(50),
 	@tempPostCode int,
 	@tempStateName int, -- References a saved StateName.
-	@tempCountry varchar(30))
-
+	@tempCountry varchar(30),
+	@tempVerificationCode varchar(8))
 --Return on default = newID;
 AS
  --DECLARE Temp Primary Key Variables
@@ -132,11 +132,14 @@ BEGIN
 	VALUES(@tempUnitNumber, @tempStreetAddress, @tempStreetName, @tempCity, @tempPostCode, @tempStateName, @tempCountry);
 	INSERT INTO PhoneNumber (phoneNumber) 
 	VALUES(@tempPhone);
-	SET @tempPostalAddressID =(select max(ID) from PostalAddress)
-	SET @tempPhoneID =(select max(ID) from PhoneNumber)
+	SET @tempPostalAddressID =(select max(ID) from PostalAddress);
+	SET @tempPhoneID =(select max(ID) from PhoneNumber);
 	INSERT INTO Person (firstName, lastName, email, SWPassword, phoneNumberId, addressId) 
 	VALUES(@tempFirstname, @tempLastName, @tempEmail, @tempPassword, @tempPhoneID, @tempPostalAddressID );
-	SET @returnPersonID =(select max(ID) from Person)
+	SET @returnPersonID =(select max(ID) from Person);
+	INSERT INTO VerificationCode (code, personID) 
+	VALUES(@tempVerificationCode, @returnPersonID);
+	SELECT @returnPersonID;
 	RETURN @returnPersonID;
 END
 GO 
@@ -156,5 +159,36 @@ BEGIN
 	UPDATE Person
 	SET firstName = @tempFirstName, lastName= @tempLastName, email=@tempEmail
 	WHERE ID = @tempID;
+END
+GO
+
+
+IF ( OBJECT_ID('sp_verifyPerson') IS NOT NULL ) 
+   DROP PROCEDURE sp_verifyPerson
+GO
+
+CREATE PROCEDURE sp_verifyPerson(
+	@tempVerificationCode varchar(8),
+	@tempPersonId INT)
+AS
+	DECLARE @tempCurrentDate DATE;
+BEGIN
+	-- Assignes the current date to the temporary variable
+	SET @tempCurrentDate = GETDATE();
+	--This is just a test and in sql displays if there was a match or not and from this we decide to update.
+	SELECT personID
+	FROM VerificationCode
+	WHERE code = @tempVerificationCode  AND personID = @tempPersonId;
+	--Updates the person by setting the verfication date to the current date
+	UPDATE Person
+	SET verificationDate = @tempCurrentDate
+	--It will do this if the ID = the tempory Id passed in and if there was a match to the above test 
+	--of if a match exists in Verfication table that matches the personID and the code that are passed in.
+	WHERE ID = @tempPersonId AND
+		EXISTS (
+		SELECT personID
+		FROM VerificationCode
+		WHERE code = @tempVerificationCode  AND personID = @tempPersonId)
+
 END
 GO

@@ -42,6 +42,12 @@ IF OBJECT_ID('dbo.PaypalDetails', 'U') IS NOT NULL
   DROP TABLE dbo.PaypalDetails;
 IF OBJECT_ID('dbo.Staff', 'U') IS NOT NULL 
   DROP TABLE dbo.Staff;
+
+IF OBJECT_ID('dbo.VerificationCode', 'U') IS NOT NULL 
+  DROP TABLE dbo.VerificationCode;
+
+
+
 IF OBJECT_ID('dbo.Person', 'U') IS NOT NULL 
   DROP TABLE dbo.Person;
 IF OBJECT_ID('dbo.PhoneNumber', 'U') IS NOT NULL 
