@@ -35,12 +35,12 @@ namespace SmartWay.UL.Views
                 int state = Convert.ToInt32(ddState.SelectedValue);
                 string country = txtCountry.Text;
                 int pCode = Convert.ToInt32(txtPostcode.Text);
+                string verificationCode = randomCodeGen();
                 AddressControls AC = new AddressControls();
                 UserControls UC = new UserControls();
-                int userID = UC.newRegistration(fName, lName, email, password, phoneNumber, uNum, sNum, sName, city, pCode, state, country);
+                int userID = UC.newRegistration(fName, lName, email, password, phoneNumber, uNum, sNum, sName, city, pCode, state, country, verificationCode);
                 Session["userID"] = userID;
-                string verificationCode = randomCodeGen();
-                UC.newVerficationCode(verificationCode, userID);
+                //UC.newVerficationCode(verificationCode, userID);
                 MailSender MS = new MailSender();
                 MS.sendVerificationEmail(email, fName, verificationCode);
                 Response.Redirect("AccountVerification.aspx");

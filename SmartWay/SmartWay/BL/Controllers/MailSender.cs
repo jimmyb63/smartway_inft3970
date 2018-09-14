@@ -36,13 +36,13 @@ namespace SmartWay.BL.Controllers
             }
         }
 
-        public void sendForgotPasswordEmail(string email)
+        public void sendForgotPasswordEmail(string email, string password)
         {
             MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
             MailAddress toAddress = new MailAddress(email);
             string fromPassword = "SomethingEasy";
             string subject = "Reset Password";
-            string body = getForgotPasswordEmail(email);
+            string body = getForgotPasswordEmail(email, password);
             SmtpClient smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
@@ -104,13 +104,11 @@ namespace SmartWay.BL.Controllers
                    "<p>User's contact email: " + email + "</p>";
         }
 
-        public string getForgotPasswordEmail(string email)
+        public string getForgotPasswordEmail(string email, string password)
         {
             return "<h2>Reset password</h2>" + 
                    "<br/><br/>" +
-                   "<p>Please click the link to reset your password:</p>" +
-                   "<br/>" +
-                   "<p><insert link here></p>";
+                   "<p>Your password is: " + "<b>" + password + "</b></p>";
 
         }
 

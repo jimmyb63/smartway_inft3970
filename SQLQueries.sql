@@ -39,3 +39,5 @@ EXEC sp_verifyPerson 'abcd1234', 1000
 
 EXEC sp_verifyPerson 'abcd1234', 1003
 
+SELECT code FROM VerificationCode WHERE personID = 1000
+

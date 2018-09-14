@@ -14,26 +14,22 @@ namespace SmartWay.BL.Models
             fName = null;
             lName = null;
             email = null;
-            phone = 0;
+            phoneID = 0;
+            addressID = 0;
             password = null;
-            paypalID = null;
-            regDate = DateTime.Now;
-            verified = false;
-            active = true;
+            paypalID = 0;
             position = "ADMIN";
         }
 
-        public Admin(string init_fName, string init_lName, string init_email, string init_password, int init_phone, string init_paypalID, string init_position)
+        public Admin(string init_fName, string init_lName, string init_email, string init_password, int init_phone,int init_addressID, int init_paypalID, string init_position)
         {
             fName = init_fName;
             lName = init_lName;
             email = init_email;
-            phone = init_phone;
+            phoneID = init_phone;
+            addressID = init_addressID;
             password = init_password;
             paypalID = init_paypalID;
-            regDate = DateTime.Now;
-            verified = false;
-            active = true;
             position = "ADMIN";
         }
 
@@ -85,19 +81,31 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public int adminPhone
+        public int adminPhoneID
         {
             get
             {
-                return phone;
+                return phoneID;
             }
             set
             {
-                phone = value;
+                phoneID = value;
             }
         }
 
-        public string adminPaypalID
+        public int adminAdressID
+        {
+            get
+            {
+                return addressID;
+            }
+            set
+            {
+                addressID = value;
+            }
+        }
+
+        public int adminPaypalID
         {
             get
             {
@@ -106,42 +114,6 @@ namespace SmartWay.BL.Models
             set
             {
                 paypalID = value;
-            }
-        }
-
-        public DateTime adminRegDate
-        {
-            get
-            {
-                return regDate;
-            }
-            set
-            {
-                regDate = value;
-            }
-        }
-
-        public bool adminVerified
-        {
-            get
-            {
-                return verified;
-            }
-            set
-            {
-                verified = value;
-            }
-        }
-
-        public bool adminActive
-        {
-            get
-            {
-                return active;
-            }
-            set
-            {
-                active = value;
             }
         }
 

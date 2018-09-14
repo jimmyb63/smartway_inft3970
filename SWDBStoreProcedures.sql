@@ -120,13 +120,14 @@ CREATE PROCEDURE sp_NewRegistration(
 	@tempPostCode int,
 	@tempStateName int, -- References a saved StateName.
 	@tempCountry varchar(30),
-	@tempVerificationCode varchar(8))
+	@tempVerificationCode varchar(8),
+	@returnPersonID INT OUTPUT)
 --Return on default = newID;
 AS
  --DECLARE Temp Primary Key Variables
 	DECLARE @tempPostalAddressID INT;
 	DECLARE @tempPhoneID INT;
-	DECLARE @returnPersonID INT;
+	--DECLARE @returnPersonID INT;
 BEGIN
 	INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country) 
 	VALUES(@tempUnitNumber, @tempStreetAddress, @tempStreetName, @tempCity, @tempPostCode, @tempStateName, @tempCountry);
@@ -140,7 +141,7 @@ BEGIN
 	INSERT INTO VerificationCode (code, personID) 
 	VALUES(@tempVerificationCode, @returnPersonID);
 	SELECT @returnPersonID;
-	RETURN @returnPersonID;
+	--RETURN @returnPersonID;
 END
 GO 
 

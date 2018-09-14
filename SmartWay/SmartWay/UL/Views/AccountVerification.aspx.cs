@@ -15,7 +15,7 @@ namespace SmartWay.UL.Views
 
         }
 
-        protected void VerifyUser()
+        protected void VerifyUser(object sender, EventArgs e)
         {
             int userID = (int)Session["userID"];
             string userInput = txtVerficiationCode.Text;

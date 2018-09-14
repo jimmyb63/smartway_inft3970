@@ -36,14 +36,14 @@ INSERT INTO VerificationCode (code, personID) VALUES ('abcd1234', '1000');
 EXEC sp_newVerificationCode 'abcd4321', '1001';
 
 --Insert Statenames
-EXEC sp_state_insert 'NSW';
-EXEC sp_state_insert 'QLD';
-EXEC sp_state_insert 'WA';
-EXEC sp_state_insert 'VIC';
-EXEC sp_state_insert 'SA';
-EXEC sp_state_insert 'NT';
-EXEC sp_state_insert 'TAS';
-EXEC sp_state_insert 'ACT';
+EXEC sp_state_insert 'NSW'; ---1
+EXEC sp_state_insert 'QLD'; ---2
+EXEC sp_state_insert 'WA';  ---3
+EXEC sp_state_insert 'VIC'; ---4
+EXEC sp_state_insert 'SA';  ---5
+EXEC sp_state_insert 'NT';  ---6
+EXEC sp_state_insert 'TAS'; ---7
+EXEC sp_state_insert 'ACT'; ---8
 GO
 
 --Insert New Address

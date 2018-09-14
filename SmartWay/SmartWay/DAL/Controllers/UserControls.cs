@@ -30,45 +30,55 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
-        public int newRegistration(string fName, string lName, string emailAddress, string password, int phoneNumber, string uNum, string sNum, string sName, string city, int pCode, int stateID, string country)
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int newRegistration(string fName, string lName, string emailAddress, string password, int phoneNumber, string uNum, string sNum, string sName, string city, int pCode, int stateID, string country, string verificationCode)
         {
             // Add user to database
             // INSERT INTO tblCustomer VALUES()
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "EXEC sp_NewRegistration @fName, @lName, @emailAddress, @password, @phoneNumber, @uNum, @sNum, @sName, @city, @pCode, @state, @country";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@returnPersonID", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
-            cmd.Parameters.Add("@fName", SqlDbType.VarChar, 60).Value = fName;
-            cmd.Parameters.Add("@lName", SqlDbType.VarChar, 60).Value = lName;
-            cmd.Parameters.Add("@emailAddress", SqlDbType.VarChar, 100).Value = emailAddress;
-            cmd.Parameters.Add("@password", SqlDbType.VarChar, 60).Value = password;
-            cmd.Parameters.Add("@phoneNumber", SqlDbType.Int).Value = phoneNumber;
-            cmd.Parameters.Add("@uNum", SqlDbType.VarChar, 4).Value = uNum;
-            cmd.Parameters.Add("@sNum", SqlDbType.VarChar, 20).Value = sNum;
-            cmd.Parameters.Add("@sName", SqlDbType.VarChar, 35).Value = sName;
-            cmd.Parameters.Add("@city", SqlDbType.VarChar, 50).Value = city;
-            cmd.Parameters.Add("@state", SqlDbType.Int).Value = stateID;
-            cmd.Parameters.Add("@pCode", SqlDbType.SmallInt).Value = pCode;
-            cmd.Parameters.Add("@country", SqlDbType.VarChar, 30).Value = country;
+            string procedure = "sp_NewRegistration";
+            SqlCommand cmd = new SqlCommand(procedure, connection);
+            //string query = "EXEC sp_NewRegistration @fName, @lName, @emailAddress, @password, @phoneNumber, @uNum, @sNum, @sName, @city, @pCode, @state, @country, @verificationCode";
+            //SqlCommand cmd = new SqlCommand(query, connection);
+            //cmd.Parameters.Add("@returnPersonID", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+            param = cmd.Parameters.Add("@tempFirstName", SqlDbType.VarChar, 20);
+            param.Value = fName;
+            param = cmd.Parameters.Add("@tempLastName", SqlDbType.VarChar, 20);
+            param.Value = lName;
+            param = cmd.Parameters.Add("@tempEmail", SqlDbType.VarChar, 320);
+            param.Value = emailAddress;
+            param = cmd.Parameters.Add("@tempPassword", SqlDbType.VarChar, 30);
+            param.Value = password;
+            param = cmd.Parameters.Add("@tempPhone", SqlDbType.Int);
+            param.Value = phoneNumber;
+            param = cmd.Parameters.Add("@tempUnitNumber", SqlDbType.VarChar, 4);
+            param.Value = uNum;
+            param = cmd.Parameters.Add("@tempStreetAddress", SqlDbType.VarChar, 20);
+            param.Value = sNum;
+            param = cmd.Parameters.Add("@tempStreetName", SqlDbType.VarChar, 35);
+            param.Value = sName;
+            param = cmd.Parameters.Add("@tempCity", SqlDbType.VarChar, 50);
+            param.Value = city;
+            param = cmd.Parameters.Add("@tempPostCode", SqlDbType.Int);
+            param.Value = pCode;
+            param = cmd.Parameters.Add("@tempStateName", SqlDbType.Int);
+            param.Value = stateID;
+            param = cmd.Parameters.Add("@tempCountry", SqlDbType.VarChar, 30);
+            param.Value = country;
+            param = cmd.Parameters.Add("@tempVerificationCode", SqlDbType.VarChar, 8);
+            param.Value = verificationCode;
+            param = cmd.Parameters.Add("@returnPersonID", SqlDbType.Int);
+            param.Direction = ParameterDirection.Output;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            int personID = (int)cmd.Parameters["@returnPersonID"].Value;
+            int personID = (int)param.Value;
             return personID;
         }
 
-        public void newVerficationCode(string verificationCode, int personID)
-        {
-            SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "EXEC sp_newVerificationCode @verificationCode, @personID";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@verificationCode", SqlDbType.VarChar, 8).Value = verificationCode;
-            cmd.Parameters.Add("@personID", SqlDbType.Int).Value = personID;
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-        }
-
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public string getVerificationCode(int personID)
         {
             string verificationCode;
@@ -120,6 +130,30 @@ namespace SmartWay.DAL.Controllers
             int phoneID = (int)cmd.ExecuteScalar();
             connection.Close();
             return phoneID;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.Models.User getUserAccount(string email)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            SqlCommand cmd = new SqlCommand();
+            string query = "SELECT ID, firstName, lastName, email, phoneNumberId, addressId, SWPassword FROM Person WHERE email = @email";
+            cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar, 320).Value = email;
+            connection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            BL.Models.User tempUser = new BL.Models.User();
+            while (dr.Read())
+            {
+                tempUser.userID = Convert.ToInt32(dr["ID"]);
+                tempUser.userfName = dr["firstName"].ToString();
+                tempUser.userlName = dr["lastName"].ToString();
+                tempUser.userEmail = dr["email"].ToString();
+                tempUser.userPhoneID = Convert.ToInt32(dr["phoneNumberId"]);
+                tempUser.userAddressID = Convert.ToInt32(dr["addressId"]);
+                tempUser.userPassword = dr["SWPassword"].ToString();
+            }
+            return tempUser;
         }
 
         public string getconnectionString()

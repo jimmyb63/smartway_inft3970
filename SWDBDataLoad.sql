@@ -12,28 +12,51 @@ USE SmartwayDataBase;
 GO
 
 
+---StateName Loading
+--INSERT INTO StateName (stateName) VALUES ('	NSW');
+--INSERT INTO StateName (stateName) VALUES ('	SA'	);
+--INSERT INTO StateName (stateName) VALUES ('	NSW');
+--INSERT INTO StateName (stateName) VALUES ('	QLD');
+--INSERT INTO StateName (stateName) VALUES ('	NSW');
+--INSERT INTO StateName (stateName) VALUES ('	SA'	);
+--INSERT INTO StateName (stateName) VALUES ('	NSW');
+--INSERT INTO StateName (stateName) VALUES ('	SA'	);
+--INSERT INTO StateName (stateName) VALUES ('	SA'	);
+--INSERT INTO StateName (stateName) VALUES ('	NSW');
+--INSERT INTO StateName (stateName) VALUES ('	VIC');
+--INSERT INTO StateName (stateName) VALUES ('	WA'	);
+
+
+---PostalAddress Loading
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('A','4'	,'Warruga Street','	Corlette',2315,1,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('C','5'	,'Bayview Close','The Common',4701,2,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES (''	,'123','Fake Street','Newcastle',9009,1,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','75','Auricht Road','Tilley Swamp',5275, 5,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('A','22','Junction Street','Caldwell',2710,1,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','3','Wigley Street','Seacombe Heights',5047,5,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','8','Sunnyside Road','Murtho',5340,5,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','35','Dalgarno Street','Basin Plain',2380,1,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','41','Horsington Street','Box Hill South',3128,4,'Australia');
+INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','58','Pelican Close','RoadHill',6798,3,'Australia');
+
+
 ---Person Data Loading
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Zane'	,'	Crook'	,'ZaneCrook@dayrep.com'	,'	15/09/1999'	,'	CaptainCrook'	,'	Uomai7Oo'	,'	7/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Stella'	,'	Beale'	,'StellaBeale@jourrapide.com'	,'	2/04/1991'	,'	StellaBeale91'	,'	wee9Wooce4R'	,'	5/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Graham'	,'	Johnstone'	,'grahamjohnstone@gmail.com'	,'	30/06/1997'	,'	DreadPirateRoberts'	,'	P@ssword1234'	,'	30/08/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Tahlia'	,'	Sayers'	,'	TahliaSayers@rhyta.com'	,'	11/11/1975'	,'	Tahlia1986'	,'	Xahg0ooNg0'	,'	7/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	John'	,'	Smith'	,'	johnsmith@gmail.com'	,'	22/05/1992'	,'	JohnS'	,'	password'	,'	30/08/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Ben'	,'	Downey'	,'	BenDowney@rhyta.com'	,'	10/09/1952'	,'	BenDowney'	,'	qwerty'	,'	4/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Christian'	,'	Dunckley'	,'	ChristianDunckley@jourrapide.com'	,'	3/02/1991'	,'	Sprid1991'	,'	aique6Weep'	,'	4/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Austin'	,'	Fitchett'	,'	AustinFitchett@teleworm.us'	,'	23/02/1979'	,'	Whinevesock'	,'	Maic8uzoa'	,'	3/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Hayley'	,'	Aronson'	,'	HayleyAronson@armyspy.com'	,'	3/07/1996'	,'	Whishill'	,'	adaeV500'	,'	1/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Georgia'	,'	Luke'	,'	GeorgiaLuke@rhyta.com'	,'	16/11/1984'	,'	Doony1984'	,'	iek3Lu7O'	,'	7/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Christian'	,'	Pell'	,'	ChristianPell@rhyta.com'	,'	21/10/1992'	,'	Sunwast'	,'	thait8oJ'	,'	2/09/2018'	);
-INSERT INTO Person (firstName, lastName, email ) VALUES ('	Ashley'	,'	Ballinger'	,'	ab@gmail.com'	,'	29/10/1992'	,'	Ash1992'	,'	password'	,'	30/08/2018'	);
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Zane','Crook','ZaneCrook@dayrep.com','1999-09-15','CaptainCrook','Uomai7Oo','2018-09-07');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Stella','Beale','StellaBeale@jourrapide.com','1991-04-02','StellaBeale91','wee9Wooce4R','2018-09-05');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Graham','Johnstone','grahamjohnstone@gmail.com','1997-06-30','DreadPirateRoberts','P@ssword1234','2018-08-30');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Tahlia','Sayers','TahliaSayers@rhyta.com','1975-11-11','Tahlia1986','Xahg0ooNg0','2018-09-07');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('John','Smith','johnsmith@gmail.com','1992-05-22','JohnS','password','2018-08-30');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Ben','Downey','BenDowney@rhyta.com','1952-09-10','BenDowney','qwerty','2018-09-04');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Dunckley','ChristianDunckley@jourrapide.com','1991-02-03','Sprid1991','aique6Weep','2018-09-04');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Austin','Fitchett','AustinFitchett@teleworm.us','1979-02-23','	Whinevesock','	Maic8uzoa','2018-09-03');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Hayley','Aronson','HayleyAronson@armyspy.com','1996-07-03','Whishill','adaeV500','2018-09-01');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Georgia','Luke','GeorgiaLuke@rhyta.com','1984-11-16','Doony1984','iek3Lu7O','2018-09-07');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Pell','	ChristianPell@rhyta.com','1992-10-21','Sunwast','thait8oJ','2018-09-02');
+INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Ashley','Ballinger','ab@gmail.com', '1992-10-29','Ash1992','password','2018-08-30');
 
 
+SELECT * 
+FROM Person
 
-
-
-
-----
-
-
-
-
-----

@@ -17,7 +17,7 @@ namespace SmartWay.BL.Controllers
                 MailAddress to = new MailAddress(email);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

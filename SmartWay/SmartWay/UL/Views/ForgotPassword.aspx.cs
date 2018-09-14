@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SmartWay.DAL.Controllers;
 
 namespace SmartWay.UL.Views
 {
@@ -18,8 +19,12 @@ namespace SmartWay.UL.Views
         public void forgotPassword(object sender, EventArgs e)
         {
             string email = txtEmail.Text;
+            UserControls UC = new UserControls();
+            BL.Models.User tempUser = UC.getUserAccount(email);
             MailSender MS = new MailSender();
-            MS.sendForgotPasswordEmail(email);
+            string password = tempUser.userPassword;
+            MS.sendForgotPasswordEmail(email, password);
+
             Response.Redirect("Index.aspx");
         }
     }
