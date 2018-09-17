@@ -109,7 +109,9 @@ GO
 
 CREATE PROCEDURE sp_NewRegistration(
 	@tempFirstname varchar(20),
-	@tempLastName varchar(20), 
+	@tempLastName varchar(20),
+	@tempUsername varchar(30),
+	@tempDOB date, 
 	@tempEmail varchar(320),
 	@tempPassword varchar(30),
 	@tempPhone INT,
@@ -135,8 +137,8 @@ BEGIN
 	VALUES(@tempPhone);
 	SET @tempPostalAddressID =(select max(ID) from PostalAddress);
 	SET @tempPhoneID =(select max(ID) from PhoneNumber);
-	INSERT INTO Person (firstName, lastName, email, SWPassword, phoneNumberId, addressId) 
-	VALUES(@tempFirstname, @tempLastName, @tempEmail, @tempPassword, @tempPhoneID, @tempPostalAddressID );
+	INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, phoneNumberId, addressId) 
+	VALUES(@tempFirstname, @tempLastName, @tempEmail, @tempDOB, @tempUsername, @tempPassword, @tempPhoneID, @tempPostalAddressID );
 	SET @returnPersonID =(select max(ID) from Person);
 	INSERT INTO VerificationCode (code, personID) 
 	VALUES(@tempVerificationCode, @returnPersonID);

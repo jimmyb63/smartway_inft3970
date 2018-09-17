@@ -26,6 +26,16 @@ GO
 --INSERT INTO StateName (stateName) VALUES ('	VIC');
 --INSERT INTO StateName (stateName) VALUES ('	WA'	);
 
+EXEC sp_state_insert 'NSW'; ---1
+EXEC sp_state_insert 'QLD'; ---2
+EXEC sp_state_insert 'WA';  ---3
+EXEC sp_state_insert 'VIC'; ---4
+EXEC sp_state_insert 'SA';  ---5
+EXEC sp_state_insert 'NT';  ---6
+EXEC sp_state_insert 'TAS'; ---7
+EXEC sp_state_insert 'ACT'; ---8
+GO
+
 
 ---PostalAddress Loading
 INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');

@@ -31,7 +31,7 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public int newRegistration(string fName, string lName, string emailAddress, string password, int phoneNumber, string uNum, string sNum, string sName, string city, int pCode, int stateID, string country, string verificationCode)
+        public int newRegistration(string fName, string lName, string uName, string DOB, string emailAddress, string password, int phoneNumber, string uNum, string sNum, string sName, string city, int pCode, int stateID, string country, string verificationCode)
         {
             // Add user to database
             // INSERT INTO tblCustomer VALUES()
@@ -47,6 +47,10 @@ namespace SmartWay.DAL.Controllers
             param.Value = fName;
             param = cmd.Parameters.Add("@tempLastName", SqlDbType.VarChar, 20);
             param.Value = lName;
+            param = cmd.Parameters.Add("@tempUsername", SqlDbType.VarChar, 30);
+            param.Value = uName;
+            param = cmd.Parameters.Add("@tempDOB", SqlDbType.Date);
+            param.Value = DOB;
             param = cmd.Parameters.Add("@tempEmail", SqlDbType.VarChar, 320);
             param.Value = emailAddress;
             param = cmd.Parameters.Add("@tempPassword", SqlDbType.VarChar, 30);
@@ -98,6 +102,18 @@ namespace SmartWay.DAL.Controllers
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@personID", SqlDbType.Int).Value = personID;
             cmd.Parameters.Add("@verificationDate", SqlDbType.Date).Value = verificationDate;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public void addProfileImage(string filePath)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "INSERT INTO SavedImage VALUES(@filePath)";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@filePath", SqlDbType.VarChar, 260).Value = filePath;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();

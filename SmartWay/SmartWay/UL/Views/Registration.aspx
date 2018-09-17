@@ -8,6 +8,17 @@
                     <h2>Registration</h2>
                 </th>
             </tr>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtUsername" placeholder="Username" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtUsername" runat="server" />
+                </td>
+            </tr>
             <!-- First name textbox with validators -->
             <tr>
                 <td>
@@ -36,6 +47,17 @@
             </tr>
             <tr>
                 <td>
+                    Date of Birth:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtDOB" TextMode="Date" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtDOB" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Phone Number:
                 </td>
                 <td>
@@ -44,6 +66,14 @@
                 <td>
                     <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPhone"
                           runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Profile picture:
+                </td>
+                <td>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
                 </td>
             </tr>
             <tr>
