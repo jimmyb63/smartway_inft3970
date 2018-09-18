@@ -157,13 +157,13 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator StreetValidation;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddState;
         
         /// <summary>
         /// txtPostcode control.

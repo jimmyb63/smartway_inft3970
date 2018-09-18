@@ -13,15 +13,18 @@
                     Username:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtUsername" placeholder="Username" runat="server"></asp:TextBox>
+                    <asp:TextBox
+                        ID="txtUsername" 
+                        placeholder="Username" 
+                        runat="server">
+                    </asp:TextBox>
                 </td>
                 <td>
                     <asp:RequiredFieldValidator
-                         ErrorMessage="Required" 
+                        ErrorMessage="Required" 
                         ForeColor="Red" 
                         ControlToValidate="txtUsername" 
-                        runat="server" />
-                   
+                        runat="server" />                   
                 </td>
             </tr>
           <!-- First name textbox with validators -->
@@ -255,10 +258,9 @@
                 </td>
                 <td>
                     <asp:DropDownList 
-                        ID="DropDownList1" 
+                        ID="ddState" 
                         runat="server">
-                        <asp:ListItem Enabled="true"
-                            Text="Select State" Value="-1"></asp:ListItem>
+                        <asp:ListItem Enabled="true" Text="Select State" Value="-1"></asp:ListItem>
                         <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
                         <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
                         <asp:ListItem Text="WA" Value="3"></asp:ListItem>
