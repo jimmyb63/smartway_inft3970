@@ -106,22 +106,13 @@
                         runat="server" />
                 </td>
                 <td>
-                    <%-- Validations for Phone Number: Required, Character Length Limit and only numbers + certain symbols (RegEx) --%>
-                    <%--  Phone number validation from: https://manual.limesurvey.org/Using_regular_expressions#Important:_Regular_Expressions_in_conditions --%>
+                    <!-- Validations for Phone Number: Required, Character Length Limit and only numbers + certain symbols (RegEx) -->
+                    <!--  Phone number validation from: https://manual.limesurvey.org/Using_regular_expressions#Important:_Regular_Expressions_in_conditions -->
                     
                     <asp:RequiredFieldValidator 
                         ErrorMessage="Required" 
                         ForeColor="Red" 
                         ControlToValidate="txtPhone"
-                        runat="server" />
-
-                    <asp:RegularExpressionValidator
-                        ControlToValidate="txtPhone"
-                        ID="PhoneNumberValidation"
-                        ValidationExpression="/^(?:\+?61|0)[2-478](?:[ -]?[0-9]){8}$/"
-                        ErrorMessage="Invalid phone number."
-                        Display="Dynamic"
-                        ForeColor="Red"
                         runat="server" />
                 </td>
             </tr>
@@ -159,7 +150,7 @@
                         runat="server" />
                 </td>
                 <td>
-                    <%-- Unit Number Validation: Numbers only and Character Length Limit (6) --%>
+                    <!-- Unit Number Validation: Numbers only and Character Length Limit (6) -->
                     <asp:RegularExpressionValidator
                         ControlToValidate="txtUnitNumber"
                         ID="UnitNumberValidation"
@@ -176,7 +167,7 @@
                     *Street Number:
                 </td>
                 <td>
-                    <%-- Street Number Validation: Required, Numbers only, Character Lenght Limit --%>
+                    <!-- Street Number Validation: Required, Numbers only, Character Lenght Limit -->
                     <asp:TextBox 
                         ID="txtStreetNumber" 
                         placeholder="Street number" 
@@ -189,7 +180,7 @@
                         ControlToValidate="txtStreetNumber" 
                         runat="server" />
 
-                    <%-- Format: numbers from 0-9 and max 6 characters --%>                    
+                    <!-- Format: numbers from 0-9 and max 6 characters -->                    
                     <asp:RegularExpressionValidator
                         ControlToValidate="txtStreetNumber"
                         ID="StreetNumberValidation"                                
@@ -219,6 +210,24 @@
                         runat="server" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    *Post Code:
+                </td>
+                <td>
+                    <asp:TextBox 
+                        ID="txtPostcode" 
+                        placeholder="Post Code" 
+                        runat="server" />
+                </td>
+                <td>
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtPostcode"
+                        runat="server" />
+                </td>
+            </tr>
             <!-- Residential city textbox with validators -->
             <tr>
                 <td>
@@ -231,7 +240,7 @@
                         runat="server" />
                 </td>
                 <td>
-                    <%-- City Validation: Required, Character Limit (max 100) --%>
+                    <!-- City Validation: Required, Character Limit (max 100) -->
                     <asp:RequiredFieldValidator 
                         ErrorMessage="Required" 
                         ForeColor="Red" 
@@ -278,43 +287,13 @@
                         runat="server" />
                 </td>
             </tr>
-            <!-- Residential state textbox with validators -->
-            <tr>
-                <td>
-                    *State:
-                </td>
-                <td>
-                    <asp:DropDownList 
-                        ID="DropDownList1" 
-                        runat="server">
-                        <asp:ListItem Enabled="true"
-                            Text="Select State" Value="-1"></asp:ListItem>
-                        <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="WA" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="VIC" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="SA" Value="5"></asp:ListItem>
-                        <asp:ListItem Text="NT" Value="6"></asp:ListItem>
-                        <asp:ListItem Text="TAS" Value="7"></asp:ListItem>
-                        <asp:ListItem Text="ACT" Value="8"></asp:ListItem>
-                    </asp:DropDownList>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator 
-                        ErrorMessage="Must select state"
-                        InitialValue="-1" 
-                        ForeColor="Red" 
-                        ControlToValidate="ddState"
-                        runat="server" />
-                </td>
-            </tr>
             <!-- Residential country textbox with validator -->
             <tr>
                 <td>
                     Country:
                 </td>
                 <td>
-                    <%-- Sets Country textbox to read only, means that the user cannot edit --%>
+                    <!-- Sets Country textbox to read only, means that the user cannot edit -->
                     <asp:TextBox
                         IsReadOnly="True" 
                         ID="txtCountry" 
@@ -342,7 +321,7 @@
                         runat="server" />
                 </td>
                 <td>
-                    <%-- Email Validation: Required, Email RegEx --%>
+                    <!-- Email Validation: Required, Email RegEx -->
                     <asp:RequiredFieldValidator 
                         ErrorMessage="Required" 
                         Display="Dynamic" 
@@ -372,8 +351,8 @@
                         TextMode="Password" />
                 </td>
                 <td>
-                    <%-- Password Validation: Required, Min Char Length + Min 1 Number + Min 1 Uppercase + Min Lowercase--%>
-                    <%--  https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a --%>
+                    <!-- Password Validation: Required, Min Char Length + Min 1 Number + Min 1 Uppercase + Min Lowercase-->
+                    <!--  https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a -->
                     
                     <asp:RequiredFieldValidator 
                         ErrorMessage="Required" 
@@ -385,7 +364,7 @@
                         ControlToValidate="txtPassword"
                         ID="PasswordValidation"
                         ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-                        ErrorMesagge="Min 8 characters, including Uppercase letter and a number."
+                        ErrorMessage="Min 8 characters, including Uppercase letter and a number."
                         runat="server"
                         Display="Dynamic"
                         ForeColor="Red" />
@@ -404,7 +383,7 @@
                         TextMode="Password" />
                 </td>
                 <td>
-                    <%-- Compares both password fields and checks if they are the same --%>
+                    <!-- Compares both password fields and checks if they are the same -->
                     <asp:RequiredFieldValidator
                         ErrorMessage="Required"
                         ForeColor="Red"
@@ -419,11 +398,10 @@
                         runat="server" />
                 </td>
             </tr>
+            <tr>
                 <!-- Submit button runs RegisterUser method when clicked -->
                 <td>
                     <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" />
-                </td>
-                <td>
                 </td>
             </tr>
         </table>

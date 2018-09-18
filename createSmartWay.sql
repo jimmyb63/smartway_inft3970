@@ -132,17 +132,17 @@ create table PaypalDetails (	ID int IDENTITY(1000,1) primary key,
 								FOREIGN KEY (PersonID) REFERENCES Person(ID) 
 								)
 
---Add comments
-create table AddStatus (		ID int IDENTITY(1000,1) primary key,
-								StatusName varchar(30) NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1
-								)
+----Add comments
+--create table AddStatus (		ID int IDENTITY(1000,1) primary key,
+--								StatusName varchar(30) NOT NULL,
+--								creationDate date NOT NULL DEFAULT GETDATE(),
+--								active bit DEFAULT 1
+--								)
 
 --Add comments
 create table AddCategory (		ID int IDENTITY(1000,1) primary key,
-								addType varchar(30) NOT NULL,
 								category varchar(30) NOT NULL,
+								subCategory varchar(30)NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1
 								)
@@ -151,12 +151,13 @@ create table AddCategory (		ID int IDENTITY(1000,1) primary key,
 create table Advertisement (	ID int IDENTITY(1000,1) primary key,
 								sellerID int NOT NULL,
 								buyerID int,
+								adType varchar(30) NOT NULL,
 								title varchar(50) NOT NULL,
-								addDescription varchar(50) NOT NULL,
+								adDescription varchar(50) NOT NULL,
 								addressID int NOT NULL,
-								addStatusID int NOT NULL DEFAULT 0,
-								categoryID int NOT NULL DEFAULT 0,
-								price float NOT NULL,		
+								--addStatusID int NOT NULL DEFAULT 0,
+								categoryID int NOT NULL,
+								price decimal NOT NULL,		
 								dateCompleted date,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1,
@@ -164,7 +165,7 @@ create table Advertisement (	ID int IDENTITY(1000,1) primary key,
 								foreign key (sellerID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (buyerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (addressID) references PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (addStatusID) references AddStatus(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+								--foreign key (addStatusID) references AddStatus(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
@@ -178,13 +179,15 @@ create table SavedImage (		ID int IDENTITY(1000,1) primary key,
 								)
 --Add comments
 create table AddImage	(		ID int IDENTITY(1000,1) primary key,
-								imageID int NOT NULL,
-								addID int NOT NULL,
+								--imageID int NOT NULL,
+								filePath varchar(260) NOT NULL,
+								userID int NOT NULL,
+								adID int NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1,
 								--foreignkeys
-								foreign key (imageID) references SavedImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (addID) references Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+								foreign key (userID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (adID) references Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
 --Add comments

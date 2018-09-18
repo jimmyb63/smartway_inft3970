@@ -101,6 +101,31 @@ BEGIN
 END
 GO
 
+--New Advertisement
+IF OBJECT_ID('sp_NewAdvertisement', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewAdvertisement;  
+GO 
+
+CREATE PROCEDURE sp_NewAdvertisement(
+	@tempSellerID INT,
+	@tempTitle varchar(50),
+	@tempType varchar(30),
+	@tempCategory varchar(30),
+	@tempSubCategory varchar(30),
+	@tempDescription varchar(50),
+	@tempAddressID INT,
+	@tempPrice DECIMAL,
+	@returnAdID INT OUTPUT)
+AS
+	DECLARE @tempCategoryID INT;
+BEGIN
+	SET @tempCategoryID =(select ID from AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
+	INSERT INTO Advertisement (sellerID, adType, title, adDescription, addressID, categoryID, price)
+	VALUES(@tempSellerID, @tempType, @tempTitle, @tempDescription, @tempAddressID, @tempCategoryID, @tempPrice);
+	SET @returnAdID =(select max(ID) from Advertisement);
+	SELECT @returnAdID;
+END
+GO
 
 --New Registration
 IF OBJECT_ID('sp_NewRegistration', 'P') IS NOT NULL  

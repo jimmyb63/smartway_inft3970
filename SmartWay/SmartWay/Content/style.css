@@ -8,12 +8,12 @@ Primary style
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 62.5% !important;
 }
 
 body {
-	font-size: 1.6rem;
-	font-family: "Open Sans", sans-serif;
+	font-size: 1.6rem !important;
+	font-family: "Open Sans", sans-serif !important;
 	color: #3e454c;
 	background-color: #ffffff;
 	border-bottom-width: 0px;

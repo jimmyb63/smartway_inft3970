@@ -10,6 +10,8 @@ namespace SmartWay.BL.Models
         protected int ID;
         protected string fName;
         protected string lName;
+        protected string uName;
+        protected string DOB;
         protected string email;
         protected string password;
         protected int phoneID;
@@ -21,6 +23,8 @@ namespace SmartWay.BL.Models
             ID = 0;
             fName = null;
             lName = null;
+            uName = null;
+            DOB = null;
             email = null;
             phoneID = 0;
             addressID = 0;
@@ -28,11 +32,13 @@ namespace SmartWay.BL.Models
             paypalID = 0; ;
         }
 
-        public User(int init_ID, string init_fName, string init_lName, string init_email, string init_password, int init_phoneID, int init_addressID, int init_paypalID)
+        public User(int init_ID, string init_fName, string init_lName, string init_uName, string init_DOB, string init_email, string init_password, int init_phoneID, int init_addressID, int init_paypalID)
         {
             ID = init_ID;
             fName = init_fName;
             lName = init_lName;
+            uName = init_uName;
+            DOB = init_DOB;
             email = init_email;
             phoneID = init_phoneID;
             addressID = init_addressID;
@@ -73,6 +79,30 @@ namespace SmartWay.BL.Models
             set
             {
                 lName = value;
+            }
+        }
+
+        public string userName
+        {
+            get
+            {
+                return uName;
+            }
+            set
+            {
+                uName = value;
+            }
+        }
+
+        public string userDOB
+        {
+            get
+            {
+                return DOB;
+            }
+            set
+            {
+                DOB = value;
             }
         }
 

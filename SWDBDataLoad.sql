@@ -66,7 +66,27 @@ INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, ver
 INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Pell','	ChristianPell@rhyta.com','1992-10-21','Sunwast','thait8oJ','2018-09-02');
 INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Ashley','Ballinger','ab@gmail.com', '1992-10-29','Ash1992','password','2018-08-30');
 
+--AddCategory Data Loading
+INSERT INTO AddCategory (category, subCategory) VALUES('services', 'labour');
+INSERT INTO AddCategory (category, subCategory) VALUES('services', 'tools required');
+INSERT INTO AddCategory (category, subCategory) VALUES('services', 'skills required');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'free');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'household');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'electronics');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'outdoor');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'sporting');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'automotive');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'baby/child');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'clothing');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'tools');
+INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'other');
+
 
 SELECT * 
 FROM Person
 
+SELECT *
+FROM addCategory
+
+SELECT * 
+FROM Advertisement

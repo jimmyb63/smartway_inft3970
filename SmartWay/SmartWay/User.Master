@@ -80,9 +80,9 @@
 		<nav class="cd-side-nav border">
 			<ul>
 				<li class="cd-label">New</li>
-				<li class="action-btn"><a href="AddService.aspx">Add Service</a></li>
+				<li class="action-btn"><a href="Advertisement.aspx">Add Service</a></li>
                 <br />
-				<li class="action-btn"><a href="AddGood.aspx">Add Goods</a></li>
+				<li class="action-btn"><a href="Advertisement.aspx">Add Goods</a></li>
 				
 				<li class="cd-label">SmartWay</li>
 				

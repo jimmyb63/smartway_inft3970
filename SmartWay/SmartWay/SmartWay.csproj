@@ -126,6 +126,7 @@
     <Content Include="UL\Images\ProfileImg\1014.png" />
     <Content Include="UL\Views\Account.aspx" />
     <Content Include="UL\Views\AccountVerification.aspx" />
+    <Content Include="UL\Views\Advertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
@@ -181,6 +182,7 @@
     <Compile Include="BL\Models\RecycleLocation.cs" />
     <Compile Include="BL\Models\User.cs" />
     <Compile Include="DAL\Controllers\AddressControls.cs" />
+    <Compile Include="DAL\Controllers\AdvertisementControls.cs" />
     <Compile Include="DAL\Controllers\UserControls.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +229,13 @@
     </Compile>
     <Compile Include="UL\Views\AddService.aspx.designer.cs">
       <DependentUpon>AddService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\Advertisement.aspx.cs">
+      <DependentUpon>Advertisement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\Advertisement.aspx.designer.cs">
+      <DependentUpon>Advertisement.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
