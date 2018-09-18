@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="SmartWay.User" %>
-
+<%@ Import Namespace="SmartWay.BL.Models" %>
+<%@ Import Namespace="SmartWay.DAL.Controllers" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="no-js">
@@ -39,9 +40,21 @@
 				<li><a href="About.aspx">About Us</a></li>
 				<li><a href="Contact.aspx">Contact Us</a></li>
                 <% if (Session["log"] != null)
-                    { %>
+                    {
+                        User currentUser = new User();
+                        currentUser = (User)Session["log"];
+                        int userID = currentUser.userID;
+                        UserControls UC = new UserControls();
+                        string filePath = UC.getProfileImage(userID);%>
 				    <li class="has-children account">
-					    <a href="#0"><img src="../Images/cd-avatar.png" alt="avatar" />Account</a>
+                        <% if (filePath == null)
+                            { %>
+                        <a href="#0"><img src="../Images/cd-avatar.svg" alt="avatar" />Account</a>
+                        <%  }
+                           else
+                            {%>
+					    <a href="#0"><img src="<%=filePath %>" alt="avatar" />Account</a>
+                        <% } %>
 					    <ul>
                             <li><a href="Account.aspx">My Account</a></li>
 					        <li><a href="EditAccount.aspx">Edit Account</a></li>

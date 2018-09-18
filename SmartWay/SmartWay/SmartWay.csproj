@@ -122,6 +122,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="UL\Images\ProfileImg\1012.png" />
+    <Content Include="UL\Images\ProfileImg\1014.png" />
+    <Content Include="UL\Views\Account.aspx" />
     <Content Include="UL\Views\AccountVerification.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
@@ -196,6 +199,13 @@
     </Compile>
     <Compile Include="UL\Views\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\AccountVerification.aspx.cs">
       <DependentUpon>AccountVerification.aspx</DependentUpon>
@@ -314,7 +324,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="UL\Images\AdImg\" />
-    <Folder Include="UL\Images\ProfileImg\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

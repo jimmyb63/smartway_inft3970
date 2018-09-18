@@ -171,8 +171,10 @@ create table Advertisement (	ID int IDENTITY(1000,1) primary key,
 --Add comments
 create table SavedImage (		ID int IDENTITY(1000,1) primary key,
 								filePath varchar(260) NOT NULL,
+								userID int NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1
+								foreign key (userID) references Person(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 --Add comments
 create table AddImage	(		ID int IDENTITY(1000,1) primary key,

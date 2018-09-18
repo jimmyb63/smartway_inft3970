@@ -47,7 +47,7 @@ namespace SmartWay.UL.Views
                 if (FileUpload1.HasFile)
                 {
                     string filePath = profileImageUpload(userID);
-                    UC.addProfileImage(filePath);
+                    UC.addProfileImage(filePath, userID);
                 }
                 Session["userID"] = userID;
                 MailSender MS = new MailSender();
@@ -59,6 +59,7 @@ namespace SmartWay.UL.Views
         protected string profileImageUpload(int userID)
         {
             string path = "";
+            string filePath = "";
             string profileImageFolder = "../Images/ProfileImg/";
             string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
             string fileWithoutExt = Path.GetFileNameWithoutExtension(fileName);
@@ -70,6 +71,7 @@ namespace SmartWay.UL.Views
                     Directory.CreateDirectory(Server.MapPath(profileImageFolder));
                 }
                 path = Server.MapPath(profileImageFolder) + userID + fileExtension;
+                filePath = profileImageFolder + userID + fileExtension;
                 //FileUpload1.PostedFile.SaveAs(path);
                 Bitmap originalImage = new Bitmap(FileUpload1.FileContent);
 
@@ -109,7 +111,7 @@ namespace SmartWay.UL.Views
             {
                 errorMessage.Text = "Image format is not correct";
             }
-            return path;         
+            return filePath;      
             //FileUpload1.SaveAs(profileImageFolder + Path.GetFileName(FileUpload1.FileName));
         }
 

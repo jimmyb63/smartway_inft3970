@@ -107,16 +107,30 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
-        [DataObjectMethod(DataObjectMethodType.Select)]
-        public void addProfileImage(string filePath)
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void addProfileImage(string filePath, int userID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "INSERT INTO SavedImage VALUES(@filePath)";
+            string query = "INSERT INTO SavedImage (filePath, userID) VALUES(@filePath, @userID)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@filePath", SqlDbType.VarChar, 260).Value = filePath;
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getProfileImage(int userID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT filePath FROM SavedImage WHERE userID = @userID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
+            connection.Open();
+            string filePath = cmd.ExecuteScalar().ToString();
+            connection.Close();
+            return filePath;
         }
 
         [DataObjectMethod(DataObjectMethodType.Insert)]

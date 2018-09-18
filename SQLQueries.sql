@@ -32,6 +32,9 @@ From PhoneNumber
 Select *
 From VerificationCode
 
+Select *
+From SavedImage
+
 --Shouldn't work
 EXEC sp_verifyPerson 'abcd1234', 1001
 --Should work

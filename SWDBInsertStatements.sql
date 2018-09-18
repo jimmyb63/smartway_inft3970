@@ -33,6 +33,8 @@ GO
 --INSERT INTO VerificationCode (code, personID) VALUES(@tempVerificationCode, @tempPersonID);
 INSERT INTO VerificationCode (code, personID) VALUES ('abcd1234', '1000');
 
+INSERT INTO SavedImage (filePath, userID) VALUES('../Images/ProfileImg/1002.png', 1002);
+
 EXEC sp_newVerificationCode 'abcd4321', '1001';
 
 --Insert Statenames
