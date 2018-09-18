@@ -13,12 +13,26 @@
                 Email:
             </td>
             <td>
-                <asp:TextBox ID="txtEmail" placeholder="Email Address" runat="server"/>
+                <asp:TextBox 
+                    ID="txtEmail" 
+                    placeholder="Email Address" 
+                    runat="server"/>
             </td>
             <td>
-                <asp:RequiredFieldValidator ErrorMessage="Required" Display="Dynamic" ForeColor="Red" ControlToValidate="txtEmail" runat="server" />
+                <asp:RequiredFieldValidator
+                    ErrorMessage="Required" 
+                    Display="Dynamic" 
+                    ForeColor="Red" 
+                    ControlToValidate="txtEmail" 
+                    runat="server" />
                 <!--Regular expression to ensure that the email is valid, expression found courtesy of RegExlib.com-->
-                <asp:RegularExpressionValidator runat="server" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Invalid email address." />
+                <asp:RegularExpressionValidator 
+                    runat="server" 
+                    Display="Dynamic" 
+                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                    ControlToValidate="txtEmail" 
+                    ForeColor="Red" 
+                    ErrorMessage="Invalid email address." />
             </td>
         </tr>
         <tr>
@@ -26,10 +40,18 @@
                 Password:
             </td>
             <td>
-                <asp:TextBox ID="txtPassword" placeholder="Password" runat="server" TextMode="Password"/>
+                <asp:TextBox 
+                    ID="txtPassword" 
+                    placeholder="Password" 
+                    runat="server" 
+                    TextMode="Password"/>
             </td>
             <td>
-                <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPassword" runat="server" />
+                <asp:RequiredFieldValidator 
+                    ErrorMessage="Required" 
+                    ForeColor="Red" 
+                    ControlToValidate="txtPassword" 
+                    runat="server" />
             </td>
         </tr>
         <tr>
