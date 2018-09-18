@@ -213,24 +213,6 @@
                         runat="server" />
                 </td>
             </tr>
-            <tr>
-                <td>
-                    *Post Code:
-                </td>
-                <td>
-                    <asp:TextBox 
-                        ID="txtPostcode" 
-                        placeholder="Post Code" 
-                        runat="server" />
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator 
-                        ErrorMessage="Required" 
-                        ForeColor="Red" 
-                        ControlToValidate="txtPostcode"
-                        runat="server" />
-                </td>
-            </tr>
             <!-- Residential city textbox with validators -->
             <tr>
                 <td>
@@ -289,8 +271,6 @@
                         runat="server" />
                 </td>
             </tr>
-<<<<<<< HEAD
-=======
             <%-- Residential Postcode textbox with validators --%>
             <tr>
                 <td>
@@ -310,7 +290,6 @@
                         Display="None">
                     </asp:RegularExpressionValidator>
             </tr>
->>>>>>> 443c11c16747d602ee83d6cdc710c289ffacdb1b
             <!-- Residential country textbox with validator -->
             <tr>
                 <td>
@@ -426,13 +405,8 @@
                 <!-- Submit button runs RegisterUser method when clicked -->
                 <td>
                     <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" />
-<<<<<<< HEAD
                 </td>
             </tr>
-=======
-                </td>                
-        </tr>
->>>>>>> 443c11c16747d602ee83d6cdc710c289ffacdb1b
         </table>
         <br />
         <br />

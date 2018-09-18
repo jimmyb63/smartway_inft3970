@@ -130,15 +130,6 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtStreetName;
         
         /// <summary>
-        /// txtPostcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPostcode;
-        
-        /// <summary>
         /// txtCity control.
         /// </summary>
         /// <remarks>
@@ -157,19 +148,21 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator StreetValidation;
         
         /// <summary>
-<<<<<<< HEAD
         /// ddState control.
-=======
-        /// txtPostcode control.
->>>>>>> 443c11c16747d602ee83d6cdc710c289ffacdb1b
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.DropDownList ddState;
-=======
+        
+        /// <summary>
+        /// txtPostcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPostcode;
         
         /// <summary>
@@ -180,7 +173,6 @@ namespace SmartWay.UL.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator PostcodeValidation;
->>>>>>> 443c11c16747d602ee83d6cdc710c289ffacdb1b
         
         /// <summary>
         /// txtCountry control.
