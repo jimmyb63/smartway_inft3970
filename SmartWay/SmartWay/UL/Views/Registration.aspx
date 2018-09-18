@@ -248,36 +248,6 @@
                         ForeColor="Red" />
                 </td>
             </tr>
-           <!-- Residential state textbox with validators -->
-            <tr>
-                <td>
-                    *State:
-                </td>
-                <td>
-                    <asp:DropDownList 
-                        ID="ddState" 
-                        runat="server">
-                        <asp:ListItem Enabled="true"
-                            Text="Select State" Value="-1"></asp:ListItem>
-                        <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="WA" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="VIC" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="SA" Value="5"></asp:ListItem>
-                        <asp:ListItem Text="NT" Value="6"></asp:ListItem>
-                        <asp:ListItem Text="TAS" Value="7"></asp:ListItem>
-                        <asp:ListItem Text="ACT" Value="8"></asp:ListItem>
-                    </asp:DropDownList>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator 
-                        ErrorMessage="Must select state"
-                        InitialValue="-1" 
-                        ForeColor="Red" 
-                        ControlToValidate="ddState"
-                        runat="server" />
-                </td>
-            </tr>
             <!-- Residential state textbox with validators -->
             <tr>
                 <td>
@@ -307,6 +277,25 @@
                         ControlToValidate="ddState"
                         runat="server" />
                 </td>
+            </tr>
+            <%-- Residential Postcode textbox with validators --%>
+            <tr>
+                <td>
+                    *Postcode
+                </td>
+                <td>
+                <asp:TextBox 
+                    ID="txtPostcode" 
+                    runat="server"
+                    Placeholder="Postcode"/>
+                </td>
+                <%-- Validations for Postcode: Required, RegEx for Australia --%>
+                    <asp:RegularExpressionValidator ID="PostcodeValidation" runat="server" 
+                        ControlToValidate="txtPostcode" 
+                        ValidationExpression="^(0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2})$"
+                        ErrorMessage="Invalid postcode"
+                        Display="None">
+                    </asp:RegularExpressionValidator>
             </tr>
             <!-- Residential country textbox with validator -->
             <tr>
@@ -422,10 +411,8 @@
                 <!-- Submit button runs RegisterUser method when clicked -->
                 <td>
                     <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" />
-                </td>
-                <td>
-                </td>
-            </tr>
+                </td>                
+        </tr>
         </table>
         <br />
         <br />
