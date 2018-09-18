@@ -16,33 +16,72 @@
                     <asp:TextBox ID="txtUsername" placeholder="Username" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtUsername" runat="server" />
+                    <asp:RequiredFieldValidator
+                         ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtUsername" 
+                        runat="server" />
+                   
                 </td>
             </tr>
-            <!-- First name textbox with validators -->
+          <!-- First name textbox with validators -->
             <tr>
                 <td>
-                    First Name:
+                    *First Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtFirstName" placeholder="First Name" runat="server"/>
+                    <asp:TextBox 
+                        ID="txtFirstName" 
+                        placeholder="First Name" 
+                        runat="server"/>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtFirstName"
+                    <!-- Validations for First Name: Required and Character Length Limit set to 50 -->
+                    <!-- RegEx for Max Char length: https://www.aspsnippets.com/Articles/TextBox-Minimum-and-Maximum-Character-Length-Validation-using-ASPNet-RegularExpression-Validators.aspx -->
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtFirstName"
                         runat="server" />
+
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtFirstName"
+                        ID="FirstNameLimit"
+                        ValidationExpression="^[\s\S]{0,50}$"
+                        runat="server"
+                        Display="Dynamic"
+                        ForeColor="Red"
+                        ErrorMessage="Maximum 50 characters allowed." />                        
                 </td>
             </tr>
             <!-- Last name textbox with validators -->
             <tr>
                 <td>
-                    Last Name:
+                    *Last Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtLastName" placeholder="Last Name" runat="server" />
+                    <asp:TextBox 
+                        ID="txtLastName" 
+                        placeholder="Last Name" 
+                        runat="server" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtLastName"
-                          runat="server" />
+                    <!-- Validations for Last Name: Required and Char Length limit set to 50 -->
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtLastName"
+                        runat="server" />
+
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtLastName"
+                        ID="LastNameLimit"
+                        ValidationExpression="^[\s\S]{0,50}$"
+                        runat="server"
+                        Display="Dynamic"
+                        ForeColor="Red"
+                        ErrorMessage="Maximum 50 characters allowed."
+                        />
                 </td>
             </tr>
             <tr>
@@ -58,14 +97,32 @@
             </tr>
             <tr>
                 <td>
-                    Phone Number:
+                    *Phone Number:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPhone" placeholder="Phone Number" runat="server" />
+                    <asp:TextBox 
+                        ID="txtPhone" 
+                        placeholder="Phone Number" 
+                        runat="server" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPhone"
-                          runat="server" />
+                    <%-- Validations for Phone Number: Required, Character Length Limit and only numbers + certain symbols (RegEx) --%>
+                    <%--  Phone number validation from: https://manual.limesurvey.org/Using_regular_expressions#Important:_Regular_Expressions_in_conditions --%>
+                    
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtPhone"
+                        runat="server" />
+
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtPhone"
+                        ID="PhoneNumberValidation"
+                        ValidationExpression="/^(?:\+?61|0)[2-478](?:[ -]?[0-9]){8}$/"
+                        ErrorMessage="Invalid phone number."
+                        Display="Dynamic"
+                        ForeColor="Red"
+                        runat="server" />
                 </td>
             </tr>
             <tr>
@@ -96,56 +153,112 @@
                     Unit Number:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtUnitNumber" placeholder="Unit number" runat="server" />
+                    <asp:TextBox 
+                        ID="txtUnitNumber" 
+                        placeholder="Unit number" 
+                        runat="server" />
+                </td>
+                <td>
+                    <%-- Unit Number Validation: Numbers only and Character Length Limit (6) --%>
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtUnitNumber"
+                        ID="UnitNumberValidation"
+                        ValidationExpression="^\d{1,6}$"
+                        ErrorMessage="Numbers only."
+                        runat="server"
+                        Display="Dynamic"
+                        ForeColor="Red" />
                 </td>
             </tr>
             <!-- Residential street number textbox with validators -->
             <tr>
                 <td>
-                    Street Number:
+                    *Street Number:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtStreetNumber" placeholder="Street number" runat="server" />
+                    <%-- Street Number Validation: Required, Numbers only, Character Lenght Limit --%>
+                    <asp:TextBox 
+                        ID="txtStreetNumber" 
+                        placeholder="Street number" 
+                        runat="server" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtStreetNumber" runat="server" />
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtStreetNumber" 
+                        runat="server" />
+
+                    <%-- Format: numbers from 0-9 and max 6 characters --%>                    
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtStreetNumber"
+                        ID="StreetNumberValidation"                                
+                        ValidationExpression="^\d{1,6}$"
+                        ErrorMessage="Numbers only."
+                        runat="server"
+                        Display="Dynamic"
+                        ForeColor="Red" />
                 </td>
             </tr>
             <!-- Residential street name textbox with validators -->
             <tr>
                 <td>
-                    Street Name:
+                    *Street Name:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtStreetName" placeholder="Street name" runat="server" />
+                    <asp:TextBox 
+                        ID="txtStreetName" 
+                        placeholder="Street name" 
+                        runat="server" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtStreetName"
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtStreetName"
                         runat="server" />
                 </td>
             </tr>
             <!-- Residential city textbox with validators -->
             <tr>
                 <td>
-                    City:
+                    *City:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCity" placeholder="City" runat="server" />
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtCity"
+                    <asp:TextBox 
+                        ID="txtCity" 
+                        placeholder="City" 
                         runat="server" />
                 </td>
+                <td>
+                    <%-- City Validation: Required, Character Limit (max 100) --%>
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtCity"
+                        runat="server" />
+
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtCity"
+                        ID="StreetValidation"
+                        ValidationExpression="^[\s\S]{0,100}$"
+                        ErrorMessage="Max 100 characters."
+                        runat="server"
+                        Display="Dynamic"
+                        ForeColor="Red" />
+                </td>
             </tr>
-            <!-- Residential state textbox with validators -->
+           <!-- Residential state textbox with validators -->
             <tr>
                 <td>
-                    State:
+                    *State:
                 </td>
                 <td>
-                    <%--<asp:TextBox ID="txtState" placeholder="State" runat="server" />--%>
-                    <asp:DropDownList ID="ddState" runat="server">
-                        <asp:ListItem Enabled="true" Text="Select State" Value="-1"></asp:ListItem>
+                    <asp:DropDownList 
+                        ID="ddState" 
+                        runat="server">
+                        <asp:ListItem Enabled="true"
+                            Text="Select State" Value="-1"></asp:ListItem>
                         <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
                         <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
                         <asp:ListItem Text="WA" Value="3"></asp:ListItem>
@@ -156,21 +269,42 @@
                         <asp:ListItem Text="ACT" Value="8"></asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <%--<td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtState"
+                <td>
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Must select state"
+                        InitialValue="-1" 
+                        ForeColor="Red" 
+                        ControlToValidate="ddState"
                         runat="server" />
-                </td>--%>
+                </td>
             </tr>
-            <!-- Residential postcode textbox with validators -->
+            <!-- Residential state textbox with validators -->
             <tr>
                 <td>
-                    Post Code:
+                    *State:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPostcode" placeholder="Postcode" runat="server" />
+                    <asp:DropDownList 
+                        ID="DropDownList1" 
+                        runat="server">
+                        <asp:ListItem Enabled="true"
+                            Text="Select State" Value="-1"></asp:ListItem>
+                        <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="WA" Value="3"></asp:ListItem>
+                        <asp:ListItem Text="VIC" Value="4"></asp:ListItem>
+                        <asp:ListItem Text="SA" Value="5"></asp:ListItem>
+                        <asp:ListItem Text="NT" Value="6"></asp:ListItem>
+                        <asp:ListItem Text="TAS" Value="7"></asp:ListItem>
+                        <asp:ListItem Text="ACT" Value="8"></asp:ListItem>
+                    </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPostcode"
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Must select state"
+                        InitialValue="-1" 
+                        ForeColor="Red" 
+                        ControlToValidate="ddState"
                         runat="server" />
                 </td>
             </tr>
@@ -180,57 +314,111 @@
                     Country:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCountry" value="Australia" runat="server" onClick="this.value = 'Australia'" />
+                    <%-- Sets Country textbox to read only, means that the user cannot edit --%>
+                    <asp:TextBox
+                        IsReadOnly="True" 
+                        ID="txtCountry" 
+                        value="Australia" 
+                        runat="server" 
+                        onClick="this.value = 'Australia'" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtCountry"
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtCountry"
                         runat="server" />
                 </td>
             </tr>
             <!-- Email address textbox with validators -->
             <tr>
                 <td>
-                    Email
+                    *Email
                 </td>
                 <td>
-                    <asp:TextBox ID="txtEmail" placeholder="Email address" runat="server" />
+                    <asp:TextBox 
+                        ID="txtEmail" 
+                        placeholder="Email address" 
+                        runat="server" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" Display="Dynamic" ForeColor="Red"
-                        ControlToValidate="txtEmail" runat="server" />
-                    <asp:RegularExpressionValidator runat="server" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                        ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Invalid email address." />
+                    <%-- Email Validation: Required, Email RegEx --%>
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        Display="Dynamic" 
+                        ForeColor="Red"
+                        ControlToValidate="txtEmail" 
+                        runat="server" />
+
+                    <asp:RegularExpressionValidator 
+                        runat="server" 
+                        Display="Dynamic" 
+                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                        ControlToValidate="txtEmail" 
+                        ForeColor="Red" 
+                        ErrorMessage="Invalid email address." />
                 </td>
             </tr>
             <!-- Password textbox with validators -->
             <tr>
                 <td>
-                    Password
+                    *Password
                 </td>
                 <td>
-                    <asp:TextBox ID="txtPassword" placeholder="Password" runat="server" TextMode="Password" />
+                    <asp:TextBox 
+                        ID="txtPassword" 
+                        placeholder="Password" 
+                        runat="server" 
+                        TextMode="Password" />
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtPassword"
+                    <%-- Password Validation: Required, Min Char Length + Min 1 Number + Min 1 Uppercase + Min Lowercase--%>
+                    <%--  https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a --%>
+                    
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtPassword"
                         runat="server" />
+
+                    <asp:RegularExpressionValidator
+                        ControlToValidate="txtPassword"
+                        ID="PasswordValidation"
+                        ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                        ErrorMesagge="Min 8 characters, including Uppercase letter and a number."
+                        runat="server"
+                        Display="Dynamic"
+                        ForeColor="Red" />
                 </td>
             </tr>
             <!-- Confirm password textbox with validators -->
             <tr>
                 <td>
-                    Confirm Password
+                    *Confirm Password
                 </td>
                 <td>
-                    <asp:TextBox ID="txtConfirmPassword" placeholder="Confirm password" runat="server" TextMode="Password" />
+                    <asp:TextBox 
+                        ID="txtConfirmPassword" 
+                        placeholder="Confirm password" 
+                        runat="server" 
+                        TextMode="Password" />
                 </td>
                 <td>
-                    <asp:CompareValidator ErrorMessage="Passwords do not match." ForeColor="Red" ControlToCompare="txtPassword"
-                        ControlToValidate="txtConfirmPassword" runat="server" />
+                    <%-- Compares both password fields and checks if they are the same --%>
+                    <asp:RequiredFieldValidator
+                        ErrorMessage="Required"
+                        ForeColor="Red"
+                        ControlToValidate="txtConfirmPassword"
+                        runat="server"/>
+
+                    <asp:CompareValidator 
+                        ErrorMessage="Passwords do not match." 
+                        ForeColor="Red" 
+                        ControlToCompare="txtConfirmPassword"
+                        ControlToValidate="txtPassword" 
+                        runat="server" />
                 </td>
             </tr>
-            <tr>
-                <td>
-                </td>
                 <!-- Submit button runs RegisterUser method when clicked -->
                 <td>
                     <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" />

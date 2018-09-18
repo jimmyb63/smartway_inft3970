@@ -31,6 +31,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
+        /// FirstNameLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator FirstNameLimit;
+        
+        /// <summary>
         /// txtLastName control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace SmartWay.UL.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
+        
+        /// <summary>
+        /// LastNameLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator LastNameLimit;
         
         /// <summary>
         /// txtDOB control.
@@ -58,6 +76,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
         
         /// <summary>
+        /// PhoneNumberValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator PhoneNumberValidation;
+        
+        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtUnitNumber;
         
         /// <summary>
+        /// UnitNumberValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator UnitNumberValidation;
+        
+        /// <summary>
         /// txtStreetNumber control.
         /// </summary>
         /// <remarks>
@@ -83,6 +119,15 @@ namespace SmartWay.UL.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStreetNumber;
+        
+        /// <summary>
+        /// StreetNumberValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator StreetNumberValidation;
         
         /// <summary>
         /// txtStreetName control.
@@ -103,6 +148,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtCity;
         
         /// <summary>
+        /// StreetValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator StreetValidation;
+        
+        /// <summary>
         /// ddState control.
         /// </summary>
         /// <remarks>
@@ -112,13 +166,13 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.DropDownList ddState;
         
         /// <summary>
-        /// txtPostcode control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPostcode;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
         /// txtCountry control.
@@ -146,6 +200,15 @@ namespace SmartWay.UL.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        
+        /// <summary>
+        /// PasswordValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator PasswordValidation;
         
         /// <summary>
         /// txtConfirmPassword control.
