@@ -31,6 +31,42 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public bool uNameValidation(string uName)
+        {
+            int userID = 0;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT COUNT(*) FROM Person WHERE SWUsername = @uName";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@uName", SqlDbType.VarChar, 30).Value = uName;
+            connection.Open();
+            userID = (int)cmd.ExecuteScalar();
+            bool exists = false;
+            if (userID != 0)
+            {
+                exists = true;
+            }
+            return exists;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public bool emailValidation(string email)
+        {
+            int userID = 0;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT COUNT(*) FROM Person WHERE email = @email";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar, 30).Value = email;
+            connection.Open();
+            userID = (int)cmd.ExecuteScalar();
+            bool exists = false;
+            if (userID != 0)
+            {
+                exists = true;
+            }
+            return exists;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public int newRegistration(string fName, string lName, string uName, string DOB, string emailAddress, string password, int phoneNumber, string uNum, string sNum, string sName, string city, int pCode, int stateID, string country, string verificationCode)
         {
             // Add user to database

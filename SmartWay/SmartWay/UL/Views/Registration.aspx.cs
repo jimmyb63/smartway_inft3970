@@ -24,35 +24,49 @@ namespace SmartWay.UL.Views
         {
             if (IsValid)
             {
-                string uName = txtUsername.Text;
-                string fName = txtFirstName.Text;
-                string lName = txtLastName.Text;
-                string DOB = txtDOB.Text;
-                string email = txtEmail.Text;
-                string password = txtPassword.Text;
-                int phoneNumber = Convert.ToInt32(txtPhone.Text);
-                int paypalID = 20;
-                string uNum = "";
-                uNum = txtUnitNumber.Text;
-                string sNum = txtStreetNumber.Text;
-                string sName = txtStreetName.Text;
-                string city = txtCity.Text;
-                int state = Convert.ToInt32(ddState.SelectedValue);
-                string country = txtCountry.Text;
-                int pCode = Convert.ToInt32(txtPostcode.Text);
-                string verificationCode = randomCodeGen();
                 AddressControls AC = new AddressControls();
                 UserControls UC = new UserControls();
-                int userID = UC.newRegistration(fName, lName, uName, DOB, email, password, phoneNumber, uNum, sNum, sName, city, pCode, state, country, verificationCode);
-                if (FileUpload1.HasFile)
-                {
-                    string filePath = profileImageUpload(userID);
-                    UC.addProfileImage(filePath, userID);
-                }
-                Session["userID"] = userID;
                 MailSender MS = new MailSender();
-                MS.sendVerificationEmail(email, fName, verificationCode);
-                Response.Redirect("AccountVerification.aspx");
+                string uName = txtUsername.Text;
+                bool uNameExists = UC.uNameValidation(uName);
+                string email = txtEmail.Text;
+                bool emailExists = UC.emailValidation(email);
+                if (!uNameExists)
+                {
+                    errorMessage.Text = "Username already exists";
+                }
+                else if (!emailExists)
+                {
+                    errorMessage.Text = "Email already exists";
+                }
+                else
+                { 
+                    string fName = txtFirstName.Text;
+                    string lName = txtLastName.Text;
+                    string DOB = txtDOB.Text;
+                    string password = txtPassword.Text;
+                    int phoneNumber = Convert.ToInt32(txtPhone.Text);
+                    int paypalID = 20;
+                    string uNum = "";
+                    uNum = txtUnitNumber.Text;
+                    string sNum = txtStreetNumber.Text;
+                    string sName = txtStreetName.Text;
+                    string city = txtCity.Text;
+                    int state = Convert.ToInt32(ddState.SelectedValue);
+                    string country = txtCountry.Text;
+                    int pCode = Convert.ToInt32(txtPostcode.Text);
+                    string verificationCode = randomCodeGen();
+                    int userID = UC.newRegistration(fName, lName, uName, DOB, email, password, phoneNumber, uNum, sNum, sName, city, pCode, state, country, verificationCode);
+                    if (FileUpload1.HasFile)
+                    {
+                        string filePath = profileImageUpload(userID);
+                        UC.addProfileImage(filePath, userID);
+                    }
+                    Session["userID"] = userID;
+                    MS.sendVerificationEmail(email, fName, verificationCode);
+                    Response.Redirect("AccountVerification.aspx");
+                }
+                    
             }
         }
 
