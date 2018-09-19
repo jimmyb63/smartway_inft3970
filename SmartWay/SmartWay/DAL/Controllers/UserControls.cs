@@ -131,6 +131,7 @@ namespace SmartWay.DAL.Controllers
             return verificationCode;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Update)]
         public void verifyUser(int personID, string verificationDate)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());

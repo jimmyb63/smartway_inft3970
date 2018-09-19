@@ -10,61 +10,43 @@ namespace SmartWay.BL.Models
         private int ID;
         private int sellerID;
         private int buyerID;
+        private string adType;
         private string title;
         private string description;
         private int addressID;
         private string status;
         private DateTime datePosted;
-        private DateTime dateComplete;
+        private DateTime? dateComplete;
         private int categoryID;
-        private double price;
-        private bool active;
+        private decimal price;
 
         public Advertisement()
         {
             ID = 0;
             sellerID = 0;
             buyerID = 0;
+            adType = null;
             title = null;
             description = null;
             addressID = 0;
-            status = null;
             datePosted = DateTime.Now;
+            dateComplete = null;
             categoryID = 0;
-            price = 0.0;
-            active = true;
+            price = 0;
         }
 
-        public Advertisement(int init_ID, int init_sellerID, string init_title, string init_description, int init_addressID, string init_status, DateTime init_datePosted, int init_categoryID, double init_price)
+        public Advertisement(int init_ID, int init_sellerID, string init_adType, string init_title, string init_description, int init_addressID, DateTime init_datePosted, int init_categoryID, decimal init_price)
         {
             ID = init_ID;
             sellerID = init_sellerID;
+            adType = init_adType;
             title = init_title;
             description = init_description;
             addressID = init_addressID;
-            status = init_status;
             datePosted = init_datePosted;
+            dateComplete = null;
             categoryID = init_categoryID;
             price = init_price;
-            active = true;
-        }
-
-
-        
-            public Advertisement(int init_ID, int init_sellerID, int init_buyerID, string init_title, string init_description, int init_addressID, string init_status, DateTime init_datePosted, DateTime init_dateComplete, int init_categoryID, double init_price)
-        {
-            ID = init_ID;
-            sellerID = init_sellerID;
-            buyerID = init_buyerID;
-            title = init_title;
-            description = init_description;
-            addressID = init_addressID;
-            status = init_status;
-            datePosted = init_datePosted;
-            dateComplete = init_dateComplete;
-            categoryID = init_categoryID;
-            price = init_price;
-            active = true;
         }
 
         public int advertisementID
@@ -100,6 +82,18 @@ namespace SmartWay.BL.Models
             set
             {
                 buyerID = value;
+            }
+        }
+
+        public string advertisementType
+        {
+            get
+            {
+                return adType;
+            }
+            set
+            {
+                adType = value;
             }
         }
 
@@ -163,7 +157,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public DateTime advertisementDateComplete
+        public DateTime? advertisementDateComplete
         {
             get
             {
@@ -187,7 +181,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public double advertisementPrice
+        public decimal advertisementPrice
         {
             get
             {
@@ -196,18 +190,6 @@ namespace SmartWay.BL.Models
             set
             {
                 price = value;
-            }
-        }
-
-        public bool advertisementActive
-        {
-            get
-            {
-                return active;
-            }
-            set
-            {
-                active = value;
             }
         }
     }

@@ -35,6 +35,12 @@ From VerificationCode
 Select *
 From SavedImage
 
+Select *
+From AddImage
+
+Select * 
+From Advertisement
+
 --Shouldn't work
 EXEC sp_verifyPerson 'abcd1234', 1001
 --Should work

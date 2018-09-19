@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartWay.BL.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -45,6 +46,7 @@ namespace SmartWay.DAL.Controllers
             return adID;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addAdImage(string filePath, int userID, int adID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
@@ -56,6 +58,49 @@ namespace SmartWay.DAL.Controllers
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getAdvertisements()
+        {
+            List<Advertisement> ads = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT * FROM Advertisement"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement ad = new Advertisement((int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        reader["adType"].ToString(),
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (int)reader["addressID"],
+                                        (DateTime)reader["creationDate"], 
+                                        (int)reader["categoryID"],
+                                        (decimal)reader["price"]);
+                ads.Add(ad);
+            }
+            connection.Close();
+            return ads;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getAdThumbnail(int adID, int userID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT filePath FROM AddImage WHERE userID = @userID AND adID = @adID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            connection.Open();
+            string filePath = cmd.ExecuteScalar().ToString();
+            connection.Close();
+            return filePath;
         }
 
         public string getconnectionString()

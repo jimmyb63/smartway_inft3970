@@ -31,11 +31,11 @@ namespace SmartWay.UL.Views
                 bool uNameExists = UC.uNameValidation(uName);
                 string email = txtEmail.Text;
                 bool emailExists = UC.emailValidation(email);
-                if (!uNameExists)
+                if (uNameExists)
                 {
                     errorMessage.Text = "Username already exists";
                 }
-                else if (!emailExists)
+                else if (emailExists)
                 {
                     errorMessage.Text = "Email already exists";
                 }

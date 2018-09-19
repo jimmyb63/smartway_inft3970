@@ -14,7 +14,7 @@ using System.Drawing.Drawing2D;
 
 namespace SmartWay.UL.Views
 {
-    public partial class Advertisement : System.Web.UI.Page
+    public partial class PostAdvertisement : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

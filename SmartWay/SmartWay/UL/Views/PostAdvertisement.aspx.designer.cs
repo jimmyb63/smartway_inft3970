@@ -10,7 +10,7 @@
 namespace SmartWay.UL.Views {
     
     
-    public partial class Advertisement {
+    public partial class PostAdvertisement {
         
         /// <summary>
         /// txtTitle control.
