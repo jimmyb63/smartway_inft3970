@@ -80,21 +80,21 @@
 		<nav class="cd-side-nav border">
 			<ul>
 				<li class="cd-label">New</li>
-				<li class="action-btn"><a href="Advertisement.aspx">Add Service</a></li>
+				<li class="action-btn"><a href="PostAdvertisement.aspx">Add Service</a></li>
                 <br />
-				<li class="action-btn"><a href="Advertisement.aspx">Add Goods</a></li>
+				<li class="action-btn"><a href="PostAdvertisement.aspx">Add Goods</a></li>
 				
 				<li class="cd-label">SmartWay</li>
 				
 				<li class="has-children services">
-					<a href="Services.aspx">View Services</a>
+					<a href="ViewAdvertisementList.aspx">View Services</a>
 					<ul>
 						<li><a href="ServicesMap.aspx">Services Map</a></li>
 						<li><a href="#0">Services Category</a></li>
 					</ul>
 				</li>
 				<li class="has-children goods">
-					<a href="Goods.aspx">View Goods</a>
+					<a href="ViewAdvertisementList.aspx">View Goods</a>
 					<ul>
 					  <li><a href="GoodsMap.aspx">Goods Map</a></li>
 						<li><a href="#0">Goods Category</a></li>

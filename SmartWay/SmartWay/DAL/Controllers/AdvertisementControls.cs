@@ -90,6 +90,57 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getAdvertisement(int adID)
+        {
+            List<Advertisement> ads = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT * FROM Advertisement WHERE ID = @adID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement ad = new Advertisement((int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        reader["adType"].ToString(),
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (int)reader["addressID"],
+                                        (DateTime)reader["creationDate"],
+                                        (int)reader["categoryID"],
+                                        (decimal)reader["price"]);
+                ads.Add(ad);
+            }
+            connection.Close();
+            return ads;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<string> getAdImages(int adID)
+        {
+            List<string> adImages = new List<string>();
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT filePath FROM AddImage WHERE adID = @adID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                string adImage = reader["filePath"].ToString();
+                adImages.Add(adImage);
+            }
+            connection.Close();
+            return adImages;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public string getAdThumbnail(int adID, int userID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());

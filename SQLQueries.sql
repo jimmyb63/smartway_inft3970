@@ -38,6 +38,8 @@ From SavedImage
 Select *
 From AddImage
 
+Select * From Advertisement Where ID = 1000
+
 Select * 
 From Advertisement
 
