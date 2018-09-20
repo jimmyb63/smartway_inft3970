@@ -133,7 +133,7 @@
                         ID="PhoneValidation"
                         ValidationExpression="/^(?:\+?61|0)[2-478](?:[ -]?[0-9]){8}$/"
                         Display="Dynamic"
-                        ForeColor="Red" /
+                        ForeColor="Red" />
                 </td>
             </tr>
             <tr>
