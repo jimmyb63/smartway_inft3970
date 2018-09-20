@@ -8,7 +8,7 @@
       /* Make the image fully responsive */
       .carousel-inner img {
           width: 80%;
-          text-align: center;
+          height: 30%;
       }
       </style>
 </asp:Content>
@@ -35,7 +35,7 @@
                 </GroupTemplate>
                 <ItemTemplate>
                     <td runat="server">
-                        <div id="adImages" class="carousel slide" data-ride="carousel" style="height:30%; background-color: grey">
+                        <div id="adImages" class="carousel slide" data-ride="carousel" style="height:auto; background-color: grey">
                           <!-- Indicators -->
                           <% int adID = Convert.ToInt32(Request.QueryString["advertisementID"]); %>
                           <% List<string> adImages = getAdImages(adID); %>
@@ -50,12 +50,12 @@
                           <!-- The slideshow -->
                           <div class="carousel-inner" role="listbox" style="text-align:center">
                             <div class="carousel-item active" style="align-content:center">
-                              <img src="<%=adImages[0]%>" alt="image" height="400">
+                              <a href="<%=adImages[0]%>"><img src="<%=adImages[0]%>" height="800" alt="image"></a>
                             </div>
                             <% for (int i = 1; i < adImages.Count; i++)%>
                               <% { %>
                                 <div class="carousel-item" style="align-content:center">
-                                    <img src="<%=adImages[i]%>" alt="image" height="400">
+                                    <a href="<%=adImages[i]%>"><img src="<%=adImages[i]%>" alt="image"></a>
                                 </div>
                               <% } %>
                           </div>
