@@ -118,7 +118,7 @@
                 </td>
                 <td>
                     <!-- Validations for Phone Number: Required, Character Length Limit and only numbers + certain symbols (RegEx) -->
-                    <!--  Phone number validation from: https://manual.limesurvey.org/Using_regular_expressions#Important:_Regular_Expressions_in_conditions -->
+                    <!--  Phone number validation from:https://stackoverflow.com/questions/39990179/regex-for-australian-phone-number-validation -->
                     
                     <asp:RequiredFieldValidator 
                         ErrorMessage="Required" 
@@ -128,10 +128,10 @@
 
                     <asp:RegularExpressionValidator
                         runat="server"
-                        ErrorMessage="Required"
+                        ErrorMessage="Invalid phone number"
                         ControlToValidate="txtPhone"
                         ID="PhoneValidation"
-                        ValidationExpression="/^(?:\+?61|0)[2-478](?:[ -]?[0-9]){8}$/"
+                        ValidationExpression="(?:\+?61)?(?:\(0\)[23478]|\(?0?[23478]\)?)\d{8}"
                         Display="Dynamic"
                         ForeColor="Red" />
                 </td>
