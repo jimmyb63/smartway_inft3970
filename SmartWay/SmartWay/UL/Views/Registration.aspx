@@ -92,10 +92,18 @@
                     Date of Birth:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtDOB" TextMode="Date" runat="server"></asp:TextBox>
+                    <asp:TextBox 
+                        ID="txtDOB" 
+                        TextMode="Date"
+                        runat="server">
+                    </asp:TextBox>
                 </td>
                 <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtDOB" runat="server" />
+                    <asp:RequiredFieldValidator 
+                        ErrorMessage="Required" 
+                        ForeColor="Red" 
+                        ControlToValidate="txtDOB" 
+                        runat="server" />
                 </td>
             </tr>
             <tr>
@@ -117,6 +125,15 @@
                         ForeColor="Red" 
                         ControlToValidate="txtPhone"
                         runat="server" />
+
+                    <asp:RegularExpressionValidator
+                        runat="server"
+                        ErrorMessage="Required"
+                        ControlToValidate="txtPhone"
+                        ID="PhoneValidation"
+                        ValidationExpression="/^(?:\+?61|0)[2-478](?:[ -]?[0-9]){8}$/"
+                        Display="Dynamic"
+                        ForeColor="Red" /
                 </td>
             </tr>
             <tr>
