@@ -17,33 +17,43 @@ namespace SmartWay.BL.Models
         protected int phoneID;
         protected int addressID;
         protected int paypalID;
+        protected string verDate;
+        protected string createDate;
+        protected bool active;
 
         public User()
         {
             ID = 0;
             fName = null;
             lName = null;
-            uName = null;
-            DOB = null;
             email = null;
+            DOB = null;
             phoneID = 0;
             addressID = 0;
+            paypalID = 0;
+            uName = null;
             password = null;
-            paypalID = 0; ;
+            verDate = null;
+            createDate = null;
+            active = true;
+
         }
 
-        public User(int init_ID, string init_fName, string init_lName, string init_uName, string init_DOB, string init_email, string init_password, int init_phoneID, int init_addressID, int init_paypalID)
+        public User(int init_ID, string init_fName, string init_lName, string init_email, string init_DOB, int init_phoneID, int init_addressID, int init_paypalID, string init_uName, string init_password, string init_verDate, string init_createDate, bool init_active)
         {
             ID = init_ID;
             fName = init_fName;
             lName = init_lName;
-            uName = init_uName;
-            DOB = init_DOB;
             email = init_email;
+            DOB = init_DOB;
             phoneID = init_phoneID;
             addressID = init_addressID;
-            password = init_password;
             paypalID = init_paypalID;
+            uName = init_uName;
+            password = init_password;
+            verDate = init_verDate;
+            createDate = init_createDate;
+            active = init_active;
         }
 
         public int userID
@@ -163,6 +173,42 @@ namespace SmartWay.BL.Models
             set
             {
                 paypalID = value;
+            }
+        }
+
+        public string userVerDate
+        {
+            get
+            {
+                return verDate;
+            }
+            set
+            {
+                verDate = value;
+            }
+        }
+
+        public string userCreateDate
+        {
+            get
+            {
+                return createDate;
+            }
+            set
+            {
+                createDate = value;
+            }
+        }
+
+        public bool userActive
+        {
+            get
+            {
+                return active;
+            }
+            set
+            {
+                active = value;
             }
         }
     }

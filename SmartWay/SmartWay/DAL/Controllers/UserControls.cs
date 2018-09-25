@@ -119,6 +119,39 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<BL.Models.User> getUsers()
+        {
+            List<BL.Models.User> users = new List<BL.Models.User>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT * FROM Person"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                BL.Models.User user = new BL.Models.User((int)reader["ID"],
+                                        reader["firstName"].ToString(),
+                                        reader["lastName"].ToString(),
+                                        reader["email"].ToString(),
+                                        reader["DOB"].ToString(),
+                                        (int)reader["phoneNumberId"],
+                                        (int)reader["addressId"],
+                                        (int)reader["paypalID"],
+                                        reader["SWUsername"].ToString(),
+                                        reader["SWPassword"].ToString(),
+                                        reader["verificationDate"].ToString(),
+                                        reader["creationDate"].ToString(),
+                                        (bool)reader["active"]);
+                users.Add(user);
+            }
+            connection.Close();
+            return users;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public string getVerificationCode(int personID)
         {
             string verificationCode;

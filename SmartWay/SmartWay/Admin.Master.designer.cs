@@ -10,7 +10,7 @@
 namespace SmartWay {
     
     
-    public partial class Site {
+    public partial class Admin {
         
         /// <summary>
         /// head control.
