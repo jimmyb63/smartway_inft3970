@@ -8,119 +8,75 @@
     <title></title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'/>
-    <link href="Content/reset.css" rel="stylesheet" />
-    <link href="Content/style.css" rel="stylesheet" />
-    <script src="../../scripts/jquery-2.1.4.js"></script>
-    <script src="../../scripts/modernizr.js"></script>
-    <script src="../../scripts/jquery.menu-aim.js"></script>
-    <script src="../../scripts/main.js"></script>
-    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link href="Content/smartway.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>--%>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server">
-    <header class="cd-main-header">
-		<a href="Index.aspx" class="cd-logo"><img  src="../Images/smartway-logo.png" alt="SmartWay"/></a>
-		
-		<div class="cd-search is-hidden">
-				<input type="search" placeholder="Search..."/>
-		</div> <!-- cd-search -->
-
-		<a href="#0" class="cd-nav-trigger">Menu<span></span></a>
-
-		<nav class="cd-nav">
-			<ul class="cd-top-nav">
-				<li><a href="About.aspx">About Us</a></li>
-				<li><a href="Contact.aspx">Contact Us</a></li>
+    <form runat="server">    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+          <div class="container"> <a class="navbar-brand" href="#">SmartWay</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"> <a class="nav-link m-1" href="index.html"><i class="fas fa-home"></i> Home</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx"><i class="fas fa-shopping-cart"></i> Goods</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx"><i class="fas fa-people-carry"></i> Services</a> </li>
                 <% if (Session["log"] != null)
                     {
                         User currentUser = new User();
                         currentUser = (User)Session["log"];
-                        int userID = currentUser.userID;
-                        UserControls UC = new UserControls();
-                        string filePath = UC.getProfileImage(userID);%>
-				    <li class="has-children account">
-                        <% if (filePath == null)
-                            { %>
-                        <a href="#0"><img src="../Images/cd-avatar.svg" alt="avatar" />Account</a>
-                        <%  }
-                           else
-                            {%>
-					    <a href="#0"><img src="<%=filePath %>" alt="avatar" />Account</a>
-                        <% } %>
-					    <ul>
-                            <li><a href="Account.aspx">My Account</a></li>
-					        <li><a href="EditAccount.aspx">Edit Account</a></li>
-						    <li><asp:LinkButton runat="server" Text="Logout" OnClick="userLogout" /></li>
-                        </ul>
-                    </li>
-                  <%}
-                   else
-                    {%>
-                      <li class="has-children account">
-					      <a href="#0"><img src="../Images/user-circle-regular.svg" alt="avatar" />Register/Login</a>
-					      <ul>
-                             <li><a href="Registration.aspx">Register</a></li>
-                             <li><a href="Login.aspx">Login</a></li>   
-					      </ul>
-				      </li>
-                 <% } %>
-			</ul>
-		</nav>
-	</header> <!-- .cd-main-header -->
+                        int userID = currentUser.userID;%>
+                  <li class="nav-item"> <a class="nav-link m-1" href="Account.aspx?userID=<%=currentUser.userID %>"><i class="fas fa-user-alt"></i> Profile</a> </li>
+                <% } else { %>
+                <li class="nav-item"> <a class="nav-link m-1" href="Login.aspx"><i class="fas fa-sign-in-alt"></i> Login</a> </li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- /Navigation --> 
 
-	<main class="cd-main-content">
-		<nav class="cd-side-nav border">
-			<ul>
-				<li class="cd-label">New</li>
-				<li class="action-btn"><a href="PostAdvertisement.aspx">Add Service</a></li>
-                <br />
-				<li class="action-btn"><a href="PostAdvertisement.aspx">Add Goods</a></li>
-				
-				<li class="cd-label">SmartWay</li>
-				
-				<li class="has-children services">
-					<a href="ViewAdvertisementList.aspx">View Services</a>
-					<ul>
-						<li><a href="ServicesMap.aspx">Services Map</a></li>
-						<li><a href="#0">Services Category</a></li>
-					</ul>
-				</li>
-				<li class="has-children goods">
-					<a href="ViewAdvertisementList.aspx">View Goods</a>
-					<ul>
-					  <li><a href="GoodsMap.aspx">Goods Map</a></li>
-						<li><a href="#0">Goods Category</a></li>
-					</ul>
-				</li>
-			</ul>
+        <!----------------------------------------------------------------------------------------------------------------> 
 
-			<ul>
-				<li class="cd-label">Account</li>
-				<li class="has-children account">
-					<a href="MyProfile.aspx">My Profile</a>
-					<ul>
-						<li><a href="MyMessages.aspx">Messages</a></li>
-						<li><a href="#0">Settings</a></li>
-					</ul>
-				</li>
+        <!--search box and image-->
+        <div style="background: url(http://sp1.spiegelvloot.nl/images/vloot/woningaanbod.png) no-repeat" class="hero align-items-center">
+          <div class="container"> <br/>
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card card-sm">
+                  <div class="card-body row no-gutters align-items-center"> 
+            
+                    <!--Show only on sm devices and up -->
+                    <div class="col d-none d-sm-block">
+                      <asp:TextBox CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="What are you searching for?" runat="server"/>
+                    </div>
+                    <!--Show on xs devices only - simplified text to "search"-->
+                    <div class="col d-sm-none">
+                      <asp:TextBox CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="Search" runat="server"/>
+                    </div>
+                    <!--Shown on lg devices -->
+                    <div class="col d-none d-lg-block">
+                      <asp:TextBox CssClass="form-control form-control-lg form-control-border" type="search" placeholder="Location" runat="server"/>
+                    </div>
+                    <!--Shown on all devices -->
+                    <div class="col-auto"> <a href="Results Page.html" class="btn btn-primary btn-sm">Search</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/search box and image-->
 
-			</ul>
-		</nav>
-      
-    <div class="content-wrapper">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         <%-- Page content goes here --%>
         </asp:ContentPlaceHolder>
-    </div>
-        </main>
     </form>
 </body>
 </html>

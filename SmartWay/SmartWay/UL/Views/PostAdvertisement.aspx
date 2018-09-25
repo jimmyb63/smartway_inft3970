@@ -2,130 +2,184 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table>
-            <tr>
-                <th colspan="3">
-                    <h2>Post an Advertisment</h2>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    *Title:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtTitle" placeholder="Title" runat="server"></asp:TextBox>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator
-                         ErrorMessage="Required" 
-                        ForeColor="Red" 
-                        ControlToValidate="txtTitle" 
-                        runat="server" />
-                   
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Type of Ad:
-                </td>
-                <td>
-                    <asp:RadioButtonList ID="rbAdType" runat="server">
-                        <asp:ListItem Text="Offer" Value="offer"/>
-                        <asp:ListItem Text="Request" Value="request"/>
-                    </asp:RadioButtonList>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    *Category:
-                </td>
-                <td>
-                    <asp:RadioButtonList ID="rbAdCategory" OnSelectedIndexChanged="rbAdCategory_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                        <asp:ListItem Text="Goods" Value="goods"/>
-                        <asp:ListItem Text="Services" Value="services"/>
-                    </asp:RadioButtonList>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    *Sub-Category:
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddSubCategory" runat="server">
-                    </asp:DropDownList>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator 
+
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-3 mt-2">
+            <div class="list-group mt-2"> <a href="PostAdvertisement.aspx" class="btn btn-success">Post New Ad</a> 
+            <!-- Shown on md and down devices (turns list groups into dropdown buttons for mobile) -->
+            <div class="dropdown mt-2">
+                <button class="btn btn-primary d-lg-none btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Browse Goods </button>
+                <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton"> 
+                    <a class="dropdown-item" href="#">Category 1</a> 
+                    <a class="dropdown-item" href="#">Category 2</a> 
+                    <a class="dropdown-item" href="#">Category 3</a> 
+                    <a class="dropdown-item" href="#">Category 4</a> 
+                    <a class="dropdown-item" href="#">Category 5</a> 
+                </div>
+            </div>
+            <div class="dropdown mt-2">
+                <button class="btn btn-primary d-lg-none btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Browse Services </button>
+                <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton"> 
+                    <a class="dropdown-item" href="#">Category 1</a> 
+                    <a class="dropdown-item" href="#">Category 2</a> 
+                    <a class="dropdown-item" href="#">Category 3</a> 
+                    <a class="dropdown-item" href="#">Category 4</a> 
+                    <a class="dropdown-item" href="#">Category 5</a> 
+                </div>
+            </div>
+        
+            <!--Only shown on lg devices (turns dropdown buttons into list group in sidebar-->
+            <div class="list-group d-none d-lg-block"> 
+                <a href="#" class="list-group-item disabled"><h6>Browse Goods</h6></a> 
+                <a href="#" class="list-group-item">Category 1</a> 
+                <a href="#" class="list-group-item">Category 2</a> 
+                <a href="#" class="list-group-item">Category 3</a> 
+                <a href="#" class="list-group-item">Category 4</a> 
+                <a href="#" class="list-group-item">Category 5</a>
+            </div>
+            <br/>
+            <div class="list-group d-none d-lg-block"> 
+                <a href="#" class="list-group-item disabled"><h6>Browse Services</h6></a> 
+                <a href="#" class="list-group-item">Category 1</a> 
+                <a href="#" class="list-group-item">Category 2</a> 
+                <a href="#" class="list-group-item">Category 3</a> 
+                <a href="#" class="list-group-item">Category 4</a> 
+            </div>
+            </div>
+        </div>
+    <!--/Sidebar Content -->
+	  
+    <!----------------------------------------------------------------------------------------------------------------> 
+ 
+    <!-- Page Content -->
+        <div class="col-lg-9 mt-2">
+            <div class="p-2 mb-2 bg-primary text-white">Post an Ad</div>
+            <div class="card">
+            <div class="card-body">
+                <h5>Ad title</h5>
+                <asp:TextBox CssClass="form-control" ID="txtTitle" placeholder="Eg. Weber Family 2 burner BBQ in great condition" runat="server" />
+                <hr />
+                <h5>Type of ad</h5>
+                <asp:RadioButtonList CssClass="form-group" ID="rbAdType" runat="server">
+                    <asp:ListItem Text="Offer" Value="offer"/>
+                    <asp:ListItem Text="Request" Value="request"/>
+                </asp:RadioButtonList>
+                <hr />
+                <h5>Select a category</h5>
+                <asp:RadioButtonList CssClass="form-group" ID="rbAdCategory" OnSelectedIndexChanged="rbAdCategory_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                    <asp:ListItem Text="Goods" Value="goods"/>
+                    <asp:ListItem Text="Services" Value="services"/>
+                </asp:RadioButtonList>
+                <hr />
+                <h5>Select a sub-category</h5>
+                <asp:DropDownList CssClass="form-control" ID="ddSubCategory" runat="server">
+                </asp:DropDownList>
+                <hr />
+                <h5>Price</h5>
+                <div class="row">
+                <div class="col-lg-4">
+                    <asp:TextBox CssClass="form-control" ID="txtPrice" placeholder="Eg. $25" runat="server"/>
+                </div>
+                <%--<div class="col-lg-8 mt-2">
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Amount</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Negotiable</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Free</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                    <label class="form-check-label" for="inlineRadio3">Swap / Trade</label>
+                    </div>
+                </div>--%>
+                </div>
+                <br />
+                <hr />
+                <div class="form-group">
+                <h5>Description</h5>
+                <asp:TextBox CssClass="form-control" TextMode="MultiLine" ID="txtDescription" rows="6" runat="server"/>
+                <asp:RequiredFieldValidator 
                         ErrorMessage="Required" 
                         ForeColor="Red" 
                         ControlToValidate="ddSubCategory"
-                        runat="server" />                       
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    *Price:  $
-                </td>
-                <td>
-                    <asp:TextBox 
-                        ID="txtPrice" 
-                        TextMode="Number"
-                        placeholder="0"
-                        step="0.01"
-                        min="0" 
-                        runat="server" />
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator 
-                        ErrorMessage="Required" 
-                        ForeColor="Red" 
-                        ControlToValidate="txtPrice"
-                        runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    *Description:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtDescription" TextMode="MultiLine" runat="server"/>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtDescription" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    *Images:
-                </td>
-                <td>
-                    <asp:FileUpload ID="FileUpload1" runat="server"/>
-                    <asp:FileUpload ID="FileUpload2" runat="server"/>
-                    <asp:FileUpload ID="FileUpload3" runat="server"/>
-                    <asp:FileUpload ID="FileUpload4" runat="server"/>
-                    <asp:FileUpload ID="FileUpload5" runat="server"/>
-                    <asp:FileUpload ID="FileUpload6" runat="server"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-            </tr>
-            <tr>
-                <td colspan="3"><hr /></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-            </tr>
-            <tr>
-                <!-- Submit button runs RegisterUser method when clicked -->
-                <td>
-                    <asp:Button Text="Submit" runat="server" OnClick="postAd" />
-                </td>
-                <td>
-                </td>
-            </tr>
-        </table>
-        <br />
-        <br />
+                        runat="server" /> 
+                </div>
+                <hr />
+                <h5>Upload photos</h5>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload1" runat="server"/>
+                        <label class="custom-file-label" for="FileUpload1">Choose file</label>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload2" runat="server"/>
+                        <label class="custom-file-label" for="FileUpload2">Choose file</label>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload3" runat="server"/>
+                        <label class="custom-file-label" for="FileUpload3">Choose file</label>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload4" runat="server"/>
+                        <label class="custom-file-label" for="FileUpload4">Choose file</label>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload5" runat="server"/>
+                        <label class="custom-file-label" for="FileUpload5">Choose file</label>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload6" runat="server"/>
+                        <label class="custom-file-label" for="FileUpload6">Choose file</label>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <br />
+                <hr />
+                <asp:Button CssClass="btn btn-block btn-success" Text="Submit" runat="server" OnClick="postAd" />
+                <hr />
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
     <div class="warning"><asp:Label Text="" ID="errorMessage" runat="server" /></div>
+    <footer class="py-2 bg-primary">
+        <div class="container">
+        <p class="m-0 text-center text-white">Copyright SmartWay 2018</p>
+        </div>
+    </footer>
 </asp:Content>

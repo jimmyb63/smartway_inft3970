@@ -116,8 +116,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\content.css" />
+    <Content Include="Content\LoginRegStyle.css" />
     <Content Include="Content\map.css" />
+    <Content Include="Content\smartway.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -144,8 +145,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\reset.css" />
-    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />

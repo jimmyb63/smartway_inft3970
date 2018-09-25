@@ -1,0 +1,58 @@
+﻿body {
+    background-color: #2364aa;
+}
+.txtbox {
+    border-radius:15px 30px;
+    border:1px solid white;
+    color: #ffffff;
+    background-color: #1784c7;
+    vertical-align: central;
+    padding-left:10px;
+    text-align:center;
+
+}
+.jumbotron {
+    background-color:#2364aa;
+}
+
+h2 {
+    color:#ffffff;
+}
+
+a:link {
+    color: #e0ffff;
+}
+
+a:visited {
+    color: #e0ffff;
+}
+
+a:hover {
+    color: #32b0ff;
+    text-decoration:none;
+}
+
+
+::placeholder{
+    color:white;
+    opacity:1;
+    
+}
+:-ms-input-placeholder{
+    color:white;
+}
+::-ms-input-placeholder{
+    color:white;
+}
+
+.loginButton {
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    background-color: #1784c7;
+    vertical-align: central;
+}
+
+.lead {
+    color:white;
+}

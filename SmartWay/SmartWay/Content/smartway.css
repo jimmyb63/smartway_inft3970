@@ -1,0 +1,94 @@
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+
+
+.form-control-border {
+	border-left-color: rgba(0,0,0,.125);
+ 	border-bottom: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0;
+}
+
+.form-control-borderless {
+	border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus{
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.form-control-border:hover, .form-control-border:active, .form-control-border:focus {
+	border-left-color: rgba(0,0,0,.125);
+ 	border-bottom: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0;
+	outline: none;
+    box-shadow: none;
+}
+
+.btn-sm {
+	border-radius: 3rem;
+}
+
+.hero {
+	padding-bottom: 25px;
+}
+
+.padding-bottom-top {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.card-sm{
+	border-radius: 50px;
+	height: 3rem;
+}
+
+/* not active */
+.nav-pills .pill-1 .nav-link:not(.active) {
+    background-color: #367BFF;
+}
+
+
+
+/* active (faded) */
+.nav-pills .pill-1 .nav-link {
+    background-color: #065BFF;
+    color: white;
+}
+
+div {
+  position: relative;
+  overflow: hidden;
+}
+.custominput{
+  position: absolute;
+  font-size: 40px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+	
+}
+.borderradius{
+	padding: 0px;
+    border: 0px solid grey;
+    border-radius: 5px 5px;
+	background: white;
+}
+
+.textcol {
+	color:black;
+	text-align: center;
+}
