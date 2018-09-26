@@ -24,10 +24,16 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
                 <li class="nav-item active"> <a class="nav-link m-1" href="index.aspx"><i class="fas fa-home"></i> Home</a> </li>
                 <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx"><i class="fas fa-shopping-cart"></i> Goods</a> </li>
                 <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx"><i class="fas fa-people-carry"></i> Services</a> </li>
                
+=======
+                <li class="nav-item active"> <a class="nav-link m-1" href="index.html"><i class="fas fa-home"></i> Home</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=goods"><i class="fas fa-shopping-cart"></i> Goods</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=services"><i class="fas fa-people-carry"></i> Services</a> </li>
+>>>>>>> a9b82e1093c05b6131fe7f02eb9bf7e88a51d69d
                 <% if (Session["log"] != null)
                     {
                         User currentUser = new User();

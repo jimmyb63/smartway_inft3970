@@ -10,24 +10,33 @@
 namespace SmartWay.UL.Views {
     
     
-    public partial class ViewAdvertisementList {
+    public partial class NewAddReviewRequest {
         
         /// <summary>
-        /// ID control.
+        /// ddlAddReviewReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAddReviewReason;
         
         /// <summary>
-        /// adList control.
+        /// txtContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView adList;
+        protected global::System.Web.UI.WebControls.TextBox txtContent;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

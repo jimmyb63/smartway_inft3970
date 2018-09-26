@@ -70,6 +70,17 @@ body {
 }
 
 
+<<<<<<< HEAD
+=======
+.custominput{
+  position: absolute;
+  font-size: 40px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+	
+}
+>>>>>>> a9b82e1093c05b6131fe7f02eb9bf7e88a51d69d
 .borderradius{
 	padding: 0px;
     border: 0px solid grey;
