@@ -90,6 +90,70 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getAdvertisementsCategory(string category)
+        {
+            string input = category;
+            List<Advertisement> ads = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT adc.category, adv.ID, adv.sellerID, adv.adType, adv.title, adv.adDescription, adv.addressID, adv.creationDate, adv.categoryID, adv.price FROM AddCategory adc INNER JOIN Advertisement adv ON adc.ID = adv.categoryID WHERE adc.category = @category AND adc.active = 1 and adv.active = 1";
+            //string query = "SELECT * FROM Advertisement"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@category", SqlDbType.VarChar, 260).Value = category;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement ad = new Advertisement((int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        reader["adType"].ToString(),
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (int)reader["addressID"],
+                                        (DateTime)reader["creationDate"],
+                                        (int)reader["categoryID"],
+                                        (decimal)reader["price"]);
+                ads.Add(ad);
+            }
+            connection.Close();
+            return ads;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getAdvertisementsSubCategory(string subCategory)
+        {
+            string input = subCategory;
+            List<Advertisement> ads = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT adc.subCategory, adv.ID, adv.sellerID, adv.adType, adv.title, adv.adDescription, adv.addressID, adv.creationDate, adv.categoryID, adv.price FROM AddCategory adc INNER JOIN Advertisement adv ON adc.ID = adv.categoryID WHERE adc.subCategory = @subCategory AND adc.active = 1 and adv.active = 1";
+            //string query = "SELECT * FROM Advertisement"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@subCategory", SqlDbType.VarChar, 260).Value = subCategory;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement ad = new Advertisement((int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        reader["adType"].ToString(),
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (int)reader["addressID"],
+                                        (DateTime)reader["creationDate"],
+                                        (int)reader["categoryID"],
+                                        (decimal)reader["price"]);
+                ads.Add(ad);
+            }
+            connection.Close();
+            return ads;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisement(int adID)
         {
             List<Advertisement> ads = new List<Advertisement>();

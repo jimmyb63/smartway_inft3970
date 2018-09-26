@@ -69,10 +69,7 @@ body {
     color: white;
 }
 
-div {
-  position: relative;
-  overflow: hidden;
-}
+
 .custominput{
   position: absolute;
   font-size: 40px;

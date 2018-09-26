@@ -25,8 +25,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"> <a class="nav-link m-1" href="index.html"><i class="fas fa-home"></i> Home</a> </li>
-                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx"><i class="fas fa-shopping-cart"></i> Goods</a> </li>
-                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx"><i class="fas fa-people-carry"></i> Services</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=goods"><i class="fas fa-shopping-cart"></i> Goods</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=services"><i class="fas fa-people-carry"></i> Services</a> </li>
                 <% if (Session["log"] != null)
                     {
                         User currentUser = new User();

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SmartWay.DAL.Controllers;
+using System.Web.ModelBinding;
 
 namespace SmartWay.UL.Views
 {
@@ -13,13 +14,39 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string query = "";
+            if (Request.QueryString["category"] != "" && Request.QueryString["category"] != null)
+            {
+                query = Request.QueryString["category"];
+            }
+            else if (Request.QueryString["subCategory"] != "" && Request.QueryString["subCategory"] != null)
+            {
+                query = Request.QueryString["subCategory"];
+            }
 
+            ID.Value = query;
         }
 
-        public List<Advertisement> getAds()
+        public List<Advertisement> getAds([Control]string ID)
         {
             AdvertisementControls AC = new AdvertisementControls();
-            List<Advertisement> ads = AC.getAdvertisements();
+            List<Advertisement> ads = new List<Advertisement>();
+            string query = ID;
+            if (query != "")
+            {
+                if (query == "goods" || query == "services")
+                {
+                    ads = AC.getAdvertisementsCategory(query);
+                }
+                else
+                {
+                    ads = AC.getAdvertisementsSubCategory(query);
+                }
+            }
+            else
+            {
+                ads = AC.getAdvertisements();
+            }
             return ads;
         }
 
@@ -30,18 +57,18 @@ namespace SmartWay.UL.Views
             return filePath;
         }
 
-        public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
-        {
+        //public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
+        //{
             
             
-            if (e.CommandName == "AdvertisementDetail")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                List<Advertisement> ads = getAds();
-                Advertisement ad = ads[index];
-                Session["selectedAd"] = ad;
-                Response.Redirect("ViewAdvertisement.aspx");
-            }
-        }
+        //    if (e.CommandName == "AdvertisementDetail")
+        //    {
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        List<Advertisement> ads = getAds();
+        //        Advertisement ad = ads[index];
+        //        Session["selectedAd"] = ad;
+        //        Response.Redirect("ViewAdvertisement.aspx");
+        //    }
+        //}
     }
 }
