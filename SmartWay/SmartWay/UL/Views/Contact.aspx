@@ -4,82 +4,40 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--A form that emails the admin--%>
-    <table>
-            <tr>
-                <th colspan="3">
-                    <h2>Contact us</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 mt-2">
+                <div class="list-group"> <a href="PostAdvertisement.aspx" mt-2 class="btn btn-success">Post New Ad</a> 
+
+            </div>
+        </div>
+        <div class="col-lg-9 mt-2">
+            <div class="p-2 mb-2 bg-primary text-white">Contact Us</div>
+            <div class="card">
+            <div class="card-body">
+                     <h2>Contact us</h2>
                     <p>Please fill out the below form to contact admin</p>
-                </th>
-            </tr>
-            <!-- First name textbox with validators -->
-            <tr>
-                <td>
-                    First Name:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtFirstName" placeholder="First Name" runat="server"/>
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtFirstName"
+                <h5>First Name</h5>
+                <asp:TextBox CssClass="form-control" ID="txtFirstName" placeholder="First Name" runat="server"/>
+                <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtFirstName"
                         runat="server" />
-                </td>
-            </tr>
-            <!-- Last name textbox with validators -->
-            <tr>
-                <td>
-                    Last Name:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtLastName" placeholder="Last Name" runat="server" />
-                </td>
-                <td>
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtLastName"
-                          runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-            </tr>
-            <tr>
-                <td colspan="3"><hr /></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-            </tr>
-            <!-- Email address textbox with validators -->
-            <tr>
-                <td>
-                    Email:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtEmail" placeholder="Email address" runat="server" />
-                </td>
-                <td>
+                <h5>Last Name</h5>
+                <asp:TextBox CssClass="form-control" ID="txtLastName" placeholder="Last Name" runat="server" />
+                <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtLastName"
+                runat="server" />
+                <h5>Email</h5>
+                <asp:TextBox CssClass="form-control" ID="txtEmail" placeholder="Email address" runat="server" />
                     <asp:RequiredFieldValidator ErrorMessage="Required" Display="Dynamic" ForeColor="Red"
                         ControlToValidate="txtEmail" runat="server" />
                     <asp:RegularExpressionValidator runat="server" Display="Dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                         ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Invalid email address." />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Message content:
-                </td>
-                <td>
-                    <asp:TextBox runat="server" ID="txtContent" TextMode="MultiLine" Rows="10" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <!-- Submit button to send email to admin -->
-                <td>
-                    <asp:Button Text="Submit" runat="server" OnClick="contactAdmin" />
-                </td>
-                <td>
-                </td>
-            </tr>
-        </table>
-        <br />
-        <br />
+                <h5>Message:</h5>
+                <asp:TextBox CssClass="form-control" runat="server" ID="txtContent" TextMode="MultiLine" Rows="10" />
+         <br />
+                <asp:Button Text="Submit" class="btn btn-success" runat="server" OnClick="contactAdmin" />
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </asp:Content>

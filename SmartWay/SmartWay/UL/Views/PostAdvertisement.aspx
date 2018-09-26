@@ -62,8 +62,8 @@
                 <hr />
                 <h5>Type of ad</h5>
                 <asp:RadioButtonList CssClass="form-group" ID="rbAdType" runat="server">
-                    <asp:ListItem Text="Offer" Value="offer"/>
-                    <asp:ListItem Text="Request" Value="request"/>
+                    <asp:ListItem Text=" Offer" Value="offer"/>
+                    <asp:ListItem Text=" Request" Value="request"/>
                 </asp:RadioButtonList>
                 <hr />
                 <h5>Select a category</h5>
