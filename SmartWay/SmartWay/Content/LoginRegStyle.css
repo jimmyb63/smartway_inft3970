@@ -16,19 +16,19 @@
 }
 
 h2 {
-    color:#ffffff;
+    color:black;
 }
 
 a:link {
-    color: #e0ffff;
+    color: black;;
 }
 
 a:visited {
-    color: #e0ffff;
+    color: grey;;
 }
 
 a:hover {
-    color: #32b0ff;
+    color: blue;;
     text-decoration:none;
 }
 
@@ -54,5 +54,5 @@ a:hover {
 }
 
 .lead {
-    color:white;
+    color:black;
 }
