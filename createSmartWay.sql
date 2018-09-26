@@ -24,6 +24,10 @@ IF OBJECT_ID('dbo.ForumComment', 'U') IS NOT NULL
   DROP TABLE dbo.ForumComment; 
 IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL 
   DROP TABLE dbo.ForumPost;
+IF OBJECT_ID('dbo.AddReview', 'U') IS NOT NULL 
+  DROP TABLE dbo.AddReview;
+IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL 
+  DROP TABLE dbo.ReviewReason;
 IF OBJECT_ID('dbo.RecycleLocations', 'U') IS NOT NULL 
   DROP TABLE dbo.RecycleLocations;
 IF OBJECT_ID('dbo.FeedBack', 'U') IS NOT NULL 
@@ -42,12 +46,8 @@ IF OBJECT_ID('dbo.PaypalDetails', 'U') IS NOT NULL
   DROP TABLE dbo.PaypalDetails;
 IF OBJECT_ID('dbo.Staff', 'U') IS NOT NULL 
   DROP TABLE dbo.Staff;
-
 IF OBJECT_ID('dbo.VerificationCode', 'U') IS NOT NULL 
   DROP TABLE dbo.VerificationCode;
-
-
-
 IF OBJECT_ID('dbo.Person', 'U') IS NOT NULL 
   DROP TABLE dbo.Person;
 IF OBJECT_ID('dbo.PhoneNumber', 'U') IS NOT NULL 
@@ -58,14 +58,15 @@ IF OBJECT_ID('dbo.StateName', 'U') IS NOT NULL
   DROP TABLE dbo.StateName;
 
 --Create Tables
---Add comments
+--This table will be used to link the Address States to the postal Address in the Database
+--The values of the ID in the database will be the same as the value associated with that selection in the dropdown menu in the UserLayer,
 create table StateName	(	ID int NOT NULL IDENTITY(1,1) primary key,
 							stateName varchar(20) NOT NULL,
 							creationDate date NOT NULL DEFAULT GETDATE(),
 							active bit DEFAULT 1,
 						)
 
---Add comments
+--This table will be used to store the Address of the Users that register with SmartWay.
 create table PostalAddress	(	ID int IDENTITY(1000,1) primary key,
 								unitNumber varchar(4), -- unit number can be letter or number
 								streetAddress varchar(20) NOT NULL,
@@ -79,14 +80,16 @@ create table PostalAddress	(	ID int IDENTITY(1000,1) primary key,
 								foreign key (stateName) references StateName(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							)
 
---Add comments
+--This table will be used to store the Phone Number of the Users that register with SmartWay.
 create table PhoneNumber (	ID int IDENTITY(1000,1) primary key,
 							phoneNumber int,
 							creationDate date NOT NULL DEFAULT GETDATE(),
 							active bit DEFAULT 1,
 						)
 
---Add comments
+--This table will be used to store the Personal Details of the Users that register with SmartWay.
+--Will link to PhoneNumber and PostalAddresses via their ID
+--Requirements. Date of Birth should not be in the future.
 create table Person		(	ID int IDENTITY(1000,1) primary key,
 							firstName varchar(20) NOT NULL,
 							lastName varchar(20) NOT NULL,
@@ -103,7 +106,8 @@ create table Person		(	ID int IDENTITY(1000,1) primary key,
 							foreign key (PhoneNumberId) references PhoneNumber(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							foreign key (addressId) references PostalAddress(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 						)
-
+--This table will be used to store the Verification Details of the Users that register with SmartWay.
+--Requirements. Code, personID and creation Date should NOT be Null.
 create table VerificationCode (	ID int IDENTITY(1,1) primary key,
 								code varchar(8) NOT NULL,
 								personID int,
@@ -112,7 +116,9 @@ create table VerificationCode (	ID int IDENTITY(1,1) primary key,
 								foreign key (personID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							  )
 
---Add comments
+--This table will be used to store the People that are Staff with SmartWay. This is a child of person.
+--Will link to Person via their ID
+--Requirement:-
 create table Staff		(	ID int IDENTITY(1000,1) primary key,
 							personID int,
 							postion varchar(30) NOT NULL,
@@ -121,7 +127,9 @@ create table Staff		(	ID int IDENTITY(1000,1) primary key,
 							foreign key (personID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 						)
 
---This might not be needed--
+--This table will be used to store the Paypal Details of the Users that register with SmartWay.
+--Will link to Person via their ID
+--Requirements. 
 create table PaypalDetails (	ID int IDENTITY(1000,1) primary key,
 								personID int,
 								paypalUserName varchar(32) NOT NULL,
@@ -139,15 +147,18 @@ create table PaypalDetails (	ID int IDENTITY(1000,1) primary key,
 --								active bit DEFAULT 1
 --								)
 
---Add comments
-create table AddCategory (		ID int IDENTITY(1000,1) primary key,
-								category varchar(30) NOT NULL,
-								subCategory varchar(30)NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1
-								)
+--This table will be used to store the Add Categories of the Advertisements with SmartWay.
+--Requirements:-
+create table AddCategory	(		ID int IDENTITY(1000,1) primary key,
+									category varchar(30) NOT NULL,
+									subCategory varchar(30)NOT NULL,
+									creationDate date NOT NULL DEFAULT GETDATE(),
+									active bit DEFAULT 1
+							)
 
---Add comments
+--This table will be used to store the Advertisement Details registered with SmartWay.
+--Will link to Sellers, Buyers, Address via their ID. 
+--Requirements:-
 create table Advertisement (	ID int IDENTITY(1000,1) primary key,
 								sellerID int NOT NULL,
 								buyerID int,
@@ -169,15 +180,19 @@ create table Advertisement (	ID int IDENTITY(1000,1) primary key,
 								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
---Add comments
-create table SavedImage (		ID int IDENTITY(1000,1) primary key,
+--This table will be used to store the Img Details.
+--Will link to Person via their ID
+--Requirements. filepagth, userID should not be NULL.
+create table ProfileImage (		ID int IDENTITY(1000,1) primary key,
 								filePath varchar(260) NOT NULL,
 								userID int NOT NULL,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1
 								foreign key (userID) references Person(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
---Add comments
+--This table will be used to link the Imgs to attach to details.
+--Will link to Person via their ID
+--Requirements. Date of Birth should not be in the future.
 create table AddImage	(		ID int IDENTITY(1000,1) primary key,
 								--imageID int NOT NULL,
 								filePath varchar(260) NOT NULL,
@@ -190,7 +205,9 @@ create table AddImage	(		ID int IDENTITY(1000,1) primary key,
 								foreign key (adID) references Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
---Add comments
+--This table will be used to link the Imgs to attach to details.
+--Will link to Person via their ID
+--Requirements. Date of Birth should not be in the future.
 create table FeedBack (			ID int IDENTITY(1000,1) primary key,
 								sellerID int NOT NULL,
 								buyerID int,
@@ -213,10 +230,39 @@ create table RecycleLocations (	ID int IDENTITY(1000,1) primary key,
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1,
 								--foreignkeys
-								foreign key (imageID) references SavedImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (imageID) references ProfileImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (addressID) references PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)		
+								)
+									
+--This table will be used to link the Imgs to attach to details.
+--Will link to Person via their ID
+--Requirements. Date of Birth should not be in the future.
+create table ReviewReason (		ID int IDENTITY(1000,1) primary key,
+								reviewReason varchar(30) NOT NULL,
+								creationDate date NOT NULL DEFAULT GETDATE(),
+								active bit DEFAULT 1
+							)
+
+--This Table will be used to capture requests for Admin to review an Add.
+create table AddReview	(		ID int IDENTITY(1000,1) primary key,
+								addID int NOT NULL,
+								sellerID int NOT NULL,
+								reporterUserID int,
+								reviewReason int NOT NULL,
+								adDescription varchar(150) NOT NULL,
+								adminComments varchar(150),
+								inReview BIT,
+								dateCompleted date,
+								creationDate date NOT NULL DEFAULT GETDATE(),
+								active bit DEFAULT 1,
+								--foreignkeys
+								foreign key (addID) references Advertisement(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (reporterUserID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (reviewReason) references ReviewReason(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+								)
+
 									
 --Add comments							
 create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
@@ -229,7 +275,7 @@ create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
 								active bit DEFAULT 1,
 								--foreignkeys	
 								foreign key (personID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (imageID) references SavedImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (imageID) references ProfileImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 								
@@ -242,10 +288,12 @@ create table ForumComment	 (	ID int IDENTITY(1000,1) primary key,
 								active bit DEFAULT 1,
 								--foreignkeys
 								foreign key (forumPostID) references ForumPost(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (imageID) references SavedImage(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
+								foreign key (imageID) references ProfileImage(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
 
-								
+--Required Database Data
+
+							
 								
  
