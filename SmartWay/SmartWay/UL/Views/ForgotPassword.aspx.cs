@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SmartWay.DAL.Controllers;
+using SmartWay.BL.Models;
 
 namespace SmartWay.UL.Views
 {
@@ -20,7 +21,7 @@ namespace SmartWay.UL.Views
         {
             string email = txtEmail.Text;
             UserControls UC = new UserControls();
-            BL.Models.User tempUser = UC.getUserAccount(email);
+            Person tempUser = UC.getUserAccount(email);
             MailSender MS = new MailSender();
             string password = tempUser.userPassword;
             MS.sendForgotPasswordEmail(email, password);

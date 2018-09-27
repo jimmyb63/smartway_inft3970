@@ -130,6 +130,7 @@
     <Content Include="UL\Views\AdminIndex.aspx" />
     <Content Include="UL\Views\AdminReviewAdvertisements.aspx" />
     <Content Include="UL\Views\AdminReviewUsers.aspx" />
+    <Content Include="UL\Views\AdminViewUserDetail.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
@@ -180,11 +181,11 @@
     <Compile Include="BL\Controllers\MailSender.cs" />
     <Compile Include="BL\Controllers\Validation.cs" />
     <Compile Include="BL\Models\Address.cs" />
-    <Compile Include="BL\Models\Admin.cs" />
+    <Compile Include="BL\Models\Staff.cs" />
     <Compile Include="BL\Models\Advertisement.cs" />
     <Compile Include="BL\Models\ForumThread.cs" />
     <Compile Include="BL\Models\RecycleLocation.cs" />
-    <Compile Include="BL\Models\User.cs" />
+    <Compile Include="BL\Models\Person.cs" />
     <Compile Include="DAL\Controllers\AddressControls.cs" />
     <Compile Include="DAL\Controllers\AdvertisementControls.cs" />
     <Compile Include="DAL\Controllers\UserControls.cs" />
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="UL\Views\AdminReviewUsers.aspx.designer.cs">
       <DependentUpon>AdminReviewUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\AdminViewUserDetail.aspx.cs">
+      <DependentUpon>AdminViewUserDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\AdminViewUserDetail.aspx.designer.cs">
+      <DependentUpon>AdminViewUserDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\PostAdvertisement.aspx.cs">
       <DependentUpon>PostAdvertisement.aspx</DependentUpon>

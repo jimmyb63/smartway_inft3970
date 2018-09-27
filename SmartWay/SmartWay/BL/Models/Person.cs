@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SmartWay.BL.Models
 {
-    public class User
+    public class Person
     {
         protected int ID;
         protected string fName;
@@ -17,11 +17,11 @@ namespace SmartWay.BL.Models
         protected int phoneID;
         protected int addressID;
         protected int paypalID;
-        protected string verDate;
-        protected string createDate;
+        protected DateTime verDate;
+        protected DateTime createDate;
         protected bool active;
 
-        public User()
+        public Person()
         {
             ID = 0;
             fName = null;
@@ -30,16 +30,13 @@ namespace SmartWay.BL.Models
             DOB = null;
             phoneID = 0;
             addressID = 0;
-            paypalID = 0;
             uName = null;
             password = null;
-            verDate = null;
-            createDate = null;
             active = true;
 
         }
 
-        public User(int init_ID, string init_fName, string init_lName, string init_email, string init_DOB, int init_phoneID, int init_addressID, int init_paypalID, string init_uName, string init_password, string init_verDate, string init_createDate, bool init_active)
+        public Person(int init_ID, string init_fName, string init_lName, string init_email, string init_DOB, int init_phoneID, int init_addressID, string init_uName, string init_password, DateTime init_verDate, DateTime init_createDate, bool init_active)
         {
             ID = init_ID;
             fName = init_fName;
@@ -48,7 +45,6 @@ namespace SmartWay.BL.Models
             DOB = init_DOB;
             phoneID = init_phoneID;
             addressID = init_addressID;
-            paypalID = init_paypalID;
             uName = init_uName;
             password = init_password;
             verDate = init_verDate;
@@ -176,7 +172,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public string userVerDate
+        public DateTime userVerDate
         {
             get
             {
@@ -188,7 +184,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public string userCreateDate
+        public DateTime userCreateDate
         {
             get
             {

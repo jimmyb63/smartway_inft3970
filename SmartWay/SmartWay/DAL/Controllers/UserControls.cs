@@ -1,4 +1,5 @@
 ﻿using System;
+using SmartWay.BL.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -119,9 +120,9 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<BL.Models.User> getUsers()
+        public List<Person> getUsers()
         {
-            List<BL.Models.User> users = new List<BL.Models.User>();
+            List<Person> users = new List<Person>();
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
             string query = "SELECT * FROM Person"; //the sql request
@@ -132,18 +133,17 @@ namespace SmartWay.DAL.Controllers
             while (reader.Read())
             {
                 //for each rows of the database corresponding to the request we create a product and add it to the list
-                BL.Models.User user = new BL.Models.User((int)reader["ID"],
+                Person user = new Person((int)reader["ID"],
                                         reader["firstName"].ToString(),
                                         reader["lastName"].ToString(),
                                         reader["email"].ToString(),
                                         reader["DOB"].ToString(),
                                         (int)reader["phoneNumberId"],
                                         (int)reader["addressId"],
-                                        (int)reader["paypalID"],
                                         reader["SWUsername"].ToString(),
                                         reader["SWPassword"].ToString(),
-                                        reader["verificationDate"].ToString(),
-                                        reader["creationDate"].ToString(),
+                                        (DateTime)reader["verificationDate"],
+                                        (DateTime)reader["creationDate"],
                                         (bool)reader["active"]);
                 users.Add(user);
             }
@@ -233,7 +233,7 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public BL.Models.User getUserAccount(string email)
+        public Person getUserAccount(string email)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
             SqlCommand cmd = new SqlCommand();
@@ -242,7 +242,7 @@ namespace SmartWay.DAL.Controllers
             cmd.Parameters.Add("@email", SqlDbType.VarChar, 320).Value = email;
             connection.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            BL.Models.User tempUser = new BL.Models.User();
+            Person tempUser = new Person();
             while (dr.Read())
             {
                 tempUser.userID = Convert.ToInt32(dr["ID"]);
@@ -257,7 +257,7 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public BL.Models.Admin getAdminAccount(string email)
+        public Staff getAdminAccount(string email)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
             SqlCommand cmd = new SqlCommand();
@@ -266,7 +266,7 @@ namespace SmartWay.DAL.Controllers
             cmd.Parameters.Add("@email", SqlDbType.VarChar, 320).Value = email;
             connection.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            BL.Models.Admin tempAdmin = new BL.Models.Admin();
+            Staff tempAdmin = new Staff();
             while (dr.Read())
             {
                 tempAdmin.adminID = Convert.ToInt32(dr["ID"]);

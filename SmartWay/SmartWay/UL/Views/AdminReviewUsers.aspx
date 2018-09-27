@@ -2,26 +2,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="col-lg-12 mt-2">
+        <div class="p-2 mb-2 bg-info text-white">Review All Users</div>
+		<!--Featured Carousel -->
+
+    
     <!-- just few comments for now -->
-      <asp:GridView ID="SearchResult" runat="server" AutoGenerateColumns="False" GridLines="Horizontal" CellPadding="4" HorizontalAlign="Center"
-        ItemType="SmartWay.BL.Models.User" SelectMethod="GetUsers" onrowcommand="SearchResult_RowCommand">
-    <%-- set the content of each rows of the gridview (the list of data we need for each product) --%>
-     <%-- Code for gridview sourced from - https://docs.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/shopping-cart --%>
-        <Columns>
-            <asp:BoundField DataField="userID" HeaderText="User ID"/>
-            <asp:BoundField DataField="userFirstName" HeaderText="First Name"/>
-            <asp:BoundField DataField="userLastName" HeaderText="Last Name"/>
-            <asp:BoundField DataField="userEmail" HeaderText="Email"/>
-            <asp:BoundField DataField="userDOB" HeaderText="DOB"/>
-            <asp:BoundField DataField="userPhoneID" HeaderText="Phone ID"/>
-            <asp:BoundField DataField="userAddressID" HeaderText="Address ID"/>
-            <asp:BoundField DataField="userPaypalID" HeaderText="Paypal ID"/>
-            <asp:BoundField DataField="userUsername" HeaderText="Username"/>
-            <asp:BoundField DataField="userPassword" HeaderText="Password"/>
-            <asp:BoundField DataField="userVerDate" HeaderText="Verification Date"/>
-            <asp:BoundField DataField="userCreateDate" HeaderText="Creation Date"/>
-            <asp:BoundField DataField="userActive" HeaderText="Active"/>
-            <asp:ButtonField buttontype="Button" Text="View Item" commandname="UserDetail"/>
-        </Columns>
-    </asp:GridView>
+        <div class="table-responsive">
+            <asp:GridView ID="SearchResult" runat="server" AutoGenerateColumns="False" GridLines="Horizontal" CssClass="table table-bordered" CellPadding="4" HorizontalAlign="Center"
+            ItemType="SmartWay.BL.Models.Person" SelectMethod="GetUsers" onrowcommand="SearchResult_RowCommand">
+        <%-- set the content of each rows of the gridview (the list of data we need for each product) --%>
+         <%-- Code for gridview sourced from - https://docs.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/shopping-cart --%>
+                <Columns>
+                    <asp:BoundField DataField="userID" HeaderText="User ID"/>
+                    <asp:BoundField DataField="userEmail" HeaderText="Email"/>
+                    <asp:BoundField DataField="userName" HeaderText="Username"/>
+                    <asp:ButtonField buttontype="Button" ControlStyle-CssClass="btn btn-block btn-info" Text="View Details" commandname="UserDetail"/>
+                </Columns>
+            </asp:GridView>
+        </div>
+    </div>
 </asp:Content>

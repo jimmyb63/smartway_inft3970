@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using SmartWay.BL.Models;
 
 namespace SmartWay.UL.Views
 {
@@ -29,7 +30,7 @@ namespace SmartWay.UL.Views
             string adSubCategory = ddSubCategory.SelectedValue;
             decimal adPrice = Convert.ToDecimal(txtPrice.Text);
             string adDescription = txtDescription.Text;
-            BL.Models.User currentUser = (BL.Models.User)Session["log"];
+            Person currentUser = (Person)Session["log"];
             int userID = currentUser.userID;
             int addressID = currentUser.userAddressID;
             AdvertisementControls AC = new AdvertisementControls();

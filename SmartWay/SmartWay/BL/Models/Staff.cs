@@ -5,11 +5,11 @@ using System.Web;
 
 namespace SmartWay.BL.Models
 {
-    public class Admin : User 
+    public class Staff : Person 
     {
         private string position;
 
-        public Admin()
+        public Staff()
         {
             ID = 0;
             fName = null;
@@ -19,7 +19,7 @@ namespace SmartWay.BL.Models
             position = null;
         }
 
-        public Admin(int init_ID, string init_fName, string init_lName, string init_email, string init_password, string init_position)
+        public Staff(int init_ID, string init_fName, string init_lName, string init_email, string init_password, string init_position)
         {
             ID = init_ID;
             fName = init_fName;

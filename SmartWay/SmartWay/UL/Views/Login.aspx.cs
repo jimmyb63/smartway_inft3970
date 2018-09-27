@@ -1,4 +1,5 @@
 ﻿using SmartWay.BL.Controllers;
+using SmartWay.BL.Models;
 using SmartWay.DAL.Controllers;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace SmartWay.UL.Views
             validate.IsValidEmail(email);
             // Check email exists, password matches email
             UserControls UC = new UserControls();
-            BL.Models.User tempUser = UC.getUserAccount(email);
-            BL.Models.Admin tempAdmin = UC.getAdminAccount(email);
+            Person tempUser = UC.getUserAccount(email);
+            Staff tempAdmin = UC.getAdminAccount(email);
             if (tempAdmin.adminEmail != null)
             {
                 if (password != tempAdmin.adminPassword)

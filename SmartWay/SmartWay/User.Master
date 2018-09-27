@@ -30,8 +30,8 @@
 
                 <% if (Session["currentUser"] != null)
                     {
-                        User currentUser = new User();
-                        currentUser = (User)Session["currentUser"];
+                        Person currentUser = new Person();
+                        currentUser = (Person)Session["currentUser"];
                         int userID = currentUser.userID;%>
                   <li class="nav-item"> <a class="nav-link m-1" href="Account.aspx?userID=<%=currentUser.userID %>"><i class="fas fa-user-alt"></i> Profile</a> </li>
                   <li class="nav-item"> <a class="nav-link m-1" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt"></i> Logout</a> </li>

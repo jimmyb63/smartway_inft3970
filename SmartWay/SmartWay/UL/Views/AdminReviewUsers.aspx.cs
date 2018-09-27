@@ -1,4 +1,5 @@
-﻿using SmartWay.DAL.Controllers;
+﻿using SmartWay.BL.Models;
+using SmartWay.DAL.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,16 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentAdmin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
-        public List<BL.Models.User> getUsers()
+        public List<Person> getUsers()
         {
             UserControls UC = new UserControls();
-            List<BL.Models.User> users = UC.getUsers();
+            List<Person> users = UC.getUsers();
             return users;
         }
 
@@ -26,13 +30,13 @@ namespace SmartWay.UL.Views
         {
 
 
-            if (e.CommandName == "AdvertisementDetail")
+            if (e.CommandName == "UserDetail")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
-                List<BL.Models.User> users = getUsers();
-                BL.Models.User user = users[index];
+                List<Person> users = getUsers();
+                Person user = users[index];
                 Session["selectedUser"] = user;
-                Response.Redirect("ViewAdvertisement.aspx?advertisementID=" + users[index].userID);
+                Response.Redirect("AdminViewUserDetail.aspx?userID=" + users[index].userID);
             }
         }
     }
