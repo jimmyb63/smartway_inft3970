@@ -127,6 +127,7 @@
     <Content Include="UL\Images\ProfileImg\1014.png" />
     <Content Include="UL\Views\Account.aspx" />
     <Content Include="UL\Views\AccountVerification.aspx" />
+    <Content Include="UL\Views\AdminIndex.aspx" />
     <Content Include="UL\Views\AdminReviewAdvertisements.aspx" />
     <Content Include="UL\Views\AdminReviewUsers.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
@@ -169,7 +170,7 @@
     <Content Include="UL\Views\Goods.aspx" />
     <Content Include="UL\Views\Index.aspx" />
     <Content Include="UL\Views\Login.aspx" />
-    <Content Include="UL\Views\Logout.aspx" />
+    <Content Include="UL\Views\LogoutConfirmation.aspx" />
     <Content Include="UL\Views\Registration.aspx" />
     <Content Include="UL\Views\RegistrationConfirmation.aspx" />
     <Content Include="UL\Views\Services.aspx" />
@@ -233,6 +234,13 @@
     <Compile Include="UL\Views\AddService.aspx.designer.cs">
       <DependentUpon>AddService.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Views\AdminIndex.aspx.cs">
+      <DependentUpon>AdminIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\AdminIndex.aspx.designer.cs">
+      <DependentUpon>AdminIndex.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Views\AdminReviewAdvertisements.aspx.cs">
       <DependentUpon>AdminReviewAdvertisements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -289,12 +297,12 @@
     <Compile Include="UL\Views\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Views\Logout.aspx.cs">
-      <DependentUpon>Logout.aspx</DependentUpon>
+    <Compile Include="UL\Views\LogoutConfirmation.aspx.cs">
+      <DependentUpon>LogoutConfirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UL\Views\Logout.aspx.designer.cs">
-      <DependentUpon>Logout.aspx</DependentUpon>
+    <Compile Include="UL\Views\LogoutConfirmation.aspx.designer.cs">
+      <DependentUpon>LogoutConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Map.aspx.cs">
       <DependentUpon>Map.aspx</DependentUpon>

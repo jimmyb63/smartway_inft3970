@@ -181,7 +181,7 @@ namespace SmartWay.DAL.Controllers
         public void addProfileImage(string filePath, int userID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "INSERT INTO SavedImage (filePath, userID) VALUES(@filePath, @userID)";
+            string query = "INSERT INTO ProfileImage (filePath, userID) VALUES(@filePath, @userID)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@filePath", SqlDbType.VarChar, 260).Value = filePath;
             cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
@@ -194,7 +194,7 @@ namespace SmartWay.DAL.Controllers
         public string getProfileImage(int userID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "SELECT filePath FROM SavedImage WHERE userID = @userID";
+            string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
             connection.Open();
@@ -254,6 +254,29 @@ namespace SmartWay.DAL.Controllers
                 tempUser.userPassword = dr["SWPassword"].ToString();
             }
             return tempUser;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public BL.Models.Admin getAdminAccount(string email)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            SqlCommand cmd = new SqlCommand();
+            string query = "SELECT a.position, u.ID, u.firstName, u.lastName, u.email, u.SWPassword FROM Staff a INNER JOIN Person u ON a.personID = u.ID WHERE u.email = @email";
+            cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar, 320).Value = email;
+            connection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            BL.Models.Admin tempAdmin = new BL.Models.Admin();
+            while (dr.Read())
+            {
+                tempAdmin.adminID = Convert.ToInt32(dr["ID"]);
+                tempAdmin.adminfName = dr["firstName"].ToString();
+                tempAdmin.adminlName = dr["lastName"].ToString();
+                tempAdmin.adminEmail = dr["email"].ToString();
+                tempAdmin.adminPassword = dr["SWPassword"].ToString();
+                tempAdmin.adminPosition = dr["position"].ToString();
+            }
+            return tempAdmin;
         }
 
         public string getconnectionString()

@@ -121,7 +121,7 @@ create table VerificationCode (	ID int IDENTITY(1,1) primary key,
 --Requirement:-
 create table Staff		(	ID int IDENTITY(1000,1) primary key,
 							personID int,
-							postion varchar(30) NOT NULL,
+							position varchar(30) NOT NULL DEFAULT 'admin',
 							creationDate date NOT NULL DEFAULT GETDATE(),
 							active bit DEFAULT 1,
 							foreign key (personID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION

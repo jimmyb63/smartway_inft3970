@@ -28,12 +28,13 @@
                 <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=goods"><i class="fas fa-shopping-cart"></i> Goods</a> </li>
                 <li class="nav-item"> <a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=services"><i class="fas fa-people-carry"></i> Services</a> </li>
 
-                <% if (Session["log"] != null)
+                <% if (Session["currentUser"] != null)
                     {
                         User currentUser = new User();
-                        currentUser = (User)Session["log"];
+                        currentUser = (User)Session["currentUser"];
                         int userID = currentUser.userID;%>
                   <li class="nav-item"> <a class="nav-link m-1" href="Account.aspx?userID=<%=currentUser.userID %>"><i class="fas fa-user-alt"></i> Profile</a> </li>
+                  <li class="nav-item"> <a class="nav-link m-1" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt"></i> Logout</a> </li>
                 <% } else { %>
                 <li class="nav-item"> <a class="nav-link m-1" href="Login.aspx"><i class="fas fa-sign-in-alt"></i> Login</a> </li>
                 <% } %>

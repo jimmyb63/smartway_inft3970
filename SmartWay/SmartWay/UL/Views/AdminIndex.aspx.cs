@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SmartWay.UL.Views
 {
-    public partial class Logout : System.Web.UI.Page
+    public partial class AdminIndex : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

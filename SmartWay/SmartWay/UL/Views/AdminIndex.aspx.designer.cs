@@ -11,7 +11,7 @@ namespace SmartWay.UL.Views
 {
 
 
-    public partial class Logout
+    public partial class AdminIndex
     {
     }
 }

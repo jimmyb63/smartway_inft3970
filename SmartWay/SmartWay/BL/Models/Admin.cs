@@ -11,26 +11,34 @@ namespace SmartWay.BL.Models
 
         public Admin()
         {
+            ID = 0;
             fName = null;
             lName = null;
             email = null;
-            phoneID = 0;
-            addressID = 0;
             password = null;
-            paypalID = 0;
-            position = "ADMIN";
+            position = null;
         }
 
-        public Admin(string init_fName, string init_lName, string init_email, string init_password, int init_phone,int init_addressID, int init_paypalID, string init_position)
+        public Admin(int init_ID, string init_fName, string init_lName, string init_email, string init_password, string init_position)
         {
+            ID = init_ID;
             fName = init_fName;
             lName = init_lName;
             email = init_email;
-            phoneID = init_phone;
-            addressID = init_addressID;
             password = init_password;
-            paypalID = init_paypalID;
-            position = "ADMIN";
+            position = init_position;
+        }
+
+        public int adminID
+        {
+            get
+            {
+                return ID;
+            }
+            set
+            {
+                ID = value;
+            }
         }
 
         public string adminfName

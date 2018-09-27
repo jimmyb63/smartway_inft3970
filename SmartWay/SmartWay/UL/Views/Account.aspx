@@ -4,9 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <% if (Session["log"] != null)
+    <% if (Session["currentUser"] != null)
         {
-            User currentUser = (User)Session["log"];
+            User currentUser = (User)Session["currentUser"];
     %>
 
     <!----------Page Content ---------->

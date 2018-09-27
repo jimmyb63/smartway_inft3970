@@ -25,15 +25,34 @@ namespace SmartWay.UL.Views
             // Check email exists, password matches email
             UserControls UC = new UserControls();
             BL.Models.User tempUser = UC.getUserAccount(email);
-            if (password != tempUser.userPassword)
+            BL.Models.Admin tempAdmin = UC.getAdminAccount(email);
+            if (tempAdmin.adminEmail != null)
             {
-                errorMessage.Text = "Incorrect email or Password";
+                if (password != tempAdmin.adminPassword)
+                {
+                    errorMessage.Text = "Incorrect email or Password";
+                }
+                else
+                {
+                    //if (tempUser.userAdmin == "admin")
+                    Session["currentAdmin"] = tempAdmin;
+                    Response.Redirect("AdminIndex.aspx");
+                }
             }
-            else
+            else if (tempUser.userEmail != null)
             {
-                Session["log"] = tempUser;
-                Response.Redirect("Index.aspx");
+                if (password != tempUser.userPassword)
+                {
+                    errorMessage.Text = "Incorrect email or Password";
+                }
+                else
+                {
+                    //if (tempUser.userAdmin == "admin")
+                    Session["currentUser"] = tempUser;
+                    Response.Redirect("Index.aspx");
+                }
             }
+            
             //Session["log"] = "logged";
             //Response.Redirect("Index.aspx");
         }

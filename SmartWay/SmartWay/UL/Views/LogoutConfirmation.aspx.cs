@@ -1,24 +1,17 @@
-﻿using SmartWay.BL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SmartWay
+namespace SmartWay.UL.Views
 {
-    public partial class User : System.Web.UI.MasterPage
+    public partial class LogoutConfirmation : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void userLogout(object sender, EventArgs e)
-        {
             Session["currentUser"] = null;
-            Response.Redirect("LogoutConfirmation.aspx");
         }
     }
 }

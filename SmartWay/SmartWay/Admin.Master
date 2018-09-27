@@ -7,7 +7,9 @@
     <title></title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link href="Content/smartway.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -15,48 +17,57 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="#">Navbar</a>
-
-            <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li> 
-
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Dropdown link
-                      </a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Link 1</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
-                      </div>
-                    </li>
-                </ul>
-            </div> 
+    <form runat="server">    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+          <div class="container"> <a class="navbar-brand" href="#">SmartWay - Admin Console</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"> <a class="nav-link m-1" href="index.html"><i class="fas fa-home"></i> Home</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-shopping-cart"></i> All Goods</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-people-carry"></i> All Services</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-exclamation-circle"></i> Reported Goods</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-exclamation-circle"></i> Reported Services</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt"></i> Logout</a> </li>
+              </ul>
+            </div>
+          </div>
         </nav>
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
+        <!-- /Navigation --> 
+
+        <!----------------------------------------------------------------------------------------------------------------> 
+
+        <!--search box-->
+        <div class="container">
+            <br />
+	        <div class="row">
+                <div class="col-lg-6 input-group mb-3">
+                    <asp:TextBox ID="txtUserSearch" CssClass="form-control" placeholder="Search User ID or User Name" aria-label="Search User ID or User Name" aria-describedby="button-addon2" runat="server" />
+                    <div class="input-group-append">
+                        <asp:Button Text="Search" runat="server" OnClick="searchUser" CssClass="btn btn-outline-secondary" />
+                    </div>
+                </div>
+		        <div class="col-lg-6 input-group mb-3">
+                    <asp:TextBox ID="txtAdSearch" CssClass="form-control" placeholder="Search Ad ID" aria-label="Search Ad ID" aria-describedby="button-addon2" runat="server" />
+                    <div class="input-group-append">
+                        <asp:Button Text="Search" runat="server" OnClick="searchAd" CssClass="btn btn-outline-secondary" />
+                    </div>
+                </div>
+	        </div>
+	        <hr>
+
+            <div class="row">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <!--Page Content -->
+                </asp:ContentPlaceHolder>
+            </div>
+            <footer class="py-2 bg-primary fixed-bottom">
+              <div class="container">
+                <p class="m-0 text-center text-white">Copyright SmartWay 2018</p>
+              </div>
+            <!-- /.container --> 
+            </footer>
+        </div>
     </form>
 </body>
 </html>

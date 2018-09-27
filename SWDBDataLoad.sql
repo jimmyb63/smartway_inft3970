@@ -51,20 +51,42 @@ INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode
 INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','41','Horsington Street','Box Hill South',3128,4,'Australia');
 INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','58','Pelican Close','RoadHill',6798,3,'Australia');
 
+---PhoneNumber Loading
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0418765456);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0435678901);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0434234123);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0404044400);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0412345678);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0456789345);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0458745986);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0411789632);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0422323332);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0455659956);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0411171887);
+INSERT INTO PhoneNumber (phoneNumber) VALUES(0479865975);
 
 ---Person Data Loading
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Zane','Crook','ZaneCrook@dayrep.com','1999-09-15','CaptainCrook','Uomai7Oo','2018-09-07');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Stella','Beale','StellaBeale@jourrapide.com','1991-04-02','StellaBeale91','wee9Wooce4R','2018-09-05');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Graham','Johnstone','grahamjohnstone@gmail.com','1997-06-30','DreadPirateRoberts','P@ssword1234','2018-08-30');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Tahlia','Sayers','TahliaSayers@rhyta.com','1975-11-11','Tahlia1986','Xahg0ooNg0','2018-09-07');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('John','Smith','johnsmith@gmail.com','1992-05-22','JohnS','password','2018-08-30');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Ben','Downey','BenDowney@rhyta.com','1952-09-10','BenDowney','qwerty','2018-09-04');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Dunckley','ChristianDunckley@jourrapide.com','1991-02-03','Sprid1991','aique6Weep','2018-09-04');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Austin','Fitchett','AustinFitchett@teleworm.us','1979-02-23','	Whinevesock','	Maic8uzoa','2018-09-03');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Hayley','Aronson','HayleyAronson@armyspy.com','1996-07-03','Whishill','adaeV500','2018-09-01');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Georgia','Luke','GeorgiaLuke@rhyta.com','1984-11-16','Doony1984','iek3Lu7O','2018-09-07');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Pell','	ChristianPell@rhyta.com','1992-10-21','Sunwast','thait8oJ','2018-09-02');
-INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, verificationDate) VALUES ('Ashley','Ballinger','ab@gmail.com', '1992-10-29','Ash1992','password','2018-08-30');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Zane','Crook','ZaneCrook@dayrep.com','1999-09-15', 1000, 1000, 'CaptainCrook','Uomai7Oo','2018-09-07');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Stella','Beale','StellaBeale@jourrapide.com','1991-04-02', 1001, 1001, 'StellaBeale91','wee9Wooce4R','2018-09-05');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Graham','Johnstone','grahamjohnstone@gmail.com','1997-06-30', 1002, 1002, 'DreadPirateRoberts','P@ssword1234','2018-08-30');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Tahlia','Sayers','TahliaSayers@rhyta.com','1975-11-11', 1003, 1003, 'Tahlia1986','Xahg0ooNg0','2018-09-07');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('John','Smith','johnsmith@gmail.com','1992-05-22', 1004, 1004, 'JohnS','password','2018-08-30');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Ben','Downey','BenDowney@rhyta.com','1952-09-10', 1005, 1005, 'BenDowney','qwerty','2018-09-04');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Dunckley','ChristianDunckley@jourrapide.com','1991-02-03', 1006, 1006, 'Sprid1991','aique6Weep','2018-09-04');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Austin','Fitchett','AustinFitchett@teleworm.us','1979-02-23', 1007, 1007, 'Whinevesock','	Maic8uzoa','2018-09-03');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Hayley','Aronson','HayleyAronson@armyspy.com','1996-07-03', 1008, 1008, 'Whishill','adaeV500','2018-09-01');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Georgia','Luke','GeorgiaLuke@rhyta.com','1984-11-16', 1009, 1009, 'Doony1984','iek3Lu7O','2018-09-07');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Christian','Pell','	ChristianPell@rhyta.com','1992-10-21', 1010, 1010, 'Sunwast','thait8oJ','2018-09-02');
+INSERT INTO Person (firstName, lastName, email, DOB, phoneNumberId, addressID, SWUsername, SWPassword, verificationDate) VALUES ('Ashley','Ballinger','ab@gmail.com', '1992-10-29', 1011, 1011, 'Ash1992','password','2018-08-30');
+
+---Staff Data Loading
+INSERT INTO Staff (personID) VALUES (1001);
+INSERT INTO Staff (personID) VALUES (1003);
+INSERT INTO Staff (personID) VALUES (1005);
+INSERT INTO Staff (personID) VALUES (1007);
+INSERT INTO Staff (personID) VALUES (1009);
+INSERT INTO Staff (personID) VALUES (1011);
+
 
 --AddCategory Data Loading
 INSERT INTO AddCategory (category, subCategory) VALUES('services', 'labour');
@@ -86,7 +108,16 @@ SELECT *
 FROM Person
 
 SELECT *
+FROM Staff
+
+SELECT *
 FROM addCategory
 
 SELECT * 
 FROM Advertisement
+
+SELECT *
+FROM VerificationCode
+
+
+SELECT admin.position, user.ID, user.firstName, user.lastName, user.email, user.SWPassword FROM Staff admin INNER JOIN Person user ON admin.personID = user.ID WHERE user.email = @email

@@ -11,7 +11,20 @@ namespace SmartWay
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["currentAdmin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
 
+        protected void searchUser(object sender, EventArgs e)
+        {
+            string userSearch = txtUserSearch.Text;
+        }
+
+        protected void searchAd(object sender, EventArgs e)
+        {
+            string adSearch = txtAdSearch.Text;
         }
     }
 }
