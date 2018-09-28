@@ -30,7 +30,7 @@ namespace SmartWay.UL.Views
             string adSubCategory = ddSubCategory.SelectedValue;
             decimal adPrice = Convert.ToDecimal(txtPrice.Text);
             string adDescription = txtDescription.Text;
-            Person currentUser = (Person)Session["log"];
+            Person currentUser = (Person)Session["currentUser"];
             int userID = currentUser.userID;
             int addressID = currentUser.userAddressID;
             AdvertisementControls AC = new AdvertisementControls();

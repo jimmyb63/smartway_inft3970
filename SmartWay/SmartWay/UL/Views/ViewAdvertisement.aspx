@@ -75,9 +75,8 @@
                     <div class="card-body">
                         <h4><b>Price: </b><%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          <h4>Description</h4>
-                            <p>Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus! Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus! Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                            <h4>Description</h4>
+                            <p><%#:Item.advertisementDescription %></p>
                             <hr>
                             <a href="#" class="btn btn-info">Contact Seller</a> <a href="#" class="btn btn-danger float-md-right">Report Listing</a>
                             <br>
