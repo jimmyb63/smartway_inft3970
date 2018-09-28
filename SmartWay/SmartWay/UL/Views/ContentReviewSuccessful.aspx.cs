@@ -7,17 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace SmartWay.UL.Views
 {
-    public partial class NewAddReviewRequest : System.Web.UI.Page
+    public partial class ContentReviewSuccessful : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            
-            Response.Redirect("ContentReviewSuccessful.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 }

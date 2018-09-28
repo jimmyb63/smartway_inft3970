@@ -20,7 +20,7 @@
     <table>
             <tr>
                 <th colspan="3">
-                    <h2>Add Review</h2>
+                    <h2>Content Review</h2>
                     
                 </th>
             </tr>
@@ -86,7 +86,7 @@
                 </td>
                 <!-- Submit button to send email to admin -->
                 <td>
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 </td>
                 <td>
                 </td>
