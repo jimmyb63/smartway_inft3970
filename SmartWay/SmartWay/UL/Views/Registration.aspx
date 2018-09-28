@@ -5,13 +5,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-lg-9">
-        <div class="jumbotron jumbotron-fluid text-center">
+        <div>
             <h2 class="display-4">Register </h2>
             <p class="lead"><a href="Login.aspx">Already have an account?</a> </p>
         </div>
         <div class="container text-center">
             <div class="row">
-                <div class="col-sm">
+                <div class="col-sm info">
+                    <hr />
                     <p class="lead">Basic Information</p>
                     <asp:TextBox
                         ID="txtUsername"
@@ -79,6 +80,7 @@
                         ID="txtDOB"
                         TextMode="Date"
                         runat="server"
+                        placeholder="*Date Of Birth"
                         CssClass="txtbox" />
                     <br />
 
@@ -88,7 +90,8 @@
                     <br />
 
                 </div>
-                <div class="col-sm">
+                <div class="col-sm info">
+                    <hr />
                     <p class="lead">Address Information</p>
                     <!-- Residential street number textbox with validators -->
 
@@ -176,7 +179,7 @@
                     <asp:DropDownList
                         ID="ddState"
                         runat="server"
-                        CssClass="txtbox">
+                        CssClass="loginButton">
                         <asp:ListItem Enabled="true" Text="Select State" Value="-1"></asp:ListItem>
                         <asp:ListItem Text="NSW" Value="1"></asp:ListItem>
                         <asp:ListItem Text="QLD" Value="2"></asp:ListItem>
@@ -228,11 +231,10 @@
                         ControlToValidate="txtCountry"
                         runat="server" />
 
-
-                    <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" CssClass="loginButton" />
                     <br />
                 </div>
-                <div class="col-sm">
+                <div class="col-sm info">
+                    <hr />
                     <p class="lead">Personal Information</p>
 
 
@@ -329,6 +331,18 @@
                     <!-- Submit button runs RegisterUser method when clicked -->
                     <br />
 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <hr />
+                </div>
+                <div class="col-sm">
+                    <hr />
+                 <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" CssClass="loginButton" />
+                    </div>
+                <div class="col-sm">
+                    <hr />
                 </div>
             </div>
         </div>
