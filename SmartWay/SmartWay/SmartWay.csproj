@@ -131,6 +131,7 @@
     <Content Include="UL\Views\AdminReviewAdvertisements.aspx" />
     <Content Include="UL\Views\AdminReviewUsers.aspx" />
     <Content Include="UL\Views\AdminViewUserDetail.aspx" />
+    <Content Include="UL\Views\NewAddReviewRequest.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
@@ -262,6 +263,12 @@
     </Compile>
     <Compile Include="UL\Views\AdminViewUserDetail.aspx.designer.cs">
       <DependentUpon>AdminViewUserDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\NewAddReviewRequest.aspx.cs">
+      <DependentUpon>NewAddReviewRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\NewAddReviewRequest.aspx.designer.cs">
+      <DependentUpon>NewAddReviewRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\PostAdvertisement.aspx.cs">
       <DependentUpon>PostAdvertisement.aspx</DependentUpon>

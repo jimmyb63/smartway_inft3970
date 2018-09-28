@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<!-->
+<!--
     This will capture the Reason for Adds to be reviewed
     
     @todo
@@ -16,7 +16,7 @@
     -Validation that a reason was selected
     -Decision on if we email the person making the report to let them know it was submitted??
 
-<-->
+-->
     <table>
             <tr>
                 <th colspan="3">
