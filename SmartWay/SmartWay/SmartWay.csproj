@@ -133,6 +133,7 @@
     <Content Include="UL\Views\AdminViewUserDetail.aspx" />
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
+    <Content Include="UL\Views\NewRecyclingRequest.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
@@ -279,6 +280,13 @@
     </Compile>
     <Compile Include="UL\Views\NewAddReviewRequest.aspx.designer.cs">
       <DependentUpon>NewAddReviewRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\NewRecyclingRequest.aspx.cs">
+      <DependentUpon>NewRecyclingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\NewRecyclingRequest.aspx.designer.cs">
+      <DependentUpon>NewRecyclingRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\PostAdvertisement.aspx.cs">
       <DependentUpon>PostAdvertisement.aspx</DependentUpon>
