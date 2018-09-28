@@ -42,15 +42,22 @@ namespace SmartWay.UL.Views
             }
             else if (tempUser.userEmail != null)
             {
-                if (password != tempUser.userPassword)
+                if (UC.checkVerified(tempUser.userEmail))
                 {
-                    errorMessage.Text = "Incorrect email or Password";
+                    if (password != tempUser.userPassword)
+                    {
+                        errorMessage.Text = "Incorrect email or Password";
+                    }
+                    else
+                    {
+                        //if (tempUser.userAdmin == "admin")
+                        Session["currentUser"] = tempUser;
+                        Response.Redirect("Index.aspx");
+                    }
                 }
                 else
                 {
-                    //if (tempUser.userAdmin == "admin")
-                    Session["currentUser"] = tempUser;
-                    Response.Redirect("Index.aspx");
+                    Response.Redirect("AccountVerification.aspx?userEmail=" + email);
                 }
             }
             

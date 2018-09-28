@@ -177,6 +177,24 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public bool checkVerified(string email)
+        {
+            int user = 0;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT COUNT(verificationDate) FROM Person WHERE email = @email";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@email", SqlDbType.VarChar, 30).Value = email;
+            connection.Open();
+            user = (int)cmd.ExecuteScalar();
+            bool exists = false;
+            if (user != 0)
+            {
+                exists = true;
+            }
+            return exists;
+        }
+
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addProfileImage(string filePath, int userID)
         {
