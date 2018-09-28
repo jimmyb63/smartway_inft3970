@@ -137,6 +137,7 @@
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
+    <Content Include="UL\Views\PostForumThread.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="User.Master" />
@@ -348,6 +349,13 @@
     </Compile>
     <Compile Include="UL\Views\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\PostForumThread.aspx.cs">
+      <DependentUpon>PostForumThread.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\PostForumThread.aspx.designer.cs">
+      <DependentUpon>PostForumThread.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
