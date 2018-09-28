@@ -29,14 +29,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <asp:TextBox ID="txtVerficiationCode" placeholder="Enter Code" runat="server"></asp:TextBox>
+                            <asp:Button CssClass="btn btn-outline-dark" Text="Resend Code" runat="server" OnClick="resendVerificationCode" />
                         </div>
                     </div>
-
-                    <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtVerficiationCode" runat="server" />
                     <div class="warning">
                         <asp:Label Text="" ID="errorMessage" runat="server" />
                     </div>
                     <asp:Button CssClass="btn btn-success" Text="Verify" runat="server" OnClick="VerifyUser" />
+                    <a href="Contact.aspx">Contact Admin</a>
                 </div>
             </div>
 

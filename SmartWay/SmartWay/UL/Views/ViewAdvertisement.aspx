@@ -78,7 +78,7 @@
                             <h4>Description</h4>
                             <p><%#:Item.advertisementDescription %></p>
                             <hr>
-                            <a href="#" class="btn btn-info">Contact Seller</a> <a href="#" class="btn btn-danger float-md-right">Report Listing</a>
+                            <asp:Button ID="btnContact" Text="Contact Seller" CssClass="btn btn-info" runat="server" /><asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
                             <br>
                     </div>
                 </div>
