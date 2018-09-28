@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <% string userID = Request.QueryString["userID"]; %>
     <% Person user = (Person)Session["selectedUser"]; %>
-    <div class="col-lg-12 mt-2">
+    <div class="col-lg-12 my-2">
         <div class="p-2 mb-2 bg-info text-white">Details for UserID - <%=userID %></div>
         <div class="card">
             <div class="card-body">
@@ -39,13 +39,13 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="row">
-                            <asp:Button ID="btnEmailUser" Text="Email User" CssClass="btn btn-block btn-primary my-5" runat="server" />
+                            <asp:Button ID="btnEmailUser" Text="Email User" CssClass="btn btn-block btn-primary my-lg-3 my-md-1" runat="server" />
                         </div>
                         <div class="row">
-                            <asp:Button ID="btnActivateUser" Text="Activate User" CssClass="btn btn-block btn-success my-5" runat="server" />
+                            <asp:Button ID="btnActivateUser" Text="Activate User" CssClass="btn btn-block btn-success my-lg-3 my-md-1" runat="server" />
                         </div>
                         <div class="row">
-                            <asp:Button ID="btnDeactivateUser" Text="Deactivate User" CssClass="btn btn-block btn-danger my-5" runat="server" />
+                            <asp:Button ID="btnDeactivateUser" Text="Deactivate User" CssClass="btn btn-block btn-danger my-lg-3 my-md-1" runat="server" />
                         </div>
                     </div>
                     <div class="col-lg-2"></div>
