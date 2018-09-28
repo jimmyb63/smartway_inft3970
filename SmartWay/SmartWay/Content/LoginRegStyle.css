@@ -2,14 +2,11 @@
     background-color: white;
 }
 .txtbox {
-    border-radius:15px 30px;
-    border:1px solid white;
-    color: #ffffff;
-    background-color: #1784c7;
-    vertical-align: central;
-    padding-left:10px;
-    text-align:center;
-
+    border-radius: 5px 30px 30px 5px;
+    border: 1px solid #1784c7;
+    color: black;
+    background-color: white;
+    padding-left: 10px;
 }
 .jumbotron {
     background-color: white;
@@ -20,39 +17,35 @@ h2 {
 }
 
 a:link {
-    color: black;;
+    color: black;
 }
 
 a:visited {
-    color: grey;;
+    color: grey;
 }
 
 a:hover {
-    color: blue;;
+    color: blue;
     text-decoration:none;
 }
 
 
-::placeholder{
-    color:white;
-    opacity:1;
-    
-}
-:-ms-input-placeholder{
-    color:white;
-}
-::-ms-input-placeholder{
-    color:white;
-}
-
 .loginButton {
     border-radius: 5px;
-    border: 1px solid white;
-    color: white;
-    background-color: #1784c7;
-    vertical-align: central;
+    border: 1px solid #1784c7;
+    color: black;
+    background-color: white;
+    margin:auto;
+    display:block;
+    vertical-align:top;
+    width:186px;
+
 }
 
 .lead {
     color:black;
 }
+
+/*.info{
+   ForFutureUseMaybe
+}*/
