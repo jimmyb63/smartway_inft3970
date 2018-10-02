@@ -107,6 +107,8 @@ INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'other');
 SELECT * 
 FROM Person
 
+
+
 SELECT *
 FROM Staff
 
