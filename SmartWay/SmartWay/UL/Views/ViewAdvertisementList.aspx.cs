@@ -47,7 +47,15 @@ namespace SmartWay.UL.Views
             {
                 ads = AC.getAdvertisements();
             }
-            return ads;
+            List<Advertisement> tempAds = new List<Advertisement>();
+            for (int i = 0; i < ads.Count; i++)
+            {
+                if (ads[i].advertisementActive == true)
+                {
+                    tempAds.Add(ads[i]);
+                }
+            }
+            return tempAds;
         }
 
         public string getAdThumbnail(int adID, int userID)

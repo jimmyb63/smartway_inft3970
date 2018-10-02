@@ -13,13 +13,24 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentAdmin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
         public List<Advertisement> getAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
-            List<Advertisement> ads = AC.getAdvertisements();
+            List<Advertisement> tempAds = AC.getAdvertisements();
+            List<Advertisement> ads = new List<Advertisement>();
+            for (int i = 0; i < tempAds.Count; i++)
+            {
+                if (tempAds[i].advertisementActive == true)
+                {
+                    ads.Add(tempAds[i]);
+                }
+            }
             return ads;
         }
 
@@ -33,7 +44,7 @@ namespace SmartWay.UL.Views
                 List<Advertisement> ads = getAds();
                 Advertisement ad = ads[index];
                 Session["selectedAd"] = ad;
-                Response.Redirect("ViewAdvertisement.aspx?advertisementID=" + ads[index].advertisementID);
+                Response.Redirect("AdminViewAdvertisementDetail.aspx?advertisementID=" + ads[index].advertisementID);
             }
         }
     }

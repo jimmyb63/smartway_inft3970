@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace SmartWay.UL.Views
 {
-    public partial class ViewAdvertisement : System.Web.UI.Page
+    public partial class AdminViewAdvertisementDetail : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,15 +23,17 @@ namespace SmartWay.UL.Views
             adID.Value = adId;
         }
 
-        public void ReportAd(object sender, EventArgs e)
+        public void DeactivateAd(object sender, EventArgs e)
         {
-            int ad = Convert.ToInt32(adID.Value);
-            Person currentUser = (Person)Session["currentUser"];
-            int userID = currentUser.userID;
-            Response.Redirect("NewAddReviewRequest.aspx?userID=" + userID + "&adID=" + ad);
+            int ID = Convert.ToInt32(adID.Value);
+            AdvertisementControls AC = new AdvertisementControls();
+            List<Advertisement> ad = AC.getAdvertisement(ID);
+            ad[0].advertisementActive = false;
+            AC.updateAd(ad[0]);
+            Response.Redirect("AdminReviewAdvertisements.aspx");
         }
 
-        public List<Advertisement> getAd([Control]string adID)
+        public List<Advertisement> GetAd([Control]string adID)
         {
             int id = Convert.ToInt32(adID);
             AdvertisementControls AC = new AdvertisementControls();

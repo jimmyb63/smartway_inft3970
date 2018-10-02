@@ -19,6 +19,7 @@ namespace SmartWay.BL.Models
         private DateTime? dateComplete;
         private int categoryID;
         private decimal price;
+        private bool active;
 
         public Advertisement()
         {
@@ -33,9 +34,10 @@ namespace SmartWay.BL.Models
             dateComplete = null;
             categoryID = 0;
             price = 0;
+            active = true;
         }
 
-        public Advertisement(int init_ID, int init_sellerID, string init_adType, string init_title, string init_description, int init_addressID, DateTime init_datePosted, int init_categoryID, decimal init_price)
+        public Advertisement(int init_ID, int init_sellerID, string init_adType, string init_title, string init_description, int init_addressID, DateTime init_datePosted, int init_categoryID, decimal init_price, bool init_active)
         {
             ID = init_ID;
             sellerID = init_sellerID;
@@ -47,6 +49,7 @@ namespace SmartWay.BL.Models
             dateComplete = null;
             categoryID = init_categoryID;
             price = init_price;
+            active = init_active;
         }
 
         public int advertisementID
@@ -190,6 +193,18 @@ namespace SmartWay.BL.Models
             set
             {
                 price = value;
+            }
+        }
+
+        public bool advertisementActive
+        {
+            get
+            {
+                return active;
+            }
+            set
+            {
+                active = value;
             }
         }
     }

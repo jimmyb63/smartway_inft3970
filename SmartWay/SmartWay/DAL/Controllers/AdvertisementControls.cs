@@ -82,11 +82,26 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["addressID"],
                                         (DateTime)reader["creationDate"], 
                                         (int)reader["categoryID"],
-                                        (decimal)reader["price"]);
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
                 ads.Add(ad);
             }
             connection.Close();
             return ads;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public void updateAd(Advertisement ad)
+        {
+            Advertisement tempAd = ad;
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "UPDATE Advertisement SET active = @active WHERE ID = @adID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = tempAd.advertisementActive;
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = tempAd.advertisementID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
@@ -114,7 +129,8 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["addressID"],
                                         (DateTime)reader["creationDate"],
                                         (int)reader["categoryID"],
-                                        (decimal)reader["price"]);
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
                 ads.Add(ad);
             }
             connection.Close();
@@ -146,7 +162,8 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["addressID"],
                                         (DateTime)reader["creationDate"],
                                         (int)reader["categoryID"],
-                                        (decimal)reader["price"]);
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
                 ads.Add(ad);
             }
             connection.Close();
@@ -176,7 +193,8 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["addressID"],
                                         (DateTime)reader["creationDate"],
                                         (int)reader["categoryID"],
-                                        (decimal)reader["price"]);
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
                 ads.Add(ad);
             }
             connection.Close();

@@ -14,7 +14,7 @@
         <%-- set the content of each rows of the gridview (the list of data we need for each product) --%>
          <%-- Code for gridview sourced from - https://docs.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/getting-started-with-aspnet-45-web-forms/shopping-cart --%>
                 <Columns>
-                    <asp:BoundField DataField="userID" HeaderText="User ID"/>
+                    <asp:BoundField DataField="userID" HeaderText="ID"/>
                     <asp:BoundField DataField="userEmail" HeaderText="Email"/>
                     <asp:BoundField DataField="userName" HeaderText="Username"/>
                     <asp:ButtonField buttontype="Button" ControlStyle-CssClass="btn btn-block btn-info" Text="View Details" commandname="UserDetail"/>

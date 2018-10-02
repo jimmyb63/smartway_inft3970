@@ -130,6 +130,7 @@
     <Content Include="UL\Views\AdminIndex.aspx" />
     <Content Include="UL\Views\AdminReviewAdvertisements.aspx" />
     <Content Include="UL\Views\AdminReviewUsers.aspx" />
+    <Content Include="UL\Views\AdminViewAdvertisementDetail.aspx" />
     <Content Include="UL\Views\AdminViewUserDetail.aspx" />
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
@@ -168,8 +169,6 @@
     <Content Include="UL\Images\smartway-logo.png" />
     <Content Include="UL\Images\user-circle-regular.svg" />
     <Content Include="UL\Views\About.aspx" />
-    <Content Include="UL\Views\AddGood.aspx" />
-    <Content Include="UL\Views\AddService.aspx" />
     <Content Include="UL\Views\Contact.aspx" />
     <Content Include="UL\Views\ForgotPassword.aspx" />
     <Content Include="UL\Views\Goods.aspx" />
@@ -225,20 +224,6 @@
     <Compile Include="UL\Views\AccountVerification.aspx.designer.cs">
       <DependentUpon>AccountVerification.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Views\AddGood.aspx.cs">
-      <DependentUpon>AddGood.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\Views\AddGood.aspx.designer.cs">
-      <DependentUpon>AddGood.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UL\Views\AddService.aspx.cs">
-      <DependentUpon>AddService.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\Views\AddService.aspx.designer.cs">
-      <DependentUpon>AddService.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UL\Views\AdminIndex.aspx.cs">
       <DependentUpon>AdminIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -259,6 +244,13 @@
     </Compile>
     <Compile Include="UL\Views\AdminReviewUsers.aspx.designer.cs">
       <DependentUpon>AdminReviewUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\AdminViewAdvertisementDetail.aspx.cs">
+      <DependentUpon>AdminViewAdvertisementDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\AdminViewAdvertisementDetail.aspx.designer.cs">
+      <DependentUpon>AdminViewAdvertisementDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\AdminViewUserDetail.aspx.cs">
       <DependentUpon>AdminViewUserDetail.aspx</DependentUpon>
