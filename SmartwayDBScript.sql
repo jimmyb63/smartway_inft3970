@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*	
 	FileName	=	createSmartWayDB.sql
 	SmartWay - Major Project
@@ -669,7 +669,7 @@ EXEC sp_NewAdmin '1015', 'Manager';
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','41','Horsington Street','Box Hill South',3128,4,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','58','Pelican Close','RoadHill',6798,3,'Australia');
 
-=======
+
 /*	
 	FileName	=	createSmartWayDB.sql
 	SmartWay - Major Project
@@ -1286,4 +1286,3 @@ EXEC sp_newVerificationCode 'abcd1234', '1015';
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','41','Horsington Street','Box Hill South',3128,4,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','58','Pelican Close','RoadHill',6798,3,'Australia');
 
->>>>>>> 418e0f47d09e501e278238b01c9e5f40c48b357e
