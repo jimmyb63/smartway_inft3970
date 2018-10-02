@@ -36,7 +36,7 @@ Select *
 From SavedImage
 
 Select *
-From AddImage
+From ProfileImage
 
 Select * From Advertisement Where ID = 1000
 
@@ -52,3 +52,11 @@ EXEC sp_verifyPerson 'abcd1234', 1003
 
 SELECT code FROM VerificationCode WHERE personID = 1000
 
+SELECT a.ID FROM Staff a INNER JOIN Person u ON a.personID = u.ID WHERE u.email = 'ahleylballinger@gmail.com'
+
+SELECT * FROM Staff a INNER JOIN Person u ON a.personID = u.ID
+
+EXEC sp_Admin_Check 'grahamjohnstone@gmail.com', 100;
+
+
+EXEC sp_Admin_Check 'NotAdmin@gmail.com', 100;
