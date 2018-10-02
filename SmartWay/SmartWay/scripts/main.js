@@ -126,5 +126,5 @@ jQuery(document).ready(function(){
 			( ( scrollTop + windowHeight > sidebarHeight ) && ( mainContentHeight - sidebarHeight != 0 ) ) ? sidebar.addClass('is-fixed').css('bottom', 0) : sidebar.removeClass('is-fixed').attr('style', '');
 		}
 		scrolling = false;
-	}
+    }
 });
