@@ -1173,7 +1173,57 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID('view_PersonStaff') IS NOT NULL  
+   DROP VIEW view_PersonStaff;  
+GO
 
+--Create a View PersonStaff
+CREATE VIEW view_PersonStaff AS
+    SELECT a.postion, u.ID, u.firstName, u.lastName, u.email, u.SWPassword FROM Staff a INNER JOIN Person u ON a.personID = u.ID
+
+GO
+
+-- IF New Admin Exists
+IF OBJECT_ID('sp_NewAdmin', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewAdmin;  
+GO  
+
+--Add New Admin
+CREATE PROCEDURE sp_NewAdmin(
+	@tempPersonID int,
+	@tempPostion varchar(30))
+AS
+BEGIN
+	INSERT INTO Staff (personID, postion) 
+	VALUES(@tempPersonID, @tempPostion );
+END
+
+RETURN  
+GO 
+
+-- If sp_Admin_Check Exists
+IF OBJECT_ID('sp_Admin_Check', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_Admin_Check;  
+GO  
+
+--Admin Check is used to check if a user is admin via their email address.
+CREATE PROCEDURE sp_Admin_Check(
+	@email varchar(320), -- email address
+	@returnAdminID INT OUTPUT)  -- temp variable used to return AdminID
+AS
+BEGIN
+IF EXISTS (SELECT a.ID FROM Staff a INNER JOIN Person u ON a.personID = u.ID WHERE u.email = @email)
+BEGIN --these are like { } brackets
+	SET @returnAdminID =(SELECT a.ID FROM Staff a INNER JOIN Person u ON a.personID = u.ID WHERE u.email = @email);
+	SELECT @returnAdminID;  --- if a match is found returns the matches Admin ID
+END --these are like { } brackets
+ELSE
+BEGIN --these are like { } brackets
+	SET @returnAdminID = -1;
+	SELECT @returnAdminID;  --- if not a match returns -1
+END --these are like { } brackets
+END
+GO 
 --DATALOAD
 
 ---StateName Loading
@@ -1267,6 +1317,11 @@ EXEC sp_newVerificationCode 'abcd1234', '1012';
 EXEC sp_newVerificationCode 'abcd1234', '1013';
 EXEC sp_newVerificationCode 'abcd1234', '1014';
 EXEC sp_newVerificationCode 'abcd1234', '1015';
+
+--Admin's
+EXEC sp_NewAdmin '1006', 'Manager';
+EXEC sp_NewAdmin '1015', 'Manager';
+
 
 --Add Test User Images
 
