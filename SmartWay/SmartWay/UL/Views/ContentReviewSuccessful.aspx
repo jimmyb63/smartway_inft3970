@@ -5,21 +5,27 @@
 
 
     <div class="col-lg-9 mt-2">
-        <div class="p-2 mb-2 bg-primary text-white">Contact Us</div>
+        <div class="p-2 mb-2 bg-primary text-white">Request Submitted</div>
         <div class="card">
             <div class="card-body">
-                Request Successfully Submitted
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                    <h4>Request Successfully Submitted</h4>
+                    </div>
+                </div>
                 <br />
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>ReqID # Blah Blah Blah</p>
+                    </div>
+                </div>
                 <br />
-                ReqID # Blah Blah Blah
-                <br />
-                <br />
-
-                <asp:Button ID="Button1" runat="server" Text="Return to HomeScreen" OnClick="Button1_Click" />
-
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                <asp:Button ID="Button1" runat="server" class="btn btn-success" Text="Return to HomeScreen" OnClick="Button1_Click" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
-    
 </asp:Content>
