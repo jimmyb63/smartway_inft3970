@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\Controllers\MailSender.cs" />
+    <Compile Include="BL\Controllers\SMSSender.cs" />
     <Compile Include="BL\Controllers\Validation.cs" />
     <Compile Include="BL\Models\Address.cs" />
     <Compile Include="BL\Models\Staff.cs" />

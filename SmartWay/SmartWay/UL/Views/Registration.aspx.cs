@@ -21,6 +21,7 @@ namespace SmartWay.UL.Views
                 AddressControls AC = new AddressControls();
                 UserControls UC = new UserControls();
                 MailSender MS = new MailSender();
+                SMSSender SS = new SMSSender();
                 string uName = txtUsername.Text;
                 bool uNameExists = UC.uNameValidation(uName);
                 string email = txtEmail.Text;
@@ -58,7 +59,7 @@ namespace SmartWay.UL.Views
                     }
                     Session["userID"] = userID;
                     MS.sendVerificationEmail(email, fName, verificationCode);
-
+                    SS.SendSMS(phoneNumber, verificationCode);
                     Response.Redirect("AccountVerification.aspx");
                 }
                     
