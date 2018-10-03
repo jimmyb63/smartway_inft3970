@@ -672,9 +672,9 @@ EXEC sp_NewAdmin '1006', 'Manager';
 EXEC sp_NewAdmin '1015', 'Manager';
 
 --Add Test User Images
-EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
+--EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
 
-EXEC sp_NewProfileImg '../Images/ProfileImg/asda', '1016';
+EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
 
 
 ---PostalAddress Loading
