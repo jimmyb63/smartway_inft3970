@@ -33,7 +33,7 @@ Select *
 From VerificationCode
 
 Select *
-From SavedImage
+From ProfileImage
 
 Select *
 From AddImage
