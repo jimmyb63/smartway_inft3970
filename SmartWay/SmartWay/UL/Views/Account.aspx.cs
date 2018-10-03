@@ -11,7 +11,10 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["currentUser"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 }

@@ -14,13 +14,20 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string adId = "";
-            if (Request.QueryString["advertisementID"] != "" && Request.QueryString["advertisementID"] != null)
+            if (Session["currentAdmin"] == null)
             {
-                adId = Request.QueryString["advertisementID"];
+                Response.Redirect("Login.aspx");
             }
+            else
+            {
+                string adId = "";
+                if (Request.QueryString["advertisementID"] != "" && Request.QueryString["advertisementID"] != null)
+                {
+                    adId = Request.QueryString["advertisementID"];
+                }
 
-            adID.Value = adId;
+                adID.Value = adId;
+            }
         }
 
         public void DeactivateAd(object sender, EventArgs e)

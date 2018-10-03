@@ -173,13 +173,11 @@
     <Content Include="UL\Views\About.aspx" />
     <Content Include="UL\Views\Contact.aspx" />
     <Content Include="UL\Views\ForgotPassword.aspx" />
-    <Content Include="UL\Views\Goods.aspx" />
     <Content Include="UL\Views\Index.aspx" />
     <Content Include="UL\Views\Login.aspx" />
     <Content Include="UL\Views\LogoutConfirmation.aspx" />
     <Content Include="UL\Views\Registration.aspx" />
     <Content Include="UL\Views\RegistrationConfirmation.aspx" />
-    <Content Include="UL\Views\Services.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -304,13 +302,6 @@
     <Compile Include="UL\Views\ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Views\Goods.aspx.cs">
-      <DependentUpon>Goods.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\Views\Goods.aspx.designer.cs">
-      <DependentUpon>Goods.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UL\Views\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -373,13 +364,6 @@
     </Compile>
     <Compile Include="UL\Views\RegistrationConfirmation.aspx.designer.cs">
       <DependentUpon>RegistrationConfirmation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UL\Views\Services.aspx.cs">
-      <DependentUpon>Services.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\Views\Services.aspx.designer.cs">
-      <DependentUpon>Services.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\ViewAdvertisement.aspx.cs">
       <DependentUpon>ViewAdvertisement.aspx</DependentUpon>
