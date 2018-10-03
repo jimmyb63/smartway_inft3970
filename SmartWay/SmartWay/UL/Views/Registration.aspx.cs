@@ -1,12 +1,6 @@
 ﻿using System;
-using SmartWay.BL.Models;
 using SmartWay.BL.Controllers;
 using SmartWay.DAL.Controllers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -64,6 +58,7 @@ namespace SmartWay.UL.Views
                     }
                     Session["userID"] = userID;
                     MS.sendVerificationEmail(email, fName, verificationCode);
+
                     Response.Redirect("AccountVerification.aspx");
                 }
                     
