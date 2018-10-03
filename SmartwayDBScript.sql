@@ -553,6 +553,26 @@ BEGIN --these are like { } brackets
 END --these are like { } brackets
 END
 GO 
+
+
+--New Profile Image
+IF OBJECT_ID('sp_NewProfileImg', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewProfileImg;  
+GO  
+
+CREATE PROCEDURE sp_NewProfileImg(
+	@tempFilePath varchar(260),
+	@tempUserID varchar(20))
+--Return on default = newID;
+AS
+BEGIN
+	INSERT INTO ProfileImage (filePath, userID) 
+	VALUES(@tempFilePath, @tempUserID);
+END
+
+RETURN  
+GO 
+
 --DATALOAD
 
 ---StateName Loading
@@ -652,7 +672,9 @@ EXEC sp_NewAdmin '1006', 'Manager';
 EXEC sp_NewAdmin '1015', 'Manager';
 
 --Add Test User Images
+--EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
 
+EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
 
 
 ---PostalAddress Loading
