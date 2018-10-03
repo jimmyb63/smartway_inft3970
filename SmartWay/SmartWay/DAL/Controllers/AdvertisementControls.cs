@@ -111,7 +111,7 @@ namespace SmartWay.DAL.Controllers
             List<Advertisement> ads = new List<Advertisement>();
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "SELECT adc.category, adv.ID, adv.sellerID, adv.adType, adv.title, adv.adDescription, adv.addressID, adv.creationDate, adv.categoryID, adv.price FROM AddCategory adc INNER JOIN Advertisement adv ON adc.ID = adv.categoryID WHERE adc.category = @category AND adc.active = 1 and adv.active = 1";
+            string query = "SELECT adc.category, adv.ID, adv.sellerID, adv.adType, adv.title, adv.adDescription, adv.addressID, adv.creationDate, adv.categoryID, adv.price, adv.active FROM AddCategory adc INNER JOIN Advertisement adv ON adc.ID = adv.categoryID WHERE adc.category = @category AND adc.active = 1 and adv.active = 1";
             //string query = "SELECT * FROM Advertisement"; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@category", SqlDbType.VarChar, 260).Value = category;
@@ -144,7 +144,7 @@ namespace SmartWay.DAL.Controllers
             List<Advertisement> ads = new List<Advertisement>();
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "SELECT adc.subCategory, adv.ID, adv.sellerID, adv.adType, adv.title, adv.adDescription, adv.addressID, adv.creationDate, adv.categoryID, adv.price FROM AddCategory adc INNER JOIN Advertisement adv ON adc.ID = adv.categoryID WHERE adc.subCategory = @subCategory AND adc.active = 1 and adv.active = 1";
+            string query = "SELECT adc.subCategory, adv.ID, adv.sellerID, adv.adType, adv.title, adv.adDescription, adv.addressID, adv.creationDate, adv.categoryID, adv.price, adv.active FROM AddCategory adc INNER JOIN Advertisement adv ON adc.ID = adv.categoryID WHERE adc.subCategory = @subCategory AND adc.active = 1 and adv.active = 1";
             //string query = "SELECT * FROM Advertisement"; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@subCategory", SqlDbType.VarChar, 260).Value = subCategory;
