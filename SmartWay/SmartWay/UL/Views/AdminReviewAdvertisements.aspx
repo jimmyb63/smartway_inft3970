@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminReviewAdvertisements.aspx.cs" Inherits="SmartWay.UL.Views.AdminReviewAdvertisements" %>
+﻿<%@ Page Title="SmartWay - Admin Review Advertisements" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminReviewAdvertisements.aspx.cs" Inherits="SmartWay.UL.Views.AdminReviewAdvertisements" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

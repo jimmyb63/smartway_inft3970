@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewAdvertisementDetail.aspx.cs" Inherits="SmartWay.UL.Views.AdminViewAdvertisementDetail" %>
+﻿<%@ Page Title="SmartWay - Admin View Advertisement" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewAdvertisementDetail.aspx.cs" Inherits="SmartWay.UL.Views.AdminViewAdvertisementDetail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* Make the image fully responsive */

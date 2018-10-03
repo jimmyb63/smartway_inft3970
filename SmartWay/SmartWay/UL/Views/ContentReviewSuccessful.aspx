@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Content Review Successful" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="ContentReviewSuccessful.aspx.cs" Inherits="SmartWay.UL.Views.ContentReviewSuccessful" %>
+﻿<%@ Page Title="SmartWay - Content Review Successful" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="ContentReviewSuccessful.aspx.cs" Inherits="SmartWay.UL.Views.ContentReviewSuccessful" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

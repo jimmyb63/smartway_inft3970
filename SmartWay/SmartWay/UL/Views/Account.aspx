@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="SmartWay.UL.Views.Account" %>
+﻿<%@ Page Title="SmartWay - My Account" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="SmartWay.UL.Views.Account" %>
 
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

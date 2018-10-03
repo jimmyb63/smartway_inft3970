@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewUserDetail.aspx.cs" Inherits="SmartWay.UL.Views.AdminViewUserDetail" %>
+﻿<%@ Page Title="SmartWay - Admin View User" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewUserDetail.aspx.cs" Inherits="SmartWay.UL.Views.AdminViewUserDetail" %>
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
