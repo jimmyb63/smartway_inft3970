@@ -44,7 +44,7 @@
                                             <h6>Recent Searches</h6>
                                             <a href="#" class="badge badge-dark badge-pill">Washing Machine</a> <a href="#" class="badge badge-dark badge-pill">Gardener</a> <a href="#" class="badge badge-dark badge-pill">House Painter</a> <a href="#" class="badge badge-dark badge-pill">Lawn Mower</a>
                                             <hr>
-                                            <h6>Purcahse and Sale History</h6>
+                                            <h6>Purchase and Sale History</h6>
                                             <span class="badge badge-primary"><i class="fa fa-user"></i>13 Sales</span> <span class="badge badge-success"><i class="fa fa-cog"></i>2 Purchases</span> <span class="badge badge-danger"><i class="fa fa-eye"></i>12 Reviews</span>
                                         </div>
                                         <div class="col-md-12">
