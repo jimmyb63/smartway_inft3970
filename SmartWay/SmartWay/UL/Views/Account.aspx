@@ -31,7 +31,36 @@
                             <div class="tab-content py-2">
                                 <div class="tab-pane active" id="profile">
                                     <h5 class="mb-3">User Profile</h5>
-                                    <hr>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h6>Details</h6>
+                                            <div class="card-text"><b>Username: </b><asp:Label ID="lblUserName" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>First Name: </b><asp:Label ID="lblFName" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Last Name: </b><asp:Label ID="lblLName" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Email: </b><asp:Label ID="lblEmail" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Date of Birth: </b><asp:Label ID="lblDOB" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Phone Number: </b><asp:Label ID="lblPhoneNumber" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <h6>Address Details</h6>
+                                            <div class="card-text"><b>Unit Number: </b><asp:Label ID="lblUnitNum" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Street Address: </b><asp:Label ID="lblStreetNum" runat="server" Text="Label" /> &nbsp <asp:Label ID="lblStreetName" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>City: </b><asp:Label ID="lblCity" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>State: </b><asp:Label ID="lblState" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Country: </b><asp:Label ID="lblCountry" runat="server" Text="Label" /></div>
+                                            <br />
+                                            <div class="card-text"><b>Postcode: </b><asp:Label ID="lblPostcode" runat="server" Text="Label" /></div>
+                                            <br />
+                                        </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h6>About</h6>
@@ -43,13 +72,13 @@
                                         <div class="col-md-6">
                                             <h6>Recent Searches</h6>
                                             <a href="#" class="badge badge-dark badge-pill">Washing Machine</a> <a href="#" class="badge badge-dark badge-pill">Gardener</a> <a href="#" class="badge badge-dark badge-pill">House Painter</a> <a href="#" class="badge badge-dark badge-pill">Lawn Mower</a>
-                                            <hr>
-                                            <h6>Purchase and Sale History</h6>
+                                            <hr />
+                                            <h6>Purcahse and Sale History</h6>
                                             <span class="badge badge-primary"><i class="fa fa-user"></i>13 Sales</span> <span class="badge badge-success"><i class="fa fa-cog"></i>2 Purchases</span> <span class="badge badge-danger"><i class="fa fa-eye"></i>12 Reviews</span>
                                         </div>
                                         <div class="col-md-12">
-                                            <br>
-                                            <hr>
+                                            <br />
+                                            <hr />
                                             <h5 class="mt-2">Recent Activity</h5>
                                             <table class="table table-sm table-hover table-striped">
                                                 <tbody>
@@ -193,7 +222,7 @@
 
                                 <div class="col-lg-7">
 
-                                    <input class="form-control" type="password" value="">
+                                    <input class="form-control" type="password" value="" />
                                 </div>
 
                             </div>
@@ -204,7 +233,7 @@
 
                                 <div class="col-lg-7">
 
-                                    <input class="form-control" type="password" value="">
+                                    <input class="form-control" type="password" value="" />
                                 </div>
 
                             </div>
@@ -215,12 +244,12 @@
 
                                 <div class="col-lg-7">
 
-                                    <input class="form-control" type="password" value="">
+                                    <input class="form-control" type="password" value="" />
                                 </div>
 
                             </div>
 
-                            <hr>
+                            <hr />
 
 
                             <!-- Modal footer -->
