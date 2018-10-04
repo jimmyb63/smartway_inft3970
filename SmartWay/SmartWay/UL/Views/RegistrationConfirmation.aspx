@@ -10,7 +10,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1>Thankyou - Your account has been verified</h1>
-                                <p>Click here to go to your profile</p>
+                                <%-- After successful verification, user is redirected to login page --%>
+                                <p>Click <a href="Login.aspx">here</a> to go to your profile</p>
                             </div>
                         </div>
                     </div>
