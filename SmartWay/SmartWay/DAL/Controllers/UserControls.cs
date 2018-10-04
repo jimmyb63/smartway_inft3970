@@ -250,6 +250,47 @@ namespace SmartWay.DAL.Controllers
             return phoneID;
         }
 
+        //This is Used to Get the Phone Number By providing the PhoneNumber ID.
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int getPhoneNumber(int phoneNumberID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            SqlCommand cmd = new SqlCommand();
+            string query = "SELECT phoneNumber FROM PhoneNumber WHERE ID = @phoneNumberID";
+            cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@phoneNumberID", SqlDbType.Int).Value = phoneNumberID;
+            connection.Open();
+            int phoneNumber = (int)cmd.ExecuteScalar();
+            connection.Close();
+            return phoneNumber;
+        }
+
+        //This is Used to Get the Address Object By providing the Address ID.
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public Address getUserAddress (int addressID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            SqlCommand cmd = new SqlCommand();
+            string query = "SELECT ID, unitNumber, streetAddress, streetName, stateName, city, postCode, country FROM PostalAddress WHERE ID = @tempAddressID";
+            cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempAddressID", SqlDbType.VarChar, 320).Value = addressID;
+            connection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            Address tempAddress = new Address();
+            while (dr.Read())
+            {
+                tempAddress.addressUnitNum = dr["ID"].ToString();
+                tempAddress.addressUnitNum = dr["unitNumber"].ToString();
+                tempAddress.addressStreetNum = dr["streetAddress"].ToString();
+                tempAddress.addressStreetName = dr["streetName"].ToString();
+                tempAddress.addressStateID = Convert.ToInt32(dr["stateName"]);
+                tempAddress.addressCity = dr["city"].ToString();
+                tempAddress.addressPostCode = Convert.ToInt32(dr["postCode"]);
+                tempAddress.addressCountry = dr["country"].ToString();
+            }
+            return tempAddress;
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Person getUserAccount(string email)
         {
