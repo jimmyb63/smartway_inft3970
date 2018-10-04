@@ -53,6 +53,14 @@ namespace SmartWay.UL.Views
 
                 //Update the Labels
                 //Details
+                tbxUName.Text = uName;
+                tbxFName.Text = fName;
+                tbxLName.Text = lName;
+                tbxEmail.Text = email;
+                tbxDob.Text = DOB;
+                tbxPhoneNumber.Text = phoneNumber.ToString();
+
+                
                 lblUserName.Text = uName;
                 lblFName.Text = fName;
                 lblLName.Text = lName;
@@ -61,6 +69,15 @@ namespace SmartWay.UL.Views
                 lblPhoneNumber.Text = phoneNumber.ToString();
 
                 //Address
+                tbxUnitNumber.Text = unitNum;
+                tbxStreetNumber.Text = streetNum;
+                tbxStreetName.Text = streetName;
+                tbxCity.Text = city;
+                tbxState.Text = stateName;
+                tbxCountry.Text = country;
+                tbxPostcode.Text = postCode.ToString();
+
+
                 lblUnitNum.Text = unitNum;
                 lblStreetNum.Text = streetNum;
                 lblStreetName.Text = streetName;

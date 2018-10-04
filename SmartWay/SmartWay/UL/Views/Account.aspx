@@ -101,48 +101,78 @@
 
                                 <div class="tab-pane" id="edit">
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                        <label class="col-lg-3 col-form-label form-control-label">First name:</label>
                                         <div class="col-lg-9">
-                                            <asp:TextBox CssClass="form-control" ID="firstName" placeholder="First Name" runat="server" />
+                                            <asp:TextBox CssClass="form-control" ID="tbxFName" placeholder="First Name" runat="server" Text="First Name" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                        <label class="col-lg-3 col-form-label form-control-label">Last name:</label>
                                         <div class="col-lg-9">
-                                            <asp:TextBox CssClass="form-control" ID="lastName" placeholder="Last Name" runat="server" />
+                                            <asp:TextBox CssClass="form-control" ID="tbxLName" placeholder="Last Name" runat="server" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                        <label class="col-lg-3 col-form-label form-control-label">Email:</label>
                                         <div class="col-lg-9">
-                                            <asp:TextBox CssClass="form-control" type="email" ID="email" placeholder="Email" runat="server" />
+                                            <asp:TextBox CssClass="form-control" type="email" ID="tbxEmail" placeholder="Email" runat="server" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                        <label class="col-lg-3 col-form-label form-control-label">DOB:</label>
                                         <div class="col-lg-9">
-                                            <asp:TextBox CssClass="form-control" ID="streetName" placeholder="Street Name" runat="server" />
+                                            <asp:TextBox CssClass="form-control"  type="date" ID="tbxDob" placeholder="DOB" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Phone Number:</label>
+                                        <div class="col-lg-9">
+                                            <asp:TextBox CssClass="form-control" ID="tbxPhoneNumber" placeholder="Last Name" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Address:</label>
+                                        <div class="col-lg-4">
+                                            <asp:TextBox CssClass="form-control" ID="tbxUnitNumber" placeholder="Unit number" runat="server" />
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <asp:TextBox CssClass="form-control" ID="tbxStreetNumber" placeholder="Street Number" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                                        <div class="col-lg-9">
+                                            <asp:TextBox CssClass="form-control" ID="tbxStreetName" placeholder="Street Name" runat="server" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label"></label>
                                         <div class="col-lg-6">
-                                            <asp:TextBox CssClass="form-control mb-3" ID="city" placeholder="City" runat="server" />
+                                            <asp:TextBox CssClass="form-control" ID="tbxCity" placeholder="City" runat="server" />
                                         </div>
                                         <div class="col-lg-3">
-                                            <asp:TextBox CssClass="form-control" ID="state" placeholder="State" runat="server" />
+                                            <asp:TextBox CssClass="form-control" ID="tbxState" placeholder="State" runat="server" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                                        <div class="col-lg-9">
-                                            <asp:TextBox CssClass="form-control" ID="username" placeholder="Username" runat="server" />
+                                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                                        <div class="col-lg-6">
+                                            <asp:TextBox CssClass="form-control" ID="tbxCountry" placeholder="Country" runat="server" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <asp:TextBox CssClass="form-control" ID="tbxPostcode" placeholder="Postcode" runat="server" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                        <label class="col-lg-3 col-form-label form-control-label">Username:</label>
                                         <div class="col-lg-9">
-                                            <asp:TextBox CssClass="form-control" type="password" ID="password" ReadOnly placeholder="Password" runat="server" />
+                                            <asp:TextBox CssClass="form-control" ID="tbxUName" placeholder="Username" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Password:</label>
+                                        <div class="col-lg-9">
+                                            <asp:TextBox CssClass="form-control" type="password" ID="tbxPassword" ReadOnly placeholder="Password" runat="server" />
                                         </div>
 
                                         <!---------- Change Password Button ---------->
