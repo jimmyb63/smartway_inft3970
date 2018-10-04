@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="Content/smartway.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -42,7 +42,7 @@
                             else
                             { %>
                         <li class="nav-item"><a class="nav-link m-1" href="Login.aspx"><i class="fas fa-sign-in-alt"></i>Login</a> </li>
-                        <li class="nav-item"><a class="nav-link m-1" href="Registration.aspx"><i class="fas fa-user-plus"></i></i> Register</a> </li>
+                        <li class="nav-item"><a class="nav-link m-1" href="Registration.aspx"><i class="fas fa-user-plus"></i>Register</a> </li>
                         <% } %>
                         <li class="nav-item"><a class="nav-link m-1" href="Contact.aspx"><i class="fas fa-file-contract"></i></> Contact Us</a></li>
                     </ul>
@@ -87,12 +87,14 @@
 
         <div class="container">
             <div class="row">
-
-                <!--Sidebar Accordion-->
                 <div class="col-lg-3">
+                    <a class="btn btn-success btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Post Advertisement</a>
+                    <a class="btn btn-success btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Post in Forum</a>
+                    <hr>
+                    <!--Sidebar Accordion-->
                     <div id="accordion">
                         <div class="card mt-2">
-                            <a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseOne">Goods</a>
+                            <a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=goods" class="list-group-item">Browse all Goods</a>
@@ -110,7 +112,7 @@
                             </div>
                         </div>
                         <div class="card mt-2">
-                            <a class="collapsed btn btn-info btn-block" data-toggle="collapse" href="#collapseTwo">Services</a>
+                            <a class="collapsed btn btn-info btn-block" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=services" class="list-group-item">Browse all Services</a>
@@ -121,7 +123,7 @@
                             </div>
                         </div>
                         <div class="card mt-2">
-                            <a class="collapsed btn btn-info btn-block" data-toggle="collapse" href="#collapseThree">Forum</a>
+                            <a class="collapsed btn btn-info btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="" class="list-group-item">Forum cat 1</a>
@@ -133,10 +135,10 @@
                         </div>
                     </div>
                 </div>
-                <!--/Sidebar Accordion-->
+        <!--/Sidebar Accordion-->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             <%-- /End Page Content --%>
             </asp:ContentPlaceHolder>
-        </form>
-    </body>
+    </form>
+</body>
 </html>
