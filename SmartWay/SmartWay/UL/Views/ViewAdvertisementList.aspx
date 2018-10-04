@@ -84,7 +84,7 @@
                                                 </h5>
                                             </div>
                                             <div class="col-6 d-none d-lg-block">
-                                                <p class="card-text">Lorem ipsum</p>
+                                                <p class="card-text"><%#: Item.advertisementDescription %></p>
                                             </div>
                                         </div>
                                     </div>
