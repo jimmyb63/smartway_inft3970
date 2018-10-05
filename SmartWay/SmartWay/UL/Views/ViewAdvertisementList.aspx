@@ -60,31 +60,33 @@
                     <div class="col-12 my-2" runat="server">
                         <div class="card h-100">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
-                                        <img src="<%#:getAdThumbnail(Item.advertisementID, Item.advertisementSellerID)%>"
+                                        <img class="card-img" src="<%#:getAdThumbnail(Item.advertisementID, Item.advertisementSellerID)%>"
                                             style="border: solid; width: 100%" />
                                     </a>
                                 </div>
-                                <div class="col-6">
-                                    <div class="card-body">
+                                <div class="col-7">
+                                    <div class="card-body  align-items-center"  style="height: 100%">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-12">
-                                                <h4 class="card-title">
-                                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
-                                                        <span>
-                                                            <%#:Item.advertisementTitle%>
-                                                        </span>
-                                                    </a>
-                                                </h4>
-                                                <h5>
-                                                    <span>
-                                                        <%#:String.Format("{0:c}", Item.advertisementPrice)%>
-                                                    </span>
-                                                </h5>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <h5 class="card-title">
+                                                                <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="card-text">
+                                                                <%#:String.Format("{0:c}", Item.advertisementPrice)%>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-6 d-none d-lg-block">
-                                                <p class="card-text"><%#: Item.advertisementDescription %></p>
+                                                <div class="card-text align-items-center"><%#: Item.advertisementDescription %></div>
                                             </div>
                                         </div>
                                     </div>
@@ -95,21 +97,17 @@
                     </div>
                 </ItemTemplate>
                 <LayoutTemplate>
-                    <table>
+                    <%--<table>
                         <tbody>
                             <tr>
-                                <td>
+                                <td>--%>
                                     <table id="groupPlaceholderContainer" runat="server" style="width: 100%">
                                         <tr id="groupPlaceholder"></tr>
                                     </table>
-                                </td>
+                                <%--</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr></tr>
                         </tbody>
-                    </table>
+                    </table>--%>
                 </LayoutTemplate>
             </asp:ListView>
         </div>

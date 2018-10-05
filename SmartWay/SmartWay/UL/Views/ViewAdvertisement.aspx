@@ -74,6 +74,7 @@
                     </div>
                     <div class="card-body">
                         <h4><b>Price: </b><%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
+                        <asp:Button ID="btnBuy" Text="Want to Buy" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
                         <p class="card-text">
                             <h4>Description</h4>
                             <p><%#:Item.advertisementDescription %></p>

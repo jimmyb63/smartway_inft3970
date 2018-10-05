@@ -137,6 +137,7 @@
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
     <Content Include="UL\Views\NewRecyclingRequest.aspx" />
+    <Content Include="UL\Views\Offer.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
@@ -144,6 +145,7 @@
     <Content Include="UL\Views\PostForumThread.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
+    <Content Include="UL\Views\WantToBuy.aspx" />
     <Content Include="User.Master" />
     <Content Include="Admin.Master" />
     <None Include="Web.Debug.config">
@@ -281,6 +283,13 @@
     <Compile Include="UL\Views\NewRecyclingRequest.aspx.designer.cs">
       <DependentUpon>NewRecyclingRequest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Views\Offer.aspx.cs">
+      <DependentUpon>Offer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\Offer.aspx.designer.cs">
+      <DependentUpon>Offer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Views\PostAdvertisement.aspx.cs">
       <DependentUpon>PostAdvertisement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,6 +387,13 @@
     </Compile>
     <Compile Include="UL\Views\ViewAdvertisementList.aspx.designer.cs">
       <DependentUpon>ViewAdvertisementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\WantToBuy.aspx.cs">
+      <DependentUpon>WantToBuy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\WantToBuy.aspx.designer.cs">
+      <DependentUpon>WantToBuy.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

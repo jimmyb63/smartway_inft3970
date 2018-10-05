@@ -45,5 +45,13 @@ namespace SmartWay.UL.Views
             List<string> adImages = AC.getAdImages(adID);
             return adImages;
         }
+
+        public void WantToBuy(object sender, EventArgs e)
+        {
+            string adID = Request.QueryString["advertisementID"];
+            Person currentUser = (Person)Session["currentUser"];
+            string userID = Convert.ToString(currentUser.userID);
+            Response.Redirect("WantToBuy.aspx?advertisementID=" + adID);
+        }
     }
 }

@@ -10,15 +10,24 @@
 namespace SmartWay.UL.Views {
     
     
-    public partial class Payment {
+    public partial class WantToBuy {
         
         /// <summary>
-        /// adID control.
+        /// btnBuyNow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField adID;
+        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        
+        /// <summary>
+        /// btnMakeOffer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMakeOffer;
     }
 }
