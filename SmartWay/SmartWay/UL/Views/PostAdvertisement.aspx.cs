@@ -86,6 +86,10 @@ namespace SmartWay.UL.Views
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
+
+                Response.Redirect("PostAdvertisementConfirmation.aspx");
+        
+            
         }
 
         protected string adImageUpload(Bitmap image, int index, int adID, string fileName, int userID)

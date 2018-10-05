@@ -218,7 +218,7 @@
                         <hr />
                         <%-- SUBMIT AD BUTTON --%>
                         <asp:Button 
-                            CssClass="btn btn-block btn-success" 
+                            CssClass="btn btn-block btn-success"
                             Text="Submit" 
                             runat="server" 
                             OnClick="postAd" />

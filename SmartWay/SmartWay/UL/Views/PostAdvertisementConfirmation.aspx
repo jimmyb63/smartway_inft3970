@@ -1,17 +1,16 @@
-﻿<%@ Page Title="SmartWay - Registration Confirmation" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="RegistrationConfirmation.aspx.cs" Inherits="SmartWay.UL.Views.RegistrationConfirmation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="PostAdvertisementConfirmation.aspx.cs" Inherits="SmartWay.UL.Views.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-lg-9 mt-2">
+        <div class="col-lg-9 mt-2">
         <div class="p-2 mb-2 bg-primary text-white">Registration Confirmed!</div>
                 <%--------Main Page Content Goes Here--------%>
                 <div class="jumbotron text-center">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1>Thankyou - Your account has been verified</h1>
-                                <%-- After successful verification, user is redirected to login page --%>
-                                <p>Click <a href="Login.aspx">here</a> to login</p>
+                                <h1>Your Advertisement Has Been Posted</h1>
+                                <p>Click <a href="index.aspx">here</a> to go home.</p>
                                 <p>You will be automatically redirected in 10 seconds</p>
                             </div>
                         </div>

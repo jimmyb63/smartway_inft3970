@@ -147,6 +147,7 @@
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="UL\Views\WantToBuy.aspx" />
+    <Content Include="UL\Views\PostAdvertisementConfirmation.aspx" />
     <Content Include="User.Master" />
     <Content Include="Admin.Master" />
     <None Include="Web.Debug.config">
@@ -402,6 +403,13 @@
     </Compile>
     <Compile Include="UL\Views\WantToBuy.aspx.designer.cs">
       <DependentUpon>WantToBuy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\PostAdvertisementConfirmation.aspx.cs">
+      <DependentUpon>PostAdvertisementConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\PostAdvertisementConfirmation.aspx.designer.cs">
+      <DependentUpon>PostAdvertisementConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
