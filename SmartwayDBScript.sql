@@ -529,7 +529,23 @@ CREATE VIEW view_PersonStaff AS
 
 GO
 
-Select * From view_PersonStaff
+--Select * From view_PersonStaff
+
+--View of Sale Items
+IF ( OBJECT_ID('sp_SaleItems') IS NOT NULL ) 
+   DROP PROCEDURE sp_SaleItems
+GO
+
+--New Phone
+CREATE PROCEDURE sp_SaleItems(
+	@tempUserID INT)
+AS
+BEGIN
+	Select adType, title, adDescription, price, creationDate FROM Advertisement 
+	WHERE sellerID = (@tempUserID) AND active = 0;
+END
+GO
+
 -- If sp_Admin_Check Exists
 IF OBJECT_ID('sp_Admin_Check', 'P') IS NOT NULL  
    DROP PROCEDURE sp_Admin_Check;  
