@@ -264,6 +264,22 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "INSERT INTO AddOffer (buyerID, sellerID, adID, offerAmount) VALUES (@buyerID, @sellerID, @adID, @offerAmount) "; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@buyerID", SqlDbType.Int).Value = buyerID;
+            cmd.Parameters.Add("@sellerID", SqlDbType.Int).Value = sellerID;
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@offerAmount", SqlDbType.Decimal).Value = offerAmount;
+            //use command
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public string getconnectionString()
         {
             return ConfigurationManager.ConnectionStrings["SmartWayconnectionString"].ConnectionString;
