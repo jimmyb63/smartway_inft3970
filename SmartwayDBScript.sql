@@ -169,7 +169,7 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									buyerID INT,
 									adType VARCHAR(30) NOT NULL,
 									title VARCHAR(50) NOT NULL,
-									adDescription VARCHAR(50) NOT NULL,
+									adDescription VARCHAR(250) NOT NULL,
 									addressID INT NOT NULL,
 									--addStatusID INT NOT NULL DEFAULT 0,
 									categoryID INT NOT NULL,
@@ -438,7 +438,7 @@ CREATE PROCEDURE sp_NewAdvertisement(
 	@tempType varchar(30),
 	@tempCategory varchar(30),
 	@tempSubCategory varchar(30),
-	@tempDescription varchar(50),
+	@tempDescription varchar(250),
 	@tempAddressID INT,
 	@tempPrice DECIMAL,
 	@returnAdID INT OUTPUT)
@@ -777,12 +777,14 @@ EXEC sp_NewAdmin '1015', 'Manager';
 --EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
 
 EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
-EXEC sp_NewProfileImg '../Images/TestImg/1000.jpg', '1000';
+EXEC sp_NewProfileImg '../Images/TestImg/1000.png', '1000';
 
 --Add Test Adds and  Images
 EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','Cool Rake', 1000, 30, 5; 
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1000);
 
+EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.', 1000, 30, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1001);
 --Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 

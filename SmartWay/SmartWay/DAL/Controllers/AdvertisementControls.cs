@@ -31,7 +31,7 @@ namespace SmartWay.DAL.Controllers
             param.Value = adCategory;
             param = cmd.Parameters.Add("@tempSubCategory", SqlDbType.VarChar, 30);
             param.Value = adSubCategory;
-            param = cmd.Parameters.Add("@tempDescription", SqlDbType.VarChar, 50);
+            param = cmd.Parameters.Add("@tempDescription", SqlDbType.VarChar, 250);
             param.Value = adDescription;
             param = cmd.Parameters.Add("@tempAddressID", SqlDbType.Int);
             param.Value = adAddressID;
