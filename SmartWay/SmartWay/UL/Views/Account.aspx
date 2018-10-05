@@ -235,6 +235,11 @@
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
+=======
+                                <!---------- Sale Items Tab Content ---------->
+                            
+>>>>>>> 9da0acc696dec869bf0b697564ac7bc0db7a0014
                                 <div class="tab-pane" id="ForSaleItems">
                                     <h5 class="mb-3">For Sale Items</h5>
                                     <hr />
@@ -261,7 +266,11 @@
 
                             <!---------- Profile Picture and File Upload ---------->
 
+<<<<<<< HEAD
                             <%--                        <div class="col-lg-3 order-lg-1 text-center">
+=======
+                            <div class="col-lg-3 order-lg-1 text-center">
+>>>>>>> 9da0acc696dec869bf0b697564ac7bc0db7a0014
                             <% UserControls UC = new UserControls(); %>
                             <% string filePath = UC.getProfileImage(currentUser.userID); %>
                             <img src="<%=filePath %>" class="mx-auto img-fluid img-circle d-block" alt="avatar" />
@@ -272,18 +281,29 @@
                             </label>
                         </div>--%>
                         </div>
+                        </div>
                     </div>
+<<<<<<< HEAD
                     <% }
                         else
                         {%>
+=======
+                <% }
+                    else
+                    {%>
+>>>>>>> 9da0acc696dec869bf0b697564ac7bc0db7a0014
                     <div class="col-lg-9 order-lg-2">
                         <div class="p-2 my-2 bg-danger text-white">Error - Please Login</div>
                         <div class="jumbotron text-center mt-2">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12">
+<<<<<<< HEAD
                                         <h2>Please Login to View Your Profile</h2>
                                         <br />
+=======
+                                        <h2>Please Login to View Your Profile</h2><br />
+>>>>>>> 9da0acc696dec869bf0b697564ac7bc0db7a0014
                                     </div>
                                 </div>
                                 <div class="row">
@@ -303,7 +323,11 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <% } %>
+=======
+            <% } %>
+>>>>>>> 9da0acc696dec869bf0b697564ac7bc0db7a0014
 
                     <!---------- Password Reset Modal ---------->
 
@@ -491,4 +515,10 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+            </div>
+        </div>
+    </div>
+>>>>>>> 9da0acc696dec869bf0b697564ac7bc0db7a0014
 </asp:Content>

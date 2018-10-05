@@ -195,6 +195,8 @@ namespace SmartWay.DAL.Controllers
             return exists;
         }
 
+
+
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addProfileImage(string filePath, int userID)
         {
@@ -290,6 +292,19 @@ namespace SmartWay.DAL.Controllers
                 tempAddress.addressCountry = dr["country"].ToString();
             }
             return tempAddress;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getUserEmail(int userID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            SqlCommand cmd = new SqlCommand();
+            string query = "SELECT email FROM Person WHERE ID = @userID";
+            cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
+            connection.Open();
+            string email = cmd.ExecuteScalar().ToString();
+            return email;
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]

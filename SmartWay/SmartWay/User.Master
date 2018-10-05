@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="SmartWay.User" %>
+﻿1<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="SmartWay.User" %>
 
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <%@ Import Namespace="SmartWay.DAL.Controllers" %>
@@ -90,12 +90,15 @@
                 <div class="col-lg-3">
                     <a class="btn btn-success btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Post Advertisement</a>
                     <a class="btn btn-success btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Post in Forum</a>
-                    <hr>
+                    <hr />
+                    <a class="btn btn-danger btn-block mt-2 col-lg-12" href="MyAdvertisements.aspx">My Advertisements</a>
+                    <a class="btn btn-danger btn-block mt-2 col-lg-12" href="MyOffers.aspx">My Offers</a>
+                    <hr />
                     <!--Sidebar Accordion-->
                     <div id="accordion">
                         <div class="card mt-2">
                             <a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
-                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                            <div id="collapseOne" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=goods" class="list-group-item">Browse all Goods</a>
                                     <a href="ViewAdvertisementList.aspx?subCategory=free" class="list-group-item">Free</a>
@@ -139,6 +142,8 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             <%-- /End Page Content --%>
             </asp:ContentPlaceHolder>
+            </div>
+        </div>
     </form>
 </body>
 </html>

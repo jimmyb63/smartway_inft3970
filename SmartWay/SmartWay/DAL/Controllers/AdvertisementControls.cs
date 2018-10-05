@@ -267,14 +267,9 @@ namespace SmartWay.DAL.Controllers
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
         {
-            // Add user to database
-            // INSERT INTO tblCustomer VALUES()
             SqlConnection connection = new SqlConnection(getconnectionString());
             string procedure = "sp_NewAddOffer";
             SqlCommand cmd = new SqlCommand(procedure, connection);
-            //string query = "EXEC sp_NewRegistration @fName, @lName, @emailAddress, @password, @phoneNumber, @uNum, @sNum, @sName, @city, @pCode, @state, @country, @verificationCode";
-            //SqlCommand cmd = new SqlCommand(query, connection);
-            //cmd.Parameters.Add("@returnPersonID", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             cmd.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
             param = cmd.Parameters.Add("@tempBuyerID", SqlDbType.Int);
@@ -292,6 +287,44 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
             int returnCode = (int)param.Value;
             return returnCode;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int getOfferCount(int adID)
+        {
+            int count = 0;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT COUNT(ID) FROM AddOffer WHERE addID = @adID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            connection.Open();
+            count = (int)cmd.ExecuteScalar();
+            return count;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Offer> getAdOffers(int adID)
+        {
+            List<Offer> offers = new List<Offer>();
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT ID, buyerID, sellerID, offerAmount, offerAccepted, active FROM AddOffer WHERE addID = @adID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Offer offer = new Offer(   (int)reader["ID"],
+                                            (int)reader["buyerID"],
+                                            (int)reader["sellerID"],
+                                            (decimal)reader["offerAmount"],
+                                            (bool)reader["offerAccepted"],
+                                            (bool)reader["active"]);
+                offers.Add(offer);
+            }
+            connection.Close();
+            return offers;
         }
 
         //[DataObjectMethod(DataObjectMethodType.Insert)]
