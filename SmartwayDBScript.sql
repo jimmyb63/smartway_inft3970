@@ -777,7 +777,7 @@ EXEC sp_NewAdmin '1015', 'Manager';
 --EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
 
 EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
-EXEC sp_NewProfileImg '../Images/TestImg/1000.jpg', '1000';
+EXEC sp_NewProfileImg '../Images/TestImg/1000.png', '1000';
 
 --Add Test Adds and  Images
 EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','Cool Rake', 1000, 30, 5; 
