@@ -10,7 +10,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1>Your Advertisement Has Been Posted</h1>
-                                <p>Click <a href="index.aspx">here</a> to go home.</p>
+                                <%-- After successful verification, user is redirected to login page --%>
+                                <p>Click <a href="index.aspx">here</a> to go to homepage</p>
                                 <p>You will be automatically redirected in 10 seconds</p>
                             </div>
                         </div>

@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 
-public partial class _Default : System.Web.UI.Page
+namespace SmartWay.UL.Views
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class WebForm1 : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
