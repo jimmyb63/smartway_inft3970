@@ -134,7 +134,9 @@
     <Content Include="UL\Views\AdminReviewUsers.aspx" />
     <Content Include="UL\Views\AdminViewAdvertisementDetail.aspx" />
     <Content Include="UL\Views\AdminViewUserDetail.aspx" />
+    <Content Include="UL\Views\AdvertisementOffers.aspx" />
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
+    <Content Include="UL\Views\MyAdvertisements.aspx" />
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
     <Content Include="UL\Views\NewRecyclingRequest.aspx" />
     <Content Include="UL\Views\Offer.aspx" />
@@ -188,6 +190,7 @@
     <Compile Include="BL\Controllers\SMSSender.cs" />
     <Compile Include="BL\Controllers\Validation.cs" />
     <Compile Include="BL\Models\Address.cs" />
+    <Compile Include="BL\Models\Offer.cs" />
     <Compile Include="BL\Models\Staff.cs" />
     <Compile Include="BL\Models\Advertisement.cs" />
     <Compile Include="BL\Models\ForumThread.cs" />
@@ -263,12 +266,26 @@
     <Compile Include="UL\Views\AdminViewUserDetail.aspx.designer.cs">
       <DependentUpon>AdminViewUserDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Views\AdvertisementOffers.aspx.cs">
+      <DependentUpon>AdvertisementOffers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\AdvertisementOffers.aspx.designer.cs">
+      <DependentUpon>AdvertisementOffers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Views\ContentReviewSuccessful.aspx.cs">
       <DependentUpon>ContentReviewSuccessful.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\Views\ContentReviewSuccessful.aspx.designer.cs">
       <DependentUpon>ContentReviewSuccessful.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\MyAdvertisements.aspx.cs">
+      <DependentUpon>MyAdvertisements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\MyAdvertisements.aspx.designer.cs">
+      <DependentUpon>MyAdvertisements.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\NewAddReviewRequest.aspx.cs">
       <DependentUpon>NewAddReviewRequest.aspx</DependentUpon>

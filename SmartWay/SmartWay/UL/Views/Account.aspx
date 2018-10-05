@@ -191,8 +191,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!---------- Sale Items Tab Content ---------->
                             
-                            <div class="tab-pane active" id="ForSaleItems">
+                                <div class="tab-pane" id="ForSaleItems">
                                     <h5 class="mb-3">For Sale Items</h5>
                                     <hr />
                                     <div class="row">
@@ -214,11 +216,11 @@
                                         </asp:GridView>----->
                                     </div>
                                 </div>
-                        </div>
+                            </div>
 
-                        <!---------- Profile Picture and File Upload ---------->
+                            <!---------- Profile Picture and File Upload ---------->
 
-                        <div class="col-lg-3 order-lg-1 text-center">
+                            <div class="col-lg-3 order-lg-1 text-center">
                             <% UserControls UC = new UserControls(); %>
                             <% string filePath = UC.getProfileImage(currentUser.userID); %>
                             <img src="<%=filePath %>" class="mx-auto img-fluid img-circle d-block" alt="avatar" />
@@ -228,37 +230,37 @@
                                 <span class="custom-file-control">Choose file</span>
                             </label>
                         </div>
+                        </div>
                     </div>
-                </div>
                 <% }
                     else
                     {%>
-            <div class="col-lg-9 order-lg-2">
-                <div class="p-2 my-2 bg-danger text-white">Error - Please Login</div>
-                <div class="jumbotron text-center mt-2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h2>Please Login to View Your Profile</h2><br />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                            </div>
-                            <div class="col-lg-8">
-                                <a href="login.aspx" class="btn btn-block btn-info">Login</a><br />
-                            </div>
-                            <div class="col-lg-2">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <p>Dont have and account? <a href="Registration.aspx" class="text-primary">Click Here to Register</a></p>
+                    <div class="col-lg-9 order-lg-2">
+                        <div class="p-2 my-2 bg-danger text-white">Error - Please Login</div>
+                        <div class="jumbotron text-center mt-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h2>Please Login to View Your Profile</h2><br />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <a href="login.aspx" class="btn btn-block btn-info">Login</a><br />
+                                    </div>
+                                    <div class="col-lg-2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Dont have and account? <a href="Registration.aspx" class="text-primary">Click Here to Register</a></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
             <% } %>
 
             <!---------- Password Reset Modal ---------->
@@ -442,6 +444,7 @@
                 </div>
             </div>
         </div>
-    </div>
+            </div>
+        </div>
     </div>
 </asp:Content>
