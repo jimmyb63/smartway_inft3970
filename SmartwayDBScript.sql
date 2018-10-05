@@ -27,6 +27,8 @@ IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL
   DROP TABLE dbo.ForumPost;
 IF OBJECT_ID('dbo.AddReview', 'U') IS NOT NULL 
   DROP TABLE dbo.AddReview;
+IF OBJECT_ID('dbo.WatchListItem', 'U') IS NOT NULL
+  DROP TABLE dbo.WatchListItem;
 IF OBJECT_ID('dbo.AddOffer', 'U') IS NOT NULL
   DROP TABLE dbo.AddOffer;
 IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL
@@ -278,6 +280,16 @@ create table AddOffer 	(		ID int IDENTITY(1000,1) primary key,
 								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
+create table WatchListItem 	(	ID int IDENTITY(1000,1) primary key,
+								watcherID int NOT NULL,
+								sellerID int NOT NULL,
+								currentlyWatching BIT DEFAULT 1,
+								creationDate date NOT NULL DEFAULT GETDATE(),
+								active bit DEFAULT 1,
+								--foreignkeys
+								foreign key (watcherID) references Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
+								)
 									
 --Add comments							
 create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
