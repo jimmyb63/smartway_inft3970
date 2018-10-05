@@ -603,6 +603,30 @@ END
 RETURN  
 GO 
 
+--Get Profile Image
+IF OBJECT_ID('sp_GetProfileImg', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetProfileImg;  
+GO  
+
+CREATE PROCEDURE sp_GetProfileImg(
+	@tempUserID varchar(20))
+AS
+	DECLARE @tempFilePath varchar(260);
+BEGIN
+	IF EXISTS (SELECT filePath FROM ProfileImage WHERE userID = @tempUserID)
+	BEGIN --these are like { } brackets
+		SET @tempFilePath =(SELECT filePath FROM ProfileImage WHERE userID = @tempUserID);
+		SELECT @tempFilePath;  --- if a match is found returns the matches Filepath
+	END --these are like { } brackets
+	ELSE
+	BEGIN --these are like { } brackets
+		SET @tempFilePath = 'none';
+		SELECT @tempFilePath;  --- if not a match returns -1
+	END --these are like { } brackets;
+END
+
+RETURN  
+GO 
 --DATALOAD
 
 ---StateName Loading

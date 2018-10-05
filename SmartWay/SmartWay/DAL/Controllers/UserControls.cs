@@ -212,7 +212,8 @@ namespace SmartWay.DAL.Controllers
         public string getProfileImage(int userID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
+            //string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
+            string query = "EXEC sp_GetProfileImg @userID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
             connection.Open();
