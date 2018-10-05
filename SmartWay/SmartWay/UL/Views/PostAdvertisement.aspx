@@ -17,29 +17,63 @@
         <div class="card">
             <!------- Main Page Content Goes Here-------->
             <div class="card-body">
-                <h5>Ad title</h5>
-                <asp:TextBox CssClass="form-control" ID="txtTitle" placeholder="Eg. Weber Family 2 burner BBQ in great condition" runat="server" />
+                <%-- TITLE for the ad --%>
+                <h5>Ad title*</h5>
+                <asp:TextBox 
+                    CssClass="form-control" 
+                    ID="txtTitle" 
+                    placeholder="Eg. Weber Family 2 burner BBQ in great condition" 
+                    runat="server" />
+                <asp:RequiredFieldValidator
+                    ErrorMessage="Required"
+                    ForeColor="Red"
+                    ControlToValidate="txtTitle"
+                    runat="server">
+                </asp:RequiredFieldValidator>
                 <hr />
+
+                <%-- TYPE of ad --%>
                 <h5>Type of ad</h5>
-                <asp:RadioButtonList CssClass="form-group" ID="rbAdType" runat="server">
+                <asp:RadioButtonList 
+                    CssClass="form-group" 
+                    ID="rbAdType" 
+                    runat="server">
                     <asp:ListItem Text=" Offer" Value="offer" />
                     <asp:ListItem Text=" Request" Value="request" />
                 </asp:RadioButtonList>
                 <hr />
+
+                <%-- CATEGORY for the ad --%>
                 <h5>Select a category</h5>
-                <asp:RadioButtonList CssClass="form-group" ID="rbAdCategory" OnSelectedIndexChanged="rbAdCategory_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                <asp:RadioButtonList 
+                    CssClass="form-group" 
+                    ID="rbAdCategory" 
+                    OnSelectedIndexChanged="rbAdCategory_SelectedIndexChanged" 
+                    AutoPostBack="true" 
+                    runat="server">
                     <asp:ListItem Text="Goods" Value="goods" />
                     <asp:ListItem Text="Services" Value="services" />
                 </asp:RadioButtonList>
                 <hr />
+
+                <%-- SUB-CATEGORY for the ad --%>
                 <h5>Select a sub-category</h5>
-                <asp:DropDownList CssClass="form-control" ID="ddSubCategory" runat="server">
+                <asp:DropDownList 
+                    CssClass="form-control" 
+                    ID="ddSubCategory" 
+                    runat="server">
                 </asp:DropDownList>
                 <hr />
+
+                <%-- PRICE for the ad --%>
                 <h5>Price</h5>
                 <div class="row">
                     <div class="col-lg-4">
-                        <asp:TextBox CssClass="form-control" ID="txtPrice" placeholder="Eg. $25" runat="server" />
+                        <asp:TextBox 
+                            CssClass="form-control" 
+                            ID="txtPrice" 
+                            placeholder="Eg. $25" 
+                            runat="server" />
                     </div>
                     <%--Might not need this code - radio buttons next to price --%>
                     <%--<div class="col-lg-8 mt-2">
@@ -63,9 +97,16 @@
                 </div>
                 <br />
                 <hr />
+
+                <%-- DESCRIPTION for the ad --%>
                 <div class="form-group">
                     <h5>Description</h5>
-                    <asp:TextBox CssClass="form-control" TextMode="MultiLine" ID="txtDescription" Rows="6" runat="server" />
+                    <asp:TextBox 
+                        CssClass="form-control" 
+                        TextMode="MultiLine" 
+                        ID="txtDescription" 
+                        Rows="6" 
+                        runat="server" />
                     <asp:RequiredFieldValidator
                         ErrorMessage="Required"
                         ForeColor="Red"
@@ -73,42 +114,38 @@
                         runat="server" />
                 </div>
                 <hr />
+                <%-- PHOTOS for the ad --%>
                 <h5>Upload photos</h5>
                 <div class="row">
-
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload1" runat="server" />
-                                        <label class="custom-file-label" for="FileUpload1">Choose file</label>
+                                        <asp:FileUpload 
+                                            CssClass="custom-file-input" 
+                                            ID="FileUpload1" 
+                                            runat="server" />
+                                        <label 
+                                            class="custom-file-label" 
+                                            for="FileUpload1">
+                                            Choose file
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload2" runat="server" />
-                                        <label class="custom-file-label" for="FileUpload2">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload3" runat="server" />
-                                        <label class="custom-file-label" for="FileUpload3">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload4" runat="server" />
-                                        <label class="custom-file-label" for="FileUpload4">Choose file</label>
+                                        <asp:FileUpload 
+                                            CssClass="custom-file-input" 
+                                            ID="FileUpload2" 
+                                            runat="server" />
+                                        <label 
+                                            class="custom-file-label" 
+                                            for="FileUpload2">
+                                            Choose file
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -117,23 +154,74 @@
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload5" runat="server" />
-                                        <label class="custom-file-label" for="FileUpload5">Choose file</label>
+                                        <asp:FileUpload 
+                                            CssClass="custom-file-input" 
+                                            ID="FileUpload3" 
+                                            runat="server" />
+                                        <label 
+                                            class="custom-file-label" 
+                                            for="FileUpload3">
+                                            Choose file
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <asp:FileUpload CssClass="custom-file-input" ID="FileUpload6" runat="server" />
-                                        <label class="custom-file-label" for="FileUpload6">Choose file</label>
+                                        <asp:FileUpload 
+                                            CssClass="custom-file-input" 
+                                            ID="FileUpload4" 
+                                            runat="server" />
+                                        <label 
+                                            class="custom-file-label" 
+                                            for="FileUpload4">
+                                            Choose file
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <asp:FileUpload 
+                                            CssClass="custom-file-input" 
+                                            ID="FileUpload5" 
+                                            runat="server" />
+                                        <label 
+                                            class="custom-file-label" 
+                                            for="FileUpload5">
+                                            Choose file
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <asp:FileUpload 
+                                            CssClass="custom-file-input" 
+                                            ID="FileUpload6" 
+                                            runat="server" />
+                                        <label 
+                                            class="custom-file-label" 
+                                            for="FileUpload6">
+                                            Choose file
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br />
                         <hr />
-                        <asp:Button CssClass="btn btn-block btn-success" Text="Submit" runat="server" OnClick="postAd" />
+                        <%-- SUBMIT AD BUTTON --%>
+                        <asp:Button 
+                            CssClass="btn btn-block btn-success" 
+                            Text="Submit" 
+                            runat="server" 
+                            OnClick="postAd" />
                         <hr />
                     </div>
                 </div>
