@@ -783,6 +783,8 @@ EXEC sp_NewProfileImg '../Images/TestImg/1000.png', '1000';
 EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','Cool Rake', 1000, 30, 5; 
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1000);
 
+EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.', 1000, 30, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1001);
 --Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 
