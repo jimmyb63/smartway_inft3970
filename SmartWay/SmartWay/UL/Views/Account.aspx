@@ -18,6 +18,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item pill-1"><a href="" data-target="#profile" data-toggle="tab" class="nav-link active">My profile</a> </li>
                 <li class="nav-item pill-1"><a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a> </li>
+                <li class="nav-item pill-1"><a href="" data-target="#ForSaleItems" data-toggle="tab" class="nav-link">For Sale Items</a> </li>
             </ul>
         </div>
         <div class="card">
@@ -190,21 +191,34 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
+                            <div class="tab-pane active" id="ForSaleItems">
+                                    <h5 class="mb-3">For Sale Items</h5>
+                                    <hr />
+                                    <div class="row">
+                                        <asp:GridView ID="gvForsaleItems2" runat="server" AutoGenerateColumns="false" GridLines="Horizontal" CssClass="table table-bordered" CellPadding="4" HorizontalAlign="Center"
+                                            ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="getAddSummary">
+                                            <Columns>
+                                                <asp:BoundField DataField="advertisementDatePosted" HeaderText="Date added"/>
+                                                <asp:BoundField DataField="advertisementTitle" HeaderText="Title"/>
+                                                <asp:BoundField DataField="advertisementDescription" HeaderText="Decription"/>
+                                                <asp:BoundField DataField="advertisementActive" HeaderText="Status"/>
+                                            </Columns>
+                                        </asp:GridView>
+                                        <!----------<asp:GridView ID="gvForsaleItems" runat="server" AutoGenerateColumns="false">
+                                            <Columns>
+                                                <asp:BoundField DataField="advertisementTitle" HeaderText="Title"/>
+                                                <asp:BoundField DataField="advertisementDatePosted" HeaderText="Date added"/>
+                                                <asp:BoundField DataField="advertisementActive" HeaderText="Status"/>
+                                            </Columns>
+                                        </asp:GridView>----->
+                                    </div>
+                                </div>
                         </div>
 
                         <!---------- Profile Picture and File Upload ---------->
 
-                        <div class="col-lg-3 order-lg-1 text-center">
-                            <% UserControls UC = new UserControls(); %>
-                            <% string filePath = UC.getProfileImage(currentUser.userID); %>
-                            <img src="<%=filePath %>" class="mx-auto img-fluid img-circle d-block" alt="avatar" />
-                            <h6 class="mt-2">Upload a different photo</h6>
-                            <label class="custom-file">
-                                <input type="file" id="file" class="custom-file-input" />
-                                <span class="custom-file-control">Choose file</span>
-                            </label>
-                        </div>
+                        
                     </div>
                 </div>
                 <% }

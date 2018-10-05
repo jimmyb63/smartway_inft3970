@@ -52,3 +52,5 @@ EXEC sp_verifyPerson 'abcd1234', 1003
 
 SELECT code FROM VerificationCode WHERE personID = 1000
 
+Select adType, title, adDescription, price, creationDate FROM Advertisement 
+	WHERE sellerID = (1000) AND active = 1

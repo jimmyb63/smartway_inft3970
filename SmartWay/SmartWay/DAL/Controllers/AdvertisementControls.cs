@@ -242,7 +242,7 @@ namespace SmartWay.DAL.Controllers
             List<Advertisement> userAdds = new List<Advertisement>();
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC sp_SaleItems" + tempUserID; //the sql request
+            string query = "EXEC sp_SaleItems " + tempUserID; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
             //use command
             connection.Open();
@@ -250,7 +250,8 @@ namespace SmartWay.DAL.Controllers
             while (reader.Read())
             {
                 //for each rows of the database corresponding to the request we create a product and add it to the list
-                Advertisement ad = new Advertisement((int)reader["ID"],
+                Advertisement ad = new Advertisement(
+                                        (int)reader["ID"],
                                         (int)reader["sellerID"],
                                         reader["title"].ToString(),
                                         reader["adDescription"].ToString(),

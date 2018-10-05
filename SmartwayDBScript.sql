@@ -555,8 +555,8 @@ CREATE PROCEDURE sp_SaleItems(
 	@tempUserID INT)
 AS
 BEGIN
-	Select adType, title, adDescription, price, creationDate FROM Advertisement 
-	WHERE sellerID = (@tempUserID) AND active = 0;
+	Select ID, sellerID, adType, title, adDescription, price, creationDate, active FROM Advertisement 
+	WHERE sellerID = (@tempUserID) AND active = 1;
 END
 GO
 
@@ -624,7 +624,6 @@ BEGIN
 		SELECT @tempFilePath;  --- if not a match returns -1
 	END --these are like { } brackets;
 END
-
 RETURN  
 GO 
 --DATALOAD

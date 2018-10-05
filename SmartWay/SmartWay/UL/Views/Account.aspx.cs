@@ -100,9 +100,34 @@ namespace SmartWay.UL.Views
                 lblCountry.Text = country;
                 lblPostcode.Text = postCode.ToString();
 
+                //List<Advertisement> saleItems = getAddSummary();
+
+                //gvForsaleItems.DataSource = saleItems;
+                //gvForsaleItems.DataBind();
+
+
             }
 
 
+        }
+        public List<Advertisement> getAddSummary()
+        {
+            UserControls UC = new UserControls();
+            Person currentUser = new Person();
+            currentUser = (Person)Session["currentUser"];
+            int userID = currentUser.userID;
+
+            AdvertisementControls AC = new AdvertisementControls();
+            List<Advertisement> tempAds = AC.getUserAdvertisements(userID);
+            List<Advertisement> ads = new List<Advertisement>();
+            for (int i = 0; i < tempAds.Count; i++)
+            {
+                if (tempAds[i].advertisementActive == true)
+                {
+                    ads.Add(tempAds[i]);
+                }
+            }
+            return ads;
         }
     }
 }
