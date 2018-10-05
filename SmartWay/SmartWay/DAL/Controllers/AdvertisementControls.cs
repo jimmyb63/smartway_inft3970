@@ -265,20 +265,50 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public void makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
+        public int makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
         {
-            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "INSERT INTO AddOffer (buyerID, sellerID, adID, offerAmount) VALUES (@buyerID, @sellerID, @adID, @offerAmount) "; //the sql request
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@buyerID", SqlDbType.Int).Value = buyerID;
-            cmd.Parameters.Add("@sellerID", SqlDbType.Int).Value = sellerID;
-            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
-            cmd.Parameters.Add("@offerAmount", SqlDbType.Decimal).Value = offerAmount;
-            //use command
+            // Add user to database
+            // INSERT INTO tblCustomer VALUES()
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string procedure = "sp_NewAddOffer";
+            SqlCommand cmd = new SqlCommand(procedure, connection);
+            //string query = "EXEC sp_NewRegistration @fName, @lName, @emailAddress, @password, @phoneNumber, @uNum, @sNum, @sName, @city, @pCode, @state, @country, @verificationCode";
+            //SqlCommand cmd = new SqlCommand(query, connection);
+            //cmd.Parameters.Add("@returnPersonID", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+            param = cmd.Parameters.Add("@tempBuyerID", SqlDbType.Int);
+            param.Value = buyerID;
+            param = cmd.Parameters.Add("@tempSellerID", SqlDbType.Int);
+            param.Value = sellerID;
+            param = cmd.Parameters.Add("@tempAddID", SqlDbType.Int);
+            param.Value = adID;
+            param = cmd.Parameters.Add("@tempOfferAmount", SqlDbType.Decimal);
+            param.Value = offerAmount;
+            param = cmd.Parameters.Add("@returnCode", SqlDbType.Int);
+            param.Direction = ParameterDirection.Output;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+            int returnCode = (int)param.Value;
+            return returnCode;
         }
+
+        //[DataObjectMethod(DataObjectMethodType.Insert)]
+        //public void makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
+        //{
+        //    SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+        //    string query = "INSERT INTO AddOffer (buyerID, sellerID, adID, offerAmount) VALUES (@buyerID, @sellerID, @adID, @offerAmount) "; //the sql request
+        //    SqlCommand cmd = new SqlCommand(query, connection);
+        //    cmd.Parameters.Add("@buyerID", SqlDbType.Int).Value = buyerID;
+        //    cmd.Parameters.Add("@sellerID", SqlDbType.Int).Value = sellerID;
+        //    cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+        //    cmd.Parameters.Add("@offerAmount", SqlDbType.Decimal).Value = offerAmount;
+        //    //use command
+        //    connection.Open();
+        //    cmd.ExecuteNonQuery();
+        //    connection.Close();
+        //}
 
         public string getconnectionString()
         {

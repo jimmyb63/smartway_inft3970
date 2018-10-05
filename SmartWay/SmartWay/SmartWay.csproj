@@ -138,6 +138,7 @@
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
     <Content Include="UL\Views\NewRecyclingRequest.aspx" />
     <Content Include="UL\Views\Offer.aspx" />
+    <Content Include="UL\Views\OfferConfirmation.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
     <Content Include="UL\Views\MapPage.aspx" />
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="UL\Views\Offer.aspx.designer.cs">
       <DependentUpon>Offer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\OfferConfirmation.aspx.cs">
+      <DependentUpon>OfferConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\OfferConfirmation.aspx.designer.cs">
+      <DependentUpon>OfferConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\PostAdvertisement.aspx.cs">
       <DependentUpon>PostAdvertisement.aspx</DependentUpon>

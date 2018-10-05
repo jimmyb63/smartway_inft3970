@@ -28,7 +28,15 @@ namespace SmartWay.UL.Views
             Person currentUser = (Person)Session["currentUser"];
             int buyerID = currentUser.userID;
             decimal offerAmount = Convert.ToDecimal(txtOfferAmount.Text);
-            AC.makeOffer(buyerID, sellerID, adID, offerAmount);
+            int code = AC.makeOffer(buyerID, sellerID, adID, offerAmount);
+            if (code == -1)
+            {
+                Response.Write("<script>alert('Offer Already Exists')</script>");
+            }
+            else
+            {
+                Response.Redirect("OfferConfirmation.aspx?offerID=" + code);
+            }
         }
     }
 }
