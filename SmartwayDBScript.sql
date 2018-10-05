@@ -27,7 +27,9 @@ IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL
   DROP TABLE dbo.ForumPost;
 IF OBJECT_ID('dbo.AddReview', 'U') IS NOT NULL 
   DROP TABLE dbo.AddReview;
-IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL 
+IF OBJECT_ID('dbo.AddOffer', 'U') IS NOT NULL
+  DROP TABLE dbo.AddOffer;
+IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL
   DROP TABLE dbo.ReviewReason;
 IF OBJECT_ID('dbo.RecycleLocations', 'U') IS NOT NULL 
   DROP TABLE dbo.RecycleLocations;
@@ -262,6 +264,18 @@ create table AddReview	(		ID int IDENTITY(1000,1) primary key,
 								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (reporterUserID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (reviewReason) references ReviewReason(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+								)
+
+create table AddOffer 	(		ID int IDENTITY(1000,1) primary key,
+								buyerID int NOT NULL,
+								sellerID int NOT NULL,
+								offerAmount float,
+								offerAccepted BIT,
+								creationDate date NOT NULL DEFAULT GETDATE(),
+								active bit DEFAULT 1,
+								--foreignkeys
+								foreign key (buyerID) references Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
 									
