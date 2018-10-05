@@ -436,16 +436,15 @@ CREATE PROCEDURE sp_NewAdvertisement(
 	@tempSellerID INT,
 	@tempTitle VARCHAR(50),
 	@tempType VARCHAR(30),
-	@tempCategory VARCHAR(30),
-	@tempSubCategory VARCHAR(30),
+	@tempCategoryID INT,
 	@tempDescription VARCHAR(50),
 	@tempAddressID INT,
 	@tempPrice DECIMAL,
 	@returnAdID INT OUTPUT)
 AS
-	DECLARE @tempCategoryID INT;
+	--DECLARE @tempCategoryID INT;
 BEGIN
-	SET @tempCategoryID =(SELECT ID FROM AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
+	--SET @tempCategoryID =(SELECT ID FROM AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
 	INSERT INTO Advertisement (sellerID, adType, title, adDescription, addressID, categoryID, price)
 	VALUES(@tempSellerID, @tempType, @tempTitle, @tempDescription, @tempAddressID, @tempCategoryID, @tempPrice);
 	SET @returnAdID =(SELECT MAX(ID) FROM Advertisement);
@@ -655,20 +654,23 @@ CREATE PROCEDURE sp_NewAddOffer(
 --Return on DEFAULT = newID;
 AS
 BEGIN
-	IF EXISTS (SELECT ID FROM AddOffer WHERE buyerID = @tempBuyerID AND addID = @tempAddID AND offerAccepted = NULL )
+	IF EXISTS (SELECT ID FROM AddOffer WHERE buyerID = @tempBuyerID AND addID = @tempAddID AND offerAccepted IS NULL )
 	BEGIN
 		SET @returnCode = -1; --exists
+		SELECT @returnCode;
 	END
 	ELSE
 	BEGIN
 		INSERT INTO AddOffer (buyerID, sellerID, addID, offerAmount) 
 		VALUES(@tempBuyerID, @tempSellerID, @tempAddID, @tempOfferAmount);
 		SET @returnCode =(SELECT MAX(ID) FROM AddOffer);
+		SELECT @returnCode;
 	END
 END
 
 RETURN  
 GO 
+
 
 
 
@@ -776,6 +778,10 @@ EXEC sp_NewAdmin '1015', 'Manager';
 EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
 
 
+EXEC sp_NewAdvertisement 1000,'Rake','offer', '1004','Cool Rake', 1000, 30, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1000);
+
+EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 ---PostalAddress Loading
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');
