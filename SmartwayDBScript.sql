@@ -271,11 +271,13 @@ create table AddReview	(		ID int IDENTITY(1000,1) primary key,
 create table AddOffer 	(		ID int IDENTITY(1000,1) primary key,
 								buyerID int NOT NULL,
 								sellerID int NOT NULL,
-								offerAmount float,
-								offerAccepted BIT,
+								addID int NOT NULL,
+								offerAmount decimal,
+								offerAccepted BIT DEFAULT NULL, -- Null is Pending, 0 is declined, 1 is Accepted
 								creationDate date NOT NULL DEFAULT GETDATE(),
 								active bit DEFAULT 1,
 								--foreignkeys
+								foreign key (addID) references Advertisement(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (buyerID) references Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
@@ -637,7 +639,39 @@ BEGIN
 	END --these are like { } brackets;
 END
 RETURN  
+GO
+
+--New Offer
+IF OBJECT_ID('sp_NewAddOffer', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewAddOffer;  
+GO  
+
+CREATE PROCEDURE sp_NewAddOffer(
+	@tempBuyerID int,
+	@tempSellerID int,
+	@tempAddID int,
+	@tempOfferAmount decimal,
+	@returnCode int Output)
+--Return on default = newID;
+AS
+BEGIN
+	IF EXISTS (SELECT ID FROM AddOffer WHERE buyerID = @tempBuyerID AND addID = @tempAddID AND offerAccepted = NULL )
+	BEGIN
+		SET @returnCode = -1; --exists
+	END
+	ELSE
+	BEGIN
+		INSERT INTO AddOffer (buyerID, sellerID, addID, offerAmount) 
+		VALUES(@tempBuyerID, @tempSellerID, @tempAddID, @tempOfferAmount);
+		SET @returnCode =(select max(ID) from AddOffer);
+	END
+END
+
+RETURN  
 GO 
+
+
+
 --DATALOAD
 
 ---StateName Loading
