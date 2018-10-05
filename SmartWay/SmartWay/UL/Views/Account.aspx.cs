@@ -58,17 +58,25 @@ namespace SmartWay.UL.Views
                 tbxLName.Text = lName;
                 tbxEmail.Text = email;
                 tbxDob.Text = DOB;
-                tbxPhoneNumber.Text = phoneNumber.ToString();
+                tbxPhoneNumber.Text = "0" + phoneNumber.ToString();
 
                 
                 lblUserName.Text = uName;
                 lblFName.Text = fName;
                 lblLName.Text = lName;
                 lblEmail.Text = email;
-                lblDOB.Text = uName;
-                lblPhoneNumber.Text = phoneNumber.ToString();
+                lblDOB.Text = DOB;
+                lblPhoneNumber.Text = "0" + phoneNumber.ToString();
 
                 //Address
+                if (unitNum == null || unitNum == "")
+                {
+                    tbxUnitNumber.Text = "N/A";
+                }
+                else
+                {
+                    tbxUnitNumber.Text = unitNum;
+                }
                 tbxUnitNumber.Text = unitNum;
                 tbxStreetNumber.Text = streetNum;
                 tbxStreetName.Text = streetName;
@@ -77,8 +85,14 @@ namespace SmartWay.UL.Views
                 tbxCountry.Text = country;
                 tbxPostcode.Text = postCode.ToString();
 
-
-                lblUnitNum.Text = unitNum;
+                if (unitNum == null || unitNum == "")
+                {
+                    lblUnitNum.Text = "N/A";
+                }
+                else
+                {
+                    lblUnitNum.Text = unitNum;
+                }
                 lblStreetNum.Text = streetNum;
                 lblStreetName.Text = streetName;
                 lblCity.Text = city;

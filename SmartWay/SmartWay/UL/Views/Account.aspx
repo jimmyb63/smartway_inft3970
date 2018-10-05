@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="SmartWay - My Account" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="SmartWay.UL.Views.Account" %>
-
+<%@ Import Namespace="SmartWay.DAL.Controllers" %>
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -33,7 +33,7 @@
                                     <h5 class="mb-3">User Profile</h5>
                                     <hr />
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <h6>Details</h6>
                                             <div class="card-text"><b>Username: </b><asp:Label ID="lblUserName" runat="server" Text="Label" /></div>
                                             <br />
@@ -47,6 +47,8 @@
                                             <br />
                                             <div class="card-text"><b>Phone Number: </b><asp:Label ID="lblPhoneNumber" runat="server" Text="Label" /></div>
                                             <br />
+                                        </div>
+                                        <div class="col-md-6">
                                             <h6>Address Details</h6>
                                             <div class="card-text"><b>Unit Number: </b><asp:Label ID="lblUnitNum" runat="server" Text="Label" /></div>
                                             <br />
@@ -61,6 +63,8 @@
                                             <div class="card-text"><b>Postcode: </b><asp:Label ID="lblPostcode" runat="server" Text="Label" /></div>
                                             <br />
                                         </div>
+                                    </div>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h6>About</h6>
@@ -192,7 +196,9 @@
                         <!---------- Profile Picture and File Upload ---------->
 
                         <div class="col-lg-3 order-lg-1 text-center">
-                            <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                            <% UserControls UC = new UserControls(); %>
+                            <% string filePath = UC.getProfileImage(currentUser.userID); %>
+                            <img src="<%=filePath %>" class="mx-auto img-fluid img-circle d-block" alt="avatar" />
                             <h6 class="mt-2">Upload a different photo</h6>
                             <label class="custom-file">
                                 <input type="file" id="file" class="custom-file-input" />
