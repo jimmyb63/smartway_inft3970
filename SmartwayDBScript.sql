@@ -169,7 +169,7 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									buyerID INT,
 									adType VARCHAR(30) NOT NULL,
 									title VARCHAR(50) NOT NULL,
-									adDescription VARCHAR(50) NOT NULL,
+									adDescription VARCHAR(250) NOT NULL,
 									addressID INT NOT NULL,
 									--addStatusID INT NOT NULL DEFAULT 0,
 									categoryID INT NOT NULL,
@@ -434,20 +434,21 @@ GO
 
 CREATE PROCEDURE sp_NewAdvertisement(
 	@tempSellerID INT,
-	@tempTitle VARCHAR(50),
-	@tempType VARCHAR(30),
-	@tempCategoryID INT,
-	@tempDescription VARCHAR(50),
+	@tempTitle varchar(50),
+	@tempType varchar(30),
+	@tempCategory varchar(30),
+	@tempSubCategory varchar(30),
+	@tempDescription varchar(250),
 	@tempAddressID INT,
 	@tempPrice DECIMAL,
 	@returnAdID INT OUTPUT)
 AS
-	--DECLARE @tempCategoryID INT;
+	DECLARE @tempCategoryID INT;
 BEGIN
-	--SET @tempCategoryID =(SELECT ID FROM AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
+	SET @tempCategoryID =(select ID from AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
 	INSERT INTO Advertisement (sellerID, adType, title, adDescription, addressID, categoryID, price)
 	VALUES(@tempSellerID, @tempType, @tempTitle, @tempDescription, @tempAddressID, @tempCategoryID, @tempPrice);
-	SET @returnAdID =(SELECT MAX(ID) FROM Advertisement);
+	SET @returnAdID =(select max(ID) from Advertisement);
 	SELECT @returnAdID;
 END
 GO
@@ -776,12 +777,21 @@ EXEC sp_NewAdmin '1015', 'Manager';
 --EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
 
 EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
+EXEC sp_NewProfileImg '../Images/TestImg/1000.png', '1000';
 
-
-EXEC sp_NewAdvertisement 1000,'Rake','offer', '1004','Cool Rake', 1000, 30, 5; 
+--Add Test Adds and  Images
+EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','Cool Rake', 1000, 30, 5; 
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1000);
 
+EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.', 1000, 30, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1001);
+--Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
+
+
+
+
+
 ---PostalAddress Loading
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');
