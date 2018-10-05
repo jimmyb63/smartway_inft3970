@@ -52,6 +52,18 @@ namespace SmartWay.BL.Models
             active = init_active;
         }
 
+        public Advertisement(int init_ID, int init_sellerID, string init_title, string init_description, DateTime init_datePosted, decimal init_price, bool init_active)
+        {
+            ID = init_ID;
+            sellerID = init_sellerID;
+            title = init_title;
+            description = init_description;
+            datePosted = init_datePosted;
+            dateComplete = null;
+            price = init_price;
+            active = init_active;
+        }
+
         public int advertisementID
         {
             get

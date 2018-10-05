@@ -27,7 +27,9 @@ IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL
   DROP TABLE dbo.ForumPost;
 IF OBJECT_ID('dbo.AddReview', 'U') IS NOT NULL 
   DROP TABLE dbo.AddReview;
-IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL 
+IF OBJECT_ID('dbo.AddOffer', 'U') IS NOT NULL
+  DROP TABLE dbo.AddOffer;
+IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL
   DROP TABLE dbo.ReviewReason;
 IF OBJECT_ID('dbo.RecycleLocations', 'U') IS NOT NULL 
   DROP TABLE dbo.RecycleLocations;
@@ -262,6 +264,18 @@ create table AddReview	(		ID int IDENTITY(1000,1) primary key,
 								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (reporterUserID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								foreign key (reviewReason) references ReviewReason(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+								)
+
+create table AddOffer 	(		ID int IDENTITY(1000,1) primary key,
+								buyerID int NOT NULL,
+								sellerID int NOT NULL,
+								offerAmount float,
+								offerAccepted BIT,
+								creationDate date NOT NULL DEFAULT GETDATE(),
+								active bit DEFAULT 1,
+								--foreignkeys
+								foreign key (buyerID) references Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 
 									
@@ -529,7 +543,23 @@ CREATE VIEW view_PersonStaff AS
 
 GO
 
-Select * From view_PersonStaff
+--Select * From view_PersonStaff
+
+--View of Sale Items
+IF ( OBJECT_ID('sp_SaleItems') IS NOT NULL ) 
+   DROP PROCEDURE sp_SaleItems
+GO
+
+--New Phone
+CREATE PROCEDURE sp_SaleItems(
+	@tempUserID INT)
+AS
+BEGIN
+	Select adType, title, adDescription, price, creationDate FROM Advertisement 
+	WHERE sellerID = (@tempUserID) AND active = 0;
+END
+GO
+
 -- If sp_Admin_Check Exists
 IF OBJECT_ID('sp_Admin_Check', 'P') IS NOT NULL  
    DROP PROCEDURE sp_Admin_Check;  
@@ -573,6 +603,30 @@ END
 RETURN  
 GO 
 
+--Get Profile Image
+IF OBJECT_ID('sp_GetProfileImg', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetProfileImg;  
+GO  
+
+CREATE PROCEDURE sp_GetProfileImg(
+	@tempUserID varchar(20))
+AS
+	DECLARE @tempFilePath varchar(260);
+BEGIN
+	IF EXISTS (SELECT filePath FROM ProfileImage WHERE userID = @tempUserID)
+	BEGIN --these are like { } brackets
+		SET @tempFilePath =(SELECT filePath FROM ProfileImage WHERE userID = @tempUserID);
+		SELECT @tempFilePath;  --- if a match is found returns the matches Filepath
+	END --these are like { } brackets
+	ELSE
+	BEGIN --these are like { } brackets
+		SET @tempFilePath = 'none';
+		SELECT @tempFilePath;  --- if not a match returns -1
+	END --these are like { } brackets;
+END
+
+RETURN  
+GO 
 --DATALOAD
 
 ---StateName Loading

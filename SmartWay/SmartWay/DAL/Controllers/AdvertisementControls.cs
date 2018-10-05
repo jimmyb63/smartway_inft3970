@@ -236,6 +236,33 @@ namespace SmartWay.DAL.Controllers
             return filePath;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getUserAdvertisements(int tempUserID)
+        {
+            List<Advertisement> userAdds = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "EXEC sp_SaleItems" + tempUserID; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement ad = new Advertisement((int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (DateTime)reader["creationDate"],
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
+                userAdds.Add(ad);
+            }
+            connection.Close();
+            return userAdds;
+        }
+
         public string getconnectionString()
         {
             return ConfigurationManager.ConnectionStrings["SmartWayconnectionString"].ConnectionString;
