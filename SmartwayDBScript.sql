@@ -10,7 +10,7 @@
 
 --Drop Database if it exist
 USE master
-IF EXISTS(select * from sys.databases where name='SmartwayDataBase')
+IF EXISTS(SELECT * FROM sys.databases WHERE name='SmartwayDataBase')
 DROP DATABASE SmartwayDataBase
 
 --Create Database
@@ -65,260 +65,260 @@ IF OBJECT_ID('dbo.StateName', 'U') IS NOT NULL
 --Create Tables
 --This table will be used to link the Address States to the postal Address in the Database
 --The values of the ID in the database will be the same as the value associated with that selection in the dropdown menu in the UserLayer,
-create table StateName	(	ID int NOT NULL IDENTITY(1,1) primary key,
-							stateName varchar(20) NOT NULL,
-							creationDate date NOT NULL DEFAULT GETDATE(),
-							active bit DEFAULT 1,
-						)
+CREATE TABLE StateName		(	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+							stateName VARCHAR(20) NOT NULL,
+							creationDate DATE NOT NULL DEFAULT GETDATE(),
+							active BIT DEFAULT 1,
+							)
 
 --This table will be used to store the Address of the Users that register with SmartWay.
-create table PostalAddress	(	ID int IDENTITY(1000,1) primary key,
-								unitNumber varchar(4), -- unit number can be letter or number
-								streetAddress varchar(20) NOT NULL,
-								streetName varchar(35) NOT NULL,
-								city varchar(50) NOT NULL,
-								postCode int NOT NULL,
-								stateName int NOT NULL, -- References a saved StateName.
-								country varchar(30) NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								foreign key (stateName) references StateName(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+CREATE TABLE PostalAddress	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
+								unitNumber VARCHAR(4), -- unit number can be letter or number
+								streetAddress VARCHAR(20) NOT NULL,
+								streetName VARCHAR(35) NOT NULL,
+								city VARCHAR(50) NOT NULL,
+								postCode INT NOT NULL,
+								stateName INT NOT NULL, -- References a saved StateName.
+								country VARCHAR(30) NOT NULL,
+								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
+								FOREIGN KEY (stateName) REFERENCES StateName(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							)
 
 --This table will be used to store the Phone Number of the Users that register with SmartWay.
-create table PhoneNumber (	ID int IDENTITY(1000,1) primary key,
-							phoneNumber int,
-							creationDate date NOT NULL DEFAULT GETDATE(),
-							active bit DEFAULT 1,
-						)
+CREATE TABLE PhoneNumber	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
+								phoneNumber INT,
+								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
+							)
 
 --This table will be used to store the Personal Details of the Users that register with SmartWay.
 --Will link to PhoneNumber and PostalAddresses via their ID
 --Requirements. Date of Birth should not be in the future.
-create table Person		(	ID int IDENTITY(1000,1) primary key,
-							firstName varchar(20) NOT NULL,
-							lastName varchar(20) NOT NULL,
-							email varchar(320),
-							DOB	date,
-							phoneNumberId int,
-							addressId int,
-							paypalID int,
-							SWUsername varchar(30),
-							SWPassword varchar(30),
-							verificationDate date,
-							creationDate date NOT NULL DEFAULT GETDATE(),
-							active bit default 1,
-							foreign key (PhoneNumberId) references PhoneNumber(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-							foreign key (addressId) references PostalAddress(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
-						)
+CREATE TABLE Person			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
+								firstName VARCHAR(20) NOT NULL,
+								lastName VARCHAR(20) NOT NULL,
+								email VARCHAR(320),
+								DOB	DATE,
+								phoneNumberId INT,
+								addressId INT,
+								paypalID INT,
+								SWUsername VARCHAR(30),
+								SWPassword VARCHAR(30),
+								verificationDate DATE,
+								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
+								FOREIGN KEY (PhoneNumberId) REFERENCES PhoneNumber(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+								FOREIGN KEY (addressId) REFERENCES PostalAddress(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 --This table will be used to store the Verification Details of the Users that register with SmartWay.
 --Requirements. Code, personID and creation Date should NOT be Null.
-create table VerificationCode (	ID int IDENTITY(1,1) primary key,
-								code varchar(8) NOT NULL,
-								personID int,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit default 1,
-								foreign key (personID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+CREATE TABLE VerificationCode(	ID INT IDENTITY(1,1) PRIMARY KEY,
+								code VARCHAR(8) NOT NULL,
+								personID INT,
+								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
+								FOREIGN KEY (personID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 							  )
 
 --This table will be used to store the People that are Staff with SmartWay. This is a child of person.
 --Will link to Person via their ID
 --Requirement:-
-create table Staff		(	ID int IDENTITY(1000,1) primary key,
-							personID int,
-							position varchar(30) NOT NULL,
-							creationDate date NOT NULL DEFAULT GETDATE(),
-							active bit DEFAULT 1,
-							foreign key (personID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
-						)
+CREATE TABLE Staff			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
+								personID INT,
+								position VARCHAR(30) NOT NULL,
+								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
+								FOREIGN KEY (personID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 
 --This table will be used to store the Paypal Details of the Users that register with SmartWay.
 --Will link to Person via their ID
 --Requirements. 
-create table PaypalDetails (	ID int IDENTITY(1000,1) primary key,
-								personID int,
-								paypalUserName varchar(32) NOT NULL,
-								paypalAccountNumber varchar(32),
-								primaryPaymentMethod bit DEFAULT 0,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
+CREATE TABLE PaypalDetails (	ID INT IDENTITY(1000,1) PRIMARY KEY,
+								personID INT,
+								paypalUserName VARCHAR(32) NOT NULL,
+								paypalAccountNumber VARCHAR(32),
+								primaryPaymentMethod BIT DEFAULT 0,
+								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
 								FOREIGN KEY (PersonID) REFERENCES Person(ID) 
 								)
 
 ----Add comments
---create table AddStatus (		ID int IDENTITY(1000,1) primary key,
---								StatusName varchar(30) NOT NULL,
---								creationDate date NOT NULL DEFAULT GETDATE(),
---								active bit DEFAULT 1
+--create table AddStatus (		ID INT IDENTITY(1000,1) PRIMARY KEY,
+--								StatusName VARCHAR(30) NOT NULL,
+--								creationDate DATE NOT NULL DEFAULT GETDATE(),
+--								active BIT DEFAULT 1
 --								)
 
 --This table will be used to store the Add Categories of the Advertisements with SmartWay.
 --Requirements:-
-create table AddCategory	(		ID int IDENTITY(1000,1) primary key,
-									category varchar(30) NOT NULL,
-									subCategory varchar(30)NOT NULL,
-									creationDate date NOT NULL DEFAULT GETDATE(),
-									active bit DEFAULT 1
+CREATE TABLE AddCategory	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									category VARCHAR(30) NOT NULL,
+									subCategory VARCHAR(30)NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1
 							)
 
 --This table will be used to store the Advertisement Details registered with SmartWay.
 --Will link to Sellers, Buyers, Address via their ID. 
 --Requirements:-
-create table Advertisement (	ID int IDENTITY(1000,1) primary key,
-								sellerID int NOT NULL,
-								buyerID int,
-								adType varchar(30) NOT NULL,
-								title varchar(50) NOT NULL,
-								adDescription varchar(50) NOT NULL,
-								addressID int NOT NULL,
-								--addStatusID int NOT NULL DEFAULT 0,
-								categoryID int NOT NULL,
-								price decimal NOT NULL,		
-								dateCompleted date,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (sellerID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (buyerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (addressID) references PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
-								--foreign key (addStatusID) references AddStatus(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									sellerID INT NOT NULL,
+									buyerID INT,
+									adType VARCHAR(30) NOT NULL,
+									title VARCHAR(50) NOT NULL,
+									adDescription VARCHAR(50) NOT NULL,
+									addressID INT NOT NULL,
+									--addStatusID INT NOT NULL DEFAULT 0,
+									categoryID INT NOT NULL,
+									price DECIMAL NOT NULL,		
+									dateCompleted DATE,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (addressID) REFERENCES PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
+									--FOREIGN KEY (addStatusID) REFERENCES AddStatus(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (categoryID) REFERENCES AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 
 --This table will be used to store the Img Details.
 --Will link to Person via their ID
 --Requirements. filepagth, userID should not be NULL.
-create table ProfileImage (		ID int IDENTITY(1000,1) primary key,
-								filePath varchar(260) NOT NULL,
-								userID int NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1
-								foreign key (userID) references Person(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE ProfileImage	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									filePath VARCHAR(260) NOT NULL,
+									userID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1
+									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 --This table will be used to link the Imgs to attach to details.
 --Will link to Person via their ID
 --Requirements. Date of Birth should not be in the future.
-create table AddImage	(		ID int IDENTITY(1000,1) primary key,
-								--imageID int NOT NULL,
-								filePath varchar(260) NOT NULL,
-								userID int NOT NULL,
-								adID int NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (userID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (adID) references Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE AddImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									--imageID INT NOT NULL,
+									filePath VARCHAR(260) NOT NULL,
+									userID INT NOT NULL,
+									adID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (adID) REFERENCES Advertisement(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 
 --This table will be used to link the Imgs to attach to details.
 --Will link to Person via their ID
 --Requirements. Date of Birth should not be in the future.
-create table FeedBack (			ID int IDENTITY(1000,1) primary key,
-								sellerID int NOT NULL,
-								buyerID int,
-								addID int NOT NULL,
-								rating int NOT NULL,
-								comment varchar(30) NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								foreign key (sellerID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (buyerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (addID) references Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE FeedBack		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									sellerID INT NOT NULL,
+									buyerID INT,
+									addID INT NOT NULL,
+									rating INT NOT NULL,
+									comment VARCHAR(30) NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 --Add comments
-create table RecycleLocations (	ID int IDENTITY(1000,1) primary key,
-								title varchar(30) NOT NULL,
-								shortDescription varchar(50) NOT NULL,
-								imageID int NOT NULL,
-								addressID int NOT NULL,
-								categoryID int NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (imageID) references ProfileImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (addressID) references PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+CREATE TABLE RecycleLocations	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
+									title VARCHAR(30) NOT NULL,
+									shortDescription VARCHAR(50) NOT NULL,
+									imageID INT NOT NULL,
+									addressID INT NOT NULL,
+									categoryID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (addressID) REFERENCES PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (categoryID) REFERENCES AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 								)
 									
 --This table will be used to link the Imgs to attach to details.
 --Will link to Person via their ID
 --Requirements. Date of Birth should not be in the future.
-create table ReviewReason (		ID int IDENTITY(1000,1) primary key,
-								reviewReason varchar(30) NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1
+CREATE TABLE ReviewReason	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									reviewReason VARCHAR(30) NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1
 							)
 
 --This Table will be used to capture requests for Admin to review an Add.
-create table AddReview	(		ID int IDENTITY(1000,1) primary key,
-								addID int NOT NULL,
-								sellerID int NOT NULL,
-								reporterUserID int,
-								reviewReason int NOT NULL,
-								adDescription varchar(150) NOT NULL,
-								adminComments varchar(150),
-								inReview BIT,
-								dateCompleted date,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (addID) references Advertisement(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (reporterUserID) references Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (reviewReason) references ReviewReason(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE AddReview		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									addID INT NOT NULL,
+									sellerID INT NOT NULL,
+									reporterUserID INT,
+									reviewReason INT NOT NULL,
+									adDescription VARCHAR(150) NOT NULL,
+									adminComments VARCHAR(150),
+									inReview BIT,
+									dateCompleted DATE,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (reporterUserID) REFERENCES Person(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (reviewReason) REFERENCES ReviewReason(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 
-create table AddOffer 	(		ID int IDENTITY(1000,1) primary key,
-								buyerID int NOT NULL,
-								sellerID int NOT NULL,
-								addID int NOT NULL,
-								offerAmount decimal,
-								offerAccepted BIT DEFAULT NULL, -- Null is Pending, 0 is declined, 1 is Accepted
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (addID) references Advertisement(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (buyerID) references Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									buyerID INT NOT NULL,
+									sellerID INT NOT NULL,
+									addID INT NOT NULL,
+									offerAmount DECIMAL,
+									offerAccepted BIT DEFAULT NULL, -- Null is Pending, 0 is declined, 1 is Accepted
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 
-create table WatchListItem 	(	ID int IDENTITY(1000,1) primary key,
-								watcherID int NOT NULL,
-								sellerID int NOT NULL,
-								currentlyWatching BIT DEFAULT 1,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (watcherID) references Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (sellerID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									watcherID INT NOT NULL,
+									sellerID INT NOT NULL,
+									currentlyWatching BIT DEFAULT 1,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (watcherID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 									
 --Add comments							
-create table ForumPost	 (		ID int IDENTITY(1000,1) primary key,
-								personID int NOT NULL,
-								title varchar(30) NOT NULL,
-								forumDescription varchar(50) NOT NULL,
-								imageID int NOT NULL,
-								categoryID int NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys	
-								foreign key (personID) references Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (imageID) references ProfileImage(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (categoryID) references AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									personID INT NOT NULL,
+									title VARCHAR(30) NOT NULL,
+									forumDescription VARCHAR(50) NOT NULL,
+									imageID INT NOT NULL,
+									categoryID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys	
+									FOREIGN KEY (personID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (categoryID) REFERENCES AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 								
 --Add comments	
-create table ForumComment	 (	ID int IDENTITY(1000,1) primary key,
-								forumPostID int NOT NULL,
-								comment varchar(50) NOT NULL,
-								imageID int NOT NULL,
-								creationDate date NOT NULL DEFAULT GETDATE(),
-								active bit DEFAULT 1,
-								--foreignkeys
-								foreign key (forumPostID) references ForumPost(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-								foreign key (imageID) references ProfileImage(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
-								)
+CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									forumPostID INT NOT NULL,
+									comment VARCHAR(50) NOT NULL,
+									imageID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (forumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 
 
 --STORE PROCEDURES
@@ -328,7 +328,7 @@ IF ( OBJECT_ID('sp_state_insert') IS NOT NULL )
 GO
 
 CREATE PROCEDURE sp_state_insert(
-	@stateName varchar(20))
+	@stateName VARCHAR(20))
 AS
 BEGIN
 	INSERT INTO StateName (stateName) 
@@ -342,11 +342,11 @@ IF OBJECT_ID('sp_NewPerson', 'P') IS NOT NULL
 GO  
 
 CREATE PROCEDURE sp_NewPerson(
-	@tempFirstname varchar(20),
-	@tempLastName varchar(20), 
-	@tempEmail varchar(320),
-	@tempPassword varchar(30))
---Return on default = newID;
+	@tempFirstname VARCHAR(20),
+	@tempLastName VARCHAR(20), 
+	@tempEmail VARCHAR(320),
+	@tempPassword VARCHAR(30))
+--Return on DEFAULT = newID;
 AS
 BEGIN
 	INSERT INTO Person (firstName, lastName, email, SWPassword) 
@@ -363,14 +363,14 @@ GO
 
 --New Address
 CREATE PROCEDURE sp_NewAddress(
-	@tempUnitNumber varchar(4), -- unit number can be letter or number
-	@tempStreetAddress varchar(20),
-	@tempStreetName varchar(35),
-	@tempCity varchar(50),
-	@tempPostCode int,
-	@tempStateName int, -- References a saved StateName.
-	@tempCountry varchar(30))
---Return on default = newID;
+	@tempUnitNumber VARCHAR(4), -- unit number can be letter or number
+	@tempStreetAddress VARCHAR(20),
+	@tempStreetName VARCHAR(35),
+	@tempCity VARCHAR(50),
+	@tempPostCode INT,
+	@tempStateName INT, -- References a saved StateName.
+	@tempCountry VARCHAR(30))
+--Return on DEFAULT = newID;
 AS
 BEGIN
 	INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country) 
@@ -387,8 +387,8 @@ GO
 
 --Add New Admin
 CREATE PROCEDURE sp_NewAdmin(
-	@tempPersonID int,
-	@tempPosition varchar(30))
+	@tempPersonID INT,
+	@tempPosition VARCHAR(30))
 AS
 BEGIN
 	INSERT INTO Staff (personID, position) 
@@ -418,7 +418,7 @@ GO
 
 --New Verification Code
 CREATE PROCEDURE sp_newVerificationCode(
-	@tempVerificationCode varchar(8),
+	@tempVerificationCode VARCHAR(8),
 	@tempPersonId INT)
 AS
 BEGIN
@@ -434,21 +434,20 @@ GO
 
 CREATE PROCEDURE sp_NewAdvertisement(
 	@tempSellerID INT,
-	@tempTitle varchar(50),
-	@tempType varchar(30),
-	@tempCategory varchar(30),
-	@tempSubCategory varchar(30),
-	@tempDescription varchar(50),
+	@tempTitle VARCHAR(50),
+	@tempType VARCHAR(30),
+	@tempCategoryID INT,
+	@tempDescription VARCHAR(50),
 	@tempAddressID INT,
 	@tempPrice DECIMAL,
 	@returnAdID INT OUTPUT)
 AS
-	DECLARE @tempCategoryID INT;
+	--DECLARE @tempCategoryID INT;
 BEGIN
-	SET @tempCategoryID =(select ID from AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
+	--SET @tempCategoryID =(SELECT ID FROM AddCategory where category = @tempCategory and subCategory = @tempSubCategory);
 	INSERT INTO Advertisement (sellerID, adType, title, adDescription, addressID, categoryID, price)
 	VALUES(@tempSellerID, @tempType, @tempTitle, @tempDescription, @tempAddressID, @tempCategoryID, @tempPrice);
-	SET @returnAdID =(select max(ID) from Advertisement);
+	SET @returnAdID =(SELECT MAX(ID) FROM Advertisement);
 	SELECT @returnAdID;
 END
 GO
@@ -459,25 +458,25 @@ IF OBJECT_ID('sp_NewRegistration', 'P') IS NOT NULL
 GO  
 
 CREATE PROCEDURE sp_NewRegistration(
-	@tempFirstname varchar(20),
-	@tempLastName varchar(20),
-	@tempUsername varchar(30),
-	@tempDOB date, 
-	@tempEmail varchar(320),
-	@tempPassword varchar(30),
+	@tempFirstname VARCHAR(20),
+	@tempLastName VARCHAR(20),
+	@tempUsername VARCHAR(30),
+	@tempDOB DATE, 
+	@tempEmail VARCHAR(320),
+	@tempPassword VARCHAR(30),
 	@tempPhone INT,
-	@tempUnitNumber varchar(4), -- unit number can be letter or number
-	@tempStreetAddress varchar(20),
-	@tempStreetName varchar(35),
-	@tempCity varchar(50),
-	@tempPostCode int,
-	@tempStateName int, -- References a saved StateName.
-	@tempCountry varchar(30),
-	@tempVerificationCode varchar(8),
+	@tempUnitNumber VARCHAR(4), -- unit number can be letter or number
+	@tempStreetAddress VARCHAR(20),
+	@tempStreetName VARCHAR(35),
+	@tempCity VARCHAR(50),
+	@tempPostCode INT,
+	@tempStateName INT, -- References a saved StateName.
+	@tempCountry VARCHAR(30),
+	@tempVerificationCode VARCHAR(8),
 	@returnPersonID INT OUTPUT)
---Return on default = newID;
+--Return on DEFAULT = newID;
 AS
- --DECLARE Temp Primary Key Variables
+ --DECLARE Temp PRIMARY KEY Variables
 	DECLARE @tempPostalAddressID INT;
 	DECLARE @tempPhoneID INT;
 	--DECLARE @returnPersonID INT;
@@ -486,11 +485,11 @@ BEGIN
 	VALUES(@tempUnitNumber, @tempStreetAddress, @tempStreetName, @tempCity, @tempPostCode, @tempStateName, @tempCountry);
 	INSERT INTO PhoneNumber (phoneNumber) 
 	VALUES(@tempPhone);
-	SET @tempPostalAddressID =(select max(ID) from PostalAddress);
-	SET @tempPhoneID =(select max(ID) from PhoneNumber);
+	SET @tempPostalAddressID =(SELECT MAX(ID) FROM PostalAddress);
+	SET @tempPhoneID =(SELECT MAX(ID) FROM PhoneNumber);
 	INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, phoneNumberId, addressId) 
 	VALUES(@tempFirstname, @tempLastName, @tempEmail, @tempDOB, @tempUsername, @tempPassword, @tempPhoneID, @tempPostalAddressID );
-	SET @returnPersonID =(select max(ID) from Person);
+	SET @returnPersonID =(SELECT MAX(ID) FROM Person);
 	INSERT INTO VerificationCode (code, personID) 
 	VALUES(@tempVerificationCode, @returnPersonID);
 	SELECT @returnPersonID;
@@ -503,9 +502,9 @@ IF ( OBJECT_ID('sp_updatePerson') IS NOT NULL )
 GO
 
 CREATE PROCEDURE sp_updatePerson(
-	@tempFirstName varchar(20),
-	@tempLastName varchar(20),
-	@tempEmail varchar(320), 
+	@tempFirstName VARCHAR(20),
+	@tempLastName VARCHAR(20),
+	@tempEmail VARCHAR(320), 
 	@tempID INT )
 
 AS
@@ -522,7 +521,7 @@ IF ( OBJECT_ID('sp_verifyPerson') IS NOT NULL )
 GO
 
 CREATE PROCEDURE sp_verifyPerson(
-	@tempVerificationCode varchar(8),
+	@tempVerificationCode VARCHAR(8),
 	@tempPersonId INT)
 AS
 	DECLARE @tempCurrentDate DATE;
@@ -557,7 +556,7 @@ CREATE VIEW view_PersonStaff AS
 
 GO
 
---Select * From view_PersonStaff
+--SELECT * FROM view_PersonStaff
 
 --View of Sale Items
 IF ( OBJECT_ID('sp_SaleItems') IS NOT NULL ) 
@@ -569,7 +568,7 @@ CREATE PROCEDURE sp_SaleItems(
 	@tempUserID INT)
 AS
 BEGIN
-	Select ID, sellerID, adType, title, adDescription, price, creationDate, active FROM Advertisement 
+	SELECT ID, sellerID, adType, title, adDescription, price, creationDate, active FROM Advertisement 
 	WHERE sellerID = (@tempUserID) AND active = 1;
 END
 GO
@@ -581,7 +580,7 @@ GO
 
 --Admin Check is used to check if a user is admin via their email address.
 CREATE PROCEDURE sp_Admin_Check(
-	@email varchar(320), -- email address
+	@email VARCHAR(320), -- email address
 	@returnAdminID INT OUTPUT)  -- temp variable used to return AdminID
 AS
 BEGIN
@@ -605,9 +604,9 @@ IF OBJECT_ID('sp_NewProfileImg', 'P') IS NOT NULL
 GO  
 
 CREATE PROCEDURE sp_NewProfileImg(
-	@tempFilePath varchar(260),
-	@tempUserID varchar(20))
---Return on default = newID;
+	@tempFilePath VARCHAR(260),
+	@tempUserID VARCHAR(20))
+--Return on DEFAULT = newID;
 AS
 BEGIN
 	INSERT INTO ProfileImage (filePath, userID) 
@@ -623,9 +622,9 @@ IF OBJECT_ID('sp_GetProfileImg', 'P') IS NOT NULL
 GO  
 
 CREATE PROCEDURE sp_GetProfileImg(
-	@tempUserID varchar(20))
+	@tempUserID VARCHAR(20))
 AS
-	DECLARE @tempFilePath varchar(260);
+	DECLARE @tempFilePath VARCHAR(260);
 BEGIN
 	IF EXISTS (SELECT filePath FROM ProfileImage WHERE userID = @tempUserID)
 	BEGIN --these are like { } brackets
@@ -647,28 +646,31 @@ IF OBJECT_ID('sp_NewAddOffer', 'P') IS NOT NULL
 GO  
 
 CREATE PROCEDURE sp_NewAddOffer(
-	@tempBuyerID int,
-	@tempSellerID int,
-	@tempAddID int,
-	@tempOfferAmount decimal,
-	@returnCode int Output)
---Return on default = newID;
+	@tempBuyerID INT,
+	@tempSellerID INT,
+	@tempAddID INT,
+	@tempOfferAmount DECIMAL,
+	@returnCode INT Output)
+--Return on DEFAULT = newID;
 AS
 BEGIN
-	IF EXISTS (SELECT ID FROM AddOffer WHERE buyerID = @tempBuyerID AND addID = @tempAddID AND offerAccepted = NULL )
+	IF EXISTS (SELECT ID FROM AddOffer WHERE buyerID = @tempBuyerID AND addID = @tempAddID AND offerAccepted IS NULL )
 	BEGIN
 		SET @returnCode = -1; --exists
+		SELECT @returnCode;
 	END
 	ELSE
 	BEGIN
 		INSERT INTO AddOffer (buyerID, sellerID, addID, offerAmount) 
 		VALUES(@tempBuyerID, @tempSellerID, @tempAddID, @tempOfferAmount);
-		SET @returnCode =(select max(ID) from AddOffer);
+		SET @returnCode =(SELECT MAX(ID) FROM AddOffer);
+		SELECT @returnCode;
 	END
 END
 
 RETURN  
 GO 
+
 
 
 
@@ -776,6 +778,10 @@ EXEC sp_NewAdmin '1015', 'Manager';
 EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
 
 
+EXEC sp_NewAdvertisement 1000,'Rake','offer', '1004','Cool Rake', 1000, 30, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1000);
+
+EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 ---PostalAddress Loading
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');

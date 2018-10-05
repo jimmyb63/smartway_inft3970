@@ -19,9 +19,21 @@ GO
 
 Select * FROM StateName;
 
+Select * 
+From AddCategory
 
 Select * 
 From Person
+
+Select * 
+From Advertisement
+
+Select * 
+From AddOffer
+
+SELECT *
+FROM AddImage
+
 
 Select * 
 From PostalAddress
@@ -38,10 +50,13 @@ From ProfileImage
 Select *
 From AddImage
 
+
+
+
+
 Select * From Advertisement Where ID = 1000
 
-Select * 
-From Advertisement
+
 
 --Shouldn't work
 EXEC sp_verifyPerson 'abcd1234', 1001
@@ -54,3 +69,6 @@ SELECT code FROM VerificationCode WHERE personID = 1000
 
 Select adType, title, adDescription, price, creationDate FROM Advertisement 
 	WHERE sellerID = (1000) AND active = 1
+
+SELECT ID FROM AddOffer 
+WHERE buyerID = 1003 AND addID = 1000 AND offerAccepted IS NULL
