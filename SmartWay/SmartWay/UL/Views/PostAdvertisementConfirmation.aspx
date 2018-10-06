@@ -14,7 +14,7 @@
                                 <h1>Your Advertisement Has Been Posted</h1>
                                 <%-- After successful verification, user is redirected to homepage --%>
                                 <p>Click <a href="index.aspx">here</a> to go to homepage</p>
-                                <p>You will be automatically redirected in 5 seconds</p>
+                                <p>You will be automatically redirected in 5 seconds. Please wait</p>
                             </div>
                         </div>
                     </div>
