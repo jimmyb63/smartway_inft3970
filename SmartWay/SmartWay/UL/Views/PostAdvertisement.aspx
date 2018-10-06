@@ -107,6 +107,7 @@
                         ID="txtDescription" 
                         Rows="6" 
                         runat="server" />
+
                     <asp:RequiredFieldValidator
                         ErrorMessage="Required"
                         ForeColor="Red"
@@ -251,7 +252,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <p>Dont have and account? <a href="Registration.aspx" class="text-primary">Click Here to Register</a></p>
+                                <p>Don't have an account? <a href="Registration.aspx" class="text-primary">Click Here to Register</a></p>
                             </div>
                         </div>
                     </div>
