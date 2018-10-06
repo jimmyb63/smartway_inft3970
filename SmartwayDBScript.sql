@@ -21,6 +21,8 @@ USE SmartwayDataBase;
 GO
 
 --Drop Tables if they exist
+IF OBJECT_ID('dbo.PrivateMessage', 'U') IS NOT NULL 
+  DROP TABLE dbo.PrivateMessage; 
 IF OBJECT_ID('dbo.ForumComment', 'U') IS NOT NULL 
   DROP TABLE dbo.ForumComment; 
 IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL 
@@ -273,7 +275,7 @@ CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									sellerID INT NOT NULL,
 									addID INT NOT NULL,
 									offerAmount DECIMAL,
-									offerAccepted BIT DEFAULT NULL, -- Null is Pending, 0 is declined, 1 is Accepted
+									offerAccepted INT DEFAULT 2, -- 0 for declined, 1 for accepted, 2 for pending
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
@@ -281,6 +283,7 @@ CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
+
 
 CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									watcherID INT NOT NULL,
@@ -318,6 +321,25 @@ CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									--foreignkeys
 									FOREIGN KEY (forumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
+
+CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									sendersUserID INT NOT NULL,
+									receiverUserID INT NOT NULL,
+									addID INT,
+									forumID INT,
+									messageDetails VARCHAR(250) NOT NULL,
+									lastPrivateMessageID INT,   --Used to link last message and a reply
+									messageRead BIT DEFAULT 0,		-- 0 is Not Read, 1 is Read
+									messageReplied BIT DEFAULT 0,	-- 0 is Not Replied, 1 is Replied
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (lastPrivateMessageID) REFERENCES PrivateMessage(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (addID) REFERENCES Advertisement(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (forumID) REFERENCES ForumPost(ID)						ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (sendersUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (receiverUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
 
@@ -672,6 +694,67 @@ END
 RETURN  
 GO 
 
+--New Offer
+IF OBJECT_ID('sp_NewPrivateMessage', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewPrivateMessage;  
+GO  
+
+CREATE PROCEDURE sp_NewPrivateMessage(
+	@tempSendersUserID INT,
+	@tempReceiverUserID INT,
+	@tempAddID INT,
+	@tempForumID INT,
+	@tempMessageDetails INT,
+	@tempLastPrivateMessageID INT,
+	@returnNewMessageID INT Output)
+--Return on DEFAULT = newID;
+AS
+BEGIN
+	IF (@tempAddID = 0) -- Is a message Regarding a Forum Post
+	BEGIN
+		IF (@tempLastPrivateMessageID = 0) --Is New message about a Forum Post from this user.
+		BEGIN
+			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails) 
+			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails);
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
+		END
+		ELSE
+		BEGIN	--Is Reply message about a Forum Post from this user.
+			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails, lastPrivateMessageID) 
+			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails, @tempLastPrivateMessageID);
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
+		END
+	END
+	ELSE IF (@tempForumID = 0)  -- Is a message Regarding an Add Post
+	BEGIN
+		IF (@tempLastPrivateMessageID = 0) --Is New message about a Add Post from this user.
+		BEGIN
+			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails) 
+			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails);
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
+		END
+		ELSE --Is Reply message about a Add Post from this user.
+		BEGIN
+			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails, lastPrivateMessageID) 
+			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails, @tempLastPrivateMessageID);
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
+		END
+	END
+	ELSE --Is a message about neither an Add Post or a foumPost.
+	BEGIN
+		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, messageDetails, lastPrivateMessageID) 
+		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempMessageDetails, @tempLastPrivateMessageID);
+		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+		SELECT @returnNewMessageID;
+	END
+END
+
+RETURN  
+GO
 
 
 
