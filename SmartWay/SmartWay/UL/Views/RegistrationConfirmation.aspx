@@ -9,7 +9,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1>Thankyou - Your account has been verified</h1>
+                                <h1>Thank you - Your account has been verified</h1>
                                 <%-- After successful verification, user is redirected to login page --%>
                                 <p>Click <a href="Login.aspx">here</a> to login</p>
                                 <p>You will be automatically redirected in 10 seconds</p>
