@@ -12,6 +12,7 @@
             int userID = currentUser.userID;%>
 
     <!------- Page Content -------->
+
     <div class="col-lg-9 mt-2">
         <div class="p-2 mb-2 bg-primary text-white">Post an Ad</div>
         <div class="card">
@@ -259,4 +260,6 @@
                 </div>
             </div>
     <% } %>
+    </div>
+</div>
 </asp:Content>

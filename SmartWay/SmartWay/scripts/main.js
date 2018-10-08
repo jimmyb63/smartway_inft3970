@@ -127,4 +127,5 @@ jQuery(document).ready(function(){
 		}
 		scrolling = false;
     }
+  }
 });

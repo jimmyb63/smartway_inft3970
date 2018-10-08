@@ -1,4 +1,4 @@
-﻿1<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="SmartWay.User" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.master.cs" Inherits="SmartWay.User" %>
 
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <%@ Import Namespace="SmartWay.DAL.Controllers" %>
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="Content/smartway.css" rel="stylesheet" />
+    <link href="Content/mdb.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -21,30 +22,60 @@
 </head>
 <body>
     <form runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-            <div class="container">
+        <!----------------- Top Navbar ------------------->
+        <nav class="navbar navbar-expand-lg navbar-dark blue fixed-top">
+            <div class="container-fluid">
+                <!----------------- logo ------------------->
                 <a class="navbar-brand" href="Index.aspx">SmartWay</a>
+                <!----------------- Toggle for mobile devices ------------------->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link m-1" href="index.aspx"><i class="fas fa-home"></i>Home</a> </li>
-                        <li class="nav-item"><a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=goods"><i class="fas fa-shopping-cart"></i>Goods</a> </li>
-                        <li class="nav-item"><a class="nav-link m-1" href="ViewAdvertisementList.aspx?category=services"><i class="fas fa-people-carry"></i>Services</a> </li>
-
+                        <!----------------- navigation links ------------------->
+                        <li class="nav-item"><a class="nav-link m-1" href="index.aspx"><i class="fas fa-home mr-1"></i>Home</a> </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle m-1" id="goodsdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart mr-1"></i>Goods</a>
+                            <div class="dropdown-menu" aria-labelledby="goodsdropdown">
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?category=goods">All Goods</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=free">Free</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=household">Household</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=electronics">Electronics</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=outdoor">Outdoor</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=sporting">Sporting</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=automotive">Automotive</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=baby/child">Baby/Child</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=clothing">Clothing</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=tools">Tools</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=other">Other</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle m-1" id="servicesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-people-carry mr-1"></i>Services</a>
+                            <div class="dropdown-menu" aria-labelledby="servicesdropdown">
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?category=services">Browse all Services</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=labour">Labour</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=tools required">Tools Required</a>
+                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=skills required">Skills Required</a>
+                            </div>
+                        </li>
                         <% if (Session["currentUser"] != null)
                             {
                                 Person currentUser = new Person();
                                 currentUser = (Person)Session["currentUser"];
                                 int userID = currentUser.userID;%>
-                        <li class="nav-item"><a class="nav-link m-1" href="Account.aspx?userID=<%=currentUser.userID %>"><i class="fas fa-user-alt"></i>Profile</a> </li>
-                        <li class="nav-item"><a class="nav-link m-1" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt"></i>Logout</a> </li>
+                        <li class="nav-item"><a class="nav-link m-1" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-1"></i>My Offers</a></li>
+                        <li class="nav-item"><a class="nav-link m-1" href="MyAdvertisements.aspx"><i class="fas fa-list mr-1"></i>My Advertisements</a></li>
+                        <li class="nav-item"><a class="nav-link m-1" href="Account.aspx?userID=<%=currentUser.userID%>"><i class="fas fa-user-alt mr-1"></i>Profile</a> </li>
+                        <li class="nav-item"><a class="nav-link m-1" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a></li>
                         <% }
                             else
                             { %>
-                        <li class="nav-item"><a class="nav-link m-1" href="Login.aspx"><i class="fas fa-sign-in-alt"></i>Login</a> </li>
-                        <li class="nav-item"><a class="nav-link m-1" href="Registration.aspx"><i class="fas fa-user-plus"></i>Register</a> </li>
+                        <li class="nav-item"><a class="nav-link m-1" href="Login.aspx"><i class="fas fa-user-alt mr-1"></i>Login</a></li>
+                        <li class="nav-item"><a class="nav-link m-1" href="Registration.aspx"><i class="fas fa-user-plus mr-1"></i>Register</a></li>
+                        
                         <% } %>
-                        <li class="nav-item"><a class="nav-link m-1" href="Contact.aspx"><i class="fas fa-file-contract"></i></> Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,17 +118,17 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <a class="btn btn-success btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Post Advertisement</a>
-                    <a class="btn btn-success btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Post in Forum</a>
+                <div class="col-lg-3 d-none d-lg-block">
+                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Post Advertisement</a>
+                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Post in Forum</a>
                     <hr />
-                    <a class="btn btn-danger btn-block mt-2 col-lg-12" href="MyAdvertisements.aspx">My Advertisements</a>
-                    <a class="btn btn-danger btn-block mt-2 col-lg-12" href="MyOffers.aspx">My Offers</a>
+                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="MyAdvertisements.aspx">My Advertisements</a>
+                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="MyOffers.aspx">My Offers</a>
                     <hr />
                     <!--Sidebar Accordion-->
                     <div id="accordion">
-                        <div class="card mt-2">
-                            <a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                        <div class="card">
+                            <a class="mt-2 blue darken-3 btn btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseOne" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=goods" class="list-group-item">Browse all Goods</a>
@@ -115,7 +146,7 @@
                             </div>
                         </div>
                         <div class="card mt-2">
-                            <a class="collapsed btn btn-info btn-block" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <a class=" blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=services" class="list-group-item">Browse all Services</a>
@@ -126,24 +157,118 @@
                             </div>
                         </div>
                         <div class="card mt-2">
-                            <a class="collapsed btn btn-info btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <a class=" blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
-                                    <a href="" class="list-group-item">Forum cat 1</a>
-                                    <a href="" class="list-group-item">Forum cat 2</a>
-                                    <a href="" class="list-group-item">Forum cat 3</a>
-                                    <a href="" class="list-group-item">Forum cat 4</a>
+                                    <a href="#!" class="list-group-item">Forum cat 1</a>
+                                    <a href="#!" class="list-group-item">Forum cat 2</a>
+                                    <a href="#!" class="list-group-item">Forum cat 3</a>
+                                    <a href="#!" class="list-group-item">Forum cat 4</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        <!--/Sidebar Accordion-->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            <%-- /End Page Content --%>
-            </asp:ContentPlaceHolder>
+                <!--/Sidebar Accordion-->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    <%-- /End Page Content --%>
+                </asp:ContentPlaceHolder>
             </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <!-- Footer -->
+        <footer class="page-footer font-small blue pt-4">
+
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 mt-md-0 mt-3">
+
+                        <!-- Content -->
+                        <h5 class="text-uppercase">Footer Content</h5>
+                        <p>Here you can use rows and columns here to organize your footer content.</p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="clearfix w-100 d-md-none pb-3">
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+
+                        <!-- Links -->
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled">
+ 
+                            <li>
+                                <a href="Contact.aspx">Contact</a>
+                            </li>
+                            <% if (Session["currentUser"] != null)
+                            {
+                                Person currentUser = new Person();
+                                currentUser = (Person)Session["currentUser"];
+                                int userID = currentUser.userID;%>
+                        <li>
+                        <a href="LogoutConfirmation.aspx">Logout</a>
+                        </li>
+                        <% }
+                        else
+                            { %>
+                             <a href="Login.aspx">Login</a>
+                        
+                        <% } %>
+
+                        </ul>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+
+                        <!-- Links -->
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+            </div>
+            <!-- Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2018 Copyright:
+      <a href="index.aspx">SmartWay</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
     </form>
 </body>
 </html>

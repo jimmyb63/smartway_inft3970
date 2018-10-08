@@ -52,8 +52,8 @@ body {
 }
 
 .card-sm{
-	border-radius: 50px;
-	height: 4rem;
+	border-radius: 10px;
+	height: 3rem;
 }
 
 /* not active */

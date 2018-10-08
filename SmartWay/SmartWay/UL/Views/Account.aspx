@@ -276,9 +276,6 @@
                         </div>
                         </div>
                     </div>
-                    <% }
-                        else
-                        {%>
                 <% }
                     else
                     {%>
@@ -499,8 +496,4 @@
                 </div>
             </div>
         </div>
-            </div>
-        </div>
-    </div>
-
 </asp:Content>

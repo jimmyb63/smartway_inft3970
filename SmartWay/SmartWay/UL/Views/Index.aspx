@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-lg-9 mt-2">
-        <div class="p-2 mb-2 bg-primary text-white">Featured</div>
+        <div class="p-2 mb-2 blue lighten-1 text-white">Featured</div>
         <!--Featured Carousel -->
         <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -25,7 +25,7 @@
         </div>
 
         <!--Popular -->
-        <div class="p-2 mt-2 bg-primary text-white">Popular</div>
+        <div class="p-2 mt-2 blue lighten-1 text-white">Popular</div>
         <div class="row">
             <div class="col-lg-4 col-6 my-2">
                 <div class="card h-100">
@@ -100,6 +100,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>

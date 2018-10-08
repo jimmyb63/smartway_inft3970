@@ -119,6 +119,7 @@
   <ItemGroup>
     <Content Include="Content\LoginRegStyle.css" />
     <Content Include="Content\map.css" />
+    <Content Include="Content\mdb.css" />
     <Content Include="Content\smartway.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
