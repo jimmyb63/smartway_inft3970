@@ -20,5 +20,7 @@ namespace SmartWay
             Session["currentUser"] = null;
             Response.Redirect("LogoutConfirmation.aspx");
         }
+
+
     }
 }

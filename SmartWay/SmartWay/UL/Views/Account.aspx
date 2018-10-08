@@ -44,46 +44,70 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <div class="card-text"><b>Username: </b>
-                                                <asp:Label ID="lblUserName" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Username: </b>
+                                                <asp:Label ID="lblUserName" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>First Name: </b>
-                                                <asp:Label ID="lblFName" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>First Name: </b>
+                                                <asp:Label ID="lblFName" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Last Name: </b>
-                                                <asp:Label ID="lblLName" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Last Name: </b>
+                                                <asp:Label ID="lblLName" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Email: </b>
-                                                <asp:Label ID="lblEmail" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Email: </b>
+                                                <asp:Label ID="lblEmail" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Date of Birth: </b>
-                                                <asp:Label ID="lblDOB" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Date of Birth: </b>
+                                                <asp:Label ID="lblDOB" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Phone Number: </b>
-                                                <asp:Label ID="lblPhoneNumber" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Phone Number: </b>
+                                                <asp:Label ID="lblPhoneNumber" runat="server" Text="Label" />
+                                            </div>
                                             <br />
                                         </div>
                                         <div class="col-md-4">
                                             <h6>Address Details</h6>
-                                            <div class="card-text"><b>Unit Number: </b>
-                                                <asp:Label ID="lblUnitNum" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Unit Number: </b>
+                                                <asp:Label ID="lblUnitNum" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Street Address: </b>
+                                            <div class="card-text">
+                                                <b>Street Address: </b>
                                                 <asp:Label ID="lblStreetNum" runat="server" Text="Label" />
                                                 &nbsp
-                                                <asp:Label ID="lblStreetName" runat="server" Text="Label" /></div>
+                                                <asp:Label ID="lblStreetName" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>City: </b>
-                                                <asp:Label ID="lblCity" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>City: </b>
+                                                <asp:Label ID="lblCity" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>State: </b>
-                                                <asp:Label ID="lblState" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>State: </b>
+                                                <asp:Label ID="lblState" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Country: </b>
-                                                <asp:Label ID="lblCountry" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Country: </b>
+                                                <asp:Label ID="lblCountry" runat="server" Text="Label" />
+                                            </div>
                                             <br />
-                                            <div class="card-text"><b>Postcode: </b>
-                                                <asp:Label ID="lblPostcode" runat="server" Text="Label" /></div>
+                                            <div class="card-text">
+                                                <b>Postcode: </b>
+                                                <asp:Label ID="lblPostcode" runat="server" Text="Label" />
+                                            </div>
                                             <br />
                                         </div>
                                     </div>
@@ -202,9 +226,24 @@
                                             <asp:TextBox CssClass="form-control" type="password" ID="tbxPassword" ReadOnly placeholder="Password" runat="server" />
                                         </div>
                                         <!---------- Change Password Button ---------->
-                                    </div><br />
+                                    </div>
+                                    <br />
 
                                     <br />
+                                    <div class="row">
+                                        <div class="col-lg-6 offset-lg-3">
+                                            <div class="imgUp">
+                                                <div class="imagePreview"></div>
+                                                <label class="btn btn-primary btn-block">
+                                                    Select New Profile Image<asp:FileUpload
+                                                        CssClass="uploadFile img"
+                                                        ID="FileUpload1"
+                                                        runat="server"
+                                                        Style="width: 0px; height: 0px; overflow: hidden" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <button type="button" class="btn btn-primary btn-block mb-2" data-toggle="modal" data-target="#saveModal">Save Changes</button>
@@ -254,194 +293,194 @@
                             </label>
                         </div>--%>
                         </div>
-                        </div>
                     </div>
+                </div>
                 <% }%>
 
-                    <!---------- Password Reset Modal ---------->
+                <!---------- Password Reset Modal ---------->
 
-                    <div class="modal fade" id="passwordModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="passwordModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Change Password</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Change Password</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group row">
+
+                                    <label class="col-lg-5 col-form-label form-control-label">Current Password: </label>
+
+                                    <div class="col-lg-7">
+
+                                        <input class="form-control" type="password" value="" />
+                                    </div>
+
                                 </div>
 
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <div class="form-group row">
+                                <div class="form-group row">
 
-                                        <label class="col-lg-5 col-form-label form-control-label">Current Password: </label>
+                                    <label class="col-lg-5 col-form-label form-control-label ">New Password: </label>
 
-                                        <div class="col-lg-7">
+                                    <div class="col-lg-7">
 
-                                            <input class="form-control" type="password" value="" />
-                                        </div>
-
+                                        <input class="form-control" type="password" value="" />
                                     </div>
 
-                                    <div class="form-group row">
+                                </div>
 
-                                        <label class="col-lg-5 col-form-label form-control-label ">New Password: </label>
+                                <div class="form-group row">
 
-                                        <div class="col-lg-7">
+                                    <label class="col-lg-5 col-form-label form-control-label ">Confirm New Password: </label>
 
-                                            <input class="form-control" type="password" value="" />
-                                        </div>
+                                    <div class="col-lg-7">
 
+                                        <input class="form-control" type="password" value="" />
                                     </div>
 
-                                    <div class="form-group row">
+                                </div>
 
-                                        <label class="col-lg-5 col-form-label form-control-label ">Confirm New Password: </label>
-
-                                        <div class="col-lg-7">
-
-                                            <input class="form-control" type="password" value="" />
-                                        </div>
-
-                                    </div>
-
-                                    <hr />
+                                <hr />
 
 
-            
 
 
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal" data-dismiss="modal">Save Password</button>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#passwordResetModal" data-dismiss="modal" pull-left>Forgot Password</button>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal" data-dismiss="modal">Save Password</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#passwordResetModal" data-dismiss="modal" pull-left>Forgot Password</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!---------- Save Changes Modal ---------->
+                <!---------- Save Changes Modal ---------->
 
-                    <div class="modal fade" id="saveModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="saveModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Confirm Changes</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    Are you sure you want to update your account information?
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Confirm Changes</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Are you sure you want to update your account information?
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
                     </div>
+                </div>
 
-                    <!---------- Password Save Confirmation Modal ---------->
+                <!---------- Password Save Confirmation Modal ---------->
 
-                    <div class="modal fade" id="confirmationModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="confirmationModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Password Saved</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    Your password has been updated.
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Password Saved</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Your password has been updated.
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
                     </div>
+                </div>
 
-                    <!---------- Password Reset Modal ---------->
+                <!---------- Password Reset Modal ---------->
 
-                    <div class="modal fade" id="passwordResetModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="passwordResetModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Password Reset</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Password Reset</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group row">
+
+                                    <label class="col-lg-12 col-form-label form-control-label ">Enter the email address you used to register your SmartWay account, we will send you a password reset email.</label>
+
                                 </div>
+                                <div class="form-group row">
 
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label ">Email: </label>
 
-                                        <label class="col-lg-12 col-form-label form-control-label ">Enter the email address you used to register your SmartWay account, we will send you a password reset email.</label>
+                                    <div class="col-lg-9">
 
+                                        <input class="form-control" type="text" value="">
                                     </div>
-                                    <div class="form-group row">
 
-                                        <label class="col-lg-3 col-form-label form-control-label ">Email: </label>
-
-                                        <div class="col-lg-9">
-
-                                            <input class="form-control" type="text" value="">
-                                        </div>
-
-                                    </div>
                                 </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordResetConfirmationModal" data-dismiss="modal" pull-left>Send Password Reset</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-
                             </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordResetConfirmationModal" data-dismiss="modal" pull-left>Send Password Reset</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
                     </div>
+                </div>
 
-                    <!---------- Password Reset Confirmation Modal ---------->
+                <!---------- Password Reset Confirmation Modal ---------->
 
-                    <div class="modal fade" id="passwordResetConfirmationModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="passwordResetConfirmationModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Password Reset</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    An email has been sent to your designated email address
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Password Reset</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                An email has been sent to your designated email address
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>

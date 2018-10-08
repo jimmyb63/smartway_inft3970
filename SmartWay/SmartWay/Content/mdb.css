@@ -1330,8 +1330,9 @@ a {
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     text-decoration: none; }
-  a.disabled:hover, a:disabled:hover {
-    color: #007bff; }
+    a.disabled:hover, a:disabled:hover {
+        color: #007bff;
+    }
 
 a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   color: inherit;
@@ -5392,7 +5393,7 @@ a.waves-effect, a.waves-light {
     background-color: #1976d2 !important; }
     .btn-blue.dropdown-toggle:hover, .btn-blue.dropdown-toggle:focus {
       background-color: #2083e4 !important; }
-  .btn-blue:not([disabled]):not(.disabled):active, .btn-blue:not([disabled]):not(.disabled).active,
+  .btn-blue:not([disabled]):not(.disabled):active, btn-blue:not([disabled]):not(.disabled).active,
   .show > .btn-blue.dropdown-toggle {
     -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
@@ -7490,11 +7491,14 @@ footer.page-footer {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
-  .list-group a:hover,
-  .list-group button:hover {
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s; }
+    .list-group a:hover,
+    .list-group button:hover {
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+=
+    }
+    
 
 table th {
   font-size: 0.9rem;
