@@ -117,114 +117,95 @@
                 </div>
                 <hr />
                 <%-- PHOTOS for the ad --%>
-                <h5>Upload photos</h5>
+                <h6>Upload Images - Image 1 will be displayed on the results page.</h6><br />
                 <div class="row">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload 
-                                            CssClass="custom-file-input" 
-                                            ID="FileUpload1" 
-                                            runat="server" />
-                                        <label 
-                                            class="custom-file-label" 
-                                            for="FileUpload1">
-                                            Choose file
-                                        </label>
-                                    </div>
+                              <div class="col-lg-6">
+                                <div class="imgUp">
+                                    <div class="imagePreview"></div>
+                                    <label class="btn btn-primary btn-block">
+                                        Select Image 1<asp:FileUpload
+                                            CssClass="uploadFile img"
+                                            ID="FileUpload1"
+                                            runat="server"
+                                            Style="width: 0px;height: 0px;overflow: hidden" />
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload 
-                                            CssClass="custom-file-input" 
-                                            ID="FileUpload2" 
-                                            runat="server" />
-                                        <label 
-                                            class="custom-file-label" 
-                                            for="FileUpload2">
-                                            Choose file
-                                        </label>
-                                    </div>
+                                <div class="imgUp">
+                                    <div class="imagePreview"></div>
+                                    <label class="btn btn-primary btn-block">
+                                        Select Image 2<asp:FileUpload
+                                            CssClass="uploadFile img"
+                                            ID="FileUpload2"
+                                            runat="server"
+                                            Style="width: 0px;height: 0px;overflow: hidden" />
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload 
-                                            CssClass="custom-file-input" 
-                                            ID="FileUpload3" 
-                                            runat="server" />
-                                        <label 
-                                            class="custom-file-label" 
-                                            for="FileUpload3">
-                                            Choose file
-                                        </label>
-                                    </div>
+                              <div class="col-lg-6">
+                                <div class="imgUp">
+                                    <div class="imagePreview"></div>
+                                    <label class="btn btn-primary btn-block">
+                                        Select Image 3<asp:FileUpload
+                                            CssClass="uploadFile img"
+                                            ID="FileUpload3"
+                                            runat="server"
+                                            Style="width: 0px;height: 0px;overflow: hidden" />
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload 
-                                            CssClass="custom-file-input" 
-                                            ID="FileUpload4" 
-                                            runat="server" />
-                                        <label 
-                                            class="custom-file-label" 
-                                            for="FileUpload4">
-                                            Choose file
-                                        </label>
-                                    </div>
+                                <div class="imgUp">
+                                    <div class="imagePreview"></div>
+                                    <label class="btn btn-primary btn-block">
+                                        Select Image 4<asp:FileUpload
+                                            CssClass="uploadFile img"
+                                            ID="FileUpload4"
+                                            runat="server"
+                                            Style="width: 0px;height: 0px;overflow: hidden" />
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload 
-                                            CssClass="custom-file-input" 
-                                            ID="FileUpload5" 
-                                            runat="server" />
-                                        <label 
-                                            class="custom-file-label" 
-                                            for="FileUpload5">
-                                            Choose file
-                                        </label>
-                                    </div>
+                              <div class="col-lg-6">
+                                <div class="imgUp">
+                                    <div class="imagePreview"></div>
+                                    <label class="btn btn-primary btn-block">
+                                        Select Image 5<asp:FileUpload
+                                            CssClass="uploadFile img"
+                                            ID="FileUpload5"
+                                            runat="server"
+                                            Style="width: 0px;height: 0px;overflow: hidden" />
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <asp:FileUpload 
-                                            CssClass="custom-file-input" 
-                                            ID="FileUpload6" 
-                                            runat="server" />
-                                        <label 
-                                            class="custom-file-label" 
-                                            for="FileUpload6">
-                                            Choose file
-                                        </label>
-                                    </div>
+                                <div class="imgUp">
+                                    <div class="imagePreview"></div>
+                                    <label class="btn btn-primary btn-block">
+                                        Select Image 6<asp:FileUpload
+                                            CssClass="uploadFile img"
+                                            ID="FileUpload6"
+                                            runat="server"
+                                            Style="width: 0px;height: 0px;overflow: hidden" />
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <br />
                         <hr />
-                        <%-- SUBMIT AD BUTTON --%>
+                    <%-- SUBMIT AD BUTTON --%>
                         <asp:Button 
                             CssClass="btn btn-block btn-success"
                             Text="Submit" 
                             runat="server" 
                             OnClick="postAd" />
-                        <hr />
+                        </div>
                     </div>
                 </div>
             </div>
