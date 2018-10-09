@@ -10,8 +10,9 @@ namespace SmartWay.BL.Models
         private int ID;
         private int buyerID;
         private int sellerID;
+        private int adID;
         private decimal amountOffered;
-        private bool? offerAccepted;
+        private int offerAccepted;
         private bool active;
 
         public Offer()
@@ -19,16 +20,18 @@ namespace SmartWay.BL.Models
             ID = 0;
             buyerID = 0;
             sellerID = 0;
+            adID = 0;
             amountOffered = 0;
-            offerAccepted = null;
+            offerAccepted = 2;
             active = false;
         }
 
-        public Offer(int init_ID, int init_buyerID, int init_sellerID, decimal init_amountOffered, bool init_offerAccepted, bool init_active)
+        public Offer(int init_ID, int init_buyerID, int init_sellerID, int init_adID, decimal init_amountOffered, int init_offerAccepted, bool init_active)
         {
             ID = init_ID;
             buyerID = init_buyerID;
             sellerID = init_sellerID;
+            adID = init_adID;
             amountOffered = init_amountOffered;
             offerAccepted = init_offerAccepted;
             active = init_active;
@@ -70,6 +73,18 @@ namespace SmartWay.BL.Models
             }
         }
 
+        public int offerAdID
+        {
+            get
+            {
+                return adID;
+            }
+            set
+            {
+                adID = value;
+            }
+        }
+
         public decimal offerAmountOffered
         {
             get
@@ -82,7 +97,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public bool? offerOfferAccepted
+        public int offerOfferAccepted
         {
             get
             {

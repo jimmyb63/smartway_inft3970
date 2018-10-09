@@ -35,5 +35,15 @@ namespace SmartWay.UL.Views
             string userName = user.userName;
             return userName;
         }
+
+        public void acceptOffer(object sender, EventArgs e)
+        {
+
+        }
+
+        public void declineOffer(object sender, EventArgs e)
+        {
+
+        }
     }
 }

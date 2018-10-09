@@ -10,15 +10,15 @@
 namespace SmartWay.UL.Views {
     
     
-    public partial class AdvertisementOffers {
+    public partial class MyOffers {
         
         /// <summary>
-        /// offerList control.
+        /// adList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView offerList;
+        protected global::System.Web.UI.WebControls.ListView adList;
     }
 }

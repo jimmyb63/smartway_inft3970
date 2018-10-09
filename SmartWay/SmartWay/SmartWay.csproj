@@ -140,6 +140,7 @@
     <Content Include="UL\Views\AdvertisementOffers.aspx" />
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
     <Content Include="UL\Views\MyAdvertisements.aspx" />
+    <Content Include="UL\Views\MyOffers.aspx" />
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
     <Content Include="UL\Views\NewRecyclingRequest.aspx" />
     <Content Include="UL\Views\Offer.aspx" />
@@ -292,6 +293,13 @@
     </Compile>
     <Compile Include="UL\Views\MyAdvertisements.aspx.designer.cs">
       <DependentUpon>MyAdvertisements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\MyOffers.aspx.cs">
+      <DependentUpon>MyOffers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\MyOffers.aspx.designer.cs">
+      <DependentUpon>MyOffers.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\NewAddReviewRequest.aspx.cs">
       <DependentUpon>NewAddReviewRequest.aspx</DependentUpon>
