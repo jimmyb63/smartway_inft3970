@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace SmartWay.UL.Views
 {
-    public partial class MyAdvertisements : System.Web.UI.Page
+    public partial class MyOffers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,35 +19,35 @@ namespace SmartWay.UL.Views
             }
         }
 
-        public List<Advertisement> getAds()
+        public List<BL.Models.Offer> getOffers()
         {
             AdvertisementControls AC = new AdvertisementControls();
             Person currentUser = (Person)Session["currentUser"];
-            List<Advertisement> ads = AC.getUserAdvertisements(currentUser.userID);
-            List<Advertisement> tempAds = new List<Advertisement>();
-            for (int i = 0; i < ads.Count; i++)
+            List<BL.Models.Offer> offers = AC.getUserOffers(currentUser.userID);
+            List<BL.Models.Offer> tempOffers = new List<BL.Models.Offer>();
+            for (int i = 0; i < tempOffers.Count; i++)
             {
-                if (ads[i].advertisementActive == true)
+                if (offers[i].offerActive == true)
                 {
-                    tempAds.Add(ads[i]);
+                    tempOffers.Add(offers[i]);
                 }
             }
-            return tempAds;
+            return tempOffers;
         }
 
-        public string getAdThumbnail(int adID)
+        public List<Advertisement> getAd(int adID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            List<Advertisement> ad = AC.getAdvertisement(adID);
+            return ad;
+        }
+
+        public string getAdThumbnail(int adID, int sellerID)
         {
             AdvertisementControls AC = new AdvertisementControls();
             Person currentUser = (Person)Session["currentUser"];
-            string filePath = AC.getAdThumbnail(adID, currentUser.userID);
+            string filePath = AC.getAdThumbnail(adID, sellerID);
             return filePath;
-        }
-
-        public int getOfferCount(int adID)
-        {
-            AdvertisementControls AC = new AdvertisementControls();
-            int count = AC.getOfferCount(adID);
-            return count;
         }
     }
 }

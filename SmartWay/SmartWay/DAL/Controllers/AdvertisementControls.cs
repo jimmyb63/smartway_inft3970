@@ -264,6 +264,32 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Offer> getUserOffers(int userID)
+        {
+            List<Offer> offers = new List<Offer>();
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT ID, buyerID, sellerID, addID, offerAmount, offerAccepted, active FROM AddOffer WHERE buyerID = @userID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Offer offer = new Offer((int)reader["ID"],
+                                            (int)reader["buyerID"],
+                                            (int)reader["sellerID"],
+                                            (int)reader["addID"],
+                                            (decimal)reader["offerAmount"],
+                                            (int)reader["offerAccepted"],
+                                            (bool)reader["active"]);
+                offers.Add(offer);
+            }
+            connection.Close();
+            return offers;
+        }
+
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
         {
@@ -307,7 +333,7 @@ namespace SmartWay.DAL.Controllers
         {
             List<Offer> offers = new List<Offer>();
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "SELECT ID, buyerID, sellerID, offerAmount, offerAccepted, active FROM AddOffer WHERE addID = @adID";
+            string query = "SELECT ID, buyerID, sellerID, addID, offerAmount, offerAccepted, active FROM AddOffer WHERE addID = @adID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
             connection.Open();
@@ -318,8 +344,9 @@ namespace SmartWay.DAL.Controllers
                 Offer offer = new Offer(   (int)reader["ID"],
                                             (int)reader["buyerID"],
                                             (int)reader["sellerID"],
+                                            (int)reader["addID"],
                                             (decimal)reader["offerAmount"],
-                                            (bool)reader["offerAccepted"],
+                                            (int)reader["offerAccepted"],
                                             (bool)reader["active"]);
                 offers.Add(offer);
             }
