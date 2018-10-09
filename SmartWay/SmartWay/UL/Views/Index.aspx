@@ -12,13 +12,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+                    <img class="d-block img-fluid" src="https://www.vallartatribune.com/wp-content/uploads/2018/07/July-23-Mexico-decor-style-image-1.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+                    <img class="d-block img-fluid" src="http://cmbcreative.co/wp-content/uploads/2018/07/bohemian-chic-furniture-style-home-hippie-living-room-signs-store-best-interior-boho.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+                    <img class="d-block img-fluid" src="https://www.wedb.com/wp-content/uploads/2017/08/blog-basement-004.jpg" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span> </a><a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span> </a>
@@ -190,5 +190,5 @@
                 <!--/ Card -->
             </div>
         </div>
-    </div>
+        </div>
 </asp:Content>
