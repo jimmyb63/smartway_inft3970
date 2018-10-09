@@ -911,11 +911,19 @@ EXEC sp_NewProfileImg '../Images/TestImg/1006.jpg', '1006';
 EXEC sp_NewProfileImg '../Images/TestImg/1007.jpg', '1007';
 
 --Add Test Adds and  Images
+
+--Rake Add
 EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','Cool Rake', 1000, 30, 5; 
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1000);
 
-EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.123456789.', 1000, 30, 5; 
-INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/AdImg/1_1000_1000.jpg', 1000, 1001);
+--Birthday Party Add
+EXEC sp_NewAdvertisement 1000,'Birthday Party Host','offer', 'goods','household','Very Funny, Great with Kids', 1000, 25, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1003_1000.jpg', 1000, 1001);
+
+--F-16 Add
+EXEC sp_NewAdvertisement 1002,'F-16 Commuter Jet','offer', 'goods','automotive','Flies well, good petrol mielage. Few scratches and bullet holes', 1002, 9500, 5; 
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1002_1002.jpg', 1002, 1002);
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/2_1002_1002.jpg', 1002, 1002);
 --Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 
