@@ -35,6 +35,7 @@
 
                 <%-- TYPE of ad --%>
                 <h5>Type of ad</h5>
+              
                 <asp:RadioButtonList 
                     CssClass="form-group" 
                     ID="rbAdType" 
@@ -42,7 +43,11 @@
                     <asp:ListItem Text=" Offer" Value="offer" />
                     <asp:ListItem Text=" Request" Value="request" />
                 </asp:RadioButtonList>
+
                 <hr />
+               
+
+
 
                 <%-- CATEGORY for the ad --%>
                 <h5>Select a category</h5>
@@ -207,7 +212,7 @@
                             OnClick="postAd" />
                         </div>
                     </div>
-                </div>
+                </>
             </div>
             <div class="warning">
                 <asp:Label Text="" ID="errorMessage" runat="server" /></div>

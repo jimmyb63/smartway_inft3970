@@ -72,3 +72,37 @@ Select adType, title, adDescription, price, creationDate FROM Advertisement
 
 SELECT ID FROM AddOffer 
 WHERE buyerID = 1003 AND addID = 1000 AND offerAccepted IS NULL
+
+
+EXEC sp_NewPrivateMessage 1003, 1000, 1000, 0, 'Hi. How are you?', 0, 2222
+
+--EXEC sp_GetPrivateMsg 1000
+
+EXEC sp_NewPrivateMessage 1000, 1003, 1000, 0, 'I am good. How are you?', 1000, 2222
+
+--EXEC sp_GetPrivateMsg 1002
+EXEC sp_NewPrivateMessage 1004, 1002, 1001, 0, 'Is that Mig still for Sale?', 0, 2222
+
+EXEC sp_NewPrivateMessage 1003, 1000, 1000, 0, 'Bit Meh, is raining here. How is your weather?', 1002, 2222
+
+EXEC sp_NewPrivateMessage 1000, 1003, 1000, 0, 'Yes is raining here also', 1003, 2222
+
+EXEC sp_NewPrivateMessage 1002, 1004, 1001, 0, 'No it sold, but i have a F-16 forsale.', 1004, 2222
+
+
+EXEC getUserPMIDList 1000
+
+EXEC getUserPMIDList 1003
+
+Select *
+From PrivateMessage
+
+
+DECLARE @firstMessageID INT 
+DECLARE @tempUserID INT = 1002
+--SELECT TOP 1 ID FROM PrivateMessage WHERE  receiverUserID = @tempUserID AND firstMessage IS NOT NULL 
+	--OR sendersUserID = @tempUserID AND firstMessage IS NOT NULL;
+SET @firstMessageID = (SELECT TOP 1 ID FROM PrivateMessage WHERE  receiverUserID = @tempUserID AND firstMessage IS NOT NULL 
+	OR sendersUserID = @tempUserID AND firstMessage IS NOT NULL);
+SELECT * FROM PrivateMessage WHERE firstMessage = @firstMessageID
+ORDER BY firstMessage,[creationDate] DESC;
