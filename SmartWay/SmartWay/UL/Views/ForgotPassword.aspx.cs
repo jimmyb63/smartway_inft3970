@@ -26,7 +26,7 @@ namespace SmartWay.UL.Views
             string password = tempUser.userPassword;
             MS.sendForgotPasswordEmail(email, password);
 
-            Response.Redirect("Index.aspx");
+            Response.Redirect("passwordResetConfirmation.aspx");
         }
     }
 }

@@ -154,6 +154,7 @@
     <Content Include="UL\Views\WantToBuy.aspx" />
     <Content Include="UL\Views\PostAdvertisementConfirmation.aspx" />
     <Content Include="UL\Views\TermsofService.aspx" />
+    <Content Include="UL\Views\passwordResetConfirmation.aspx" />
     <Content Include="User.Master" />
     <Content Include="Admin.Master" />
     <None Include="Web.Debug.config">
@@ -439,6 +440,13 @@
     </Compile>
     <Compile Include="UL\Views\TermsofService.aspx.designer.cs">
       <DependentUpon>TermsofService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\passwordResetConfirmation.aspx.cs">
+      <DependentUpon>passwordResetConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\passwordResetConfirmation.aspx.designer.cs">
+      <DependentUpon>passwordResetConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
