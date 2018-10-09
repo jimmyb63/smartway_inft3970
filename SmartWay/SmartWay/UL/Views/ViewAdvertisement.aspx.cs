@@ -49,9 +49,16 @@ namespace SmartWay.UL.Views
         public void WantToBuy(object sender, EventArgs e)
         {
             string adID = Request.QueryString["advertisementID"];
-            Person currentUser = (Person)Session["currentUser"];
-            string userID = Convert.ToString(currentUser.userID);
-            Response.Redirect("WantToBuy.aspx?advertisementID=" + adID);
+            if (Session["currentUser"] != null)
+            {
+                //Person currentUser = (Person)Session["currentUser"];
+                //string userID = Convert.ToString(currentUser.userID);
+                Response.Redirect("WantToBuy.aspx?advertisementID=" + adID);
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 }
