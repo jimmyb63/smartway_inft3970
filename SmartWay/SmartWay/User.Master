@@ -99,6 +99,7 @@
                                             Display="Dynamic"
                                             ForeColor="Red"
                                             ControlToValidate="txtEmail"
+                                            ValidationGroup="one"
                                             runat="server" />
 
                                         <!--Regular expression to ensure that the email is valid, expression found courtesy of RegExlib.com-->
@@ -107,6 +108,7 @@
                                             Display="Dynamic"
                                             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                                             ControlToValidate="txtEmail"
+                                            ValidationGroup="one"
                                             ForeColor="Red"
                                             ErrorMessage="Invalid email address." />
                                     </div>
@@ -123,16 +125,17 @@
                                             ForeColor="Red"
                                             Display="Dynamic"
                                             ControlToValidate="txtPassword"
+                                            ValidationGroup="one"
                                             runat="server" />
                                     </div>
-                                    <asp:Button Text="Login" runat="server" OnClick="userLogin" CssClass="btn btn-primary btn-block" />
+                                    <asp:Button ID="loginButton" Text="Login" runat="server" OnClick="userLogin" ValidationGroup="one" CssClass="btn btn-primary btn-block" />
                                     <div class="warning">
                                         <asp:Label Text="" ID="errorMessage" runat="server" />
                                     </div>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Registration.aspx">New around here? Sign up</a>
-                                <a class="dropdown-item" href="ForgotPassword">Forgot password?</a>
+                                <a class="dropdown-item" href="ForgotPassword.aspx">Forgot password?</a>
                             </div>
                         </li>
                         <% } %>

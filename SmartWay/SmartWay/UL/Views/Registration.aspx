@@ -468,7 +468,7 @@
                             </div>--%>
                             <div class="col-lg-12 text-center">
                                 <hr />
-                                <asp:Button Text="Submit" runat="server" OnClick="RegisterUser" CssClass="btn btn-primary btn-block" />
+                                <asp:Button ID="registrationButton" Text="Submit" runat="server" OnClick="RegisterUser" CssClass="btn btn-primary btn-block" />
                             </div>
                             <%--<div class="col-sm">
                                 <hr />
