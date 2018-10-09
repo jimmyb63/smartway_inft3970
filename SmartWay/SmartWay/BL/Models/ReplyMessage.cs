@@ -5,14 +5,11 @@ using System.Web;
 
 namespace SmartWay.BL.Models
 {
-    public class PrivateMsg
+    public class ReplyMessage
     {
         //Private Variables
         private int ID;
-        private int sendersUserID;
-        private int receiverUserID;
-        private int addID;
-        private int forumID;
+        private int privateMessageID;
         private string messageDetails;
         private bool messageRead;
         private bool messageReplied;
@@ -21,13 +18,10 @@ namespace SmartWay.BL.Models
 
 
         //Constructors
-        public PrivateMsg()
+        public ReplyMessage()
         {
             ID = 0;
-            sendersUserID = 0;
-            receiverUserID = 0;
-            addID = 0;
-            forumID = 0;
+            privateMessageID = 0;
             messageDetails = "";
             messageRead = false;
             messageReplied = false;
@@ -35,10 +29,9 @@ namespace SmartWay.BL.Models
         }
 
         //Constructor for a New Message
-        public PrivateMsg(int tempSendersUserID, int tempReceiverUserID, string tempMessageDetails)
+        public ReplyMessage(int tempPrivateMessageID, string tempMessageDetails)
         {
-            sendersUserID = tempSendersUserID;
-            receiverUserID = tempReceiverUserID;
+            privateMessageID = tempPrivateMessageID;
             messageDetails = tempMessageDetails;
             messageRead = false;
             messageReplied = false;
@@ -46,14 +39,10 @@ namespace SmartWay.BL.Models
         }
 
         //Constructor for when reading from DB
-        public PrivateMsg(int tempID, int tempSendersUserID, int tempReceiverUserID, int tempAddID, int tempForumID,
-                string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
+        public ReplyMessage(int tempID, int tempPrivateMessageID, string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
         {
             ID = tempID;
-            sendersUserID = tempSendersUserID;
-            receiverUserID = tempReceiverUserID;
-            addID = tempAddID;
-            forumID = tempForumID;
+            privateMessageID = tempPrivateMessageID;
             messageDetails = tempMessageDetails;
             messageRead = tempMessageRead;
             messageReplied = tempMessageReplied;
@@ -64,7 +53,7 @@ namespace SmartWay.BL.Models
 
 
         //Getter and Setters
-        public int pmID
+        public int rmID
         {
             get
             {
@@ -76,52 +65,15 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public int pmSendersUserID
+        public int rmPrivateMessageID
         {
             get
             {
-                return ID;
+                return privateMessageID;
             }
             set
             {
-                ID = value;
-            }
-        }
-
-
-        public int pmReceiverUserID
-        {
-            get
-            {
-                return ID;
-            }
-            set
-            {
-                ID = value;
-            }
-        }
-
-        public int pmAdID
-        {
-            get
-            {
-                return ID;
-            }
-            set
-            {
-                ID = value;
-            }
-        }
-
-        public int pmForumID
-        {
-            get
-            {
-                return ID;
-            }
-            set
-            {
-                ID = value;
+                privateMessageID = value;
             }
         }
 

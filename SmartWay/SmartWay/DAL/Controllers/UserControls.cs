@@ -357,7 +357,28 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<PrivateMsg> getPrivateMessageThread(int tempPrivateMsgID)
+        public List<int> getPrivateMessageList(int tempPrivateMsgID)
+        {
+            List<int> currentPrivateMessageID = new List<int>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "EXEC sp_GetPrivateMsg " + tempPrivateMsgID; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database the ID is added to the List
+                int tempID = (int)reader["ID"];
+                currentPrivateMessageID.Add(tempID);
+            }
+            connection.Close();
+            return currentPrivateMessageID;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<PrivateMsg> getPrivateMessage(int tempPrivateMsgID)
         {
             List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
             PrivateMsg lastPM = new PrivateMsg();
@@ -379,7 +400,6 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["addID"],
                                         (int)reader["forumID"],
                                         reader["messageDetails"].ToString(),
-                                        (int)reader["lastPrivateMessageID"],
                                         (bool)reader["messageRead"],
                                         (bool)reader["messageReplied"],
                                         (DateTime)reader["creationDate"],
@@ -387,45 +407,17 @@ namespace SmartWay.DAL.Controllers
                 currentPrivateMessage.Add(newPM);
             }
             connection.Close();
-            int lastPMLastID = currentPrivateMessage[currentPrivateMessage.Count - 1].pmLastPrivateMessageID;
-            while (lastPMLastID != 0) //Last Private Message's lastPrivateMessageID is not equal to 0.
-            {
-                int lastPMID = currentPrivateMessage[currentPrivateMessage.Count - 1].pmID;
-                query = "EXEC sp_GetPrivateMsg " + lastPMID; //the sql request
-                cmd = new SqlCommand(query, connection);
-                //use command
-                connection.Open();
-                SqlDataReader reader2 = cmd.ExecuteReader();
-                while (reader2.Read())
-                {
-                    //for each rows of the database corresponding to the request we create a product and add it to the list
-                    PrivateMsg newPM = new PrivateMsg(
-                                    (int)reader2["ID"],
-                                    (int)reader2["sendersUserID"],
-                                    (int)reader2["receiverUserID"],
-                                    (int)reader2["addID"],
-                                    (int)reader2["forumID"],
-                                    reader2["messageDetails"].ToString(),
-                                    (int)reader2["lastPrivateMessageID"],
-                                    (bool)reader2["messageRead"],
-                                    (bool)reader2["messageReplied"],
-                                    (DateTime)reader2["creationDate"],
-                                    (bool)reader2["active"]);
-                    currentPrivateMessage.Add(newPM);
-                    lastPMLastID = currentPrivateMessage[currentPrivateMessage.Count - 1].pmLastPrivateMessageID;
-                }
-                connection.Close();
-            }
             return currentPrivateMessage;
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<int> getUserPMIDList(int tempUserID)
+        public List<ReplyMessage> getReplyMessages(int tempPrivateMsgID)
         {
-            List<int> userPMIDList = new List<int>();
+            List<ReplyMessage> currentReplyMessages = new List<ReplyMessage>();
+
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC sp_GetUserPMIDList " + tempUserID; //the sql request
+            string query = "EXEC getPMReplyList " + tempPrivateMsgID; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
             //use command
             connection.Open();
@@ -433,48 +425,18 @@ namespace SmartWay.DAL.Controllers
             while (reader.Read())
             {
                 //for each rows of the database corresponding to the request we create a product and add it to the list
-                                        int tempID = (int)reader["ID"];
-                userPMIDList.Add(tempID);
-            }
-            connection.Close();
-
-            return userPMIDList;
-        }
-
-        [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<PrivateMsg> getUserPrivateMessageList(int tempUserID)
-        {
-            List<List<PrivateMsg>> userPrivateMessageList = new List<List<PrivateMsg>>();
-            List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
-            PrivateMsg lastPM = new PrivateMsg();
-            List<int> userPMIDList = new List<int>();
-            //setting connection string and sql request
-            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC sp_GetPrivateMsg " + tempUserID; //the sql request
-            SqlCommand cmd = new SqlCommand(query, connection);
-            //use command
-            connection.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                //for each rows of the database corresponding to the request we create a product and add it to the list
-                PrivateMsg newPM = new PrivateMsg(
+                ReplyMessage newPM = new ReplyMessage(
                                         (int)reader["ID"],
-                                        (int)reader["sendersUserID"],
-                                        (int)reader["receiverUserID"],
-                                        (int)reader["addID"],
-                                        (int)reader["forumID"],
+                                        (int)reader["privateMessageID "],
                                         reader["messageDetails"].ToString(),
-                                        (int)reader["lastPrivateMessageID"],
                                         (bool)reader["messageRead"],
                                         (bool)reader["messageReplied"],
                                         (DateTime)reader["creationDate"],
                                         (bool)reader["active"]);
-                currentPrivateMessage.Add(newPM);
+                currentReplyMessages.Add(newPM);
             }
             connection.Close();
-
-            return currentPrivateMessage;
+            return currentReplyMessages;
         }
 
 

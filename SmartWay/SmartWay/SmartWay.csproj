@@ -208,6 +208,7 @@
     <Compile Include="BL\Models\Address.cs" />
     <Compile Include="BL\Models\Offer.cs" />
     <Compile Include="BL\Models\PrivateMsg.cs" />
+    <Compile Include="BL\Models\ReplyMessage.cs" />
     <Compile Include="BL\Models\Staff.cs" />
     <Compile Include="BL\Models\Advertisement.cs" />
     <Compile Include="BL\Models\ForumThread.cs" />
