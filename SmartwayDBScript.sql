@@ -900,10 +900,15 @@ EXEC sp_NewAdmin '1006', 'Manager';
 EXEC sp_NewAdmin '1015', 'Manager';
 
 --Add Test User Images
---EXEC sp_NewProfileImg '../Images/ProfileImg/1003.jpg', '1003';
 
-EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
 EXEC sp_NewProfileImg '../Images/TestImg/1000.png', '1000';
+EXEC sp_NewProfileImg '../Images/TestImg/1001.jpg', '1001';
+EXEC sp_NewProfileImg '../Images/TestImg/1002.jpg', '1002';
+EXEC sp_NewProfileImg '../Images/TestImg/1003.jpg', '1003';
+EXEC sp_NewProfileImg '../Images/TestImg/1004.jpg', '1004';
+EXEC sp_NewProfileImg '../Images/TestImg/1005.jpg', '1005';
+EXEC sp_NewProfileImg '../Images/TestImg/1006.jpg', '1006';
+EXEC sp_NewProfileImg '../Images/TestImg/1007.jpg', '1007';
 
 --Add Test Adds and  Images
 EXEC sp_NewAdvertisement 1000,'Rake','offer', 'goods','household','Cool Rake', 1000, 30, 5; 
