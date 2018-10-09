@@ -329,18 +329,26 @@ CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									addID INT,
 									forumID INT,
 									messageDetails VARCHAR(250) NOT NULL,
-									lastPrivateMessageID INT,   --Used to link last message and a reply
-									firstMessage INT DEFAULT NULL,		-- 0 is Not First Message, 1 is a First Message
 									messageRead BIT DEFAULT 0,		-- 0 is Not Read, 1 is Read
 									messageReplied BIT DEFAULT 0,	-- 0 is Not Replied, 1 is Replied
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
-									FOREIGN KEY (lastPrivateMessageID) REFERENCES PrivateMessage(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (forumID) REFERENCES ForumPost(ID)						ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (sendersUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (receiverUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
+
+CREATE TABLE ReplyMessage	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									privateMessageID INT NOT NULL,
+									messageDetails VARCHAR(250) NOT NULL,
+									messageRead BIT DEFAULT 0,		-- 0 is Not Read, 1 is Read
+									messageReplied BIT DEFAULT 0,	-- 0 is Not Replied, 1 is Replied
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (privateMessageID) REFERENCES PrivateMessage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
 							)
 
 --STORE PROCEDURES
@@ -694,7 +702,7 @@ END
 RETURN  
 GO 
 
---New Offer
+--New Private Message
 IF OBJECT_ID('sp_NewPrivateMessage', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewPrivateMessage;  
 GO  
@@ -705,7 +713,6 @@ CREATE PROCEDURE sp_NewPrivateMessage(
 	@tempAddID INT,
 	@tempForumID INT,
 	@tempMessageDetails VARCHAR(250),
-	@tempLastPrivateMessageID INT,
 	@returnNewMessageID INT Output)
 --Return on DEFAULT = newID;
 AS
@@ -713,53 +720,22 @@ AS
 BEGIN
 	IF (@tempAddID = 0) -- Is a message Regarding a Forum Post
 	BEGIN
-		IF (@tempLastPrivateMessageID = 0) --Is New message about a Forum Post from this user.
-		BEGIN
-			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage)+1;
-			IF @returnNewMessageID IS NULL
-			BEGIN
-				SET @returnNewMessageID = 1000
-			END
-			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails, firstMessage) 
-			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails, @returnNewMessageID);
-			
-			SELECT @returnNewMessageID;
-		END
-		ELSE
-		BEGIN	--Is Reply message about a Forum Post from this user.
-			SET @tempFirstMessageID = (SELECT firstMessage FROM PrivateMessage WHERE ID = @tempLastPrivateMessageID);
-			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails, lastPrivateMessageID, firstMessage) 
-			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails, @tempLastPrivateMessageID, @tempFirstMessageID);
-			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
-			SELECT @returnNewMessageID;
-		END
+		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails) 
+		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails);
+		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+		SELECT @returnNewMessageID;
 	END
 	ELSE IF (@tempForumID = 0)  -- Is a message Regarding an Add Post
 	BEGIN
-		IF (@tempLastPrivateMessageID = 0) --Is New message about a Add Post from this user.
-		BEGIN
-			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage)+1;
-			IF @returnNewMessageID IS NULL
-			BEGIN
-				SET @returnNewMessageID = 1000
-			END
-			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails, firstMessage) 
-			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails, @returnNewMessageID);
-			SELECT @returnNewMessageID;
-		END
-		ELSE --Is Reply message about a Add Post from this user.
-		BEGIN
-			SET @tempFirstMessageID = (SELECT firstMessage FROM PrivateMessage WHERE ID = @tempLastPrivateMessageID);
-			INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails, lastPrivateMessageID, firstMessage) 
-			VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails, @tempLastPrivateMessageID,@tempFirstMessageID);
-			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
-			SELECT @returnNewMessageID;
-		END
+		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails) 
+		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails);
+		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+		SELECT @returnNewMessageID;
 	END
 	ELSE --Is a message about neither an Add Post or a foumPost.
 	BEGIN
-		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, messageDetails, lastPrivateMessageID) 
-		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempMessageDetails, @tempLastPrivateMessageID);
+		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, messageDetails) 
+		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
 		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
 		SELECT @returnNewMessageID;
 	END
@@ -792,15 +768,40 @@ CREATE PROCEDURE getUserPMIDList(
 AS
 	DECLARE @firstMessageID INT 
 BEGIN
---SELECT TOP 1 ID FROM PrivateMessage WHERE  receiverUserID = @tempUserID AND firstMessage IS NOT NULL 
-	--OR sendersUserID = @tempUserID AND firstMessage IS NOT NULL;
-	SET @firstMessageID = (SELECT TOP 1 ID FROM PrivateMessage WHERE  receiverUserID = @tempUserID AND firstMessage IS NOT NULL 
-		OR sendersUserID = @tempUserID AND firstMessage IS NOT NULL);
-	SELECT * FROM PrivateMessage WHERE firstMessage = @firstMessageID
-	ORDER BY firstMessage,[creationDate] DESC;
+SELECT ID FROM PrivateMessage WHERE  receiverUserID = @tempUserID OR sendersUserID = @tempUserID;
+END
+RETURN
+GO
+
+--New reply to Private Message
+IF OBJECT_ID('sp_NewReplyMessage', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewReplyMessage;  
+GO  
+
+CREATE PROCEDURE sp_NewReplyMessage(
+	@tempPrivateMessageID INT,
+	@tempMessageDetails VARCHAR(250),
+	@returnNewMessageID INT Output)
+AS
+BEGIN
+		INSERT INTO ReplyMessage (privateMessageID, messageDetails) 
+		VALUES(@tempPrivateMessageID, @tempMessageDetails);
+		SET @returnNewMessageID =(SELECT MAX(ID) FROM ReplyMessage);
+		SELECT @returnNewMessageID;
 END
 RETURN  
 GO
+
+CREATE PROCEDURE getPMReplyList(
+	@tempPrivMsgID VARCHAR(20))
+AS
+BEGIN
+SELECT * FROM ReplyMessage WHERE  privateMessageID = @tempPrivMsgID
+ORDER BY creationDate DESC;
+END
+RETURN  
+GO
+
 --DATALOAD
 
 ---StateName Loading
@@ -929,17 +930,22 @@ EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 
 
 --Add test Conversations
-EXEC sp_NewPrivateMessage 1003, 1000, 1000, 0, 'Hi. How are you?', 0, 2222
+--New Message Thread
+EXEC sp_NewPrivateMessage 1003, 1000, 1000, 0, 'Hi. How are you?', 2222
 
-EXEC sp_NewPrivateMessage 1000, 1003, 1000, 0, 'I am good. How are you?', 1000, 2222
+EXEC sp_NewPrivateMessage 1004, 1002, 1001, 0, 'Is that Mig still for Sale?', 2222
 
-EXEC sp_NewPrivateMessage 1004, 1002, 1001, 0, 'Is that Mig still for Sale?', 0, 2222
+--Reply Messages
 
-EXEC sp_NewPrivateMessage 1003, 1000, 1000, 0, 'Bit Meh, is raining here. How is your weather?', 1001, 2222
+EXEC sp_NewReplyMessage 1000, 'I am good. How are you?', 2222
 
-EXEC sp_NewPrivateMessage 1000, 1003, 1000, 0, 'Yes is raining here also', 1003, 2222
+EXEC sp_NewReplyMessage 1000, 'Bit Meh, is raining here. How is your weather?', 2222
 
-EXEC sp_NewPrivateMessage 1002, 1004, 1001, 0, 'No it sold, but i have a F-16 forsale.', 1002, 2222
+EXEC sp_NewReplyMessage 1000, 'Yes is raining here also', 2222
+
+EXEC sp_NewReplyMessage 1001, 'No it sold, but i have a F-16 forsale.', 2222
+
+
 
 
 ---PostalAddress Loading

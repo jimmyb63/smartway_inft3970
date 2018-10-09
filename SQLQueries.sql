@@ -106,3 +106,12 @@ SET @firstMessageID = (SELECT TOP 1 ID FROM PrivateMessage WHERE  receiverUserID
 	OR sendersUserID = @tempUserID AND firstMessage IS NOT NULL);
 SELECT * FROM PrivateMessage WHERE firstMessage = @firstMessageID
 ORDER BY firstMessage,[creationDate] DESC;
+
+DECLARE @tempMsgID INT = 1000
+Select *
+From PrivateMessage
+Where ID = @tempMsgID
+Select *
+FROM ReplyMessage
+Where privateMessageID = @tempMsgID
+ORDER BY [creationDate] DESC;
