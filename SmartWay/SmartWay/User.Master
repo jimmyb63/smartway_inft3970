@@ -188,7 +188,7 @@
                     <!--Sidebar Accordion-->
                     <div id="accordion">
                         <div class="card">
-                            <a class="mt-2 blue darken-3 btn btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseOne" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=goods" class="list-group-item">Browse all Goods</a>
