@@ -10,17 +10,15 @@
         <% List<Advertisement> ad = AC.getAdvertisement(adID); %>
         <div class="p-2 mb-2 bg-primary text-white">My Advertisements Offers</div>
         <div class="card">
-            <div class="row">
-                <div class="card-header">
-                    <div class="col-4">Offer for ID: <%=ad[0].advertisementID %></div>
-                    <div class="col-4">Title: <%=ad[0].advertisementTitle %></div>
-                    <div class="col-4">Date: <%=ad[0].advertisementDatePosted %></div>
-                </div>
+            <div class="row card-header">
+                <div class="col-4"><p>Offer for ID: <%=ad[0].advertisementID %></p></div>
+                <div class="col-4"><p>Title: <%=ad[0].advertisementTitle %></p></div>
+                <div class="col-4"><p>Date: <%=ad[0].advertisementDatePosted %></p></div>
             </div>
             <div class="row">
                 <div class="card-body">
-                    <asp:ListView ID="adList" runat="server"
-                        DataKeyNames="advertisementID" GroupItemCount="4"
+                    <asp:ListView ID="offerList" runat="server"
+                        DataKeyNames="offerID" GroupItemCount="4"
                         ItemType="SmartWay.BL.Models.Offer" SelectMethod="GetOffers">
                         <EmptyDataTemplate>
                             <div class="col-12 my-2" runat="server">
@@ -50,13 +48,13 @@
                                         Buyer: <%#: getUsername(Item.offerBuyerID) %>        
                                     </div>
                                     <div class="col-3">
-                                        Offer Amount: <%#: Item.offerAmountOffered %> 
+                                        Offer Amount: <%#:String.Format("{0:c}", Item.offerAmountOffered)%> 
                                     </div>
                                     <div class="col-3">
-                                        Accept    
+                                        <asp:Button CssClass="btn btn-block btn-success" Text="Accept" runat="server" OnClick="acceptOffer" />  
                                     </div>
                                     <div class="col-3">
-                                        Decline  
+                                        <asp:Button CssClass="btn btn-block btn-danger" Text="Decline" runat="server" OnClick="declineOffer" />
                                     </div>
                                 </div>
                             </div>
