@@ -19,6 +19,5 @@ $(function () {
                 uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
             }
         }
-
     });
 });
