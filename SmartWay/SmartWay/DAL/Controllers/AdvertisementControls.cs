@@ -367,6 +367,20 @@ namespace SmartWay.DAL.Controllers
             return count;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public void cancelOffer(int offerID)
+        {
+            bool cancel = false;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "UPDATE AddOffer SET active = @cancel WHERE ID = @offerID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
+            cmd.Parameters.Add("@cancel", SqlDbType.Bit).Value = cancel;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Offer> getAdOffers(int adID)
         {
