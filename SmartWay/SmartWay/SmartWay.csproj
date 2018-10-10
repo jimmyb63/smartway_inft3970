@@ -159,6 +159,7 @@
     <Content Include="UL\Views\MapPage.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
     <Content Include="UL\Views\PostForumThread.aspx" />
+    <Content Include="UL\Views\PrivateMessage.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="UL\Views\WantToBuy.aspx" />
@@ -409,6 +410,13 @@
     </Compile>
     <Compile Include="UL\Views\PostForumThread.aspx.designer.cs">
       <DependentUpon>PostForumThread.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\PrivateMessage.aspx.cs">
+      <DependentUpon>PrivateMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\PrivateMessage.aspx.designer.cs">
+      <DependentUpon>PrivateMessage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
