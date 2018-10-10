@@ -65,10 +65,24 @@ namespace SmartWay.UL.Views
             return filePath;
         }
 
+        public int getViewCount(int adID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            int viewCount = AC.getViewCount(adID);
+            return viewCount;
+        }
+
+        public int getOfferCount(int adID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            int count = AC.getOfferCount(adID);
+            return count;
+        }
+
         //public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
         //{
-            
-            
+
+
         //    if (e.CommandName == "AdvertisementDetail")
         //    {
         //        int index = Convert.ToInt32(e.CommandArgument);

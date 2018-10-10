@@ -351,6 +351,14 @@ CREATE TABLE ReplyMessage	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (privateMessageID) REFERENCES PrivateMessage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
 							)
 
+CREATE TABLE ViewCounter	(
+									ID INT IDENTITY(1000,1) PRIMARY KEY,
+									adID INT NOT NULL,
+									viewCount INT NOT NULL DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (adID) REFERENCES Advertisement(ID)						ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
+
 --STORE PROCEDURES
 
 IF ( OBJECT_ID('sp_state_insert') IS NOT NULL ) 

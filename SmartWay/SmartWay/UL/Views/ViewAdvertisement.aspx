@@ -4,8 +4,10 @@
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
-            width: 80%;
-            height: 30%;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
         }
     </style>
 </asp:Content>
@@ -37,7 +39,7 @@
             <ItemTemplate>
                 <div class="p-2 mb-2 bg-primary text-white"><%#:Item.advertisementTitle%></div>
                 <div class="card">
-                    <div id="adImages" class="carousel slide" data-ride="carousel" style="height: auto; background-color: grey">
+                    <div id="adImages" class="carousel slide" data-ride="carousel" style="height: 500px; background-color: grey">
                         <!-- Indicators -->
                         <% int adID = Convert.ToInt32(Request.QueryString["advertisementID"]); %>
                         <% List<string> adImages = getAdImages(adID); %>
@@ -53,7 +55,7 @@
                         <div class="carousel-inner" role="listbox" style="text-align: center">
                             <div class="carousel-item active" style="align-content: center">
                                 <a href="<%=adImages[0]%>">
-                                    <img src="<%=adImages[0]%>" height="800" alt="image"></a>
+                                    <img src="<%=adImages[0]%>" alt="image"></a>
                             </div>
                             <% for (int i = 1; i < adImages.Count; i++)%>
                             <% { %>
@@ -74,6 +76,12 @@
                     </div>
                     <div class="card-body">
                         <h4><b>Price: </b><%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
+                        <p class="card-text">
+                            Offers: <%#:getOfferCount(Item.advertisementID)%>
+                        </p>
+                        <p>
+                            Views: <asp:TextBox ID="txtViewCount" runat="server" />
+                        </p>
                         <asp:Button ID="btnBuy" Text="Want to Buy" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
                         <p class="card-text">
                             <h4>Description</h4>
