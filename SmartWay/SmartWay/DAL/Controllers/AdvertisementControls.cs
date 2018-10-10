@@ -381,6 +381,19 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public void updateOfferAccepted(int accepted, int offerID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "UPDATE AddOffer SET offerAccepted = @accepted WHERE ID = @offerID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
+            cmd.Parameters.Add("@accepted", SqlDbType.Int).Value = accepted;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Offer> getAdOffers(int adID)
         {

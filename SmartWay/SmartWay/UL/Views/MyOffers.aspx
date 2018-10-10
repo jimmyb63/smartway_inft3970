@@ -87,7 +87,7 @@
                                                     </asp:PlaceHolder>
                                                     <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 1 %>'>
                                                          <a href="Payment.aspx?advertisementID=<%#:Item.offerAdID %>">
-                                                            <button type="button" class="btn btn-sucess btn-block">Pay Now</button>
+                                                            <button type="button" class="btn btn-success btn-block">Pay Now</button>
                                                         </a>
                                                     </asp:PlaceHolder>
                                                 </div>
