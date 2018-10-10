@@ -279,9 +279,9 @@ CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									sellerID INT NOT NULL,
 									addID INT NOT NULL,
 									offerAmount DECIMAL,
-									offerAccepted INT DEFAULT 2, -- 0 for declined, 1 for accepted, 2 for pending
+									offerAccepted INT DEFAULT 2, -- 0 for declined, 1 for accepted, 2 for pending, 3 accepted another offer
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
-									active BIT DEFAULT 1,
+									active BIT DEFAULT 1, 
 									--foreignkeys
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -710,6 +710,29 @@ BEGIN
 		SET @returnCode =(SELECT MAX(ID) FROM AddOffer);
 		SELECT @returnCode;
 	END
+END
+
+RETURN  
+GO 
+
+
+--Accept anOffer
+IF OBJECT_ID('sp_AcceptAddOffer', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_AcceptAddOffer;  
+GO  
+
+CREATE PROCEDURE sp_AcceptAddOffer(
+	@tempOfferID INT,
+	@returnCode INT Output)
+--Return on DEFAULT = newID;
+AS
+	DECLARE @tempAddID INT;
+BEGIN
+	UPDATE AddOffer SET offerAccepted = 1 WHERE ID = @tempOfferID;
+	SET @returnCode = 1; --Sucessful
+	SELECT @returnCode;
+	SET @tempAddID = (SELECT addID FROM AddOffer WHERE ID = @tempOfferID);
+	UPDATE AddOffer SET offerAccepted = 3 WHERE addID = @tempAddID AND offerAccepted = 2;
 END
 
 RETURN  
