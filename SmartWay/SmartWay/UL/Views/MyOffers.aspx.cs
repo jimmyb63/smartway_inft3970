@@ -25,7 +25,7 @@ namespace SmartWay.UL.Views
             Person currentUser = (Person)Session["currentUser"];
             List<BL.Models.Offer> offers = AC.getUserOffers(currentUser.userID);
             List<BL.Models.Offer> tempOffers = new List<BL.Models.Offer>();
-            for (int i = 0; i < tempOffers.Count; i++)
+            for (int i = 0; i < offers.Count; i++)
             {
                 if (offers[i].offerActive == true)
                 {
@@ -33,6 +33,47 @@ namespace SmartWay.UL.Views
                 }
             }
             return tempOffers;
+        }
+
+        public decimal getAdPrice(int adID)
+        {
+            List<Advertisement> ad = getAd(adID);
+            decimal price = ad[0].advertisementPrice;
+            return price;
+        }
+
+        public string getAdTitle(int adID)
+        {
+            List<Advertisement> ad = getAd(adID);
+            string title = ad[0].advertisementTitle;
+            return title;
+        }
+
+        public string getOfferStatus(int offerID)
+        {
+            List<BL.Models.Offer> offers = getOffers();
+            int accepted = -1;
+            for (int i = 0; i < offers.Count; i++)
+            {
+                if (offers[i].offerID == offerID)
+                {
+                    accepted = offers[i].offerOfferAccepted;
+                }
+            }
+            string status = "";
+            if (accepted == 0)
+            {
+                status = "Declined";
+            }
+            else if (accepted == 1)
+            {
+                status = "Accepted";
+            }
+            else if (accepted == 2)
+            {
+                status = "Pending";
+            }
+            return status;
         }
 
         public List<Advertisement> getAd(int adID)

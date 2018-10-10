@@ -126,3 +126,10 @@ body {
 .imgUp {
     margin-bottom: 15px;
 }
+
+.card-img-top {
+    width: auto;
+    height: 15vw;
+    object-fit: scale-down;
+}
+

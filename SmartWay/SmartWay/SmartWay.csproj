@@ -154,6 +154,8 @@
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
     <Content Include="UL\Views\NewRecyclingRequest.aspx" />
     <Content Include="UL\Views\Offer.aspx" />
+    <Content Include="UL\Views\OfferCancel.aspx" />
+    <Content Include="UL\Views\OfferCancelConfirmation.aspx" />
     <Content Include="UL\Views\OfferConfirmation.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
@@ -335,6 +337,20 @@
     </Compile>
     <Compile Include="UL\Views\Offer.aspx.designer.cs">
       <DependentUpon>Offer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\OfferCancel.aspx.cs">
+      <DependentUpon>OfferCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\OfferCancel.aspx.designer.cs">
+      <DependentUpon>OfferCancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\OfferCancelConfirmation.aspx.cs">
+      <DependentUpon>OfferCancelConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\OfferCancelConfirmation.aspx.designer.cs">
+      <DependentUpon>OfferCancelConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\OfferConfirmation.aspx.cs">
       <DependentUpon>OfferConfirmation.aspx</DependentUpon>
