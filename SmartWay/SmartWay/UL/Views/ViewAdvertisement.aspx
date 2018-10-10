@@ -4,12 +4,10 @@
     <style>
         /* Make the image fully responsive */
 
-.carousel-inner img { 
+/*.carousel-inner img { 
     max-width:100%;
-    max-height:100%;
-    width: auto; 
     height: auto; 
-}
+}*/
 
 
     </style>
@@ -43,7 +41,7 @@
             <ItemTemplate>
                 <div class="p-2 mb-2 bg-primary text-white"><%#:Item.advertisementTitle%></div>
                 <div class="card">
-                    <div id="adImages" class="carousel slide" data-ride="carousel" style="height: 500px; background-color: grey">
+                    <div id="adImages" class="carousel slide container-fluid h-25" data-ride="carousel" style="background-color: grey">
                         <!-- Indicators -->
                         <% int adID = Convert.ToInt32(Request.QueryString["advertisementID"]); %>
                         <% List<string> adImages = getAdImages(adID); %>
@@ -57,15 +55,15 @@
 
                         <!-- The slideshow -->
                         <div class="carousel-inner" role="listbox" style="text-align: center">
-                            <div class="carousel-item active" style="align-content: center">
+                            <div class="carousel-item thumbnail active" style="align-content: center">
                                 <a href="<%=adImages[0]%>">
-                                    <img src="<%=adImages[0]%>" alt="image"></a>
+                                    <img class="img-fluid" src="<%=adImages[0]%>" alt="image"></a>
                             </div>
                             <% for (int i = 1; i < adImages.Count; i++)%>
                             <% { %>
-                            <div class="carousel-item" style="align-content: center">
+                            <div class="carousel-item thumbnail" style="align-content: center">
                                 <a href="<%=adImages[i]%>">
-                                    <img src="<%=adImages[i]%>" alt="image"></a>
+                                    <img class="img-fluid" src="<%=adImages[i]%>" alt="image"></a>
                             </div>
                             <% } %>
                         </div>
