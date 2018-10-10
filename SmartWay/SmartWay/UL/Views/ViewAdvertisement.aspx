@@ -79,6 +79,9 @@
                         <p class="card-text">
                             Offers: <%#:getOfferCount(Item.advertisementID)%>
                         </p>
+                        <p>
+                            Views: <asp:TextBox ID="txtViewCount" runat="server" />
+                        </p>
                         <asp:Button ID="btnBuy" Text="Want to Buy" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
                         <p class="card-text">
                             <h4>Description</h4>
