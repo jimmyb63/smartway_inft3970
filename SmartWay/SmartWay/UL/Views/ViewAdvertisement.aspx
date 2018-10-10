@@ -3,12 +3,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* Make the image fully responsive */
+<<<<<<< HEAD
+.carousel-inner img { 
+    max-width:100%;
+    max-height:100%;
+    width: auto; 
+    height: auto; 
+}
+=======
         .carousel-inner img {
             max-height: 100%;
             max-width: 100%;
             width: auto;
             height: auto;
         }
+>>>>>>> 5200d781301e17dce934a3e5323ed0e5314b877a
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

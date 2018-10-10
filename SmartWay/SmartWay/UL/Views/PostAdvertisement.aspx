@@ -14,7 +14,7 @@
     <!------- Page Content -------->
 
     <div class="col-lg-9 mt-2">
-        <div class="p-2 mb-2 bg-primary text-white">Post an Ad</div>
+        <div class="p-2 mb-2 bg-primary text-white">Post an Advertisement</div>
         <div class="card">
             <!------- Main Page Content Goes Here-------->
             <div class="card-body">

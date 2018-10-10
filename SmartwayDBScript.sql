@@ -21,6 +21,10 @@ USE SmartwayDataBase;
 GO
 
 --Drop Tables if they exist
+IF OBJECT_ID('dbo.ViewCounter', 'U') IS NOT NULL
+	DROP TABLE dbo.ViewCounter;
+IF OBJECT_ID('dbo.ReplyMessage', 'U') IS NOT NULL
+	DROP TABLE dbo.ReplyMessage;
 IF OBJECT_ID('dbo.PrivateMessage', 'U') IS NOT NULL 
   DROP TABLE dbo.PrivateMessage; 
 IF OBJECT_ID('dbo.ForumComment', 'U') IS NOT NULL 
@@ -934,8 +938,16 @@ INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1003_1
 EXEC sp_NewAdvertisement 1002,'F-16 Commuter Jet','offer', 'goods','automotive','Flies well, good petrol mielage. Few scratches and bullet holes', 1002, 9500, 5; 
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1002_1002.jpg', 1002, 1002);
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/2_1002_1002.jpg', 1002, 1002);
+
+--Shark with laser beam
+EXEC sp_NewAdvertisement  1006, 'Shark with Freakining Laser Beams Attached to their Head', 'offer', 'services', 'tools required', 'I figure every creature deserves a warm meal', 1006, 300, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1006_1003.jpg', 1006, 1003);
+
+
 --Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
+
+
 
 
 --Add test Conversations
