@@ -392,6 +392,23 @@ namespace SmartWay.DAL.Controllers
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+            if (accepted == 0)
+            {
+                deactivate(offerID);
+            }
+        }
+
+        public void deactivate(int offerID)
+        {
+            bool active = false;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "UPDATE AddOffer SET active = @active WHERE ID = @offerID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
