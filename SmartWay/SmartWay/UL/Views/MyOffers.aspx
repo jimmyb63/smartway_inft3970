@@ -7,7 +7,7 @@
         <div class="p-2 mb-2 bg-primary text-white">My Offers</div>
         <div class="row">
             <asp:ListView ID="adList" runat="server"
-                DataKeyNames="offerID" GroupItemCount="4"
+                DataKeyNames="offerID" GroupItemCount="5"
                 ItemType="SmartWay.BL.Models.Offer" SelectMethod="getOffers">
                 <EmptyDataTemplate>
                     <div class="col-12 my-2" runat="server">
@@ -44,38 +44,40 @@
                         <div class="card h-100">
                             <div class="row">
                                 <div class="col-3">
-                                    <%--<a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">--%>
+                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>">
                                         <img class="card-img" src="<%#getAdThumbnail(Item.offerAdID, Item.offerSellerID)%>"
                                             style="border: solid; width: 100%" />
-                                    <%--</a>--%>
+                                    </a>
                                 </div>
-                                <%--<% List<Advertisement> ad = getAd(%><%#:Item.offerAdID%><%); %>--%>
                                 <div class="col-9">
                                     <div class="card-body  align-items-center">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-6">
+                                            <div class="col-lg-4 col-md-6">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <h5 class="card-title">
-                                                                <%--<a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a--%>
-                                                                <%--<%=ad[0].advertisementTitle%>--%>
+                                                                <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>"><%#:getAdTitle(Item.offerAdID)%></a>
                                                             </h5>
                                                         </div>
                                                         <div class="row">
                                                             <p class="card-text">
-                                                                <%--<%=String.Format("{0:c}", ad[0].advertisementPrice)%>--%>
+                                                                <%#:String.Format("{0:c}",getAdPrice(Item.offerAdID)) %>
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-3 d-none d-lg-block">
-                                                <div class="card-text align-items-center">Amount Offered: <%#:String.Format("{0:c}", Item.offerAmountOffered)%></div>
+                                            <div class="col-4 d-none d-lg-block">
+                                                <div class="card-text align-items-center">
+                                                    <p>Amount Offered: <%#:String.Format("{0:c}", Item.offerAmountOffered)%></p>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <% int accepted = 1; %>
-                                                <div class="card-text align-items-center">Status: <% if (accepted == 0) { %><p class="danger-color">Declined</p><% } else if (accepted == 1) { %><p class="success-color">Accepted</p><%} else if (accepted == 2) { %><p class="primary-color">Pending</p><%} %></div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <%--<% int accepted = 1; %>--%>
+                                                <div class="card-text align-items-center">
+                                                    <p>Status: <%#: getOfferStatus(Item.offerID) %></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
