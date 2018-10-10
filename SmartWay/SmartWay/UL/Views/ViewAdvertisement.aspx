@@ -3,10 +3,21 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* Make the image fully responsive */
+<<<<<<< HEAD
+.carousel-inner img { 
+    max-width:100%;
+    max-height:100%;
+    width: auto; 
+    height: auto; 
+}
+=======
         .carousel-inner img {
-            width: 80%;
-            height: 30%;
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
         }
+>>>>>>> 5200d781301e17dce934a3e5323ed0e5314b877a
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -16,6 +27,7 @@
     <div class="col-lg-9 mt-2">
 
         <asp:HiddenField ID="adID" runat="server" />
+        <asp:HiddenField ID="txtViewCount" runat="server" />
         <asp:ListView ID="displayAd" runat="server"
             DataKeyNames="advertisementID" GroupItemCount="3"
             ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="GetAd">
@@ -37,7 +49,7 @@
             <ItemTemplate>
                 <div class="p-2 mb-2 bg-primary text-white"><%#:Item.advertisementTitle%></div>
                 <div class="card">
-                    <div id="adImages" class="carousel slide" data-ride="carousel" style="height: auto; background-color: grey">
+                    <div id="adImages" class="carousel slide" data-ride="carousel" style="height: 500px; background-color: grey">
                         <!-- Indicators -->
                         <% int adID = Convert.ToInt32(Request.QueryString["advertisementID"]); %>
                         <% List<string> adImages = getAdImages(adID); %>
@@ -53,7 +65,7 @@
                         <div class="carousel-inner" role="listbox" style="text-align: center">
                             <div class="carousel-item active" style="align-content: center">
                                 <a href="<%=adImages[0]%>">
-                                    <img src="<%=adImages[0]%>" height="800" alt="image"></a>
+                                    <img src="<%=adImages[0]%>" alt="image"></a>
                             </div>
                             <% for (int i = 1; i < adImages.Count; i++)%>
                             <% { %>
@@ -74,12 +86,18 @@
                     </div>
                     <div class="card-body">
                         <h4><b>Price: </b><%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
+                        <p class="card-text">
+                            Offers: <%#:getOfferCount(Item.advertisementID)%>
+                        </p>
+                        <p>
+                            Views: <%=txtViewCount.Value %>
+                        </p>
                         <asp:Button ID="btnBuy" Text="Want to Buy" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
                         <p class="card-text">
                             <h4>Description</h4>
                             <p><%#:Item.advertisementDescription %></p>
                             <hr>
-                            <asp:Button ID="btnContact" Text="Contact Seller" CssClass="btn btn-info" runat="server" /><asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
+                            <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info" runat="server" /><asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
                             <br>
                     </div>
                 </div>

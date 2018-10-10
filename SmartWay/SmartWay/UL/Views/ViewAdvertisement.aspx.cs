@@ -1,6 +1,7 @@
 ﻿using SmartWay.BL.Models;
 using SmartWay.DAL.Controllers;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,8 +20,20 @@ namespace SmartWay.UL.Views
             {
                 adId = Request.QueryString["advertisementID"];
             }
-
             adID.Value = adId;
+            AdvertisementControls AC = new AdvertisementControls();
+            int id = Convert.ToInt32(adId);
+            txtViewCount.Value = Convert.ToString(AC.getViewCount(id));
+            if (Session["currentUser"] != null)
+            {
+                if (Session[adId] == null)
+                {
+                    id = Convert.ToInt32(adId);
+                    int count = Convert.ToInt32(txtViewCount.Value);
+                    AC.updateViewCount(id, (count + 1));
+                    Session[adId] = adId;
+                }
+            }
         }
 
         public void ReportAd(object sender, EventArgs e)
@@ -59,6 +72,13 @@ namespace SmartWay.UL.Views
             {
                 Response.Redirect("Login.aspx");
             }
+        }
+
+        public int getOfferCount(int adID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            int count = AC.getOfferCount(adID);
+            return count;
         }
     }
 }

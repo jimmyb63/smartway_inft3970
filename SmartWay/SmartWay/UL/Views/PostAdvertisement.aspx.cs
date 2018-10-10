@@ -111,10 +111,10 @@ namespace SmartWay.UL.Views
                 Bitmap originalImage = image;
 
                 // Calculate the new image dimensions
-                int maxSize = 800;
+                int maxSize = 600;
                 int newWidth, newHeight;
-                if (originalImage.Width > 800 || originalImage.Height > 800)
-                {
+                //if (originalImage.Width > 800 || originalImage.Height > 800)
+                //{
                     if (originalImage.Width > originalImage.Height)
                     {
                         newWidth = maxSize;
@@ -125,12 +125,12 @@ namespace SmartWay.UL.Views
                         newWidth = originalImage.Width * maxSize / originalImage.Height;
                         newHeight = maxSize;
                     }
-                }
-                else
-                {
-                    newWidth = originalImage.Width;
-                    newHeight = originalImage.Height;
-                }
+                //}
+                //else
+                //{
+                //    newWidth = originalImage.Width;
+                //    newHeight = originalImage.Height;
+                //}
 
                 // Create a new bitmap which will hold the previous resized bitmap
                 Bitmap newImage = new Bitmap(originalImage, newWidth, newHeight);

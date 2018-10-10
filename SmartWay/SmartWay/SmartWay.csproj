@@ -159,12 +159,14 @@
     <Content Include="UL\Views\MapPage.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
     <Content Include="UL\Views\PostForumThread.aspx" />
+    <Content Include="UL\Views\PrivateMessage.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="UL\Views\WantToBuy.aspx" />
     <Content Include="UL\Views\PostAdvertisementConfirmation.aspx" />
     <Content Include="UL\Views\TermsofService.aspx" />
     <Content Include="UL\Views\passwordResetConfirmation.aspx" />
+    <Content Include="UL\Views\TEST PAGE.aspx" />
     <Content Include="User.Master" />
     <Content Include="Admin.Master" />
     <None Include="Web.Debug.config">
@@ -410,6 +412,13 @@
     <Compile Include="UL\Views\PostForumThread.aspx.designer.cs">
       <DependentUpon>PostForumThread.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Views\PrivateMessage.aspx.cs">
+      <DependentUpon>PrivateMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\PrivateMessage.aspx.designer.cs">
+      <DependentUpon>PrivateMessage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Views\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -465,6 +474,13 @@
     </Compile>
     <Compile Include="UL\Views\passwordResetConfirmation.aspx.designer.cs">
       <DependentUpon>passwordResetConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\TEST PAGE.aspx.cs">
+      <DependentUpon>TEST PAGE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\TEST PAGE.aspx.designer.cs">
+      <DependentUpon>TEST PAGE.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
