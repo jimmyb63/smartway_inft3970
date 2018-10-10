@@ -22,6 +22,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.HiddenField adID;
         
         /// <summary>
+        /// txtViewCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtViewCount;
+        
+        /// <summary>
         /// displayAd control.
         /// </summary>
         /// <remarks>

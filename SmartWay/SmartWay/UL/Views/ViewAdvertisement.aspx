@@ -18,6 +18,7 @@
     <div class="col-lg-9 mt-2">
 
         <asp:HiddenField ID="adID" runat="server" />
+        <asp:TextBox ID="txtViewCount" runat="server" />
         <asp:ListView ID="displayAd" runat="server"
             DataKeyNames="advertisementID" GroupItemCount="3"
             ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="GetAd">
@@ -80,7 +81,7 @@
                             Offers: <%#:getOfferCount(Item.advertisementID)%>
                         </p>
                         <p>
-                            Views: <asp:TextBox ID="txtViewCount" runat="server" />
+                            Views:
                         </p>
                         <asp:Button ID="btnBuy" Text="Want to Buy" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
                         <p class="card-text">

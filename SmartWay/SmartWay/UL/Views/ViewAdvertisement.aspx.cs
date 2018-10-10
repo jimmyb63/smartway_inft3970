@@ -1,6 +1,7 @@
 ﻿using SmartWay.BL.Models;
 using SmartWay.DAL.Controllers;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,15 +23,14 @@ namespace SmartWay.UL.Views
             adID.Value = adId;
             AdvertisementControls AC = new AdvertisementControls();
             int id = Convert.ToInt32(adId);
-            txtViewCount.Text = AC.getViewCount(id);
-
+            txtViewCount.Text = Convert.ToString(AC.getViewCount(id));
             if (Session["currentUser"] != null)
             {
                 if (Session[adId] == null)
                 {
                     id = Convert.ToInt32(adId);
                     int count = Convert.ToInt32(txtViewCount.Text);
-                    AC.updateViewCount(id, count);
+                    AC.updateViewCount(id, (count + 1));
                     Session[adId] = adId;
                 }
             }

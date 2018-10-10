@@ -487,6 +487,7 @@ BEGIN
 	INSERT INTO Advertisement (sellerID, adType, title, adDescription, addressID, categoryID, price)
 	VALUES(@tempSellerID, @tempType, @tempTitle, @tempDescription, @tempAddressID, @tempCategoryID, @tempPrice);
 	SET @returnAdID =(select max(ID) from Advertisement);
+	INSERT INTO ViewCounter (adID) VALUES (@returnAdID);
 	SELECT @returnAdID;
 END
 GO

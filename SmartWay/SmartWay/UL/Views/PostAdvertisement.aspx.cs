@@ -38,7 +38,6 @@ namespace SmartWay.UL.Views
             int addressID = currentUser.userAddressID;
             AdvertisementControls AC = new AdvertisementControls();
             int adID = AC.newAdvertisement(userID, adTitle, adType, adCategory, adSubCategory, adDescription, addressID, adPrice);
-            AC.addViewCount(adID);
             if (FileUpload1.HasFile)
             {
                 int index = 1;
