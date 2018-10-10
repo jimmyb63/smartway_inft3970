@@ -138,6 +138,7 @@
     <Content Include="UL\Images\TestImg\1007.jpg" />
     <Content Include="UL\Images\TestImg\1_1002_1002.jpg" />
     <Content Include="UL\Images\TestImg\1_1003_1000.jpg" />
+    <Content Include="UL\Images\TestImg\1_1003_1006.jpg" />
     <Content Include="UL\Images\TestImg\2_1002_1002.jpg" />
     <Content Include="UL\Views\Account.aspx" />
     <Content Include="UL\Views\AccountVerification.aspx" />
