@@ -941,7 +941,7 @@ INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/2_1002_1
 
 --Shark with laser beam
 EXEC sp_NewAdvertisement  1006, 'Shark with Freakining Laser Beams Attached to their Head', 'offer', 'services', 'tools required', 'I figure every creature deserves a warm meal', 1006, 300, 5;
-INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1006_1003.jpg', 1006, 1003);
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1003_1006.jpg', 1006, 1003);
 
 
 --Add Test Offer
