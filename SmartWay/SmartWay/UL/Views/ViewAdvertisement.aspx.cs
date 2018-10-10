@@ -23,13 +23,13 @@ namespace SmartWay.UL.Views
             adID.Value = adId;
             AdvertisementControls AC = new AdvertisementControls();
             int id = Convert.ToInt32(adId);
-            txtViewCount.Text = Convert.ToString(AC.getViewCount(id));
+            txtViewCount.Value = Convert.ToString(AC.getViewCount(id));
             if (Session["currentUser"] != null)
             {
                 if (Session[adId] == null)
                 {
                     id = Convert.ToInt32(adId);
-                    int count = Convert.ToInt32(txtViewCount.Text);
+                    int count = Convert.ToInt32(txtViewCount.Value);
                     AC.updateViewCount(id, (count + 1));
                     Session[adId] = adId;
                 }
