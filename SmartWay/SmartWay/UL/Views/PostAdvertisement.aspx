@@ -18,6 +18,14 @@
         <div class="card">
             <!------- Main Page Content Goes Here-------->
             <div class="card-body">
+
+                <%--  CHECKING ERROR SUMMARIES --%>
+                <asp:ValidationSummary
+                    ID="ValidationSummary1"
+                    runat="server"
+                    ForeColor="Red"
+                    ShowMessageBox="false"
+                    HeaderText="Please fix these entries:" />
                 <%-- TITLE for the ad --%>
                 <h5>Ad title*</h5>
                 <asp:TextBox 
@@ -26,7 +34,7 @@
                     placeholder="Eg. Weber Family 2 burner BBQ in great condition" 
                     runat="server" />
                 <asp:RequiredFieldValidator
-                    ErrorMessage="Required"
+                    ErrorMessage="Title Required"
                     ForeColor="Red"
                     ControlToValidate="txtTitle"
                     runat="server">
@@ -43,11 +51,7 @@
                     <asp:ListItem Text=" Offer" Value="offer" />
                     <asp:ListItem Text=" Request" Value="request" />
                 </asp:RadioButtonList>
-
-                <hr />
-               
-
-
+                <hr />       
 
                 <%-- CATEGORY for the ad --%>
                 <h5>Select a category</h5>
@@ -63,23 +67,50 @@
                 <hr />
 
                 <%-- SUB-CATEGORY for the ad --%>
-                <h5>Select a sub-category</h5>
+                <h5>Select a sub-category*</h5>
                 <asp:DropDownList 
                     CssClass="form-control" 
                     ID="ddSubCategory" 
                     runat="server">
-                </asp:DropDownList>
+                </asp:DropDownList>                
+                <br />
+                <%-- Required to pick a subcategory --%>
+                <asp:RequiredFieldValidator
+                    ErrorMessage="Sub-category Required"
+                    ForeColor="Red"
+                    ControlToValidate="ddSubCategory"
+                    runat="server"
+                    InitialValue="0"
+                    Display="Dynamic"
+                    CssClass="error"                    
+                    ></asp:RequiredFieldValidator>
                 <hr />
 
                 <%-- PRICE for the ad --%>
-                <h5>Price</h5>
+                
+                <h5>Price*</h5>
                 <div class="row">
-                    <div class="col-lg-4">
-                        <asp:TextBox 
-                            CssClass="form-control" 
-                            ID="txtPrice" 
-                            placeholder="Eg. $25" 
-                            runat="server" />
+                    <div class="col-lg-4">      
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                    <asp:Textbox 
+                        CssClass="form-control" 
+                        ID="txtPrice" 
+                        runat="server"
+                        placeholder="eg. 25"/>                       
+                    </div>
+                        
+                        <%-- PRICE required --%>
+                        <asp:RequiredFieldValidator
+                            ErrorMessage="Price Required"
+                            Display="Dynamic"
+                            ForeColor="Red"
+                            ControlToValidate="txtPrice"
+                            runat="server"></asp:RequiredFieldValidator>
+
+
                     </div>
                     <%--Might not need this code - radio buttons next to price --%>
                     <%--<div class="col-lg-8 mt-2">
@@ -112,12 +143,6 @@
                         TextMode="MultiLine" 
                         ID="txtDescription" 
                         Rows="6" 
-                        runat="server" />
-
-                    <asp:RequiredFieldValidator
-                        ErrorMessage="Required"
-                        ForeColor="Red"
-                        ControlToValidate="ddSubCategory"
                         runat="server" />
                 </div>
                 <hr />
@@ -247,5 +272,7 @@
             </div>
     <% } %>
     </div>
-</div>
+</div> 
+  
+
 </asp:Content>
