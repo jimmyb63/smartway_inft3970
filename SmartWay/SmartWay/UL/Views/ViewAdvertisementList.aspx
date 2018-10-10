@@ -81,6 +81,15 @@
                                                             <p class="card-text">
                                                                 <%#:String.Format("{0:c}", Item.advertisementPrice)%>
                                                             </p>
+                                                            <p>
+                                                                Views: <%#:getViewCount(Item.advertisementID) %>
+                                                            </p>
+                                                            <p>
+                                                                Date Posted: <%#:Item.advertisementDatePosted%>
+                                                            </p>
+                                                            <p>
+                                                                Offers: <%#:getOfferCount(Item.advertisementID)%>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

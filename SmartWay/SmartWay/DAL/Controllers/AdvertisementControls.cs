@@ -264,6 +264,45 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void addViewCount(int adID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "INSERT INTO ViewCounter (adID) VALUES (@adID)"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public void updateViewCount(int adID, int viewCount)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "UPDATE ViewCounter SET viewCount = @viewCount WHERE adID = @adID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@viewCount", SqlDbType.Int).Value = viewCount;
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int getViewCount(int adID)
+        {
+            int viewCount = 0;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT viewCount FROM ViewCounter WHERE adID = @adID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            connection.Open();
+            viewCount = (int)cmd.ExecuteScalar();
+            connection.Close();
+            return viewCount;
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Offer> getUserOffers(int userID)
         {

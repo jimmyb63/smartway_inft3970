@@ -19,8 +19,21 @@ namespace SmartWay.UL.Views
             {
                 adId = Request.QueryString["advertisementID"];
             }
-
             adID.Value = adId;
+            AdvertisementControls AC = new AdvertisementControls();
+            int id = Convert.ToInt32(adId);
+            viewCount.Text = AC.getViewCount(id);
+
+            if (Session["currentUser"] != null)
+            {
+                if (Session[adId] == null)
+                {
+                    id = Convert.ToInt32(adId);
+                    int count = Convert.ToInt32(viewCount.Text);
+                    AC.updateViewCount(id, count);
+                    Session[adId] = adId;
+                }
+            }
         }
 
         public void ReportAd(object sender, EventArgs e)
@@ -59,6 +72,13 @@ namespace SmartWay.UL.Views
             {
                 Response.Redirect("Login.aspx");
             }
+        }
+
+        public int getOfferCount(int adID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            int count = AC.getOfferCount(adID);
+            return count;
         }
     }
 }
