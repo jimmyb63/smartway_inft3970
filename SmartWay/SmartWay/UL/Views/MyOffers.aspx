@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="MyOffers.aspx.cs" Inherits="SmartWay.UL.Views.MyOffers" %>
+﻿<%@ Page Title="SmartWay - My Offers" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="MyOffers.aspx.cs" Inherits="SmartWay.UL.Views.MyOffers" %>
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -74,9 +74,22 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6">
-                                                <%--<% int accepted = 1; %>--%>
-                                                <div class="card-text align-items-center">
-                                                    <p>Status: <%#: getOfferStatus(Item.offerID) %></p>
+                                                <div class="row">
+                                                    <div class="card-text align-items-center">
+                                                        <p>Status: <%#: getOfferStatus(Item.offerID) %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 2 %>'>
+                                                        <a href="OfferCancel.aspx?offerID=<%#:Item.offerID %>">
+                                                            <button type="button" class="btn btn-danger btn-block">Cancel</button>
+                                                        </a>
+                                                    </asp:PlaceHolder>
+                                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 1 %>'>
+                                                         <a href="Payment.aspx?advertisementID=<%#:Item.offerAdID %>">
+                                                            <button type="button" class="btn btn-success btn-block">Pay Now</button>
+                                                        </a>
+                                                    </asp:PlaceHolder>
                                                 </div>
                                             </div>
                                         </div>

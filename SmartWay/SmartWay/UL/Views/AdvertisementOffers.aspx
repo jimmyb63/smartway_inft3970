@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <asp:ListView ID="offerList" runat="server"
                         DataKeyNames="offerID" GroupItemCount="4"
-                        ItemType="SmartWay.BL.Models.Offer" SelectMethod="GetOffers">
+                        ItemType="SmartWay.BL.Models.Offer" OnItemCommand="offerList_ItemCommand" SelectMethod="GetOffers">
                         <EmptyDataTemplate>
                             <div class="col-12 my-2" runat="server">
                                 <div class="card h-100">
@@ -51,10 +51,10 @@
                                         Offer Amount: <%#:String.Format("{0:c}", Item.offerAmountOffered)%> 
                                     </div>
                                     <div class="col-3">
-                                        <asp:Button CssClass="btn btn-block btn-success" Text="Accept" runat="server" OnClick="acceptOffer" />  
+                                        <asp:Button CssClass="btn btn-block btn-success" Text="Accept" runat="server" CommandName="accept" CommandArgument="<%# Container.DataItemIndex %>"/>  
                                     </div>
                                     <div class="col-3">
-                                        <asp:Button CssClass="btn btn-block btn-danger" Text="Decline" runat="server" OnClick="declineOffer" />
+                                        <asp:Button CssClass="btn btn-block btn-danger" Text="Decline" runat="server" CommandName="decline" CommandArgument="<%# Container.DataItemIndex %>"/>
                                     </div>
                                 </div>
                             </div>

@@ -74,7 +74,16 @@
                                                 <div class="card-text align-items-center">Date Posted: <%#: Item.advertisementDatePosted %></div>
                                             </div>
                                             <div class="col-lg-3 col-md-6">
-                                                <div class="card-text align-items-center">Offers: <a href="AdvertisementOffers.aspx?advertisementID=<%#: Item.advertisementID %>"><%#: getOfferCount(Item.advertisementID) %></a></div>
+                                                <div class="row">
+                                                    <div class="card-text align-items-center">
+                                                        <p>Offers: <%#: getOfferCount(Item.advertisementID) %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <a href="AdvertisementOffers.aspx?advertisementID=<%#: Item.advertisementID %>">
+                                                        <button type="button" class="btn btn-block blue darken-3">View Offers</button>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

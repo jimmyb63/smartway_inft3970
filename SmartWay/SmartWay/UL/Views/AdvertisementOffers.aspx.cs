@@ -36,14 +36,24 @@ namespace SmartWay.UL.Views
             return userName;
         }
 
-        public void acceptOffer(object sender, EventArgs e)
+        protected void offerList_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            List<BL.Models.Offer> offers = GetOffers();
+            AdvertisementControls AC = new AdvertisementControls();
+            if (e.CommandName == "accept")
+            {
+                offers[index].offerOfferAccepted = 1;
+                AC.updateOfferAccepted(offers[index].offerOfferAccepted, offers[index].offerID, offers[index].offerAdID);
 
-        }
-
-        public void declineOffer(object sender, EventArgs e)
-        {
-
+                Response.Redirect("Index.aspx");
+            }
+            else if (e.CommandName == "decline")
+            {
+                offers[index].offerOfferAccepted = 0;
+                AC.updateOfferAccepted(offers[index].offerOfferAccepted, offers[index].offerID, offers[index].offerAdID);
+                Response.Redirect("Index.aspx");
+            }
         }
     }
 }
