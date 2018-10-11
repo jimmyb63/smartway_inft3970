@@ -159,3 +159,21 @@ body {
         border-radius: 50%;
         display: inline;
     }
+
+.information-content {
+    position: absolute;
+    bottom: 0;
+}
+
+.dropdown-menu-small {
+    min-width: 14rem;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky
+    pointer-events: none;
+}*/

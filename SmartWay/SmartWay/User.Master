@@ -25,7 +25,7 @@
     <form runat="server">
         <!----------------- Top Navbar ------------------->
         <nav class="navbar navbar-expand-lg navbar-dark blue fixed-top">
-            <div class="container-fluid">
+            <div class="container">
                 <!----------------- logo ------------------->
                 <a class="navbar-brand" href="Index.aspx"><img style="width: 120px; display: block;" src="../Images/smartway-logo.png" /></a>
                 <!----------------- Toggle for mobile devices ------------------->
@@ -34,9 +34,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!----------------- navigation links ------------------->
                         <li class="nav-item"><a class="nav-link m-1" href="index.aspx"><i class="fas fa-home mr-1"></i>Home</a> </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle m-1" id="goodsdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart mr-1"></i>Goods</a>
-                            <div class="dropdown-menu" aria-labelledby="goodsdropdown">
+                        <li class="nav-item dropdown" aria-labelledby="goodsdropdown">
+                            <a class="nav-link dropdown-toggle m-1" id="goodsdropdown" aria-expanded="false"><i class="fas fa-shopping-cart mr-1"></i>Goods</a>
+                            <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut aria-labelledby="goodsdropdown">
                                 <a class="dropdown-item" href="ViewAdvertisementList.aspx?category=goods">All Goods</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=free">Free</a>
@@ -53,7 +53,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle m-1" id="servicesdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-people-carry mr-1"></i>Services</a>
-                            <div class="dropdown-menu" aria-labelledby="servicesdropdown">
+                            <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" aria-labelledby="servicesdropdown">
                                 <a class="dropdown-item" href="ViewAdvertisementList.aspx?category=services">Browse all Services</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=labour">Labour</a>
