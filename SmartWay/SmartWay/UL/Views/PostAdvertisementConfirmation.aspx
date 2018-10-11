@@ -17,7 +17,7 @@
                     <div class="col-lg-12">
                         <h1>Your Advertisement Has Been Posted</h1>
                         <%-- After successful verification, user is redirected to homepage --%>
-                        <p>Click <a href="index.aspx">here</a> to go to home.</p>
+                        <p>Click <a href="index.aspx">here</a> to go to home or <a href="PostAdvertisement.aspx">post another ad!</a></p>
                         <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.
                     </div>
                 </div>
