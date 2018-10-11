@@ -7,45 +7,43 @@
     <div class="col-lg-9 mt-2">
         <%-- Main Page Content Goes Here--%>
         <div class="p-2 mb-2 bg-primary text-white">Messages</div>
-        <div class="card">
-            <div class="card-body">
+            <div class="card">
+                <div class="card-body">
                 <%-- LABELS for Name and Title --%>
                 <%-- NAME --%>
                 <table>
                     <tr>
-                        <td>
+                    <td>
                         <asp:Label 
-                    ID="nameLabel"
-                    runat="server"
-                    Text="THIS WILL BE MESSAGE TO:">
-                </asp:Label>
-                            </td>
+                        ID="nameLabel"
+                        runat="server"
+                        Text="THIS WILL BE MESSAGE TO:">
+                        </asp:Label>
+                    </td>
                     </tr>
-                    <tr><%-- TITLE --%>
-                <td>
-
-                      
-                <asp:Label
-                    ID="titleLabel"
-                    runat="server"
-                    Text="THIS WILL BE THE TITLE aka AD's NAME">
-                </asp:Label>
-                     </td>
+            <%-- TITLE --%>
+                    <tr>            
+                    <td>                      
+                        <asp:Label
+                        ID="titleLabel"
+                        runat="server"
+                        Text="THIS WILL BE THE TITLE aka AD's NAME">
+                        </asp:Label>
+                    </td>
                     </tr>                 
-                    </table>
-                <br />
-                <%-- MESSAGE BOX --%>
-                <h6>Message:</h6>
+                </table>
+            <br />
+            <%-- MESSAGE BOX --%>
+            <h6>Message:</h6>
                 <asp:TextBox 
-                    CssClass="form-control" 
-                    runat="server" 
-                    ID="txtContent" 
-                    TextMode="MultiLine"                     
-                    Rows="5" />
-                <br />
-                <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" />
+                CssClass="form-control" 
+                runat="server" 
+                ID="txtContent" 
+                TextMode="MultiLine"                     
+                Rows="5" />
+            <br />
+            <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" />
             </div>
         </div>
     </div>
-
 </asp:Content>
