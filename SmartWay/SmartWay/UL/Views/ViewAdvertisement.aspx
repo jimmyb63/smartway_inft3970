@@ -92,7 +92,12 @@
                                         </p>
                                     </div>
                                 </div>
-                                <asp:Button ID="btnBuy" Text="Interested" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-12 mb-2">
+                                        <asp:Button ID="btnBuy" Text="Interested" CssClass="btn btn-success btn-block" OnClick="WantToBuy" runat="server" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-0"></div>
+                                </div>
                             </div>
                             <br />
                             <div class="col-lg-6 card-text">
@@ -103,18 +108,19 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="card-text">
+                            <div class="col-lg-12 card-text">
                                 <h4>Description</h4>
                                 <p><%#:Item.advertisementDescription %></p>
                             </div>
                         </div>
                         <hr />
                         <div class="row">
-                            <div class="col-lg-6">
-                                <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info" runat="server" />
+                            <div class="col-lg-4 col-md-12 my-1">
+                                <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info btn-block" runat="server" />
                             </div>
-                            <div class="col-lg-6">
-                                <asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
+                            <div class="col-lg-4 col-md-0"></div>
+                            <div class="col-lg-4 col-md-12 my-1">
+                                <asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger btn-block" OnClick="ReportAd" runat="server" />
                             </div>
                         </div>
                         <br />

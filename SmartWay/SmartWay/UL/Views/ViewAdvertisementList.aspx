@@ -63,7 +63,7 @@
                         <div class="card mt-2 grey lighten-5">
                             <div class="row">
                                 <!-- Card image -->
-                                <div class="col-5">
+                                <div class="col-lg-5 col-md-12">
                                     <div class="view overlay" style="background-color: #263238">
                                         <div class="thumbnail">
                                             <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <!-- Card content -->
-                                <div class="col-7">
+                                <div class="col-lg-7 col-md-12">
                                     <div class="card-body">
                                         <!-- Title -->
                                         <h5 class="card-title"><a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a></h5>
@@ -80,8 +80,8 @@
                                         <p>
                                             <div class="card-text align-items-center d-none d-lg-block"><%#: Item.advertisementDescription %></div>
                                         </p>
-                                        <ul class="list-unstyled list-inline font-small d-none d-lg-block">
-                                            <li class="list-inline-item pr-2 black-text"><i class="far fa-calendar-alt mr-2"></i><%#:Item.advertisementDatePosted%></li>
+                                        <ul class="list-unstyled list-inline font-small">
+                                            <li class="list-inline-item pr-2 black-text"><i class="far fa-calendar-alt mr-2"></i><%#:(Item.advertisementDatePosted).ToString("dd/MM/yyyy")%></li>
                                             <li class="list-inline-item pr-2 black-text"><i class="fas fa-eye mr-2"></i><%#:getViewCount(Item.advertisementID) %></li>
                                             <li class="list-inline-item pr-2 black-text"><i class="fas fa-hand-holding-usd mr-2"></i><%#:getOfferCount(Item.advertisementID)%></li>
                                         </ul>
