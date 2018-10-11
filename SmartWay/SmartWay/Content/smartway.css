@@ -160,11 +160,10 @@ body {
         display: inline;
     }
 
-<<<<<<< HEAD
     .small-search{
         background-color: transparent;
     }
-=======
+
 .information-content {
     position: absolute;
     bottom: 0;
@@ -173,4 +172,3 @@ body {
 .dropdown-menu-small {
     min-width: 14rem;
 }
->>>>>>> 6767b6f6d2f5b2faaebe6da065064a1f5e324cc4

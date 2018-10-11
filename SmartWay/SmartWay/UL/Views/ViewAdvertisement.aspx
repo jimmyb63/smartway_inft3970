@@ -116,11 +116,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-lg-4 col-md-12 my-1">
-<<<<<<< HEAD
-                                <asp:Button ID="btnContact" Text="Contact Seller" CssClass="btn btn-info btn-block" o runat="server" />
-=======
                                 <asp:Button ID="btnContact" Text="Contact Seller" OnClick="ContactSeller" CssClass="btn btn-info btn-block" runat="server" />
->>>>>>> 6767b6f6d2f5b2faaebe6da065064a1f5e324cc4
                             </div>
                             <div class="col-lg-4 col-md-0"></div>
                             <div class="col-lg-4 col-md-12 my-1">
