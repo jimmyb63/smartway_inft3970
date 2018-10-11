@@ -291,13 +291,13 @@ CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 
 CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									watcherID INT NOT NULL,
-									sellerID INT NOT NULL,
-									currentlyWatching BIT DEFAULT 1,
+									addID INT NOT NULL,
+									currentlyWatching BIT DEFAULT 1, -- 1 is Watching, 0 is not watching.
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (watcherID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
+									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 									
 --Add comments							
@@ -795,11 +795,11 @@ RETURN
 GO
 
 --Get Private Message ID List
-IF OBJECT_ID('getUserPMIDList', 'P') IS NOT NULL  
-   DROP PROCEDURE getUserPMIDList;  
+IF OBJECT_ID('sp_GetUserPMIDList', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetUserPMIDList;  
 GO  
 
-CREATE PROCEDURE getUserPMIDList(
+CREATE PROCEDURE sp_GetUserPMIDList(
 	@tempUserID VARCHAR(20))
 AS
 	DECLARE @firstMessageID INT 
@@ -828,7 +828,12 @@ END
 RETURN  
 GO
 
-CREATE PROCEDURE getPMReplyList(
+--Get PM List
+IF OBJECT_ID('sp_getPMReplyList', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_getPMReplyList;  
+GO  
+
+CREATE PROCEDURE sp_getPMReplyList(
 	@tempPrivMsgID VARCHAR(20))
 AS
 BEGIN
@@ -836,6 +841,42 @@ SELECT * FROM ReplyMessage WHERE  privateMessageID = @tempPrivMsgID
 ORDER BY creationDate DESC;
 END
 RETURN  
+GO
+
+
+--Add New Watched Item for User
+IF OBJECT_ID('sp_NewWatchedItem', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewWatchedItem;  
+GO  
+
+CREATE PROCEDURE sp_NewWatchedItem(
+	@tempAddID INT,
+	@tempUserID INT,
+	@returnWatchListID INT Output)
+AS
+BEGIN
+		INSERT INTO WatchListItem (watcherID, addID) 
+		VALUES(@tempUserID, @tempAddID);
+		SET @returnWatchListID =(SELECT MAX(ID) FROM WatchListItem);
+		SELECT @returnWatchListID;
+END
+RETURN  
+GO
+
+
+--Get Watched Items for User
+IF OBJECT_ID('sp_GetUserWatchList', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetUserWatchList;  
+GO  
+
+CREATE PROCEDURE sp_GetUserWatchList(
+	@tempUserID VARCHAR(20))
+AS
+	DECLARE @firstMessageID INT 
+BEGIN
+SELECT * FROM WatchListItem WHERE  watcherID = @tempUserID;
+END
+RETURN
 GO
 
 --DATALOAD
