@@ -617,6 +617,44 @@ BEGIN
 END
 GO
 
+IF ( OBJECT_ID('sp_SearchSaleItemsByTitle') IS NOT NULL ) 
+   DROP PROCEDURE sp_SearchSaleItemsByTitle
+GO
+
+--New Phone
+CREATE PROCEDURE sp_SearchSaleItemsByTitle(
+	@tempSearchWord VARCHAR(30),
+	@tempSearchWord2 VARCHAR(30),
+	@tempSearchWord3 VARCHAR(30))
+AS
+BEGIN
+	SELECT * FROM Advertisement 
+	--WHERE title LIKE '%@tempSearchWord%'; -- AND active = 1;
+	WHERE CHARINDEX(@tempSearchWord, title) > 0
+	OR CHARINDEX(@tempSearchWord2, title) > 0
+	OR CHARINDEX(@tempSearchWord3, title) > 0
+END
+GO
+
+IF ( OBJECT_ID('sp_SearchSaleItemsByDescription') IS NOT NULL ) 
+   DROP PROCEDURE sp_SearchSaleItemsByDescription
+GO
+
+--New Phone
+CREATE PROCEDURE sp_SearchSaleItemsByDescription(
+	@tempSearchWord VARCHAR(30),
+	@tempSearchWord2 VARCHAR(30),
+	@tempSearchWord3 VARCHAR(30))
+AS
+BEGIN
+	SELECT * FROM Advertisement 
+	--WHERE title LIKE '%@tempSearchWord%'; -- AND active = 1;
+	WHERE CHARINDEX(@tempSearchWord, adDescription) > 0
+	OR CHARINDEX(@tempSearchWord2, adDescription) > 0
+	OR CHARINDEX(@tempSearchWord3, adDescription) > 0
+END
+GO
+
 -- If sp_Admin_Check Exists
 IF OBJECT_ID('sp_Admin_Check', 'P') IS NOT NULL  
    DROP PROCEDURE sp_Admin_Check;  
@@ -1017,7 +1055,7 @@ EXEC sp_NewAdvertisement 1000,'Birthday Party Host','offer', 'goods','household'
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1003_1000.jpg', 1000, 1001);
 
 --F-16 Add
-EXEC sp_NewAdvertisement 1002,'F-16 Commuter Jet','offer', 'goods','automotive','Flies well, good petrol mielage. Few scratches and bullet holes', 1002, 9500, 5; 
+EXEC sp_NewAdvertisement 1002,'F-16 Commuter Jet','offer', 'goods','automotive','Flies well, good petrol mileage. Few scratches and bullet holes', 1002, 9500, 5; 
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1002_1002.jpg', 1002, 1002);
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/2_1002_1002.jpg', 1002, 1002);
 
