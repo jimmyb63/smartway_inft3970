@@ -973,22 +973,23 @@ EXEC sp_newVerificationCode 'abcd1234', '1013';
 EXEC sp_newVerificationCode 'abcd1234', '1014';
 EXEC sp_newVerificationCode 'abcd1234', '1015';
 
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1000';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1001';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1002';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1003';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1004';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1005';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1006';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1007';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1008';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1009';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1010';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1011';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1012';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1013';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1014';
-UPDATE Person SET verificationDate = GETDATE()  WHERE ID = '1015';
+--Verifying Person
+EXEC sp_verifyPerson 'abcd1234', '1000';
+EXEC sp_verifyPerson 'abcd1234', '1001';
+EXEC sp_verifyPerson 'abcd1234', '1002';
+EXEC sp_verifyPerson 'abcd1234', '1003';
+EXEC sp_verifyPerson 'abcd1234', '1004';
+EXEC sp_verifyPerson 'abcd1234', '1005';
+EXEC sp_verifyPerson 'abcd1234', '1006';
+EXEC sp_verifyPerson 'abcd1234', '1007';
+EXEC sp_verifyPerson 'abcd1234', '1008';
+EXEC sp_verifyPerson 'abcd1234', '1009';
+EXEC sp_verifyPerson 'abcd1234', '1010';
+EXEC sp_verifyPerson 'abcd1234', '1011';
+EXEC sp_verifyPerson 'abcd1234', '1012';
+EXEC sp_verifyPerson 'abcd1234', '1013';
+EXEC sp_verifyPerson 'abcd1234', '1014';
+EXEC sp_verifyPerson 'abcd1234', '1015';
 
 --Admin's
 EXEC sp_NewAdmin '1006', 'Manager';

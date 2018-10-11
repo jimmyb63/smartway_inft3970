@@ -115,8 +115,13 @@
                         </div>
                         <hr />
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-lg-4 col-md-12 my-1">
                                 <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info btn-block" runat="server" />
+=======
+                            <div class="col-lg-6">
+                                <asp:Button ID="btnContact" Text="Contact Seller"  CssClass="btn btn-info" runat="server" OnClick="ContactSeller"/>
+>>>>>>> 11629a6351ebfac4baa0250d83503db4fb1db4af
                             </div>
                             <div class="col-lg-4 col-md-0"></div>
                             <div class="col-lg-4 col-md-12 my-1">

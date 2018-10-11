@@ -103,5 +103,10 @@ namespace SmartWay.UL.Views
             int count = AC.getOfferCount(adID);
             return count;
         }
-    }
+
+		protected void ContactSeller(object sender, EventArgs e)
+		{
+			Response.Redirect("PrivateMessage.aspx");
+		}
+	}
 }
