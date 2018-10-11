@@ -51,10 +51,23 @@ Select *
 From AddImage
 
 
-
-
-
 Select * From Advertisement Where ID = 1000
+
+
+Select * From Advertisement
+
+EXEC sp_SearchSaleItemsByTitle 'F-16', '','';
+
+EXEC sp_SearchSaleItemsByTitle 'F-16', 'Birthday','';
+
+EXEC sp_SearchSaleItemsByTitle 'F-16', 'Birthday','Rake';
+
+
+Select * From Advertisement
+
+EXEC sp_SearchSaleItemsByDescription 'warm', '','';
+
+EXEC sp_SearchSaleItemsByDescription 'warm', 'cool','';
 
 
 

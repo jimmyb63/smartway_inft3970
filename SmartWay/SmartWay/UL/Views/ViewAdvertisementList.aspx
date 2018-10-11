@@ -76,11 +76,11 @@
                                     <div class="card-body">
                                         <!-- Title -->
                                         <h5 class="card-title"><a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a></h5>
-                                        <h6 class="card-title"><%#:String.Format("{0:c}", Item.advertisementPrice)%></h6>
+                                        <h6 class="card-title pb-3"><%#:String.Format("{0:c}", Item.advertisementPrice)%></h6>
                                         <p>
                                             <div class="card-text align-items-center d-none d-lg-block"><%#: Item.advertisementDescription %></div>
                                         </p>
-                                        <ul class="list-unstyled list-inline font-small">
+                                        <ul class="list-unstyled list-inline font-small information-content">
                                             <li class="list-inline-item pr-2 black-text"><i class="far fa-calendar-alt mr-2"></i><%#:(Item.advertisementDatePosted).ToString("dd/MM/yyyy")%></li>
                                             <li class="list-inline-item pr-2 black-text"><i class="fas fa-eye mr-2"></i><%#:getViewCount(Item.advertisementID) %></li>
                                             <li class="list-inline-item pr-2 black-text"><i class="fas fa-hand-holding-usd mr-2"></i><%#:getOfferCount(Item.advertisementID)%></li>
