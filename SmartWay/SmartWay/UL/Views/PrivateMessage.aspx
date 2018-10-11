@@ -10,28 +10,10 @@
         <div class="card">
             <div class="card-body">
                 
-                <p>Hello </p>
-                <h5>First Name</h5>
-                <asp:TextBox 
-                    CssClass="form-control" 
-                    ID="txtFirstName" 
-                    placeholder="First Name" 
-                    runat="server" />
-                
-                <h5>Last Name</h5>
-                <asp:TextBox 
-                    CssClass="form-control" 
-                    ID="txtLastName" 
-                    placeholder="Last Name" 
-                    runat="server" />
+                <p>Hello </p>              
+	
 
-                <h5>Email</h5>
-                <asp:TextBox 
-                    CssClass="form-control" 
-                    ID="txtEmail" 
-                    placeholder="Email address" 
-                    runat="server" />
-               
+
                 <h5>Message:</h5>
                 <asp:TextBox 
                     CssClass="form-control" 
