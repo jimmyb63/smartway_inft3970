@@ -14,34 +14,53 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string query = "";
-            if (Request.QueryString["category"] != "" && Request.QueryString["category"] != null)
-            {
-                query = Request.QueryString["category"];
-            }
-            else if (Request.QueryString["subCategory"] != "" && Request.QueryString["subCategory"] != null)
-            {
-                query = Request.QueryString["subCategory"];
-            }
+            
+        }
 
-            ID.Value = query;
+        public List<string> keySearchWords(string[] searchWords)
+        {
+            List<string> searchWordsList = new List<string>();
+            string[] simpleWords = new string[] { "and", "or", "is", "the", "if" };
+            
+            for (int i = 0; i < searchWords.Count(); i++)
+            {
+                bool match = false;
+                for (int x = 0; x < simpleWords.Count(); x++)
+                {
+                    if (searchWords[i] == simpleWords[x])
+                    {
+                        match = true;
+                    }
+                }
+                if (!match)
+                {
+                    searchWordsList.Add(searchWords[i]);
+                }
+            }
+            return searchWordsList;
         }
 
         public List<Advertisement> getAds([Control]string ID)
         {
             AdvertisementControls AC = new AdvertisementControls();
             List<Advertisement> ads = new List<Advertisement>();
-            string query = ID;
-            if (query != "")
+            string query = "";
+            if (Request.QueryString["search"] != "" && Request.QueryString["search"] != null)
             {
-                if (query == "goods" || query == "services")
-                {
-                    ads = AC.getAdvertisementsCategory(query);
-                }
-                else
-                {
-                    ads = AC.getAdvertisementsSubCategory(query);
-                }
+                query = Request.QueryString["search"];
+                string[] searchWordsArr = query.Split(null);
+                List<string> searchWordsList = keySearchWords(searchWordsArr);
+                ads = AC.getAdvertisementsSearch(searchWordsList);
+            }
+            else if (Request.QueryString["category"] != "" && Request.QueryString["category"] != null)
+            {
+                query = Request.QueryString["category"];
+                ads = AC.getAdvertisementsCategory(query);
+            }
+            else if (Request.QueryString["subCategory"] != "" && Request.QueryString["subCategory"] != null)
+            {
+                query = Request.QueryString["subCategory"];
+                ads = AC.getAdvertisementsSubCategory(query);
             }
             else
             {

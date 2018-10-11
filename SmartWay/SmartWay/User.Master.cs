@@ -23,6 +23,18 @@ namespace SmartWay
             Response.Redirect("LogoutConfirmation.aspx");
         }
 
+        public void searchLg(object sender, EventArgs e)
+        {
+            string search = txtSearchLg.Text;
+            Response.Redirect("ViewAdvertisementList.aspx?search=" + search);
+        }
+
+        public void searchSm(object sender, EventArgs e)
+        {
+            string search = txtSearchSm.Text;
+            Response.Redirect("ViewAdvertisementList.aspx?search=" + search);
+        }
+
         protected void userLogin(Object sender, EventArgs e)
         {
             string email = txtEmail.Text;

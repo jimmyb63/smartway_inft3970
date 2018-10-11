@@ -159,3 +159,7 @@ body {
         border-radius: 50%;
         display: inline;
     }
+
+    .small-search{
+        background-color: transparent;
+    }

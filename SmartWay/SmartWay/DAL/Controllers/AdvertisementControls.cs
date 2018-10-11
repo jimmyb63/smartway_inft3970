@@ -105,6 +105,58 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getAdvertisementsSearch(List<string> searchList)
+        {
+            List<Advertisement> ads = new List<Advertisement>();
+            List<string> list = searchList;
+            string variable1 = "";
+            string variable2 = "";
+            string variable3 = "";
+            if (list.Count > 3)
+            {
+                for (int i = 0; i < list.Count; i = i + 3)
+                {
+                    if (list[i] != null)
+                    {
+                        variable1 = list[i];
+                    }
+                    if (list[i + 1] != null)
+                    {
+                        variable2 = list[i + 1];
+                    }
+                    if (list[i + 2] != null)
+                    {
+                        variable3 = list[i + 2];
+                    }
+
+                    //Do Database search and return list of advertisement objects
+
+                    //Add advertisement objects to ads
+                }
+            }
+            else if (list.Count != 0)
+            {
+                if (list[0] != null)
+                {
+                    variable1 = list[0];
+                }
+                if (list[1] != null)
+                {
+                    variable2 = list[1];
+                }
+                if (list[2] != null)
+                {
+                    variable3 = list[2];
+                }
+
+                //Do Database search and return list of advertisement objects
+
+                //Add advertisement objects to ads
+            }
+            return ads;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisementsCategory(string category)
         {
             string input = category;

@@ -159,18 +159,26 @@
 
                                 <!--Show only on sm devices and up -->
                                 <div class="col d-none d-sm-block">
-                                    <asp:TextBox CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="What are you searching for?" runat="server" />
+                                    <asp:TextBox ID="txtSearchLg" CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="What are you searching for?" runat="server" />
                                 </div>
                                 <!--Show on xs devices only - simplified text to "search"-->
                                 <div class="col d-sm-none">
-                                    <asp:TextBox CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="Search" runat="server" />
+                                    <asp:TextBox ID="txtSearchSm" CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="Search" runat="server" />
                                 </div>
                                 <!--Shown on lg devices -->
                                 <div class="col d-none d-lg-block">
-                                    <asp:TextBox CssClass="form-control form-control-lg form-control-border" type="search" placeholder="Location" runat="server" />
+                                    <asp:TextBox ID="txtSearchLocation" CssClass="form-control form-control-lg form-control-border" type="search" placeholder="Location" runat="server" />
                                 </div>
                                 <!--Shown on all devices -->
-                                <div class="col-auto"><a href="Results Page.html" class="btn btn-primary btn-sm">Search</a> </div>
+                                <div class="col-auto">
+                                    <div class="d-none d-sm-block">
+                                        <asp:LinkButton ID="btnSearchLg" CssClass="btn btn-primary btn-sm" OnClick="searchLg" runat="server"><i class="fas fa-search"></i> Search</asp:LinkButton>
+                                    </div>
+                                    <div class="d-sm-none">
+                                        <asp:LinkButton ID="btnSearchSm" CssClass="small-search" OnClick="searchSm" runat="server"><i class="fas fa-search"></i></asp:LinkButton>
+                                    </div>
+                                    <%--<a href="ViewAdvertisementList.aspx?search=<% txt %>" class="btn btn-primary btn-sm"><div class="d-none d-sm-block">Search</div><div class="d-sm-none"><i class="fas fa-search"></i></div></a>--%> 
+                                </div>
                             </div>
                         </div>
                     </div>
