@@ -111,7 +111,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-lg-6">
-                                <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info" runat="server" />
+                                <asp:Button ID="btnContact" Text="Contact Seller"  CssClass="btn btn-info" runat="server" OnClick="ContactSeller"/>
                             </div>
                             <div class="col-lg-6">
                                 <asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
