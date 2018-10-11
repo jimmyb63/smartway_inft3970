@@ -86,9 +86,7 @@ namespace SmartWay.UL.Views
         public string getSellerRegoDate(int sellerID)
         {
             UserControls UC = new UserControls();
-            string email = UC.getUserEmail(sellerID);
-            Person user = UC.getUserAccount(email);
-            string date = (user.userVerDate).ToString("dd/MM/yyyy");
+            string date = (UC.getVerificationDate(sellerID)).ToString("dd/MM/yyyy");
             return date;
         }
 
