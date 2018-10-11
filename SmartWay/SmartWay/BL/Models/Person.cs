@@ -32,6 +32,7 @@ namespace SmartWay.BL.Models
             addressID = 0;
             uName = null;
             password = null;
+            verDate = DateTime.Now;
             active = true;
 
         }

@@ -312,7 +312,7 @@ namespace SmartWay.DAL.Controllers
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
             SqlCommand cmd = new SqlCommand();
-            string query = "SELECT ID, firstName, lastName, SWUsername, DOB, email, phoneNumberId, addressId, SWPassword FROM Person WHERE email = @email";
+            string query = "SELECT ID, firstName, lastName, SWUsername, DOB, email, phoneNumberId, addressId, SWPassword, verificationDate FROM Person WHERE email = @email";
             cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@email", SqlDbType.VarChar, 320).Value = email;
             connection.Open();
@@ -328,6 +328,7 @@ namespace SmartWay.DAL.Controllers
                 tempUser.userEmail = dr["email"].ToString();
                 tempUser.userPhoneID = Convert.ToInt32(dr["phoneNumberId"]);
                 tempUser.userAddressID = Convert.ToInt32(dr["addressId"]);
+                tempUser.userVerDate = Convert.ToDateTime(dr["verificationDate"]);
                 tempUser.userPassword = dr["SWPassword"].ToString();
             }
             return tempUser;

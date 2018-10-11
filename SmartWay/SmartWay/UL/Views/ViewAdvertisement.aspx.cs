@@ -74,6 +74,31 @@ namespace SmartWay.UL.Views
             }
         }
 
+        public string getSellerUsername(int sellerID)
+        {
+            UserControls UC = new UserControls();
+            string email = UC.getUserEmail(sellerID);
+            Person user = UC.getUserAccount(email);
+            string username = user.userName;
+            return username;
+        }
+
+        public string getSellerRegoDate(int sellerID)
+        {
+            UserControls UC = new UserControls();
+            string email = UC.getUserEmail(sellerID);
+            Person user = UC.getUserAccount(email);
+            string date = (user.userVerDate).ToString("dd/MM/yyyy");
+            return date;
+        }
+
+        public string getSellerAvatar(int sellerID)
+        {
+            UserControls UC = new UserControls();
+            string filepath = UC.getProfileImage(sellerID);
+            return filepath;
+        }
+
         public int getOfferCount(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();

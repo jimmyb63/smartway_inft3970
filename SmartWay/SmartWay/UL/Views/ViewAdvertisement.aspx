@@ -77,20 +77,47 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <h4><b>Price: </b><%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
-                        <p class="card-text">
-                            Offers: <%#:getOfferCount(Item.advertisementID)%>
-                        </p>
-                        <p>
-                            Views: <%=txtViewCount.Value %>
-                        </p>
-                        <asp:Button ID="btnBuy" Text="Want to Buy" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
-                        <p class="card-text">
-                            <h4>Description</h4>
-                            <p><%#:Item.advertisementDescription %></p>
-                            <hr>
-                            <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info" runat="server" /><asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
-                            <br>
+                        <div class="row">
+                            <div class="col-lg-6 card-text">
+                                <h4>Price: <%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <p class="card-text">
+                                            Offers: <%#:getOfferCount(Item.advertisementID)%>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p>
+                                            Views: <%=txtViewCount.Value %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <asp:Button ID="btnBuy" Text="Interested" CssClass="btn btn-success" OnClick="WantToBuy" runat="server" />
+                            </div>
+                            <br />
+                            <div class="col-lg-6 card-text">
+                                <h4><img class="avatar" src="<%#:getSellerAvatar(Item.advertisementSellerID) %>" />  <%#:getSellerUsername(Item.advertisementSellerID) %></h4>
+                                <p>User Since: <%#:getSellerRegoDate(Item.advertisementSellerID) %></p>
+                                <p>Rating: 5 <i class="fas fa-star"></i></p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="card-text">
+                                <h4>Description</h4>
+                                <p><%#:Item.advertisementDescription %></p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <asp:Button ID="btnContact" Text="Contact Seller" href="PrivateMessage.aspx" CssClass="btn btn-info" runat="server" />
+                            </div>
+                            <div class="col-lg-6">
+                                <asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger float-md-right" OnClick="ReportAd" runat="server" />
+                            </div>
+                        </div>
+                        <br />
                     </div>
                 </div>
                 </div>
