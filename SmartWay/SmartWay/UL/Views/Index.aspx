@@ -12,13 +12,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <img class="d-block img-fluid" src="https://www.vallartatribune.com/wp-content/uploads/2018/07/July-23-Mexico-decor-style-image-1.jpg" alt="First slide">
+                    <img class="d-block img-fluid" src="https://www.vallartatribune.com/wp-content/uploads/2018/07/July-23-Mexico-decor-style-image-1.jpg" alt="First slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block img-fluid" src="http://cmbcreative.co/wp-content/uploads/2018/07/bohemian-chic-furniture-style-home-hippie-living-room-signs-store-best-interior-boho.jpg" alt="Second slide">
+                    <img class="d-block img-fluid" src="http://cmbcreative.co/wp-content/uploads/2018/07/bohemian-chic-furniture-style-home-hippie-living-room-signs-store-best-interior-boho.jpg" alt="Second slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block img-fluid" src="https://www.wedb.com/wp-content/uploads/2017/08/blog-basement-004.jpg" alt="Third slide">
+                    <img class="d-block img-fluid" src="https://www.wedb.com/wp-content/uploads/2017/08/blog-basement-004.jpg" alt="Third slide" />
                 </div>
             </div>
             <a class="carousel-control-prev" 
