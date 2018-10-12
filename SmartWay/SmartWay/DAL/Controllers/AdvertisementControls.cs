@@ -510,6 +510,39 @@ namespace SmartWay.DAL.Controllers
             return offers;
         }
 
+        /// <summary>
+        /// Gets the ad for the private message
+        /// </summary>
+        /// <param name="tempAdID"></param>
+        /// <returns></returns>
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public Advertisement getAd(int tempAdID)
+        {
+            Advertisement returnAd = new Advertisement();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "EXEC sp_SaleItems " + tempAdID; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement tempAd = new Advertisement(
+                                        (int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (DateTime)reader["creationDate"],
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
+                returnAd = tempAd;                
+            }
+            connection.Close();
+            return returnAd;
+        }
+
         //[DataObjectMethod(DataObjectMethodType.Insert)]
         //public void makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
         //{

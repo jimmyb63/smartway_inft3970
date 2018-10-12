@@ -128,3 +128,6 @@ Select *
 FROM ReplyMessage
 Where privateMessageID = @tempMsgID
 ORDER BY [creationDate] DESC;
+
+-- for testing Gabby's awesome made stored procedure awooooooo
+EXEC sp_GetUserByID 1000;

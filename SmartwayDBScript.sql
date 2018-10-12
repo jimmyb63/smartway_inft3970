@@ -617,6 +617,36 @@ BEGIN
 END
 GO
 
+-- Drop GetAd
+IF ( OBJECT_ID('sp_GetAd') IS NOT NULL ) 
+   DROP PROCEDURE sp_GetAd
+GO
+
+--Get Add by add ID
+CREATE PROCEDURE sp_GetAd(
+	@tempAddID INT)
+AS
+BEGIN
+	SELECT * FROM Advertisement 
+	WHERE ID = (@tempAddID);
+END
+GO
+
+--- Drop GetUserByID
+IF ( OBJECT_ID('sp_GetUserByID') IS NOT NULL ) 
+   DROP PROCEDURE sp_GetUserByID
+GO
+
+-- Get User by ID
+CREATE PROCEDURE sp_GetUserByID(
+	@tempID INT)
+AS
+BEGIN
+	SELECT * FROM Person
+	WHERE ID = (@tempID);
+END
+GO
+
 IF ( OBJECT_ID('sp_SearchSaleItemsByTitle') IS NOT NULL ) 
    DROP PROCEDURE sp_SearchSaleItemsByTitle
 GO

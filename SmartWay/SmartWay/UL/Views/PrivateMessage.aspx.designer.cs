@@ -13,22 +13,22 @@ namespace SmartWay.UL.Views {
     public partial class PrivateMessage {
         
         /// <summary>
-        /// nameLabel control.
+        /// lblTempAd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameLabel;
+        protected global::System.Web.UI.WebControls.Label lblTempAd;
         
         /// <summary>
-        /// titleLabel control.
+        /// lblTempTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label titleLabel;
+        protected global::System.Web.UI.WebControls.Label lblTempTitle;
         
         /// <summary>
         /// txtContent control.
