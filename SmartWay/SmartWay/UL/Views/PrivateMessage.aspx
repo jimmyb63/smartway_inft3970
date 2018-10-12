@@ -15,7 +15,7 @@
                     <tr>
                     <td>
                         <asp:Label 
-                        ID="nameLabel"
+                        ID="lblTempAd"
                         runat="server"
                         Text="THIS WILL BE MESSAGE TO:">
                         </asp:Label>
@@ -25,7 +25,7 @@
                     <tr>            
                     <td>                      
                         <asp:Label
-                        ID="titleLabel"
+                        ID="lblTempTitle"
                         runat="server"
                         Text="THIS WILL BE THE TITLE aka AD's NAME">
                         </asp:Label>
@@ -38,11 +38,11 @@
                 <asp:TextBox 
                 CssClass="form-control" 
                 runat="server" 
-                ID="txtContent" 
+                ID="txtMessage" 
                 TextMode="MultiLine"                     
                 Rows="5" />
             <br />
-            <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" />
+            <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" OnClick="Unnamed1_Click" />
             </div>
         </div>
     </div>
