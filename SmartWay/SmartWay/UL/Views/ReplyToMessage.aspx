@@ -50,17 +50,62 @@
                         </td>
                     </tr>                   
                 </table>
-            <br />
-            <%-- MESSAGE BOX --%>
-            <h6>Message:</h6>
+                <br />
+                <%-- MESSAGE NOT REPLIED TO --%>
+                <h5>Messages Not Replied To:</h5>
+                <div class="row">
+                    <asp:GridView 
+                        ID="gvNotRepliedMessages" 
+                        runat="server" 
+                        AutoGenerateColumns="false" 
+                        GridLines="Horizontal" 
+                        CssClass="table table-bordered" 
+                        CellPadding="4" 
+                        HorizontalAlign="Center"
+                        ItemType="SmartWay.BL.Models.PrivateMsg" 
+                        SelectMethod="getNotRepliedPrivateMsgList">
+                        <Columns>
+                        
+                            <asp:BoundField DataField="pmCreationDate" HeaderText="Message Sent" />
+                            <asp:BoundField DataField="pmMessageDetails" HeaderText="Message" />
+                            <asp:BoundField DataField="pmMessageRead" HeaderText="MessageRead" />
+                            <asp:BoundField DataField="pmMessageReplied" HeaderText="MessageReplies" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
+                <br />
+                <%-- MESSAGE BOX --%>
+                <h5>Reply Message:</h5>
                 <asp:TextBox 
                 CssClass="form-control" 
                 runat="server" 
                 ID="txtMessage" 
                 TextMode="MultiLine"                     
                 Rows="5" />
-            <br />
-            <asp:Button runat="server" Text="Reply" CssClass="btn btn-block btn-info" />
+                <br />
+                <asp:Button runat="server" Text="Reply" CssClass="btn btn-block btn-info" />
+                <br />
+                <%-- MESSAGE REPLIED TO --%>
+                <h5>Messages That Have Been Replied To:</h5>
+                <div class="row">
+                    <asp:GridView 
+                        ID="gvRepliedMessages" 
+                        runat="server" 
+                        AutoGenerateColumns="false" 
+                        GridLines="Horizontal" 
+                        CssClass="table table-bordered" 
+                        CellPadding="4" 
+                        HorizontalAlign="Center"
+                        ItemType="SmartWay.BL.Models.PrivateMsg" 
+                        SelectMethod="getRepliedPrivateMsgList">
+                        <Columns>
+                            <asp:BoundField DataField="pmCreationDate" HeaderText="Message Sent" />
+                            <asp:BoundField DataField="pmMessageDetails" HeaderText="Message" />
+                            <asp:BoundField DataField="pmMessageRead" HeaderText="MessageRead" />
+                            <asp:BoundField DataField="pmMessageReplied" HeaderText="MessageReplies" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

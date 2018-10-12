@@ -9,6 +9,9 @@ namespace SmartWay.BL.Models
     {
         //Private Variables
         private int ID;
+        private int sendersUserID;
+        private int receiverUserID;
+        private int addID;
         private int privateMessageID;
         private string messageDetails;
         private bool messageRead;
@@ -21,6 +24,9 @@ namespace SmartWay.BL.Models
         public ReplyMessage()
         {
             ID = 0;
+            sendersUserID = 0;
+            receiverUserID = 0;
+            addID = 0;
             privateMessageID = 0;
             messageDetails = "";
             messageRead = false;
@@ -28,9 +34,12 @@ namespace SmartWay.BL.Models
             active = true;
         }
 
-        //Constructor for a New Message
-        public ReplyMessage(int tempPrivateMessageID, string tempMessageDetails)
+        //Constructor for a New Reply Message
+        public ReplyMessage(int tempSendersUserID, int tempReceiverUserID, int tempAddID, int tempPrivateMessageID, string tempMessageDetails)
         {
+            sendersUserID = tempSendersUserID;
+            receiverUserID = tempReceiverUserID;
+            addID = tempAddID;
             privateMessageID = tempPrivateMessageID;
             messageDetails = tempMessageDetails;
             messageRead = false;
@@ -39,9 +48,12 @@ namespace SmartWay.BL.Models
         }
 
         //Constructor for when reading from DB
-        public ReplyMessage(int tempID, int tempPrivateMessageID, string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
+        public ReplyMessage(int tempID, int tempSendersUserID, int tempReceiverUserID, int tempAddID, int tempPrivateMessageID, string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
         {
             ID = tempID;
+            sendersUserID = tempSendersUserID;
+            receiverUserID = tempReceiverUserID;
+            addID = tempAddID;
             privateMessageID = tempPrivateMessageID;
             messageDetails = tempMessageDetails;
             messageRead = tempMessageRead;
@@ -65,6 +77,42 @@ namespace SmartWay.BL.Models
             }
         }
 
+        public int rmSendersUserID
+        {
+            get
+            {
+                return sendersUserID;
+            }
+            set
+            {
+                sendersUserID = value;
+            }
+        }
+
+        public int rmReceiverUserID
+        {
+            get
+            {
+                return receiverUserID;
+            }
+            set
+            {
+                receiverUserID = value;
+            }
+        }
+
+        public int rmAddID
+        {
+            get
+            {
+                return addID;
+            }
+            set
+            {
+                addID = value;
+            }
+        }
+
         public int rmPrivateMessageID
         {
             get
@@ -77,7 +125,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public string pmMessageDetails
+        public string rmMessageDetails
         {
             get
             {
@@ -91,7 +139,7 @@ namespace SmartWay.BL.Models
 
 
 
-        public bool pmMessageRead
+        public bool rmMessageRead
         {
             get
             {
@@ -103,7 +151,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public bool pmMessageReplied
+        public bool rmMessageReplied
         {
             get
             {
@@ -115,7 +163,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public DateTime pmCreationDate
+        public DateTime rmCreationDate
         {
             get
             {
@@ -127,7 +175,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public bool pmActive
+        public bool rmActive
         {
             get
             {

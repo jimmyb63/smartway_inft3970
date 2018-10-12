@@ -110,6 +110,14 @@ EXEC getUserPMIDList 1003
 Select *
 From PrivateMessage
 
+Select *
+From PrivateMessageChain
+
+EXEC sp_GetPMChainID 1003, 1000, 1000
+
+EXEC sp_getPMList2 1000
+
+EXEC sp_getPMList 1003, 1000, 1000
 
 DECLARE @firstMessageID INT 
 DECLARE @tempUserID INT = 1003

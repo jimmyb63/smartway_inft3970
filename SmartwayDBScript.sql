@@ -327,32 +327,31 @@ CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
-CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
+CREATE TABLE PrivateMessageChain(	ID INT IDENTITY(1000,1) PRIMARY KEY,
+									addID INT NOT NULL,
 									sendersUserID INT NOT NULL,
 									receiverUserID INT NOT NULL,
-									addID INT,
-									forumID INT,
-									messageDetails VARCHAR(250) NOT NULL,
-									messageRead BIT DEFAULT 0,		-- 0 is Not Read, 1 is Read
-									messageReplied BIT DEFAULT 0,	-- 0 is Not Replied, 1 is Replied
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
-									FOREIGN KEY (forumID) REFERENCES ForumPost(ID)						ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (sendersUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (receiverUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
-CREATE TABLE ReplyMessage	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
-									privateMessageID INT NOT NULL,
+CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									PrivateMessageChainID INT,
+									sendersUserID INT NOT NULL,
+									receiverUserID INT NOT NULL,
 									messageDetails VARCHAR(250) NOT NULL,
 									messageRead BIT DEFAULT 0,		-- 0 is Not Read, 1 is Read
 									messageReplied BIT DEFAULT 0,	-- 0 is Not Replied, 1 is Replied
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
-									FOREIGN KEY (privateMessageID) REFERENCES PrivateMessage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (PrivateMessageChainID) REFERENCES PrivateMessageChain(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (sendersUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (receiverUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
 CREATE TABLE ViewCounter	(
@@ -809,33 +808,87 @@ CREATE PROCEDURE sp_NewPrivateMessage(
 	@tempAddID INT,
 	@tempMessageDetails VARCHAR(250),
 	@returnNewMessageID INT Output)
---Return on DEFAULT = newID;
 AS
-	DECLARE @tempFirstMessageID INT;
+	DECLARE @tempPrivateMessageChainID INT;
 BEGIN
-	/*IF (@tempAddID = 0) -- Is a message Regarding a Forum Post
-	BEGIN
-		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails) 
-		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails);
-		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
-		SELECT @returnNewMessageID;
-	END
-	ELSE IF (@tempForumID = 0)  -- Is a message Regarding an Add Post
-	BEGIN*/
-		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails) 
-		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails);
-		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
-		SELECT @returnNewMessageID;
-	/*END 
-	ELSE --Is a message about neither an Add Post or a forumPost.
-	BEGIN
-		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, messageDetails) 
-		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
-		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
-		SELECT @returnNewMessageID;
-	END */
+		IF EXISTS(SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
+			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID ) --There is a chain with matching AddID, sendersUserID and receiverUserID.
+		BEGIN
+			--Do Nothing
+			SET @tempPrivateMessageChainID = (SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
+			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID);
+			INSERT INTO PrivateMessage (PrivateMessageChainID, sendersUserID, receiverUserID, messageDetails) 
+			VALUES(@tempPrivateMessageChainID, @tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
+		END
+		ELSE
+		BEGIN
+			INSERT INTO PrivateMessageChain (addID, sendersUserID, receiverUserID) 
+			VALUES(@tempAddID, @tempSendersUserID, @tempReceiverUserID);
+			SET @tempPrivateMessageChainID = (SELECT MAX(ID) FROM PrivateMessageChain);
+
+			INSERT INTO PrivateMessage (PrivateMessageChainID, sendersUserID, receiverUserID, messageDetails) 
+			VALUES(@tempPrivateMessageChainID, @tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
+		END
 END
 
+RETURN  
+GO
+
+--Get Private Message ID
+IF OBJECT_ID('sp_GetPMChainID', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetPMChainID;  
+GO 
+
+CREATE PROCEDURE sp_GetPMChainID(
+	@tempSendersUserID INT,
+	@tempReceiverUserID INT,
+	@tempAddID INT
+	)
+AS
+BEGIN
+	SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
+			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID;
+END
+RETURN
+GO
+
+--Get PM List associated With a PrivateMessageChain by PMChain ID
+IF OBJECT_ID('sp_getPMList2', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_getPMList;  
+GO  
+
+CREATE PROCEDURE sp_getPMList2(
+	@tempPrivateMessageChainID INT)
+AS
+BEGIN
+SELECT * FROM PrivateMessage WHERE  PrivateMessageChainID = @tempPrivateMessageChainID
+ORDER BY creationDate DESC;
+END
+RETURN  
+GO
+
+--Get PM List associated With a PrivateMessageChain by Sender, Reciever and Add ID
+IF OBJECT_ID('sp_getPMList', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_getPMList;  
+GO  
+
+CREATE PROCEDURE sp_getPMList(
+	@tempSendersUserID INT,
+	@tempReceiverUserID INT,
+	@tempAddID INT
+	)
+AS
+	DECLARE @tempPrivateMessageChainID INT
+BEGIN
+SET @tempPrivateMessageChainID = (SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
+			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID)
+SELECT * FROM PrivateMessage WHERE  PrivateMessageChainID = @tempPrivateMessageChainID
+ORDER BY creationDate DESC;
+END
 RETURN  
 GO
 
@@ -853,54 +906,38 @@ END
 RETURN  
 GO
 
---Get Private Message ID List
-IF OBJECT_ID('sp_GetUserPMIDList', 'P') IS NOT NULL  
-   DROP PROCEDURE sp_GetUserPMIDList;  
+
+--Get Private Message
+IF OBJECT_ID('sp_UpdatePrivateMsgtoRead', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_UpdatePrivateMsgtoRead;  
 GO  
 
-CREATE PROCEDURE sp_GetUserPMIDList(
-	@tempUserID VARCHAR(20))
-AS
-	DECLARE @firstMessageID INT 
-BEGIN
-SELECT ID FROM PrivateMessage WHERE  receiverUserID = @tempUserID OR sendersUserID = @tempUserID;
-END
-RETURN
-GO
-
---New reply to Private Message
-IF OBJECT_ID('sp_NewReplyMessage', 'P') IS NOT NULL  
-   DROP PROCEDURE sp_NewReplyMessage;  
-GO  
-
-CREATE PROCEDURE sp_NewReplyMessage(
-	@tempPrivateMessageID INT,
-	@tempMessageDetails VARCHAR(250),
-	@returnNewMessageID INT Output)
+CREATE PROCEDURE sp_UpdatePrivateMsgtoRead(
+	@tempPrivateMessageChainID INT)
 AS
 BEGIN
-		INSERT INTO ReplyMessage (privateMessageID, messageDetails) 
-		VALUES(@tempPrivateMessageID, @tempMessageDetails);
-		SET @returnNewMessageID =(SELECT MAX(ID) FROM ReplyMessage);
-		SELECT @returnNewMessageID;
+	UPDATE PrivateMessage 
+	SET messageRead = 1 
+	WHERE PrivateMessageChainID = @tempPrivateMessageChainID;
 END
 RETURN  
 GO
 
---Get PM List
-IF OBJECT_ID('sp_getPMReplyList', 'P') IS NOT NULL  
-   DROP PROCEDURE sp_getPMReplyList;  
+IF OBJECT_ID('sp_UpdatePrivateMsgtoReplied', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_UpdatePrivateMsgtoReplied;  
 GO  
 
-CREATE PROCEDURE sp_getPMReplyList(
-	@tempPrivMsgID VARCHAR(20))
+CREATE PROCEDURE sp_UpdatePrivateMsgtoReplied(
+	@tempPrivateMessageChainID INT)
 AS
 BEGIN
-SELECT * FROM ReplyMessage WHERE  privateMessageID = @tempPrivMsgID
-ORDER BY creationDate DESC;
+	UPDATE PrivateMessage 
+	SET messageReplied = 1, messageRead = 1
+	WHERE PrivateMessageChainID = @tempPrivateMessageChainID;
 END
 RETURN  
 GO
+
 
 --Add New Watched Item for User
 IF OBJECT_ID('sp_NewWatchedItem', 'P') IS NOT NULL  
@@ -1149,17 +1186,24 @@ EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 --New Message Thread
 EXEC sp_NewPrivateMessage 1003, 1000, 1000,  'Hi. How are you?', 2222
 
-EXEC sp_NewPrivateMessage 1004, 1002, 1001,  'Is that Mig still for Sale?', 2222
+EXEC sp_NewPrivateMessage 1004, 1002, 1002,  'Is that Mig still for Sale?', 2222
 
 --Reply Messages
+EXEC sp_UpdatePrivateMsgtoReplied 1000
 
-EXEC sp_NewReplyMessage 1000, 'I am good. How are you?', 2222
+EXEC sp_NewPrivateMessage 1000, 1003, 1000, 'I am good. How are you?', 2222
 
-EXEC sp_NewReplyMessage 1000, 'Bit Meh, is raining here. How is your weather?', 2222
+EXEC sp_UpdatePrivateMsgtoReplied 1000
 
-EXEC sp_NewReplyMessage 1000, 'Yes is raining here also', 2222
+EXEC sp_NewPrivateMessage 1003, 1000, 1000, 'Bit Meh, is raining here. How is your weather?', 2222
 
-EXEC sp_NewReplyMessage 1001, 'No it sold, but i have a F-16 forsale.', 2222
+EXEC sp_UpdatePrivateMsgtoReplied 1000
+
+EXEC sp_NewPrivateMessage 1000, 1003, 1000, 'Yes is raining here also', 2222
+
+EXEC sp_UpdatePrivateMsgtoReplied 1002
+
+EXEC sp_NewPrivateMessage 1004, 1002, 1002, 'No it sold, but i have a F-16 forsale.', 2222
 
 
 

@@ -25,19 +25,22 @@ namespace SmartWay.UL.Views
         // need username and ID
         string tempSenderUsername;
         int tempSenderID;
-
+        
+        
         // RECIPIENT:
         Person tempRecipient = new Person();
         // need an ID
         int tempRecipientID;
+        int tempRecipientID2;
         string tempRecipientUsername;
-               
+        
 
         // AD: 
         Advertisement tempAd = new Advertisement();
         // need a title
         string tempTitle;               
         int adID;
+        int tempAddID2;
 
         // LOGGED ID:
         Person tempCurrent = new Person();
@@ -48,7 +51,7 @@ namespace SmartWay.UL.Views
         {
             
             tempPrivateMessage = UC.getPrivateMessageByID(privateMessageID);
-            adID = tempPrivateMessage.pmAdID;
+            //adID = tempPrivateMessage.pmAdID;
             tempSentDate = tempPrivateMessage.pmCreationDate;
             tempSenderID = tempPrivateMessage.pmSendersUserID;
             tempRecipientID = tempPrivateMessage.pmReceiverUserID;
@@ -82,5 +85,43 @@ namespace SmartWay.UL.Views
             lblSentDate.Text = "Sent: " + tempSentDate.ToString();
             
         }
+
+        public List<PrivateMsg> getPrivateMsgList()
+        {
+            UserControls UC = new UserControls();
+            Person currentUser = new Person();
+            currentUser = (Person)Session["currentUser"];
+            int tempSenderID2 = currentUser.userID;
+            tempRecipientID2 = 1003;
+            tempAddID2 = 1003;
+            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageList(tempSenderID2, tempRecipientID2, tempAddID2);
+            return tempPrivateMsg;
+        }
+
+        public List<PrivateMsg> getRepliedPrivateMsgList()
+        {
+            UserControls UC = new UserControls();
+            Person currentUser = new Person();
+            currentUser = (Person)Session["currentUser"];
+            int tempSenderID2 = currentUser.userID;
+            tempRecipientID2 = 1003;
+            tempAddID2 = 1003;
+            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageListReplied(tempSenderID2, tempRecipientID2, tempAddID2);
+            return tempPrivateMsg;
+        }
+
+        public List<PrivateMsg> getNotRepliedPrivateMsgList()
+        {
+            UserControls UC = new UserControls();
+            Person currentUser = new Person();
+            currentUser = (Person)Session["currentUser"];
+            int tempSenderID2 = currentUser.userID;
+            tempRecipientID2 = 1003;
+            tempAddID2 = 1003;
+            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageListNotReplied(tempSenderID2, tempRecipientID2, tempAddID2);
+            return tempPrivateMsg;
+        }
+
+
     }
 }
