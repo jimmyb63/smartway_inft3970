@@ -1091,8 +1091,61 @@ INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1002_1
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/2_1002_1002.jpg', 1002, 1002);
 
 --Shark with laser beam
-EXEC sp_NewAdvertisement  1006, 'Shark with Freakining Laser Beams Attached to their Head', 'offer', 'services', 'tools required', 'I figure every creature deserves a warm meal', 1006, 300, 5;
+EXEC sp_NewAdvertisement  1006, 'Shark with Frickin Laser Beams Attached to their Head', 'offer', 'services', 'tools required', 'I figure every creature deserves a warm meal', 1006, 300, 5;
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1003_1006.jpg', 1006, 1003);
+
+--Pretty Sparkly Shoes
+EXEC sp_NewAdvertisement 1005, 'Pretty Sparkly Shoes', 'offer', 'goods', 'clothing', 'Shoes that are Sparkly', 1005, 7, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1004_1005.jpg', 1005, 1004);
+
+--Loved Cat
+EXEC sp_NewAdvertisement 1007, 'Loved Cat', 'offer', 'goods', 'other', 'Great cat, very friendly', 1007, 70, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1005_1007.jpg', 1007, 1005);
+
+--Spotty Colourful Bag
+EXEC sp_NewAdvertisement 1013, 'Spotty Colourful Bag', 'offer', 'goods', 'clothing', 'A very spotty, very colourful bag', 1013, 2, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1006_1013.jpg', 1013, 1006);
+
+--The Lovely Green Plant
+EXEC sp_NewAdvertisement 1010, 'The Lovely Green Plant', 'offer', 'goods', 'other', 'The lovely green plant is as green as the grass', 1010, 3, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1007_1010.jpg', 1010, 1007);
+
+--The Golden (and White) Pillow
+EXEC sp_NewAdvertisement 1007, 'The Golden (and White) Pillow', 'offer', 'goods', 'household', 'Lovely pillow, so comfy', 1007, 100, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1008_1007.jpg', 1007, 1008);
+
+--Unicorn Diary
+EXEC sp_NewAdvertisement 1002, 'Unicorn Diary', 'offer', 'goods', 'other', 'My favourity diary of ALL TIME!', 1002, 99, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1009_1002.jpg', 1002, 1009);
+
+--Toy Cat and Dog
+EXEC sp_NewAdvertisement 1003, 'Toy Cat and Dog', 'offer', 'goods', 'baby/child', 'Great toys, had a great friendship with them', 1003, 88, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1010_1003.jpg', 1003, 1010);
+
+--German Alphabet
+EXEC sp_NewAdvertisement 1002, 'German Alphabet', 'offer', 'goods', 'other', 'I can speak fluent German because of this book', 1002, 10, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1011_1002.jpg', 1002, 1011);
+
+--Moustache Man
+EXEC sp_NewAdvertisement 1009, 'Moustache Man', 'offer', 'goods', 'other', 'What a man!', 1009, 11, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1012_1009.jpg', 1009, 1012);
+
+--Michael Jackson Frog
+EXEC sp_NewAdvertisement 1009, 'Michael Jackson Frog', 'offer', 'goods', 'other', 'What a Michael Jackson Frog!', 1009, 12, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1013_1009.jpg', 1009, 1013);
+
+--English Tutor
+EXEC sp_NewAdvertisement 1011, 'English Tuter', 'offer', 'services', 'skills required', 'I can make u gud at English', 1011, 50, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1014_1011.jpg', 1011, 1014);
+
+--Office for Hire
+EXEC sp_NewAdvertisement 1014, 'Office for Hire', 'offer', 'services', 'tools required', 'Small Office for hire', 1014, 50, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1015_1014.jpg', 1014, 1015);
+
+--Tape Deck
+EXEC sp_NewAdvertisement 1009, 'Tape Deck', 'offer', 'goods', 'electronics', 'What a Tape Deck!', 1009, 50, 5;
+INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1016_1009.jpg', 1009, 1016); 
+
 
 
 --Add Test Offer

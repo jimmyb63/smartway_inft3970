@@ -28,11 +28,29 @@
                 ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="GetAds">
                 <EmptyDataTemplate>
                     <div class="col-12 my-2" runat="server">
+                        <% if (Request.QueryString["search"] != null) %>
+                        <% { %>
                         <div class="card h-100">
                             <div class="row">
                                 <div class="col-1 my-2"></div>
                                 <div class="col-10 my-2">
                                     <p class="card-text">
+                                        <h1 class="text-center"><i class="far fa-frown"></i> Not Found...</h1>
+                                        <h4 class="text-center">No results were found for "<%=Request.QueryString["search"] %>"</h4>
+                                    </p>
+                                </div>
+                                <div class="col-1 my-2"></div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% else %>
+                        <% { %>
+                        <div class="card h-100">
+                            <div class="row">
+                                <div class="col-1 my-2"></div>
+                                <div class="col-10 my-2">
+                                    <p class="card-text">
+                                        <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
                                         <h4 class="text-center">Be the first to list an item in this section!</h4>
                                     </p>
                                 </div>
@@ -48,6 +66,7 @@
                                 <div class="col-3 my-2"></div>
                             </div>
                         </div>
+                        <% } %>
                     </div>
                 </EmptyDataTemplate>
                 <EmptyItemTemplate>

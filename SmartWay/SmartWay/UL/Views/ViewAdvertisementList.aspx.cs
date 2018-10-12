@@ -20,14 +20,14 @@ namespace SmartWay.UL.Views
         public List<string> keySearchWords(string[] searchWords)
         {
             List<string> searchWordsList = new List<string>();
-            string[] simpleWords = new string[] { "and", "or", "is", "the", "if" };
+            string[] conjunctionWords = new string[] { "and", "or", "is", "the", "if", "but", "because", "for", "when" };
             
             for (int i = 0; i < searchWords.Count(); i++)
             {
                 bool match = false;
-                for (int x = 0; x < simpleWords.Count(); x++)
+                for (int x = 0; x < conjunctionWords.Count(); x++)
                 {
-                    if (searchWords[i] == simpleWords[x])
+                    if (searchWords[i] == conjunctionWords[x])
                     {
                         match = true;
                     }

@@ -109,49 +109,35 @@ namespace SmartWay.DAL.Controllers
         {
             List<Advertisement> ads = new List<Advertisement>();
             List<string> list = searchList;
-            string variable1 = "";
-            string variable2 = "";
-            string variable3 = "";
-            if (list.Count > 3)
+            string searchWord = "";
+            for (int i = 0; i < list.Count; i++)
             {
-                for (int i = 0; i < list.Count; i = i + 3)
+                searchWord = list[i];
+                SqlConnection connection = new SqlConnection(getconnectionString());
+                string procedure = "sp_SearchSaleItemsByTitle";
+                SqlCommand cmd = new SqlCommand(procedure, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter param;
+                param = cmd.Parameters.Add("@tempSearchWord", SqlDbType.VarChar, 30);
+                param.Value = searchWord;
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    if (list[i] != null)
-                    {
-                        variable1 = list[i];
-                    }
-                    if (list[i + 1] != null)
-                    {
-                        variable2 = list[i + 1];
-                    }
-                    if (list[i + 2] != null)
-                    {
-                        variable3 = list[i + 2];
-                    }
-
-                    //Do Database search and return list of advertisement objects
-
-                    //Add advertisement objects to ads
+                    //for each rows of the database corresponding to the request we create a product and add it to the list
+                    Advertisement ad = new Advertisement((int)reader["ID"],
+                                            (int)reader["sellerID"],
+                                            reader["adType"].ToString(),
+                                            reader["title"].ToString(),
+                                            reader["adDescription"].ToString(),
+                                            (int)reader["addressID"],
+                                            (DateTime)reader["creationDate"],
+                                            (int)reader["categoryID"],
+                                            (decimal)reader["price"],
+                                            (bool)reader["active"]);
+                    ads.Add(ad);
                 }
-            }
-            else if (list.Count != 0)
-            {
-                if (list[0] != null)
-                {
-                    variable1 = list[0];
-                }
-                if (list[1] != null)
-                {
-                    variable2 = list[1];
-                }
-                if (list[2] != null)
-                {
-                    variable3 = list[2];
-                }
-
-                //Do Database search and return list of advertisement objects
-
-                //Add advertisement objects to ads
+                connection.Close();
             }
             return ads;
         }
