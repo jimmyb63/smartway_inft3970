@@ -653,16 +653,12 @@ GO
 
 --New Phone
 CREATE PROCEDURE sp_SearchSaleItemsByTitle(
-	@tempSearchWord VARCHAR(30),
-	@tempSearchWord2 VARCHAR(30),
-	@tempSearchWord3 VARCHAR(30))
+	@tempSearchWord VARCHAR(30))
 AS
 BEGIN
 	SELECT * FROM Advertisement 
 	--WHERE title LIKE '%@tempSearchWord%'; -- AND active = 1;
 	WHERE CHARINDEX(@tempSearchWord, title) > 0
-	OR CHARINDEX(@tempSearchWord2, title) > 0
-	OR CHARINDEX(@tempSearchWord3, title) > 0
 END
 GO
 
@@ -672,16 +668,12 @@ GO
 
 --New Phone
 CREATE PROCEDURE sp_SearchSaleItemsByDescription(
-	@tempSearchWord VARCHAR(30),
-	@tempSearchWord2 VARCHAR(30),
-	@tempSearchWord3 VARCHAR(30))
+	@tempSearchWord VARCHAR(30))
 AS
 BEGIN
 	SELECT * FROM Advertisement 
 	--WHERE title LIKE '%@tempSearchWord%'; -- AND active = 1;
 	WHERE CHARINDEX(@tempSearchWord, adDescription) > 0
-	OR CHARINDEX(@tempSearchWord2, adDescription) > 0
-	OR CHARINDEX(@tempSearchWord3, adDescription) > 0
 END
 GO
 

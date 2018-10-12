@@ -24,7 +24,16 @@ namespace SmartWay.UL.Views
             int adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
             AdvertisementControls AC = new AdvertisementControls();
             List<BL.Models.Offer> offers = AC.getAdOffers(adID);
-            return offers;
+            List<BL.Models.Offer> finalOffers = new List<BL.Models.Offer>();
+            for (int i = 0; i < offers.Count; i++)
+            {
+                if (offers[i].offerActive)
+                {
+                    finalOffers.Add(offers[i]);
+                }
+            }
+            
+            return finalOffers;
         }
 
         public string getUsername(int userID)
@@ -53,6 +62,12 @@ namespace SmartWay.UL.Views
                 offers[index].offerOfferAccepted = 0;
                 AC.updateOfferAccepted(offers[index].offerOfferAccepted, offers[index].offerID, offers[index].offerAdID);
                 Response.Redirect("Index.aspx");
+            }
+            else if (e.CommandName == "message")
+            {
+                string buyerID = offers[index].offerBuyerID.ToString();
+                string adID = offers[index].offerAdID.ToString();
+                Response.Redirect("PrivateMessage.aspx?advertisementID=" + adID + "&buyerID=" + buyerID);
             }
         }
     }

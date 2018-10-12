@@ -35,7 +35,7 @@ namespace SmartWay.UL.Views
             }
             else
             {
-                Response.Redirect("OfferConfirmation.aspx?offerID=" + code);
+                Response.Redirect("OfferConfirmation.aspx?advertisemntID=" + Request.QueryString["advertisementID"]);
             }
         }
     }

@@ -47,15 +47,34 @@
                                     <div class="col-3">
                                         Buyer: <%#: getUsername(Item.offerBuyerID) %>        
                                     </div>
-                                    <div class="col-3">
-                                        Offer Amount: <%#:String.Format("{0:c}", Item.offerAmountOffered)%> 
+                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 1 %>'>
+                                        <div class="col-3">
+                                            <div class="row">
+                                                Offer Amount: <%#:String.Format("{0:c}", Item.offerAmountOffered)%>
+                                                <p class="text-success">Accepted</p> 
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <asp:Button CssClass="btn btn-block btn-info" Text="Message" runat="server" CommandName="message" CommandArgument="<%# Container.DataItemIndex %>"/>
+                                        </div>
+                                        <div class="col-3">
+                                        <asp:LinkButton CssClass="btn btn-block btn-blue" Text="My Ads" PostBackUrl="~/UL/Views/MyAdvertisements.aspx" runat="server" />
                                     </div>
-                                    <div class="col-3">
-                                        <asp:Button CssClass="btn btn-block btn-success" Text="Accept" runat="server" CommandName="accept" CommandArgument="<%# Container.DataItemIndex %>"/>  
-                                    </div>
-                                    <div class="col-3">
-                                        <asp:Button CssClass="btn btn-block btn-danger" Text="Decline" runat="server" CommandName="decline" CommandArgument="<%# Container.DataItemIndex %>"/>
-                                    </div>
+                                    </asp:PlaceHolder>
+                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 2 %>'>
+                                        <div class="col-3">
+                                            <div class="row">
+                                                Offer Amount: <%#:String.Format("{0:c}", Item.offerAmountOffered)%> 
+                                                <p class="text-success">Accepted</p> 
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <asp:Button CssClass="btn btn-block btn-success" Text="Accept" runat="server" CommandName="accept" CommandArgument="<%# Container.DataItemIndex %>"/>  
+                                        </div>
+                                        <div class="col-3">
+                                            <asp:Button CssClass="btn btn-block btn-danger" Text="Decline" runat="server" CommandName="decline" CommandArgument="<%# Container.DataItemIndex %>"/>
+                                        </div>
+                                    </asp:PlaceHolder>
                                 </div>
                             </div>
                         </ItemTemplate>

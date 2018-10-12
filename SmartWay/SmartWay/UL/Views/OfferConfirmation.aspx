@@ -12,8 +12,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>Your offer has been sucessfully submitted</h1>
-                        <% int offerID = Convert.ToInt32(Request.QueryString["offerID"]); %>
-                        <p>Click <a href="index.aspx">here</a> to go to home.</p>
+                        <% string adID = Request.QueryString["advertisementID"]; %>
+                        <p>Click <a href="ViewAdvertisement?advertisementID=<%=adID %>">here</a> to return to Advertisement.</p>
                         <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.
                     </div>
                 </div>
@@ -26,7 +26,7 @@
         function countdown() {
             seconds = seconds - 1;
             if (seconds < 0) {
-                window.location = "index.aspx";
+                window.location = "ViewAdvertisement?advertisementID=" + <%=adID %>;
             } else {
                 document.getElementById("countdown").innerHTML = seconds;
                 window.setTimeout("countdown()", 1000);

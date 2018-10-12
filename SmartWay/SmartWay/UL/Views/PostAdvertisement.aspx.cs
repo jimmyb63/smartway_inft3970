@@ -31,7 +31,15 @@ namespace SmartWay.UL.Views
             string adType = rbAdType.SelectedValue;
             string adCategory = rbAdCategory.SelectedValue;
             string adSubCategory = ddSubCategory.SelectedValue;
-            decimal adPrice = Convert.ToDecimal(txtPrice.Text);
+            decimal adPrice = 0;
+            if (ddSubCategory.SelectedValue == "free")
+            {
+                adPrice = Convert.ToDecimal(txtPriceFree.Text);
+            }
+            else
+            {
+                adPrice = Convert.ToDecimal(txtPrice.Text);
+            }
             string adDescription = txtDescription.Text;
             Person currentUser = (Person)Session["currentUser"];
             int userID = currentUser.userID;
@@ -87,7 +95,7 @@ namespace SmartWay.UL.Views
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
 
-                Response.Redirect("PostAdvertisementConfirmation.aspx");
+                Response.Redirect("PostAdvertisementConfirmation.aspx?advertisementID=" + adID);
         
             
         }

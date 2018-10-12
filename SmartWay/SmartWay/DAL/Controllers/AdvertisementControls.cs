@@ -396,10 +396,12 @@ namespace SmartWay.DAL.Controllers
         public int getOfferCount(int adID)
         {
             int count = 0;
+            bool active = true;
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "SELECT COUNT(ID) FROM AddOffer WHERE addID = @adID";
+            string query = "SELECT COUNT(ID) FROM AddOffer WHERE addID = @adID AND active = @active";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
             connection.Open();
             count = (int)cmd.ExecuteScalar();
             return count;
@@ -461,7 +463,7 @@ namespace SmartWay.DAL.Controllers
             SqlConnection connection = new SqlConnection(getconnectionString());
             string query = "UPDATE AddOffer SET active = @active, offerAccepted = @declined WHERE AddID = @adID AND offerAccpted = @pending";
             SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
             cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
             cmd.Parameters.Add("@pending", SqlDbType.Int).Value = pending;
             cmd.Parameters.Add("@declined", SqlDbType.Int).Value = declined;

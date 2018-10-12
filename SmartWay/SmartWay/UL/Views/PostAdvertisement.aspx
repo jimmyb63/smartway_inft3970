@@ -71,7 +71,7 @@
                 <asp:DropDownList 
                     CssClass="form-control" 
                     ID="ddSubCategory" 
-                    runat="server">
+                    runat="server" AutoPostBack="true">
                 </asp:DropDownList>                
                 <br />
                 <%-- Required to pick a subcategory --%>
@@ -95,12 +95,25 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
+                    <% if (ddSubCategory.SelectedValue == "free") %>
+                    <% { %>
+                        <asp:Textbox 
+                        CssClass="form-control" 
+                        ID="txtPriceFree" 
+                        ReadOnly="true"
+                        Text="0"
+                        runat="server"/>                       
+                    </div>
+                    <% }
+                        else
+                        { %>
                     <asp:Textbox 
                         CssClass="form-control" 
-                        ID="txtPrice" 
+                        ID="txtPrice"
                         runat="server"
                         placeholder="eg. 25"/>                       
                     </div>
+                    <% } %>
                         
                         <%-- PRICE required --%>
                         <asp:RequiredFieldValidator

@@ -45,10 +45,10 @@
                         <div class="card h-100">
                             <div class="row">
                                 <div class="col-3">
-                                    <%--<a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">--%>
+                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
                                         <img class="card-img" src="<%#getAdThumbnail(Item.advertisementID)%>"
                                             style="border: solid; width: 100%" />
-                                    <%--</a>--%>
+                                    </a>
                                 </div>
                                 <div class="col-9">
                                     <div class="card-body  align-items-center">
@@ -58,8 +58,7 @@
                                                     <div class="col-12">
                                                         <div class="row">
                                                             <h5 class="card-title">
-                                                                <%--<a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a--%>
-                                                                <%#:Item.advertisementTitle%>
+                                                                <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a>
                                                             </h5>
                                                         </div>
                                                         <div class="row">
