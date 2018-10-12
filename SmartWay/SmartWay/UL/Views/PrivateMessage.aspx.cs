@@ -65,7 +65,7 @@ namespace SmartWay.UL.Views
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             string tempMessage = txtMessage.Text;
-            UC.savePrivateMessage(tempSenderID, tempRecipientID, adID, 0, tempMessage );
+            UC.savePrivateMessage(tempSenderID, tempRecipientID, adID, tempMessage );
 
 
         }

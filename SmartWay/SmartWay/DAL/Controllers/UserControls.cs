@@ -437,7 +437,7 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["sendersUserID"],
                                         (int)reader["receiverUserID"],
                                         (int)reader["addID"],
-                                        (int)reader["forumID"],
+                                        //(int)reader["forumID"],
                                         reader["messageDetails"].ToString(),
                                         (bool)reader["messageRead"],
                                         (bool)reader["messageReplied"],
@@ -488,16 +488,16 @@ namespace SmartWay.DAL.Controllers
         /// <param name="tempMessage"></param>
         
         [DataObjectMethod(DataObjectMethodType.Insert)]
-        public void savePrivateMessage(int tempSenderID, int tempRecipientID, int tempAdID, int tempForumID, string tempMessage)
+        public void savePrivateMessage(int tempSenderID, int tempRecipientID, int tempAdID, string tempMessage)
         {
             // Add private message to database
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "EXEC sp_NewPrivateMessage @tempSenderID, @tempRecipientID, @tempAdID, @tempForumID, @tempMessage, 2222";
+            string query = "EXEC sp_NewPrivateMessage @tempSenderID, @tempRecipientID, @tempAdID, @tempMessage, 2222";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@tempSenderID", SqlDbType.Int).Value = tempSenderID;
             cmd.Parameters.Add("@tempRecipientID", SqlDbType.Int).Value = tempRecipientID;
             cmd.Parameters.Add("@tempAdID", SqlDbType.Int).Value = tempAdID;
-            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            //cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
             cmd.Parameters.Add("@tempMessage", SqlDbType.VarChar, 250).Value = tempMessage; // might need to increase the character limit           
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -526,7 +526,9 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["sendersUserID"],
                                         (int)reader["receiverUserID"],
                                         (int)reader["addID"],
-                                        (int)reader["forumID"],
+                                        //if (!reader.IsDBNull("forumID"))
+                                        //    return reader.GetString(colIndex);
+                                        //(int)reader["forumID"],
                                         reader["messageDetails"].ToString(),
                                         (bool)reader["messageRead"],
                                         (bool)reader["messageReplied"],

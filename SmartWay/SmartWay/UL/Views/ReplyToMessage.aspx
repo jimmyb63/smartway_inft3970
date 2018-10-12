@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-lg-9 mt-2">
         <%-- Main Page Content Goes Here--%>
-        <div class="p-2 mb-2 bg-primary text-white">Messages</div>
+        <div class="p-2 mb-2 bg-primary text-white">Reply Messages</div>
             <div class="card">
                 <div class="card-body">
                 <%-- LABELS for Name and Title --%>
@@ -60,7 +60,7 @@
                 TextMode="MultiLine"                     
                 Rows="5" />
             <br />
-            <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" />
+            <asp:Button runat="server" Text="Reply" CssClass="btn btn-block btn-info" />
             </div>
         </div>
     </div>
