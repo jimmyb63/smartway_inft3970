@@ -38,11 +38,11 @@
                 <asp:TextBox 
                 CssClass="form-control" 
                 runat="server" 
-                ID="txtContent" 
+                ID="txtMessage" 
                 TextMode="MultiLine"                     
                 Rows="5" />
             <br />
-            <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" />
+            <asp:Button runat="server" Text="Send" CssClass="btn btn-block btn-info" OnClick="Unnamed1_Click" />
             </div>
         </div>
     </div>

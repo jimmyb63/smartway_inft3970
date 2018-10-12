@@ -31,12 +31,12 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.Label lblTempTitle;
         
         /// <summary>
-        /// txtContent control.
+        /// txtMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContent;
+        protected global::System.Web.UI.WebControls.TextBox txtMessage;
     }
 }

@@ -478,6 +478,34 @@ namespace SmartWay.DAL.Controllers
             return currentReplyMessages;
         }
 
+        /// <summary>
+        /// Saves a private message, two types - add and forum
+        /// </summary>
+        /// <param name="tempSenderID"></param>
+        /// <param name="tempRecipientID"></param>
+        /// <param name="tempAdID"></param>
+        /// <param name="tempForumID"></param>
+        /// <param name="tempMessage"></param>
+        
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void savePrivateMessage(int tempSenderID, int tempRecipientID, int tempAdID, int tempForumID, string tempMessage)
+        {
+            // Add private message to database
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "EXEC sp_NewPrivateMessage @tempSenderID, @tempRecipientID, @tempAdID, @tempForumID, @tempMessage, 2222";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempSenderID", SqlDbType.Int).Value = tempSenderID;
+            cmd.Parameters.Add("@tempRecipientID", SqlDbType.Int).Value = tempRecipientID;
+            cmd.Parameters.Add("@tempAdID", SqlDbType.Int).Value = tempAdID;
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            cmd.Parameters.Add("@tempMessage", SqlDbType.VarChar, 250).Value = tempMessage; // might need to increase the character limit           
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            //int phoneID = getPhoneID(phoneNumber);
+            //return phoneID;
+        }
 
 
         public string getconnectionString()

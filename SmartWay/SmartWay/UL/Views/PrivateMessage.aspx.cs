@@ -20,8 +20,9 @@ namespace SmartWay.UL.Views
 
         // Variables for private message: 
         // Sender, Recipient, Title, Ad Object, Message Text, SenderID
-        Person sender = new Person(); // grabbing from session
-        Person recipient = new Person(); // recipient is a person who receives - person who posted the ad
+        Person tempSender = new Person(); // grabbing from session
+        Person tempRecipient = new Person(); // recipient is a person who receives - person who posted the ad
+        int tempSenderID;
         string tempTitle;
         string tempSellerUsername;
         string tempAdReference;
@@ -35,21 +36,36 @@ namespace SmartWay.UL.Views
             // Method to fill labels
             // Method to fill Person objects 
             // Method to fill Advertisement
-            // Method to apply data to page            
+            // Method to apply data to page         
 
-            sender = (Person)Session["currentUser"]; // Sender - grabbing from session
+            if (Session["currentUser"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
 
-            tempAd = AC.getAd(adID); // for ad
-            tempTitle = tempAd.advertisementTitle; // using GetAd SP for title and sellerID
-            tempRecipientID = tempAd.advertisementSellerID; // Getting an ID from an Ad to fill in a Person object for recipient
+                tempSender = (Person)Session["currentUser"]; // Sender - grabbing from session
+                tempSenderID = tempSender.userID;
+                // tempSenderID = 1008; // for testing (worked!)
+                tempAd = AC.getAd(adID); // for ad
+                tempTitle = tempAd.advertisementTitle; // using GetAd SP for title and sellerID
+                tempRecipientID = tempAd.advertisementSellerID; // Getting an ID from an Ad to fill in a Person object for recipient
 
-            recipient = UC.getUserByID(tempRecipientID); // Filling Person object
-            tempSellerUsername = recipient.userName;
+                tempRecipient = UC.getUserByID(tempRecipientID); // Filling Person object
+                tempSellerUsername = tempRecipient.userName;
 
-            tempAdReference = tempTitle + " (Listed by: " + tempSellerUsername + ")";
+                tempAdReference = tempTitle + " (Listed by: " + tempSellerUsername + ")";
 
-            
-            lblTempTitle.Text = tempAdReference;
+                lblTempTitle.Text = tempAdReference;
+
+            }
+        }
+
+        protected void Unnamed1_Click(object sender, EventArgs e)
+        {
+            string tempMessage = txtMessage.Text;
+            UC.savePrivateMessage(tempSenderID, tempRecipientID, adID, 0, tempMessage );
 
 
         }

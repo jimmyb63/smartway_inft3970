@@ -836,7 +836,7 @@ BEGIN
 		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
 		SELECT @returnNewMessageID;
 	END
-	ELSE --Is a message about neither an Add Post or a foumPost.
+	ELSE --Is a message about neither an Add Post or a forumPost.
 	BEGIN
 		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, messageDetails) 
 		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
@@ -911,7 +911,6 @@ END
 RETURN  
 GO
 
-
 --Add New Watched Item for User
 IF OBJECT_ID('sp_NewWatchedItem', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewWatchedItem;  
@@ -946,6 +945,8 @@ SELECT * FROM WatchListItem WHERE  watcherID = @tempUserID;
 END
 RETURN
 GO
+
+--
 
 --DATALOAD
 
