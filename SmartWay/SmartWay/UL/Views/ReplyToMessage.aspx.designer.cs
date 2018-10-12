@@ -49,6 +49,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.Label lblAdTitle;
         
         /// <summary>
+        /// gvNotRepliedMessages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvNotRepliedMessages;
+        
+        /// <summary>
         /// txtMessage control.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace SmartWay.UL.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMessage;
+        
+        /// <summary>
+        /// gvRepliedMessages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRepliedMessages;
     }
 }

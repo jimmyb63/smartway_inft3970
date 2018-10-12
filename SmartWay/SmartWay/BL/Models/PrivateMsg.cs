@@ -11,7 +11,7 @@ namespace SmartWay.BL.Models
         private int ID;
         private int sendersUserID;
         private int receiverUserID;
-        private int addID;
+        //private int addID;
         //private int forumID;
         private string messageDetails;
         private bool messageRead;
@@ -26,7 +26,7 @@ namespace SmartWay.BL.Models
             ID = 0;
             sendersUserID = 0;
             receiverUserID = 0;
-            addID = 0;
+            //addID = 0;
             //forumID = 0;
             messageDetails = "";
             messageRead = false;
@@ -46,13 +46,13 @@ namespace SmartWay.BL.Models
         }
 
         //Constructor for when reading from DB
-        public PrivateMsg(int tempID, int tempSendersUserID, int tempReceiverUserID, int tempAddID,
+        public PrivateMsg(int tempID, int tempSendersUserID, int tempReceiverUserID,
                 string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
         {
             ID = tempID;
             sendersUserID = tempSendersUserID;
             receiverUserID = tempReceiverUserID;
-            addID = tempAddID;
+            //addID = tempAddID;
             messageDetails = tempMessageDetails;
             messageRead = tempMessageRead;
             messageReplied = tempMessageReplied;
@@ -100,7 +100,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public int pmAdID
+        /*public int pmAdID
         {
             get
             {
@@ -112,7 +112,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        /*public int pmForumID
+        public int pmForumID
         {
             get
             {

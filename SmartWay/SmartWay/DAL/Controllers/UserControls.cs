@@ -396,12 +396,12 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<int> getPrivateMessageList(int tempPrivateMsgID)
+        public List<int> getAllPriMsgListForUser(int tempUserID)
         {
             List<int> currentPrivateMessageID = new List<int>();
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC sp_GetPrivateMsg " + tempPrivateMsgID; //the sql request
+            string query = "EXEC sp_GetPrivateMsg " + tempUserID; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
             //use command
             connection.Open();
@@ -417,15 +417,16 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<PrivateMsg> getPrivateMessageList2 (int tempPrivateMsgID)
+        public List<PrivateMsg> getPrivateMessageList (int tempSenderID, int tempReceiversID, int tempAdID)
         {
             List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
-            PrivateMsg lastPM = new PrivateMsg();
-
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC sp_GetPrivateMsg " + tempPrivateMsgID; //the sql request
+            string query = "EXEC sp_getPMList @tempSenderID, @tempReceiversID, @tempAdID "; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempSenderID", SqlDbType.Int).Value = tempSenderID;
+            cmd.Parameters.Add("@tempReceiversID", SqlDbType.Int).Value = tempReceiversID;
+            cmd.Parameters.Add("@tempAdID", SqlDbType.Int).Value = tempAdID;
             //use command
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -436,7 +437,7 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["ID"],
                                         (int)reader["sendersUserID"],
                                         (int)reader["receiverUserID"],
-                                        (int)reader["addID"],
+                                        //(int)reader["addID"],
                                         //(int)reader["forumID"],
                                         reader["messageDetails"].ToString(),
                                         (bool)reader["messageRead"],
@@ -450,32 +451,37 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<ReplyMessage> getReplyMessages(int tempPrivateMsgID)
+        public List<PrivateMsg> getPrivateMessageListReplied(int tempSenderID, int tempReceiversID, int tempAdID)
         {
-            List<ReplyMessage> currentReplyMessages = new List<ReplyMessage>();
+            List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
+            currentPrivateMessage = getPrivateMessageList(tempSenderID, tempReceiversID, tempAdID);
 
-            //setting connection string and sql request
-            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC getPMReplyList " + tempPrivateMsgID; //the sql request
-            SqlCommand cmd = new SqlCommand(query, connection);
-            //use command
-            connection.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+
+            List<PrivateMsg> repliedPrivateMessage = new List<PrivateMsg>();
+            for (int i = 0; i < currentPrivateMessage.Count; i++)
             {
-                //for each rows of the database corresponding to the request we create a product and add it to the list
-                ReplyMessage newPM = new ReplyMessage(
-                                        (int)reader["ID"],
-                                        (int)reader["privateMessageID "],
-                                        reader["messageDetails"].ToString(),
-                                        (bool)reader["messageRead"],
-                                        (bool)reader["messageReplied"],
-                                        (DateTime)reader["creationDate"],
-                                        (bool)reader["active"]);
-                currentReplyMessages.Add(newPM);
+                if (currentPrivateMessage[i].pmMessageReplied == true)
+                {
+                    repliedPrivateMessage.Add(currentPrivateMessage[i]);
+                }
             }
-            connection.Close();
-            return currentReplyMessages;
+            return repliedPrivateMessage;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<PrivateMsg> getPrivateMessageListNotReplied(int tempSenderID, int tempReceiversID, int tempAdID)
+        {
+            List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
+            currentPrivateMessage = getPrivateMessageList(tempSenderID, tempReceiversID, tempAdID);
+            List<PrivateMsg> repliedPrivateMessage = new List<PrivateMsg>();
+            for (int i = 0; i < currentPrivateMessage.Count; i++)
+            {
+                if (currentPrivateMessage[i].pmMessageReplied == false)
+                {
+                    repliedPrivateMessage.Add(currentPrivateMessage[i]);
+                }
+            }
+            return repliedPrivateMessage;
         }
 
         /// <summary>
@@ -486,7 +492,7 @@ namespace SmartWay.DAL.Controllers
         /// <param name="tempAdID"></param>
         /// <param name="tempForumID"></param>
         /// <param name="tempMessage"></param>
-        
+
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void savePrivateMessage(int tempSenderID, int tempRecipientID, int tempAdID, string tempMessage)
         {
@@ -525,7 +531,7 @@ namespace SmartWay.DAL.Controllers
                                         (int)reader["ID"],
                                         (int)reader["sendersUserID"],
                                         (int)reader["receiverUserID"],
-                                        (int)reader["addID"],
+                                        //(int)reader["addID"],
                                         //if (!reader.IsDBNull("forumID"))
                                         //    return reader.GetString(colIndex);
                                         //(int)reader["forumID"],
