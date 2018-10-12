@@ -70,39 +70,54 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-6 card-text">
+                            <div class="col-lg-6">
                                 <h4>Price: <%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="card-text">
-                                            Offers: <%#:getOfferCount(Item.advertisementID)%>
-                                        </p>
+                                    <div class="col-lg-12">
+                                        <ul class="list-unstyled list-inline">
+                                            <li class="list-inline-item pr-2 black-text">
+                                                <p>Offers<i class="fas fa-hand-holding-usd m-2"></i><%#:getOfferCount(Item.advertisementID)%></p>
+                                            </li>
+                                            <li class="list-inline-item pr-2 black-text">Views<i class="fas fa-eye m-2"></i> <%=txtViewCount.Value %></li>
+                                        </ul> <h4>Description</h4>
+                                        <p><%#:Item.advertisementDescription %></p>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <p>
-                                            Views: <%=txtViewCount.Value %>
-                                        </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4>
+                                    <img class="avatar" src="<%#:getSellerAvatar(Item.advertisementSellerID) %>" />
+                                    <%#:getSellerUsername(Item.advertisementSellerID) %></h4>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item pr-2 black-text">
+                                        <p>Joined: <%#:getSellerRegoDate(Item.advertisementSellerID)%></p>
+                                    </li>
+                                    <li class="list-inline-item pr-2 black-text">
+                                        <p>Rating: 5 <i class="fas fa-star"></i></p>
+                                    </li>
+                                </ul>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a href="#" class="badge badge-dark badge-pill mb-2 p-2">Is this still available?</a>
+                                        <a href="#" class="badge badge-dark badge-pill mb-2 p-2">Can you deliver?</a>
+                                        <a href="#" class="badge badge-dark badge-pill mb-2 p-2">How old is it?</a>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-8 col-md-12 mb-2">
-                                        <asp:Button ID="btnBuy" Text="Interested" CssClass="btn btn-success btn-block" OnClick="WantToBuy" runat="server" />
+                                    <div class="col-lg-6">
+                                        <asp:Button ID="Button1" Text="Interested" CssClass="btn btn-success btn-block mt-2" OnClick="WantToBuy" runat="server" />
                                     </div>
-                                    <div class="col-lg-4 col-md-0"></div>
+                                    <div class="col-lg-6">
+                                        <asp:Button ID="btnContact" Text="Contact" OnClick="ContactSeller" CssClass="btn btn-info btn-block mt-2" runat="server" />
+                                    </div>
                                 </div>
-                            </div>
-                            <br />
-                            <div class="col-lg-6 card-text">
-                                <h4><img class="avatar" src="<%#:getSellerAvatar(Item.advertisementSellerID) %>" />  <%#:getSellerUsername(Item.advertisementSellerID) %></h4>
-                                <p>User Since: <%#:getSellerRegoDate(Item.advertisementSellerID) %></p>
-                                <p>Rating: 5 <i class="fas fa-star"></i></p>
                             </div>
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-lg-12 card-text">
-                                <h4>Description</h4>
-                                <p><%#:Item.advertisementDescription %></p>
+                            <div class="col-lg-12">
+                                <%--                                <h4>Description</h4>
+                                <p><%#:Item.advertisementDescription %></p>--%>
                             </div>
                             <%--<div class="col-lg-6 card-text">
                                 <div id="map" style="height: 200px;"></div>
@@ -186,12 +201,12 @@
                                             });
 
                                             var contentString =
-                                                    '<div class="info-window text-center">' +
-                                                    '<h3>University of Newcastle</h3>' +
-                                                    '<div class="info-content">' +
-                                                    '<p>This is a place where young adults go to serve their life sentence</p>' +
-                                                    '</div>' +
-                                                    '</div>';
+                                                '<div class="info-window text-center">' +
+                                                '<h3>University of Newcastle</h3>' +
+                                                '<div class="info-content">' +
+                                                '<p>This is a place where young adults go to serve their life sentence</p>' +
+                                                '</div>' +
+                                                '</div>';
 
                                             var infowindow = new google.maps.InfoWindow({
                                                 content: contentString,
@@ -215,7 +230,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-lg-4 col-md-12 my-1">
-                                <asp:Button ID="btnContact" Text="Contact Seller" OnClick="ContactSeller" CssClass="btn btn-info btn-block" runat="server" />
+                                <%--<asp:Button ID="btnContact" Text="Contact Seller" OnClick="ContactSeller" CssClass="btn btn-info btn-block" runat="server" />--%>
                             </div>
                             <div class="col-lg-4 col-md-0"></div>
                             <div class="col-lg-4 col-md-12 my-1">
