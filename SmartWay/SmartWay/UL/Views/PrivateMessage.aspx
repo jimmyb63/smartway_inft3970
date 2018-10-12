@@ -17,7 +17,7 @@
                         <asp:Label 
                         ID="lblTempAd"
                         runat="server"
-                        Text="THIS WILL BE MESSAGE TO:">
+                        Text="Message to: ">
                         </asp:Label>
                     </td>
                     </tr>
@@ -26,8 +26,7 @@
                     <td>                      
                         <asp:Label
                         ID="lblTempTitle"
-                        runat="server"
-                        Text="THIS WILL BE THE TITLE aka AD's NAME">
+                        runat="server">
                         </asp:Label>
                     </td>
                     </tr>                 

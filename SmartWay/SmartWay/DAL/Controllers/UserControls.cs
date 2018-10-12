@@ -417,7 +417,7 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public List<PrivateMsg> getPrivateMessage(int tempPrivateMsgID)
+        public List<PrivateMsg> getPrivateMessageList2 (int tempPrivateMsgID)
         {
             List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
             PrivateMsg lastPM = new PrivateMsg();
@@ -503,8 +503,39 @@ namespace SmartWay.DAL.Controllers
             cmd.ExecuteNonQuery();
             connection.Close();
 
-            //int phoneID = getPhoneID(phoneNumber);
-            //return phoneID;
+        }
+              
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public PrivateMsg getPrivateMessageByID(int tempPrivateMsgID)
+        {
+            PrivateMsg tempPrivateMessage = new PrivateMsg();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "EXEC sp_GetPrivateMsg " + tempPrivateMsgID; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@privateMessageID", SqlDbType.Int).Value = tempPrivateMsgID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                PrivateMsg newPrivateMessage = new PrivateMsg(
+                                        (int)reader["ID"],
+                                        (int)reader["sendersUserID"],
+                                        (int)reader["receiverUserID"],
+                                        (int)reader["addID"],
+                                        (int)reader["forumID"],
+                                        reader["messageDetails"].ToString(),
+                                        (bool)reader["messageRead"],
+                                        (bool)reader["messageReplied"],
+                                        (DateTime)reader["creationDate"],
+                                        (bool)reader["active"]);
+                tempPrivateMessage = newPrivateMessage;
+            }
+            connection.Close();
+            return tempPrivateMessage;
         }
 
 

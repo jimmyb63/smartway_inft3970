@@ -164,6 +164,7 @@
     <Content Include="UL\Views\Payment.aspx" />
     <Content Include="UL\Views\PostForumThread.aspx" />
     <Content Include="UL\Views\PrivateMessage.aspx" />
+    <Content Include="UL\Views\ReplyToMessage.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="UL\Views\WantToBuy.aspx" />
@@ -457,6 +458,13 @@
     </Compile>
     <Compile Include="UL\Views\RegistrationConfirmation.aspx.designer.cs">
       <DependentUpon>RegistrationConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\ReplyToMessage.aspx.cs">
+      <DependentUpon>ReplyToMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\ReplyToMessage.aspx.designer.cs">
+      <DependentUpon>ReplyToMessage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\ViewAdvertisement.aspx.cs">
       <DependentUpon>ViewAdvertisement.aspx</DependentUpon>
