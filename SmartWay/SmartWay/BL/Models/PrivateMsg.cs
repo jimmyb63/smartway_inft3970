@@ -12,7 +12,7 @@ namespace SmartWay.BL.Models
         private int sendersUserID;
         private int receiverUserID;
         private int addID;
-        private int forumID;
+        //private int forumID;
         private string messageDetails;
         private bool messageRead;
         private bool messageReplied;
@@ -27,7 +27,7 @@ namespace SmartWay.BL.Models
             sendersUserID = 0;
             receiverUserID = 0;
             addID = 0;
-            forumID = 0;
+            //forumID = 0;
             messageDetails = "";
             messageRead = false;
             messageReplied = false;
@@ -46,14 +46,13 @@ namespace SmartWay.BL.Models
         }
 
         //Constructor for when reading from DB
-        public PrivateMsg(int tempID, int tempSendersUserID, int tempReceiverUserID, int tempAddID, int tempForumID,
+        public PrivateMsg(int tempID, int tempSendersUserID, int tempReceiverUserID, int tempAddID,
                 string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
         {
             ID = tempID;
             sendersUserID = tempSendersUserID;
             receiverUserID = tempReceiverUserID;
             addID = tempAddID;
-            forumID = tempForumID;
             messageDetails = tempMessageDetails;
             messageRead = tempMessageRead;
             messageReplied = tempMessageReplied;
@@ -80,11 +79,11 @@ namespace SmartWay.BL.Models
         {
             get
             {
-                return ID;
+                return sendersUserID;
             }
             set
             {
-                ID = value;
+                sendersUserID = value;
             }
         }
 
@@ -93,11 +92,11 @@ namespace SmartWay.BL.Models
         {
             get
             {
-                return ID;
+                return receiverUserID;
             }
             set
             {
-                ID = value;
+                receiverUserID = value;
             }
         }
 
@@ -105,15 +104,15 @@ namespace SmartWay.BL.Models
         {
             get
             {
-                return ID;
+                return addID;
             }
             set
             {
-                ID = value;
+                addID = value;
             }
         }
 
-        public int pmForumID
+        /*public int pmForumID
         {
             get
             {
@@ -123,7 +122,7 @@ namespace SmartWay.BL.Models
             {
                 ID = value;
             }
-        }
+        }*/
 
         public string pmMessageDetails
         {

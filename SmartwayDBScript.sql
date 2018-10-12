@@ -815,14 +815,13 @@ CREATE PROCEDURE sp_NewPrivateMessage(
 	@tempSendersUserID INT,
 	@tempReceiverUserID INT,
 	@tempAddID INT,
-	@tempForumID INT,
 	@tempMessageDetails VARCHAR(250),
 	@returnNewMessageID INT Output)
 --Return on DEFAULT = newID;
 AS
 	DECLARE @tempFirstMessageID INT;
 BEGIN
-	IF (@tempAddID = 0) -- Is a message Regarding a Forum Post
+	/*IF (@tempAddID = 0) -- Is a message Regarding a Forum Post
 	BEGIN
 		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, forumID, messageDetails) 
 		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempForumID, @tempMessageDetails);
@@ -830,19 +829,19 @@ BEGIN
 		SELECT @returnNewMessageID;
 	END
 	ELSE IF (@tempForumID = 0)  -- Is a message Regarding an Add Post
-	BEGIN
+	BEGIN*/
 		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, addID, messageDetails) 
 		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempAddID, @tempMessageDetails);
 		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
 		SELECT @returnNewMessageID;
-	END
+	/*END 
 	ELSE --Is a message about neither an Add Post or a forumPost.
 	BEGIN
 		INSERT INTO PrivateMessage (sendersUserID, receiverUserID, messageDetails) 
 		VALUES(@tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
 		SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
 		SELECT @returnNewMessageID;
-	END
+	END */
 END
 
 RETURN  
@@ -1156,9 +1155,9 @@ EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 
 --Add test Conversations
 --New Message Thread
-EXEC sp_NewPrivateMessage 1003, 1000, 1000, 0, 'Hi. How are you?', 2222
+EXEC sp_NewPrivateMessage 1003, 1000, 1000,  'Hi. How are you?', 2222
 
-EXEC sp_NewPrivateMessage 1004, 1002, 1001, 0, 'Is that Mig still for Sale?', 2222
+EXEC sp_NewPrivateMessage 1004, 1002, 1001,  'Is that Mig still for Sale?', 2222
 
 --Reply Messages
 
