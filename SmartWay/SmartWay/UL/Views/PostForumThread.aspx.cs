@@ -1,8 +1,4 @@
-﻿
-
-
-
-using System;
+﻿using System;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -21,16 +17,59 @@ namespace SmartWay.UL.Views
 {
     public partial class PostForumThread : System.Web.UI.Page
     {
+        //Variables
+        ForumControls FC = new ForumControls();
+        UserControls UC = new UserControls();
+        Person currentUser = new Person();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
+
+            List<ForumTag> forumTags = getForumTags();
+
+            lbForumTags.DataSource = forumTags;
+            lbForumTags.DataTextField = "forumTagName";
+            lbForumTags.DataValueField = "forumTagID";
+            lbForumTags.DataBind();
+            //gvForsaleItems.DataSource = saleItems;
+            //gvForsaleItems.DataBind();
+        }
+
+        public List<ForumTag> getForumTags()
+        {
+
+            ForumControls FC = new ForumControls();
+            List<ForumTag> tempTagList = FC.getForumTags();
+            return tempTagList;
         }
 
         protected void postAd(object sender, EventArgs e)
         {
+            string tempDescription = txtDescription.Text;
+            currentUser = (Person)Session["currentUser"];
+            string forumTitle = txtTitle.Text;
+            int userID = currentUser.userID;
+            string tempFilePath = "";
+            FC.addForumPost(userID, forumTitle, tempDescription, tempFilePath);
+
+
+            //To Add  Tags Linked to ForumPost
+            List <string> strItem = new List<string>();
+            foreach (ListItem item in lbForumTags.Items)
+            {
+                if (item.Selected)
+                {
+                    string tempTagName = item.Text;
+                    strItem.Add(tempTagName);
+                }
+            }
+            
+
 
         }
 
@@ -102,6 +141,7 @@ namespace SmartWay.UL.Views
 
         protected void rbAdCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             /*string category = rbAdCategory.SelectedValue;
             string constr = ConfigurationManager.ConnectionStrings["SmartWayconnectionString"].ConnectionString; ;
             using (SqlConnection con = new SqlConnection(constr))
@@ -120,6 +160,11 @@ namespace SmartWay.UL.Views
                 }
             }
             ddSubCategory.Items.Insert(0, new ListItem("--Select Sub-Category--", "0"));*/
+        }
+
+        protected void rbAdType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

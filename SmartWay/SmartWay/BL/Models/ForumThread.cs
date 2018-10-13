@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartWay.DAL.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace SmartWay.BL.Models
         private string description;
         private string filepath;
         private int imgID;
+        private List<string> ForumTags;
         private DateTime creationDate;
         private bool active;
 
@@ -41,14 +43,15 @@ namespace SmartWay.BL.Models
         }
 
         //Creating a New ForumThread From Database
-        public ForumThread(int tempPostUserID, string tempTitle, string tempDescription, int tempImgID)
+        public ForumThread(int tempID, int tempPostUserID, string tempTitle, string tempDescription, int tempImgID, DateTime tempCreationDate, bool tempActive)
         {
+            ID = tempID;
             postUserID = tempPostUserID;
             title = tempTitle;
             description = tempDescription;
             imgID = tempImgID;
-            creationDate = DateTime.Now;
-            active = true;
+            creationDate = tempCreationDate;
+            active = tempActive;
         }
 
 
@@ -149,7 +152,22 @@ namespace SmartWay.BL.Models
             }
         }
 
+        public List<string> forumPostTags
+        {
+            get
+            {
+                return ForumTags;
+            }
+            set
+            {
+                ForumTags = value;
+            }
+        }
 
+        public void addForumPostTags (string tempTag)
+        {
+            ForumTags.Add(tempTag);
+        }
 
     }
 

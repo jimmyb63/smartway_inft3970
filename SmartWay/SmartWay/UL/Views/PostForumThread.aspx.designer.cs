@@ -31,13 +31,13 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.RadioButtonList rbAdType;
         
         /// <summary>
-        /// lbRecycleTags control.
+        /// lbForumTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbRecycleTags;
+        protected global::System.Web.UI.WebControls.ListBox lbForumTags;
         
         /// <summary>
         /// txtDescription control.

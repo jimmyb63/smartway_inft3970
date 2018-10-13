@@ -13,18 +13,15 @@
                 <asp:TextBox CssClass="form-control" ID="txtTitle" placeholder="Eg. Resuse items as Plant Pots" runat="server" />
                 <hr />
                 <h5>Type of Forum Thread</h5>
-                <asp:RadioButtonList CssClass="form-group" ID="rbAdType" runat="server">
+                <asp:RadioButtonList CssClass="form-group" ID="rbAdType" runat="server" OnSelectedIndexChanged="rbAdType_SelectedIndexChanged">
                     <asp:ListItem Text=" Recycle" Value="recycle"/>
                     <asp:ListItem Text=" Reuse" Value="reuse"/>
                     <asp:ListItem Text=" Repurpose" Value="repurpose"/>
                 </asp:RadioButtonList>
                 <hr />
                 <h5>Select Tags that Best Apply</h5>
-                <asp:ListBox ID="lbRecycleTags" runat="server">
-                    <asp:ListItem Text="Reuse Household goods" Value="red"></asp:ListItem>
-                    <asp:ListItem Text="Repurpose Household good" Value="blue"></asp:ListItem>
-                    <asp:ListItem Text="Compsite" Value="green"></asp:ListItem>
-                    <asp:ListItem Text="Trash To Treasure" Value="green"></asp:ListItem>
+                <asp:ListBox ID="lbForumTags" SelectionMode="Multiple" runat="server">
+                    
                 </asp:ListBox>
                 <hr />
            

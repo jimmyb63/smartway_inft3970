@@ -137,6 +137,7 @@
     <Content Include="UL\Images\TestImg\1005.png" />
     <Content Include="UL\Images\TestImg\1006.jpg" />
     <Content Include="UL\Images\TestImg\1007.jpg" />
+    <Content Include="UL\Images\TestImg\1_1000_1003.jpg" />
     <Content Include="UL\Images\TestImg\1_1002_1002.jpg" />
     <Content Include="UL\Images\TestImg\1_1003_1000.jpg" />
     <Content Include="UL\Images\TestImg\1_1003_1006.jpg" />
@@ -168,6 +169,7 @@
     <Content Include="UL\Views\ReplyToMessage.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
+    <Content Include="UL\Views\ViewForumPostList.aspx" />
     <Content Include="UL\Views\WantToBuy.aspx" />
     <Content Include="UL\Views\PostAdvertisementConfirmation.aspx" />
     <Content Include="UL\Views\TermsofService.aspx" />
@@ -214,6 +216,7 @@
     <Compile Include="BL\Controllers\SMSSender.cs" />
     <Compile Include="BL\Controllers\Validation.cs" />
     <Compile Include="BL\Models\Address.cs" />
+    <Compile Include="BL\Models\ForumTag.cs" />
     <Compile Include="BL\Models\Offer.cs" />
     <Compile Include="BL\Models\PrivateMsg.cs" />
     <Compile Include="BL\Models\ReplyMessage.cs" />
@@ -481,6 +484,13 @@
     </Compile>
     <Compile Include="UL\Views\ViewAdvertisementList.aspx.designer.cs">
       <DependentUpon>ViewAdvertisementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\ViewForumPostList.aspx.cs">
+      <DependentUpon>ViewForumPostList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\ViewForumPostList.aspx.designer.cs">
+      <DependentUpon>ViewForumPostList.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\WantToBuy.aspx.cs">
       <DependentUpon>WantToBuy.aspx</DependentUpon>

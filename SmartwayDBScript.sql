@@ -332,7 +332,7 @@ CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 --Add comments							
 CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									personID INT NOT NULL,
-									title VARCHAR(30) NOT NULL,
+									title VARCHAR(50) NOT NULL,
 									forumDescription VARCHAR(500) NOT NULL,
 									imageID INT NOT NULL,
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
@@ -1011,7 +1011,7 @@ GO
 
 CREATE PROCEDURE sp_NewForumPost(
 	@tempPersonID INT,
-	@tempTitle VARCHAR(30),
+	@tempTitle VARCHAR(50),
 	@tempForumDescription VARCHAR(500),
 	@tempFilePath VARCHAR(260),
 	@returnForumPostID INT Output)
@@ -1385,7 +1385,7 @@ EXEC sp_NewForumPost 1003, 'Hanging Pot Plants from Plastic Bottles',
 'Rip off the outside plastic labels and cut an opening into the side of the bottle with scissors an Exacto knife. (The Exacto cut more smoothly and evenly than scissors.) 
 Clean up any edges and then paint(optional). Make two small holes near the outside of the bottom of the bottle. 
 Run a piece of string through the one hole and out the top of the bottle, then run another piece through the other hole you made and through the top. 
-Your planter is now ready to hang.', '../Images/DefaultImg/GenericForumImage.png', 2222
+Your planter is now ready to hang.', '../Images/TestImg/1_1000_1003.jpg', 2222
 --Link Tags
 EXEC sp_LinkForumTag 'reuse', 1000, 2222
 EXEC sp_LinkForumTag 'repurpose', 1000, 2222
