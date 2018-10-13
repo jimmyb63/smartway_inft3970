@@ -23,20 +23,26 @@ GO
 --Drop Tables if they exist
 IF OBJECT_ID('dbo.ViewCounter', 'U') IS NOT NULL
 	DROP TABLE dbo.ViewCounter;
-IF OBJECT_ID('dbo.ReplyMessage', 'U') IS NOT NULL
-	DROP TABLE dbo.ReplyMessage;
 IF OBJECT_ID('dbo.PrivateMessage', 'U') IS NOT NULL 
   DROP TABLE dbo.PrivateMessage; 
+IF OBJECT_ID('dbo.PrivateMessageChain', 'U') IS NOT NULL 
+  DROP TABLE dbo.PrivateMessageChain; 
 IF OBJECT_ID('dbo.ForumComment', 'U') IS NOT NULL 
   DROP TABLE dbo.ForumComment; 
+IF OBJECT_ID('dbo.ForumPostTags', 'U') IS NOT NULL 
+  DROP TABLE dbo.ForumPostTags;
 IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL 
   DROP TABLE dbo.ForumPost;
-IF OBJECT_ID('dbo.AddReview', 'U') IS NOT NULL 
-  DROP TABLE dbo.AddReview;
+IF OBJECT_ID('dbo.ForumImage', 'U') IS NOT NULL
+  DROP TABLE dbo.ForumImage;
+IF OBJECT_ID('dbo.ForumTag', 'U') IS NOT NULL
+  DROP TABLE dbo.ForumTag;
 IF OBJECT_ID('dbo.WatchListItem', 'U') IS NOT NULL
   DROP TABLE dbo.WatchListItem;
 IF OBJECT_ID('dbo.AddOffer', 'U') IS NOT NULL
   DROP TABLE dbo.AddOffer;
+IF OBJECT_ID('dbo.AddReview', 'U') IS NOT NULL 
+  DROP TABLE dbo.AddReview;
 IF OBJECT_ID('dbo.ReviewReason', 'U') IS NOT NULL
   DROP TABLE dbo.ReviewReason;
 IF OBJECT_ID('dbo.RecycleLocations', 'U') IS NOT NULL 
@@ -45,8 +51,8 @@ IF OBJECT_ID('dbo.FeedBack', 'U') IS NOT NULL
   DROP TABLE dbo.FeedBack;
 IF OBJECT_ID('dbo.AddImage', 'U') IS NOT NULL 
   DROP TABLE dbo.AddImage;
-IF OBJECT_ID('dbo.SavedImage', 'U') IS NOT NULL 
-  DROP TABLE dbo.SavedImage;
+IF OBJECT_ID('dbo.ProfileImage', 'U') IS NOT NULL 
+  DROP TABLE dbo.ProfileImage;
 IF OBJECT_ID('dbo.Advertisement', 'U') IS NOT NULL 
   DROP TABLE dbo.Advertisement;
 IF OBJECT_ID('dbo.AddCategory', 'U') IS NOT NULL 
@@ -216,6 +222,8 @@ CREATE TABLE AddImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (adID) REFERENCES Advertisement(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
+
+
 --This table will be used to link the Imgs to attach to details.
 --Will link to Person via their ID
 --Requirements. Date of Birth should not be in the future.
@@ -299,26 +307,55 @@ CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (watcherID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
-									
+
+--This table will be used to store the Tags associated with a  ForumPost.
+--Requirements:-
+CREATE TABLE ForumTag		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									tagName VARCHAR(30) NOT NULL,
+									--subCategory VARCHAR(30)NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1
+							)
+
+--This table will be used to link the Imgs to attach to ForumPosts and ForumComments.
+--Will link to Person via their ID
+--Requirements. filePath, userID should not be Null on creation .
+CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									--imageID INT NOT NULL,
+									filePath VARCHAR(260) NOT NULL,
+									userID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys
+									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
+							)									
 --Add comments							
 CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									personID INT NOT NULL,
 									title VARCHAR(30) NOT NULL,
-									forumDescription VARCHAR(50) NOT NULL,
+									forumDescription VARCHAR(500) NOT NULL,
 									imageID INT NOT NULL,
-									categoryID INT NOT NULL,
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys	
 									FOREIGN KEY (personID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
-									FOREIGN KEY (categoryID) REFERENCES AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
+CREATE TABLE ForumPostTags	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									ForumPostID INT,
+									ForumTagID INT,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys	
+									FOREIGN KEY (ForumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
+									FOREIGN KEY (ForumTagID) REFERENCES ForumTag(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
+
 								
 --Add comments	
 CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									forumPostID INT NOT NULL,
-									comment VARCHAR(50) NOT NULL,
+									comment VARCHAR(150) NOT NULL,
 									imageID INT NOT NULL,
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
@@ -599,8 +636,6 @@ CREATE VIEW view_PersonStaff AS
 
 GO
 
---SELECT * FROM view_PersonStaff
-
 --View of Sale Items
 IF ( OBJECT_ID('sp_SaleItems') IS NOT NULL ) 
    DROP PROCEDURE sp_SaleItems
@@ -656,7 +691,6 @@ CREATE PROCEDURE sp_SearchSaleItemsByTitle(
 AS
 BEGIN
 	SELECT * FROM Advertisement 
-	--WHERE title LIKE '%@tempSearchWord%'; -- AND active = 1;
 	WHERE CHARINDEX(@tempSearchWord, title) > 0
 END
 GO
@@ -671,7 +705,6 @@ CREATE PROCEDURE sp_SearchSaleItemsByDescription(
 AS
 BEGIN
 	SELECT * FROM Advertisement 
-	--WHERE title LIKE '%@tempSearchWord%'; -- AND active = 1;
 	WHERE CHARINDEX(@tempSearchWord, adDescription) > 0
 END
 GO
@@ -709,7 +742,6 @@ GO
 CREATE PROCEDURE sp_NewProfileImg(
 	@tempFilePath VARCHAR(260),
 	@tempUserID VARCHAR(20))
---Return on DEFAULT = newID;
 AS
 BEGIN
 	INSERT INTO ProfileImage (filePath, userID) 
@@ -754,7 +786,6 @@ CREATE PROCEDURE sp_NewAddOffer(
 	@tempAddID INT,
 	@tempOfferAmount DECIMAL,
 	@returnCode INT Output)
---Return on DEFAULT = newID;
 AS
 BEGIN
 	IF EXISTS (SELECT ID FROM AddOffer WHERE buyerID = @tempBuyerID AND addID = @tempAddID AND offerAccepted IS NULL )
@@ -783,7 +814,6 @@ GO
 CREATE PROCEDURE sp_AcceptAddOffer(
 	@tempOfferID INT,
 	@returnCode INT Output)
---Return on DEFAULT = newID;
 AS
 	DECLARE @tempAddID INT;
 BEGIN
@@ -858,7 +888,7 @@ GO
 
 --Get PM List associated With a PrivateMessageChain by PMChain ID
 IF OBJECT_ID('sp_getPMList2', 'P') IS NOT NULL  
-   DROP PROCEDURE sp_getPMList;  
+   DROP PROCEDURE sp_getPMList2;  
 GO  
 
 CREATE PROCEDURE sp_getPMList2(
@@ -974,6 +1004,111 @@ END
 RETURN
 GO
 
+--Add New Forum Tag For Forum Posts
+IF OBJECT_ID('sp_NewForumPost', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewForumPost;  
+GO  
+
+CREATE PROCEDURE sp_NewForumPost(
+	@tempPersonID INT,
+	@tempTitle VARCHAR(30),
+	@tempForumDescription VARCHAR(500),
+	@tempFilePath VARCHAR(260),
+	@returnForumPostID INT Output)
+AS
+	DECLARE @tempImageID INT
+BEGIN
+	IF EXISTS (SELECT ID FROM ForumPost WHERE personID = @tempPersonID AND title = @tempTitle)
+	BEGIN -- Match Existes in Database
+		SET @returnForumPostID = (SELECT ID FROM ForumPost WHERE personID = @tempPersonID AND title = @tempTitle);
+	END
+	ELSE
+	IF(@tempFilePath LIKE '')
+	BEGIN --No Image was Supplied
+		BEGIN
+			INSERT INTO ForumPost (personID, title, forumDescription, imageID) 
+			VALUES(@tempPersonID, @tempTitle, @tempForumDescription, 1000);
+			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
+			SELECT @returnForumPostID;
+		END
+	END
+	ELSE
+	BEGIN
+		BEGIN --Image Filepath Was Supplied
+			INSERT INTO ForumImage (filePath, userID)
+			VALUES (@tempFilePath, @tempPersonID);
+			SET @tempImageID = (SELECT MAX(ID) FROM ForumImage);
+			INSERT INTO ForumPost (personID, title, forumDescription, imageID) 
+			VALUES(@tempPersonID, @tempTitle, @tempForumDescription, @tempImageID);
+			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
+			SELECT @returnForumPostID;
+		END
+	END
+END
+RETURN  
+GO
+
+
+--Add New Forum Tag For Forum Posts
+IF OBJECT_ID('sp_NewForumTag', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewForumTag;  
+GO  
+
+CREATE PROCEDURE sp_NewForumTag(
+	@tempTagName VARCHAR(30),
+	@returnTagID INT Output)
+AS
+BEGIN
+	IF EXISTS (SELECT ID FROM ForumTag WHERE tagName = @tempTagName )
+	BEGIN -- Match Existes in Database
+		SET @returnTagID = (SELECT ID FROM ForumTag WHERE tagName = @tempTagName );
+	END
+	ELSE
+	BEGIN
+		INSERT INTO ForumTag (tagName) 
+		VALUES(@tempTagName);
+		SET @returnTagID =(SELECT MAX(ID) FROM ForumTag);
+		SELECT @returnTagID;
+	END
+END
+RETURN  
+GO
+
+
+--Add New Link from Forum Tag to a Forum Posts
+IF OBJECT_ID('sp_LinkForumTag', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_LinkForumTag;  
+GO  
+
+CREATE PROCEDURE sp_LinkForumTag(
+	@tempTagName VARCHAR(30),
+	@tempForumPostID INT,
+	@returnTagID INT Output)
+AS
+	DECLARE @tempTagID INT
+BEGIN
+	IF EXISTS (SELECT ID FROM ForumTag WHERE tagName = @tempTagName )
+	BEGIN -- Match Existes in Database
+		SET @tempTagID = (SELECT ID FROM ForumTag WHERE tagName = @tempTagName );
+		INSERT INTO ForumPostTags (ForumPostID, ForumTagID) 
+		VALUES(@tempForumPostID, @tempTagID);
+		SET @returnTagID =(SELECT MAX(ID) FROM ForumPostTags);
+		SELECT @returnTagID;
+	END
+	ELSE --No match was Found So Create the Tag and link it
+	BEGIN
+		INSERT INTO ForumTag (tagName) 
+		VALUES(@tempTagName);
+		SET @tempTagID =(SELECT MAX(ID) FROM ForumTag);
+
+		INSERT INTO ForumPostTags (ForumPostID, ForumTagID) 
+		VALUES(@tempForumPostID, @tempTagID);
+		SET @returnTagID =(SELECT MAX(ID) FROM ForumPostTags);
+		SELECT @returnTagID;
+	END
+END
+RETURN  
+GO
 --
 
 --DATALOAD
@@ -1005,10 +1140,44 @@ INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'clothing');
 INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'tools');
 INSERT INTO AddCategory (category, subCategory) VALUES('goods', 'other');
 
---Forum Categories
-
-
-
+--Forum Tags
+EXEC sp_NewForumTag 'recycling', 2222
+EXEC sp_NewForumTag 'reuse', 2222
+EXEC sp_NewForumTag 'repurpose', 2222
+EXEC sp_NewForumTag 'fashion', 2222
+EXEC sp_NewForumTag 'deals', 2222
+EXEC sp_NewForumTag 'shop', 2222
+EXEC sp_NewForumTag 'style', 2222
+EXEC sp_NewForumTag 'smallbusiness', 2222
+EXEC sp_NewForumTag 'sale', 2222
+EXEC sp_NewForumTag 'happy', 2222
+EXEC sp_NewForumTag 'tips', 2222
+EXEC sp_NewForumTag 'localsecret', 2222
+EXEC sp_NewForumTag 'savemoney', 2222
+EXEC sp_NewForumTag 'cute', 2222
+EXEC sp_NewForumTag 'garden', 2222
+EXEC sp_NewForumTag 'kitchen', 2222
+EXEC sp_NewForumTag 'bathroom', 2222
+EXEC sp_NewForumTag 'work', 2222
+EXEC sp_NewForumTag 'creative', 2222
+EXEC sp_NewForumTag 'inspiring', 2222
+EXEC sp_NewForumTag 'fitness', 2222
+EXEC sp_NewForumTag 'under5mins', 2222
+EXEC sp_NewForumTag 'under15mins', 2222
+EXEC sp_NewForumTag 'under30mins', 2222
+EXEC sp_NewForumTag 'under1hour', 2222
+EXEC sp_NewForumTag 'under1day', 2222
+EXEC sp_NewForumTag 'under1week', 2222
+EXEC sp_NewForumTag 'under1month', 2222
+EXEC sp_NewForumTag 'under1year', 2222
+EXEC sp_NewForumTag 'weekendproject', 2222
+EXEC sp_NewForumTag 'innovation', 2222
+EXEC sp_NewForumTag 'doityourself', 2222
+EXEC sp_NewForumTag 'kwanza', 2222
+EXEC sp_NewForumTag 'holidayfun', 2222
+EXEC sp_NewForumTag 'teamproject', 2222
+EXEC sp_NewForumTag 'funwithkids', 2222
+EXEC sp_NewForumTag 'kidsbirthdayideas', 2222
 --Review Reason Categories
 
 
@@ -1205,9 +1374,35 @@ EXEC sp_UpdatePrivateMsgtoReplied 1002
 
 EXEC sp_NewPrivateMessage 1004, 1002, 1002, 'No it sold, but i have a F-16 forsale.', 2222
 
+--Adding Default Image for Forum Posts
+INSERT INTO ForumImage(filePath, userID) VALUES ('../Images/DefaultImg/GenericForumImage.png', 1000);
+
+--Adding Test data for ForumPost
 
 
 
+EXEC sp_NewForumPost 1003, 'Hanging Pot Plants from Plastic Bottles', 
+'Rip off the outside plastic labels and cut an opening into the side of the bottle with scissors an Exacto knife. (The Exacto cut more smoothly and evenly than scissors.) 
+Clean up any edges and then paint(optional). Make two small holes near the outside of the bottom of the bottle. 
+Run a piece of string through the one hole and out the top of the bottle, then run another piece through the other hole you made and through the top. 
+Your planter is now ready to hang.', '../Images/DefaultImg/GenericForumImage.png', 2222
+--Link Tags
+EXEC sp_LinkForumTag 'reuse', 1000, 2222
+EXEC sp_LinkForumTag 'repurpose', 1000, 2222
+EXEC sp_LinkForumTag 'savemoney', 1000, 2222
+EXEC sp_LinkForumTag 'garden', 1000, 2222
+EXEC sp_LinkForumTag 'under5mins', 1000, 2222
+EXEC sp_LinkForumTag 'holidayfun', 1000, 2222
+EXEC sp_LinkForumTag 'funwithkids', 1000, 2222
+EXEC sp_LinkForumTag 'kidsbirthdayideas', 1000, 2222
+
+EXEC sp_NewForumPost 1006, 'Easy Watering Can', 
+'Wash out the bottle a few times and let dry. Make a few holes in the cap of the bottle. Fill with water and is ready to go.', '', 2222
+EXEC sp_LinkForumTag 'reuse', 1001, 2222
+EXEC sp_LinkForumTag 'repurpose', 1001, 2222
+EXEC sp_LinkForumTag 'savemoney', 1001, 2222
+EXEC sp_LinkForumTag 'garden', 1001, 2222
+EXEC sp_LinkForumTag 'under5mins', 1001, 2222
 ---PostalAddress Loading
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');

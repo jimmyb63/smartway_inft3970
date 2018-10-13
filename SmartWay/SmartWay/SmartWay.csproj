@@ -126,6 +126,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\JavaScript.js" />
+    <Content Include="UL\Images\DefaultImg\GenericForumImage.png" />
     <Content Include="UL\Images\ProfileImg\1012.png" />
     <Content Include="UL\Images\ProfileImg\1014.png" />
     <Content Include="UL\Images\TestImg\1000.png" />

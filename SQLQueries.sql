@@ -139,3 +139,23 @@ ORDER BY [creationDate] DESC;
 
 -- for testing Gabby's awesome made stored procedure awooooooo
 EXEC sp_GetUserByID 1000;
+
+
+--Forum testing
+SELECT * FROM ForumPost
+
+SELECT * FROM ForumImage
+
+SELECT * FROM ForumTag
+
+SELECT * FROM ForumPostTags
+
+SELECT ID FROM ForumTag WHERE tagName = 'reuse'
+
+
+EXEC sp_LinkForumTag 'reuse', 1000, 2222
+
+SELECT ForumPost.ID AS ForumPostID, ForumPost.personID, ForumPost.title, ForumPostTags.ID AS ForumPostTagsID, ForumTag.tagName
+FROM ForumPostTags
+INNER JOIN ForumPost ON ForumPost.ID = ForumPostTags.ForumPostID
+INNER JOIN ForumTag ON ForumPostTags.ForumTagID=ForumTag.ID;
