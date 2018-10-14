@@ -44,7 +44,7 @@ namespace SmartWay.UL.Views
             return tempForumPosts;
         }
 
-        public string getAdThumbnail(int forumID)
+        public string getForumThumbnail(int forumID)
         {
             ForumControls FC = new ForumControls();
             string filePath = FC.getForumThumbnail(forumID);
