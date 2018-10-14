@@ -42,16 +42,20 @@
                 </GroupTemplate>
                 <ItemTemplate>
                     <div class="col-12 my-2" runat="server">
-                        <div class="card h-100">
-                            <div class="row">
+                        <asp:PlaceHolder runat="server" visible='<%# Item.advertisementBuyerID == 0 %>'>
+                            <div class="card h-100">
+                                <div class="row">
                                 <div class="col-3">
-                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
-                                        <img class="card-img" src="<%#getAdThumbnail(Item.advertisementID)%>"
-                                            style="border: solid; width: 100%" />
-                                    </a>
+                                    <div class="view overlay" style="background-color: #263238">
+                                        <div class="thumbnail">
+                                            <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
+                                                <img class="img-responsive" src="<%#getAdThumbnail(Item.advertisementID)%>" alt="" />
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-9">
-                                    <div class="card-body  align-items-center">
+                                    <div class="card-body align-items-center">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="row">
@@ -70,26 +74,68 @@
                                                 </div>
                                             </div>
                                             <div class="col-3 d-none d-lg-block">
-                                                <div class="card-text align-items-center">Date Posted: <%#: Item.advertisementDatePosted %></div>
+                                                <div class="card-text align-items-center">Date Posted: <%#: Item.advertisementDatePosted.ToString("dd/MM/yyyy") %></div>
                                             </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <div class="row">
+                                            <div class="col-lg-2 col-md-6">
                                                     <div class="card-text align-items-center">
                                                         <p>Offers: <%#: getOfferCount(Item.advertisementID) %></p>
                                                     </div>
-                                                </div>
-                                                <div class="row">
+                                            </div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <asp:PlaceHolder runat="server" visible='<%# getOfferCount(Item.advertisementID) > 0 %>'>
+                                                    <%--<asp:LinkButton CssClass="btn btn-block blue darken-3" Text="Offers" PostBackUrl="AdvertisementOffers.aspx?advertisementID=<%#: Item.advertisementID %>" runat="server" />--%>
                                                     <a href="AdvertisementOffers.aspx?advertisementID=<%#: Item.advertisementID %>">
-                                                        <button type="button" class="btn btn-block blue darken-3">View Offers</button>
+                                                        <button type="button" class="btn btn-block blue darken-3">Offers</button>
                                                     </a>
-                                                </div>
+                                                </asp:PlaceHolder>
+                                                <asp:PlaceHolder runat="server" visible='<%# getOfferCount(Item.advertisementID) == 0 %>'>
+                                                    <asp:Button CssClass="btn btn-block blue darken-3" Text="Offers" Enabled="false" runat="server" />
+                                                </asp:PlaceHolder>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer"><small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small> </div>
-                        </div>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder runat="server" visible='<%# Item.advertisementBuyerID != 0 %>'>
+                            <div class="row card h-100">
+                                <div class="col-2">
+                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
+                                        <img class="card-img" src="<%#getAdThumbnail(Item.advertisementID)%>"
+                                            style="border: solid; width: 100%" />
+                                    </a>
+                                </div>
+                                <div class="col-10">
+                                    <div class="card-body align-items-center">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <h5 class="card-title">
+                                                                <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p class="card-text text-danger">
+                                                                Sold Price: <%#:String.Format("{0:c}", Item.advertisementPrice)%>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="card-text align-items-center">Date Sold: <%#: Item.advertisementDateComplete %></div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="card-text align-items-center">Buyer: <%#: getBuyerUsername(Item.advertisementBuyerID) %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:PlaceHolder>
                     </div>
                 </ItemTemplate>
                 <LayoutTemplate>

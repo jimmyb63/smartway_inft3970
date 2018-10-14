@@ -52,46 +52,111 @@
                                 <div class="col-9">
                                     <div class="card-body  align-items-center">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="row">
-                                                            <h5 class="card-title">
-                                                                <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>"><%#:getAdTitle(Item.offerAdID)%></a>
-                                                            </h5>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p class="card-text">
-                                                                <%#:String.Format("{0:c}",getAdPrice(Item.offerAdID)) %>
-                                                            </p>
+                                            <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 2 %>'>
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="row">
+                                                                <h5 class="card-title">
+                                                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>"><%#:getAdTitle(Item.offerAdID)%></a>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="row">
+                                                                <p class="card-text">
+                                                                    <%#:String.Format("{0:c}",getAdPrice(Item.offerAdID)) %>
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-4 d-none d-lg-block">
-                                                <div class="card-text align-items-center">
-                                                    <p>Amount Offered: <%#:String.Format("{0:c}", Item.offerAmountOffered)%></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6">
-                                                <div class="row">
+                                                <div class="col-4 d-none d-lg-block">
                                                     <div class="card-text align-items-center">
-                                                        <p>Status: <%#: getOfferStatus(Item.offerID) %></p>
+                                                        <p>Amount Offered: <%#:String.Format("{0:c}", Item.offerAmountOffered)%></p>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 2 %>'>
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="card-text align-items-center">
+                                                            <p>Status: <%#: getOfferStatus(Item.offerID) %></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
                                                         <a href="OfferCancel.aspx?offerID=<%#:Item.offerID %>">
                                                             <button type="button" class="btn btn-danger btn-block">Cancel</button>
                                                         </a>
-                                                    </asp:PlaceHolder>
-                                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 1 %>'>
-                                                         <a href="Payment.aspx?advertisementID=<%#:Item.offerAdID %>">
+                                                    </div>
+                                                </div>
+                                            </asp:PlaceHolder>
+                                            <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 1 %>'>
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="row">
+                                                                <h5 class="card-title">
+                                                                    <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>"><%#:getAdTitle(Item.offerAdID)%></a>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="row">
+                                                                <p class="card-text">
+                                                                    <%#:String.Format("{0:c}",getAdPrice(Item.offerAdID)) %>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 d-none d-lg-block">
+                                                    <div class="card-text align-items-center">
+                                                        <p>Amount Offered: <%#:String.Format("{0:c}", Item.offerAmountOffered)%></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="card-text align-items-center">
+                                                            <p>Status: <span class="text-success"><%#: getOfferStatus(Item.offerID) %></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <a href="Payment.aspx?advertisementID=<%#:Item.offerAdID %>">
                                                             <button type="button" class="btn btn-success btn-block">Pay Now</button>
                                                         </a>
-                                                    </asp:PlaceHolder>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </asp:PlaceHolder>
+                                            <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 0 %>'>
+                                                <div class="col-lg-4 col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row">
+                                                                    <h5 class="card-title">
+                                                                        <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>"><%#:getAdTitle(Item.offerAdID)%></a>
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <p class="card-text">
+                                                                        <%#:String.Format("{0:c}",getAdPrice(Item.offerAdID)) %>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <div class="col-4 d-none d-lg-block">
+                                                    <div class="card-text align-items-center">
+                                                        <p>Amount Offered: <%#:String.Format("{0:c}", Item.offerAmountOffered)%></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6">
+                                                    <div class="row">
+                                                        <div class="card-text align-items-center">
+                                                            <p>Status: <span class="text-danger"><%#: getOfferStatus(Item.offerID) %></span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <a href="Offer.aspx?advertisementID=<%#:Item.offerAdID %>">
+                                                            <button type="button" class="btn btn-info btn-block">Make another Offer</button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </asp:PlaceHolder>
                                         </div>
                                     </div>
                                 </div>

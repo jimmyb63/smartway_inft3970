@@ -49,5 +49,14 @@ namespace SmartWay.UL.Views
             int count = AC.getOfferCount(adID);
             return count;
         }
+
+        public string getBuyerUsername(int buyerID)
+        {
+            string buyerName;
+            UserControls UC = new UserControls();
+            Person user = UC.getUserByID(buyerID);
+            buyerName = user.userName;
+            return buyerName;
+        }
     }
 }

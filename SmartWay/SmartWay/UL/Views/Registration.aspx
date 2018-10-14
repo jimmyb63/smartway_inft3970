@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="SmartWay - Register" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="SmartWay.UL.Views.Registration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+       Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+       function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
+    </script>
     <%--<link href="../../Content/LoginRegStyle.css" rel="stylesheet" />--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -468,7 +472,7 @@
                             </div>--%>
                             <div class="col-lg-12 text-center">
                                 <hr />
-                                <asp:Button ID="registrationButton" Text="Submit" runat="server" OnClick="RegisterUser" CssClass="btn btn-primary btn-block" />
+                                <asp:Button ID="registrationButton" Text="Submit" runat="server" OnClick="RegisterUser" UseSubmitBehavior="false" OnClientClick="this.disabled='true'; this.value='Please wait...';" CssClass="btn btn-primary btn-block" />
                             </div>
                             <%--<div class="col-sm">
                                 <hr />

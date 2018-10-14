@@ -65,7 +65,7 @@ namespace SmartWay.UL.Views
                 lblFName.Text = fName;
                 lblLName.Text = lName;
                 lblEmail.Text = email;
-                lblDOB.Text = DOB;
+                lblDOB.Text = Convert.ToDateTime(DOB).ToString("dd/MM/yyyy");
                 lblPhoneNumber.Text = "0" + phoneNumber.ToString();
 
                 //Address

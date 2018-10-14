@@ -54,20 +54,26 @@ namespace SmartWay.UL.Views
             {
                 offers[index].offerOfferAccepted = 1;
                 AC.updateOfferAccepted(offers[index].offerOfferAccepted, offers[index].offerID, offers[index].offerAdID);
-
-                Response.Redirect("Index.aspx");
+                Response.Redirect("AdvertisementOffers.aspx?advertisementID=" + offers[index].offerAdID);
             }
             else if (e.CommandName == "decline")
             {
                 offers[index].offerOfferAccepted = 0;
                 AC.updateOfferAccepted(offers[index].offerOfferAccepted, offers[index].offerID, offers[index].offerAdID);
-                Response.Redirect("Index.aspx");
+                Response.Redirect("AdvertisementOffers.aspx?advertisementID=" + offers[index].offerAdID);
             }
             else if (e.CommandName == "message")
             {
-                string buyerID = offers[index].offerBuyerID.ToString();
-                string adID = offers[index].offerAdID.ToString();
+                int buyerID = offers[index].offerBuyerID;
+                int adID = offers[index].offerAdID;
                 Response.Redirect("PrivateMessage.aspx?advertisementID=" + adID + "&buyerID=" + buyerID);
+            }
+            else if (e.CommandName == "finalise")
+            {
+                int buyerID = offers[index].offerBuyerID;
+                int adID = offers[index].offerAdID;
+                decimal ammount = offers[index].offerAmountOffered;
+                Response.Redirect("FinaliseAdvertisement.aspx?advertisementID=" + adID + "&buyerID=" + buyerID + "&ammount=" + ammount);
             }
         }
     }
