@@ -169,6 +169,7 @@
     <Content Include="UL\Views\ReplyToMessage.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
+    <Content Include="UL\Views\ViewForumPost.aspx" />
     <Content Include="UL\Views\ViewForumPostList.aspx" />
     <Content Include="UL\Views\WantToBuy.aspx" />
     <Content Include="UL\Views\PostAdvertisementConfirmation.aspx" />
@@ -484,6 +485,13 @@
     </Compile>
     <Compile Include="UL\Views\ViewAdvertisementList.aspx.designer.cs">
       <DependentUpon>ViewAdvertisementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\ViewForumPost.aspx.cs">
+      <DependentUpon>ViewForumPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\ViewForumPost.aspx.designer.cs">
+      <DependentUpon>ViewForumPost.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\ViewForumPostList.aspx.cs">
       <DependentUpon>ViewForumPostList.aspx</DependentUpon>

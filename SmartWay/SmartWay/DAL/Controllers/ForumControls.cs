@@ -108,7 +108,36 @@ namespace SmartWay.DAL.Controllers
                                 (int)reader["personID"],
                                         reader["title"].ToString(),
                                         reader["forumDescription"].ToString(),
-                                        (int)reader["imageID"],
+                                        //(int)reader["imageID"],
+                                        (DateTime)reader["creationDate"],
+                                        (bool)reader["active"]);
+                tempForumList.Add(tempForumPost);
+            }
+            connection.Close();
+            return tempForumList;
+        }
+
+        //getForumPost
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<ForumThread> getForumPost(int tempForumID)
+        {
+
+            List<ForumThread> tempForumList = new List<ForumThread>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getConnectionString()); //getting connection string
+            string query = "SELECT * FROM ForumPost WHERE ID= @tempForumID";  //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ForumThread tempForumPost = new ForumThread(
+                                (int)reader["ID"],
+                                (int)reader["personID"],
+                                        reader["title"].ToString(),
+                                        reader["forumDescription"].ToString(),
+                                        //(int)reader["imageID"],
                                         (DateTime)reader["creationDate"],
                                         (bool)reader["active"]);
                 tempForumList.Add(tempForumPost);
@@ -118,28 +147,40 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public string getForumThumbnail(int forumID)
+        public List<string> getForumImages(int tempForumID)
         {
-            SqlConnection connection = new SqlConnection(getConnectionString());
-            string query = "SELECT imageID FROM ForumPost WHERE ID = @forumID";
+            List<string> forumImages = new List<string>();
+            SqlConnection connection = new SqlConnection(getConnectionString()); //getting connection string
+            string query = "SELECT filePath FROM ForumImage WHERE forumPostID = @tempForumID"; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@forumID", SqlDbType.Int).Value = forumID;
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            //use command
             connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
-            int tempImgID = 0;
             while (reader.Read())
             {
-                int tempImgID2 = (int)reader["imageID"];
-                tempImgID= tempImgID2;
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                string adImage = reader["filePath"].ToString();
+                forumImages.Add(adImage);
             }
             connection.Close();
-            
-            query = "SELECT filePath FROM ForumImage WHERE ID = @tempImgID";
-            cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@tempImgID", SqlDbType.Int).Value = tempImgID;
-            connection.Open();
-            string filePath = cmd.ExecuteScalar().ToString();
-            connection.Close();
+            if (forumImages.Count < 1)
+            {
+                List<string> defaultImages = new List<string>();
+                defaultImages.Add("../Images/DefaultImg/GenericForumImage.png");
+                forumImages = defaultImages;
+            }
+
+            return forumImages;
+        }
+
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getForumThumbnail(int tempForumID)
+        {
+            List<string> tempImageList = new List<string>();
+            tempImageList = getForumImages(tempForumID);
+            string filePath = tempImageList.ElementAt(0);
             return filePath;
         }
 

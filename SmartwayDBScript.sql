@@ -31,10 +31,10 @@ IF OBJECT_ID('dbo.ForumComment', 'U') IS NOT NULL
   DROP TABLE dbo.ForumComment; 
 IF OBJECT_ID('dbo.ForumPostTags', 'U') IS NOT NULL 
   DROP TABLE dbo.ForumPostTags;
-IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL 
-  DROP TABLE dbo.ForumPost;
 IF OBJECT_ID('dbo.ForumImage', 'U') IS NOT NULL
   DROP TABLE dbo.ForumImage;
+IF OBJECT_ID('dbo.ForumPost', 'U') IS NOT NULL 
+  DROP TABLE dbo.ForumPost;
 IF OBJECT_ID('dbo.ForumTag', 'U') IS NOT NULL
   DROP TABLE dbo.ForumTag;
 IF OBJECT_ID('dbo.WatchListItem', 'U') IS NOT NULL
@@ -317,30 +317,33 @@ CREATE TABLE ForumTag		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									active BIT DEFAULT 1
 							)
 
+								
+--Add comments							
+CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
+									personID INT NOT NULL,
+									title VARCHAR(50) NOT NULL,
+									forumDescription VARCHAR(500) NOT NULL,
+									--imageID INT NOT NULL,
+									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									active BIT DEFAULT 1,
+									--foreignkeys	
+									FOREIGN KEY (personID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
+									--FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)
 --This table will be used to link the Imgs to attach to ForumPosts and ForumComments.
 --Will link to Person via their ID
 --Requirements. filePath, userID should not be Null on creation .
 CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
-									--imageID INT NOT NULL,
+									forumPostID INT NOT NULL,
 									filePath VARCHAR(260) NOT NULL,
 									userID INT NOT NULL,
 									creationDate DATE NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
-							)									
---Add comments							
-CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
-									personID INT NOT NULL,
-									title VARCHAR(50) NOT NULL,
-									forumDescription VARCHAR(500) NOT NULL,
-									imageID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
-									active BIT DEFAULT 1,
-									--foreignkeys	
-									FOREIGN KEY (personID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
-									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
-							)
+									FOREIGN KEY (forumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+							)	
+
 CREATE TABLE ForumPostTags	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									ForumPostID INT,
 									ForumTagID INT,
@@ -1026,8 +1029,8 @@ BEGIN
 	IF(@tempFilePath LIKE '')
 	BEGIN --No Image was Supplied
 		BEGIN
-			INSERT INTO ForumPost (personID, title, forumDescription, imageID) 
-			VALUES(@tempPersonID, @tempTitle, @tempForumDescription, 1000);
+			INSERT INTO ForumPost (personID, title, forumDescription) 
+			VALUES(@tempPersonID, @tempTitle, @tempForumDescription);
 			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
 			SELECT @returnForumPostID;
 		END
@@ -1035,13 +1038,14 @@ BEGIN
 	ELSE
 	BEGIN
 		BEGIN --Image Filepath Was Supplied
-			INSERT INTO ForumImage (filePath, userID)
-			VALUES (@tempFilePath, @tempPersonID);
-			SET @tempImageID = (SELECT MAX(ID) FROM ForumImage);
-			INSERT INTO ForumPost (personID, title, forumDescription, imageID) 
-			VALUES(@tempPersonID, @tempTitle, @tempForumDescription, @tempImageID);
+			
+			INSERT INTO ForumPost (personID, title, forumDescription) 
+			VALUES(@tempPersonID, @tempTitle, @tempForumDescription);
 			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
 			SELECT @returnForumPostID;
+			INSERT INTO ForumImage (filePath, userID, forumPostID)
+			VALUES (@tempFilePath, @tempPersonID, @returnForumPostID);
+			SET @tempImageID = (SELECT MAX(ID) FROM ForumImage);
 		END
 	END
 END
@@ -1375,7 +1379,7 @@ EXEC sp_UpdatePrivateMsgtoReplied 1002
 EXEC sp_NewPrivateMessage 1004, 1002, 1002, 'No it sold, but i have a F-16 forsale.', 2222
 
 --Adding Default Image for Forum Posts
-INSERT INTO ForumImage(filePath, userID) VALUES ('../Images/DefaultImg/GenericForumImage.png', 1000);
+--INSERT INTO ForumImage(filePath, userID) VALUES ('../Images/DefaultImg/GenericForumImage.png', 1000);
 
 --Adding Test data for ForumPost
 

@@ -74,8 +74,8 @@
                                 <div class="col-lg-5 col-md-12">
                                     <div class="view overlay" style="background-color: #263238">
                                         <div class="thumbnail">
-                                            <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.forumID%>">
-                                                <img class="img-responsive" src="<%#:getAdThumbnail(Item.forumID)%>" alt="" /></a>
+                                            <a href="ViewForumPost.aspx?forumID=<%#:Item.forumID%>">
+                                                <img class="img-responsive" src="<%#:getForumThumbnail(Item.forumID)%>" alt="" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                 <div class="col-lg-7 col-md-12">
                                     <div class="card-body">
                                         <!-- Title -->
-                                        <h5 class="card-title"><a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.forumID%>"><%#:Item.forumTitle%></a></h5>
+                                        <h5 class="card-title"><a href="ViewForumPost.aspx?forumID=<%#:Item.forumID%>"><%#:Item.forumTitle%></a></h5>
                                         <p>
                                             <div class="card-text align-items-center d-none d-lg-block"><%#: Item.forumDescription %></div>
                                         </p>

@@ -14,7 +14,7 @@ namespace SmartWay.BL.Models
         private string title;
         private string description;
         private string filepath;
-        private int imgID;
+        //private int imgID;
         private List<string> ForumTags;
         private DateTime creationDate;
         private bool active;
@@ -26,7 +26,7 @@ namespace SmartWay.BL.Models
             title = "";
             description = "";
             filepath = "";
-            imgID = 0;
+            //imgID = 0;
             creationDate= DateTime.Now;
             active = true;
         }
@@ -43,13 +43,13 @@ namespace SmartWay.BL.Models
         }
 
         //Creating a New ForumThread From Database
-        public ForumThread(int tempID, int tempPostUserID, string tempTitle, string tempDescription, int tempImgID, DateTime tempCreationDate, bool tempActive)
+        public ForumThread(int tempID, int tempPostUserID, string tempTitle, string tempDescription, DateTime tempCreationDate, bool tempActive)
         {
             ID = tempID;
             postUserID = tempPostUserID;
             title = tempTitle;
             description = tempDescription;
-            imgID = tempImgID;
+            //imgID = tempImgID;
             creationDate = tempCreationDate;
             active = tempActive;
         }
@@ -116,7 +116,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public int forumImgID
+        /*public int forumImgID
         {
             get
             {
@@ -126,7 +126,7 @@ namespace SmartWay.BL.Models
             {
                 imgID = value;
             }
-        }
+        }*/
 
         public DateTime forumCreationDate
         {
