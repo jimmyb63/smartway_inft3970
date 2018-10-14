@@ -45,31 +45,13 @@ namespace SmartWay.UL.Views
             Response.Redirect("NewAddReviewRequest.aspx?userID=" + userID + "&adID=" + ad);
         }
 
-        public List<ForumThread> getForumPost([Control]string ID)
+        public List<ForumThread> getForumPost([Control]string forumId)
         {
+            int currentID =Convert.ToInt32(forumId);
             ForumControls FC = new ForumControls();
-            List<ForumThread> forumPosts = new List<ForumThread>();
-            string query = "";
-            if (Request.QueryString["search"] != "" && Request.QueryString["search"] != null)
-            {
-                query = Request.QueryString["search"];
-                string[] searchWordsArr = query.Split(null);
-                //List<string> searchWordsList = keySearchWords(searchWordsArr);
-                //forumPosts = AC.getAdvertisementsSearch(searchWordsList);
-            }
-            else
-            {
-                forumPosts = FC.getForumPosts();
-            }
-            List<ForumThread> tempForumPosts = new List<ForumThread>();
-            for (int i = 0; i < forumPosts.Count; i++)
-            {
-                if (forumPosts[i].forumActive == true)
-                {
-                    tempForumPosts.Add(forumPosts[i]);
-                }
-            }
-            return tempForumPosts;
+            List<ForumThread> forumPost = new List<ForumThread>();
+            forumPost = FC.getForumPost(currentID);
+            return forumPost;
         }
 
         public List<string> getForumImages(int forumID)
@@ -79,34 +61,27 @@ namespace SmartWay.UL.Views
             return forumImages;
         }
 
-        public string getSellerUsername(int sellerID)
+        public string getPostersUsername(int userID)
         {
             UserControls UC = new UserControls();
-            string email = UC.getUserEmail(sellerID);
+            string email = UC.getUserEmail(userID);
             Person user = UC.getUserAccount(email);
             string username = user.userName;
             return username;
         }
 
-        public string getSellerRegoDate(int sellerID)
+        public string getPostersRegoDate(int userID)
         {
             UserControls UC = new UserControls();
-            string date = (UC.getVerificationDate(sellerID)).ToString("dd/MM/yyyy");
+            string date = (UC.getVerificationDate(userID)).ToString("dd/MM/yyyy");
             return date;
         }
 
-        public string getSellerAvatar(int sellerID)
+        public string getPostersAvatar(int userID)
         {
             UserControls UC = new UserControls();
-            string filepath = UC.getProfileImage(sellerID);
+            string filepath = UC.getProfileImage(userID);
             return filepath;
-        }
-
-        public int getOfferCount(int adID)
-        {
-            AdvertisementControls AC = new AdvertisementControls();
-            int count = AC.getOfferCount(adID);
-            return count;
         }
 
         protected void ContactSeller(object sender, EventArgs e)

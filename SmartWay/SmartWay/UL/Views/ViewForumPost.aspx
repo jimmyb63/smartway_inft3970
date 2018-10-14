@@ -77,11 +77,11 @@
                             </div>
                             <div class="col-lg-6">
                                 <h4>
-                                    <img class="avatar" src="<%#:getSellerAvatar(Item.forumUserID) %>" />
-                                    <%#:getSellerUsername(Item.forumUserID) %></h4>
+                                    <img class="avatar" src="<%#:getPostersAvatar(Item.forumUserID) %>" />
+                                    <%#:getPostersUsername(Item.forumUserID) %></h4>
                                 <ul class="list-unstyled list-inline">
                                     <li class="list-inline-item pr-2 black-text">
-                                        <p>Joined: <%#:getSellerRegoDate(Item.forumUserID)%></p>
+                                        <p>Joined: <%#:getPostersRegoDate(Item.forumUserID)%></p>
                                     </li>
                                     <li class="list-inline-item pr-2 black-text">
                                         <p>Rating: 5 <i class="fas fa-star"></i></p>
