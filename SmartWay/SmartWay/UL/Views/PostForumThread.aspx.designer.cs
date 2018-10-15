@@ -22,22 +22,22 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
-        /// rbAdType control.
+        /// cblForumTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbAdType;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblForumTags;
         
         /// <summary>
-        /// lbForumTags control.
+        /// btnAddforumTag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbForumTags;
+        protected global::System.Web.UI.WebControls.Button btnAddforumTag;
         
         /// <summary>
         /// txtDescription control.

@@ -31,11 +31,11 @@ namespace SmartWay.UL.Views
             }
 
             List<ForumTag> forumTags = getForumTags();
+            cblForumTags.DataSource = forumTags;
+            cblForumTags.DataTextField = "forumTagName";
+            cblForumTags.DataValueField = "forumTagID";
+            cblForumTags.DataBind();
 
-            lbForumTags.DataSource = forumTags;
-            lbForumTags.DataTextField = "forumTagName";
-            lbForumTags.DataValueField = "forumTagID";
-            lbForumTags.DataBind();
             //gvForsaleItems.DataSource = saleItems;
             //gvForsaleItems.DataBind();
         }
@@ -58,7 +58,7 @@ namespace SmartWay.UL.Views
             FC.addForumPost(userID, forumTitle, tempDescription, tempFilePath);
 
 
-            //To Add  Tags Linked to ForumPost
+            /*//To Add  Tags Linked to ForumPost
             List <string> strItem = new List<string>();
             foreach (ListItem item in lbForumTags.Items)
             {
@@ -67,7 +67,7 @@ namespace SmartWay.UL.Views
                     string tempTagName = item.Text;
                     strItem.Add(tempTagName);
                 }
-            }
+            }*/
             
 
 
@@ -165,6 +165,12 @@ namespace SmartWay.UL.Views
         protected void rbAdType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnAddforumTag_Click(object sender, EventArgs e)
+        {
+            //Redirect To NewForumTag.aspx
+            Response.Redirect("NewForumTag.aspx");
         }
     }
 }
