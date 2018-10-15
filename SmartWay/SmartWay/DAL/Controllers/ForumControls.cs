@@ -188,6 +188,37 @@ namespace SmartWay.DAL.Controllers
         {
             return ConfigurationManager.ConnectionStrings["SmartWayConnectionString"].ConnectionString;
         }
+
+
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int checkIfTagExists (string tempTagName)
+        {
+            int returnValue = 0;
+            List<ForumTag> tempFormTagList = new List<ForumTag>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getConnectionString()); //getting connection string
+            string query = "SELECT * FROM ForumTag WHERE tagName LIKE @tempTagName";  //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempTagName", SqlDbType.VarChar, 30).Value = tempTagName;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ForumTag tempForumTag = new ForumTag(
+                                (int)reader["ID"],
+                                reader["tagName"].ToString());
+                tempFormTagList.Add(tempForumTag);
+            }
+            connection.Close();
+            if (tempFormTagList.Count() > 0) //As in there were matches
+            {
+                returnValue = 1;
+            }
+
+            return returnValue;
+
+        }
     }
 
 
