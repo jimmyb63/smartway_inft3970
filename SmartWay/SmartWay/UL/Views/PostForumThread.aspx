@@ -12,17 +12,10 @@
                 <h5>Forum Thread Title</h5>
                 <asp:TextBox CssClass="form-control" ID="txtTitle" placeholder="Eg. Resuse items as Plant Pots" runat="server" />
                 <hr />
-                <h5>Type of Forum Thread</h5>
-                <asp:RadioButtonList CssClass="form-group" ID="rbAdType" runat="server" OnSelectedIndexChanged="rbAdType_SelectedIndexChanged">
-                    <asp:ListItem Text=" Recycle" Value="recycle"/>
-                    <asp:ListItem Text=" Reuse" Value="reuse"/>
-                    <asp:ListItem Text=" Repurpose" Value="repurpose"/>
-                </asp:RadioButtonList>
-                <hr />
                 <h5>Select Tags that Best Apply</h5>
-                <asp:ListBox ID="lbForumTags" SelectionMode="Multiple" runat="server">
-                    
-                </asp:ListBox>
+                <asp:CheckBoxList ID="cblForumTags" CssClass="form-group" RepeatLayout="Table" RepeatColumns = "3" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                <asp:Button ID="btnAddforumTag" CssClass="btn btn-block btn-info" Text="Add a Forum Tag To The List" runat="server" OnClick="btnAddforumTag_Click" />
+                <hr />
                 <hr />
            
                 <div class="form-group">

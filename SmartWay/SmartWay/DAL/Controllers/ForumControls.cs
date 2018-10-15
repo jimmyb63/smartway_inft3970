@@ -190,7 +190,11 @@ namespace SmartWay.DAL.Controllers
         }
 
 
-
+        /// <summary>
+        /// checkIfTagExists willl be used to see if a tagname exists in database before adding another.
+        /// </summary>
+        /// <param name="tempTagName"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public int checkIfTagExists (string tempTagName)
         {
@@ -215,9 +219,7 @@ namespace SmartWay.DAL.Controllers
             {
                 returnValue = 1;
             }
-
             return returnValue;
-
         }
     }
 
