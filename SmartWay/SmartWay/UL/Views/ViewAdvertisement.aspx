@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="SmartWay - View Advertisement" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="ViewAdvertisement.aspx.cs" Inherits="SmartWay.UL.Views.ViewAdvertisement" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS_nOmu7Z5my3ELOiqHOgxrzOnoHfvJNU"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -147,7 +147,7 @@
 
                                         function initMap() {
 
-                                            var location = new google.maps.LatLng(-32.89235, 151.69862);
+                                            var location = new google.maps.LatLng(<%#:getLat(Item.advertisementAddressID)%>, <%#:getLong(Item.advertisementAddressID)%>);
 
                                             var mapCanvas = document.getElementById('map');
                                             var mapOptions = {

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GoogleMaps.LocationServices;
 
 namespace SmartWay.UL.Views
 {
@@ -104,9 +105,48 @@ namespace SmartWay.UL.Views
             return count;
         }
 
-		protected void ContactSeller(object sender, EventArgs e)
+		public void ContactSeller(object sender, EventArgs e)
 		{
 			Response.Redirect("PrivateMessage.aspx");
 		}
+
+        public double getLat(int addressID)
+        {
+            double latitude = 0;
+            List<double> coordinates = getCoordinates(addressID);
+            latitude = coordinates[0];
+            return latitude;
+        }
+
+        public double getLong(int addressID)
+        {
+            double longitude = 0;
+            List<double> coordinates = getCoordinates(addressID);
+            longitude = coordinates[1];
+            return longitude;
+        }
+
+        public List<double> getCoordinates(int addressID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            Address adAddress = AC.getAdAddress(addressID);
+
+            string address = adAddress.addressStreetNum + " " +
+                             adAddress.addressStreetName + ", " +
+                             adAddress.addressCity + " " +
+                             adAddress.addressState + " " +
+                             adAddress.addressPostCode + ", " +
+                             adAddress.addressCountry;
+            string apiKey = "AIzaSyBS_nOmu7Z5my3ELOiqHOgxrzOnoHfvJNU";
+            GoogleLocationService locationService = new GoogleLocationService(apiKey);
+            MapPoint point = locationService.GetLatLongFromAddress(address);
+
+            double latitude = point.Latitude;
+            double longitude = point.Longitude;
+            List<double> coordinates = new List<double>();
+            coordinates.Add(latitude);
+            coordinates.Add(longitude);
+            return coordinates;
+        }
 	}
 }

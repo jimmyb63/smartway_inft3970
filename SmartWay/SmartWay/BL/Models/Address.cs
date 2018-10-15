@@ -10,93 +10,44 @@ namespace SmartWay.BL.Models
 {
     public class Address
     {
-
-        private string unitNum;
-        private string streetNum;
-        private string streetName;
-        private string city;
         private int stateID;
         private string stateName;
-        private int postCode;
-        private string country;
-        private bool active;
-        
+
         //Constructor
         public Address()
         {
 
-            unitNum = null;
-            streetNum = null;
-            streetName = null;
-            city = null;
-            stateName = null;
+            addressUnitNum = null;
+            addressStreetNum = null;
+            addressStreetName = null;
+            addressCity = null;
             stateID = 0;
-            postCode = 0;
-            country = "Australia";
-            active = true;
+            addressPostCode = 0;
+            addressCountry = "Australia";
+            addressActive = true;
         }
 
         public Address(string init_unitNum, string init_streetNum, string init_streetName, string init_city, string init_state, int init_postCode, string init_country)
         {
-            unitNum = init_unitNum;
-            streetNum = init_streetNum;
-            streetName = init_streetName;
-            city = init_city;
+            addressUnitNum = init_unitNum;
+            addressStreetNum = init_streetNum;
+            addressStreetName = init_streetName;
+            addressCity = init_city;
             stateName = init_state;
             setStateID(stateName);
-            postCode = init_postCode;
-            country = init_country;
-            active = true;
+            addressPostCode = init_postCode;
+            addressCountry = init_country;
+            addressActive = true;
         }
 
         //Get Set Methods
-        public string addressUnitNum
-        {
-            get
-            {
-                return unitNum;
-            }
-            set
-            {
-                unitNum = value;
-            }
-        }
+        public string addressUnitNum { get; set; }
 
-        public string addressStreetNum
-        {
-            get
-            {
-                return streetNum;
-            }
-            set
-            {
-                streetNum = value;
-            }
-        }
+        public string addressStreetNum { get; set; }
 
-        public string addressStreetName
-        {
-            get
-            {
-                return streetName;
-            }
-            set
-            {
-                streetName = value;
-            }
-        }
+        public string addressStreetName { get; set; }
 
-        public string addressCity
-        {
-            get
-            {
-                return city;
-            }
-            set
-            {
-                city = value;
-            }
-        }
+        public string addressCity { get; set; }
 
         public string addressState
         {
@@ -126,41 +77,11 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public int addressPostCode
-        {
-            get
-            {
-                return postCode;
-            }
-            set
-            {
-                postCode = value;
-            }
-        }
+        public int addressPostCode { get; set; }
 
-        public string addressCountry
-        {
-            get
-            {
-                return country;
-            }
-            set
-            {
-                country = value;
-            }
-        }
+        public string addressCountry { get; set; }
 
-        public bool addressActive
-        {
-            get
-            {
-                return active;
-            }
-            set
-            {
-                active = value;
-            }
-        }
+        public bool addressActive { get; set; }
 
         //Calculation Methods
 

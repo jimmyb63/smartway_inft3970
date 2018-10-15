@@ -473,6 +473,32 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public Address getAdAddress(int addressID)
+        {
+            Address address = new Address();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT * FROM PostalAddress WHERE ID = @addressID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@addressID", SqlDbType.Int).Value = addressID;
+            //use command
+            connection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                address.addressUnitNum = dr["unitNumber"].ToString();
+                address.addressStreetNum = dr["streetAddress"].ToString();
+                address.addressStreetName = dr["streetName"].ToString();
+                address.addressCity = dr["city"].ToString();
+                address.addressPostCode = Convert.ToInt32(dr["postCode"]);
+                address.addressStateID = Convert.ToInt32(dr["stateName"]);
+                address.addressCountry = dr["country"].ToString();
+            }
+            connection.Close();
+            return address;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Offer> getAdOffers(int adID)
         {
             List<Offer> offers = new List<Offer>();
