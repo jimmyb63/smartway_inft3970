@@ -148,6 +148,8 @@ SELECT * FROM ForumImage
 
 SELECT * FROM ForumTag
 
+SELECT * FROM ForumTag WHERE tagName LIKE 'reuse'
+
 SELECT * FROM ForumPostTags
 
 SELECT ID FROM ForumTag WHERE tagName = 'reuse'

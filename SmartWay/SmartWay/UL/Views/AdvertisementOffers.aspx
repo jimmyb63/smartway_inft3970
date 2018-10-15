@@ -8,13 +8,14 @@
         <% int adID = Convert.ToInt32(Request.QueryString["advertisementID"]); %>
         <% AdvertisementControls AC = new AdvertisementControls(); %>
         <% List<Advertisement> ad = AC.getAdvertisement(adID); %>
-        <div class="p-2 mb-2 bg-primary text-white">My Advertisements Offers</div>
+        <div class="p-2 mb-2 bg-primary text-white">My Advertisements Offers - <%=ad[0].advertisementTitle %></div>
         <div class="card">
             <div class="card-header">
-                <div class="row ">
-                    <div class="col-4"><p>Offer for ID: <%=ad[0].advertisementID %></p></div>
-                    <div class="col-4"><p>Title: <%=ad[0].advertisementTitle %></p></div>
-                    <div class="col-4"><p>Date posted: <%=ad[0].advertisementDatePosted.ToString("dd/MM/yyyy") %></p></div>
+                <div class="row">
+                    <div class="col-3"><p class="font-weight-bold">Username</p></div>
+                    <div class="col-2"><p class="font-weight-bold">Amount</p></div>
+                    <div class="col-2"><p class="font-weight-bold">Status</p></div>
+                    <div class="col-4"></div>
                 </div>
             </div>
             <div class="row">
@@ -44,40 +45,41 @@
                             </tr>
                         </GroupTemplate>
                         <ItemTemplate>
-                            <div class="col-12 my-2" runat="server">
+                            <div class="col-lg-12 my-2" runat="server">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-lg-3">
                                         Buyer: <%#: getUsername(Item.offerBuyerID) %>        
                                     </div>
                                     <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 1 %>'>
-                                        <div class="col-2">
+                                        <div class="col-lg-2">
                                             <%#:String.Format("{0:c}", Item.offerAmountOffered)%>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-lg-2">
                                             <p class="text-success">Accepted</p> 
                                         </div>
-                                        <div class="col-2">
-                                            <asp:Button CssClass="btn btn-block btn-info" Text="Message" runat="server" CommandName="message" CommandArgument="<%# Container.DataItemIndex %>"/>
+                                        <div class="col-lg-2 mb-2">
+                                            <asp:Button CssClass="btn btn-sm btn-block btn-info" Text="Message" runat="server" CommandName="message" CommandArgument="<%# Container.DataItemIndex %>"/>
                                         </div>
-                                        <div class="col-2">
-                                        <asp:Button CssClass="btn btn-block btn-blue" Text="Finalise" CommandName="finalise" CommandArgument="<%# Container.DataItemIndex %>" runat="server" />
+                                        <div class="col-lg-2 mb-2">
+                                        <asp:Button CssClass="btn btn-sm btn-block btn-blue" Text="Finalise" CommandName="finalise" CommandArgument="<%# Container.DataItemIndex %>" runat="server" />
                                     </div>
                                     </asp:PlaceHolder>
                                     <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 2 %>'>
-                                        <div class="col-2">
+                                        <div class="col-lg-2">
                                             <%#:String.Format("{0:c}", Item.offerAmountOffered)%> 
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-lg-2">
                                             <p>Pending</p> 
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-lg-2 mb-2">
                                             <asp:Button CssClass="btn btn-block btn-sm btn-success" Text="Accept" runat="server" CommandName="accept" CommandArgument="<%# Container.DataItemIndex %>"/>  
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-lg-2 mb-2">
                                             <asp:Button CssClass="btn btn-block btn-sm btn-danger" Text="Decline" runat="server" CommandName="decline" CommandArgument="<%# Container.DataItemIndex %>"/>
                                         </div>
                                     </asp:PlaceHolder>
                                 </div>
+                                <hr />
                             </div>
                         </ItemTemplate>
                         <LayoutTemplate>
