@@ -13,8 +13,8 @@
                     <div class="col-lg-12">
                         <h1>Your offer has been sucessfully submitted</h1>
                         <% string adID = Request.QueryString["advertisementID"]; %>
-                        <p>Click <a href="ViewAdvertisement?advertisementID=<%=adID %>">here</a> to return to Advertisement.</p>
-                        <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.
+                        <p>Click <a href="ViewAdvertisement.aspx?advertisementID=<%=adID %>">here</a> to return to Advertisement.</p>
+                        <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.</p>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         function countdown() {
             seconds = seconds - 1;
             if (seconds < 0) {
-                window.location = "ViewAdvertisement?advertisementID=" + <%=adID %>;
+                window.location = "ViewAdvertisement.aspx?advertisementID=".concat(<%=adID %>);
             } else {
                 document.getElementById("countdown").innerHTML = seconds;
                 window.setTimeout("countdown()", 1000);

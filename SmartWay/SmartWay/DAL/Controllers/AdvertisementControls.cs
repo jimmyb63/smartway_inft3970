@@ -461,7 +461,7 @@ namespace SmartWay.DAL.Controllers
             int pending = 2;
             int declined = 0;
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "UPDATE AddOffer SET active = @active, offerAccepted = @declined WHERE AddID = @adID AND offerAccpted = @pending";
+            string query = "UPDATE AddOffer SET active = @active, offerAccepted = @declined WHERE AddID = @adID AND offerAccepted = @pending";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
             cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;

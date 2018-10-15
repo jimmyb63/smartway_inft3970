@@ -13,21 +13,21 @@ namespace SmartWay.UL.Views {
     public partial class FinaliseAdvertisement {
         
         /// <summary>
-        /// btnBuyNow control.
+        /// btnSold control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        protected global::System.Web.UI.WebControls.Button btnSold;
         
         /// <summary>
-        /// btnMakeOffer control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMakeOffer;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

@@ -13,5 +13,15 @@ namespace SmartWay.UL.Views
         {
 
         }
+
+        public void adSold(object sender, EventArgs e)
+        {
+
+        }
+
+        public void cancelAd(object sender, EventArgs e)
+        {
+
+        }
     }
 }
