@@ -70,8 +70,10 @@
                                 Person currentUser = new Person();
                                 currentUser = (Person)Session["currentUser"];
                                 int userID = currentUser.userID;%>
+                                <% UserControls UC = new UserControls(); %>
+                                <% string filePath = UC.getProfileImage(currentUser.userID); %>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle m-1" id="mystuffdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt mr-1"></i>My Account</a>
+                            <a class="nav-link dropdown-toggle m-1" id="mystuffdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%=filePath %>" class="avatar mr-1 noti_container" alt="avatar" /><div class="noti_bubble">2</div>My Account</a>
                             <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" aria-labelledby="mystuffdropdown">
                                 <a class="dropdown-item" href="Account.aspx?userID=<%=currentUser.userID%>"><i class="fas fa-user-alt mr-1"></i>Profile</a>
                                 <a class="dropdown-item" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-1"></i>My Offers</a>
@@ -80,10 +82,10 @@
                                 <a class="dropdown-item" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
                             </div>
                         </li>
-                                            <a href ="account.aspx"><li class="inset">
+                                            <%--<a href ="account.aspx"><li class="inset">
                                             <% UserControls UC = new UserControls(); %>
                                             <% string filePath = UC.getProfileImage(currentUser.userID); %>
-                                            <img src="<%=filePath %>" class="mx-auto img-fluid img-circle" alt="avatar" /></li></a>
+                                            <img src="<%=filePath %>" class="avatar" alt="avatar" /></li></a>--%>
                         <%--</li>--%>
                         <%--                        <li class="nav-item"><a class="nav-link m-1" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-1"></i>My Offers</a></li>
                         <li class="nav-item"><a class="nav-link m-1" href="MyAdvertisements.aspx"><i class="fas fa-list mr-1"></i>My Advertisements</a></li>

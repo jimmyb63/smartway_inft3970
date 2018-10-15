@@ -649,8 +649,8 @@ CREATE PROCEDURE sp_SaleItems(
 	@tempUserID INT)
 AS
 BEGIN
-	SELECT ID, sellerID, adType, title, adDescription, price, creationDate, active FROM Advertisement 
-	WHERE sellerID = (@tempUserID) AND active = 1;
+	SELECT ID, sellerID, buyerID, adType, title, adDescription, price, dateCompleted, creationDate, active FROM Advertisement 
+	WHERE sellerID = (@tempUserID) AND active = 1 AND buyerID IS NULL;
 END
 GO
 

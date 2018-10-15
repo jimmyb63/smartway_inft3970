@@ -72,8 +72,9 @@ namespace SmartWay.UL.Views
             {
                 int buyerID = offers[index].offerBuyerID;
                 int adID = offers[index].offerAdID;
+                int offerID = offers[index].offerID;
                 decimal ammount = offers[index].offerAmountOffered;
-                Response.Redirect("FinaliseAdvertisement.aspx?advertisementID=" + adID + "&buyerID=" + buyerID + "&ammount=" + ammount);
+                Response.Redirect("FinaliseAdvertisement.aspx?advertisementID=" + adID + "&buyerID=" + buyerID + "&ammount=" + ammount + "&offerID=" + offerID);
             }
         }
     }

@@ -152,7 +152,7 @@
                                             var mapCanvas = document.getElementById('map');
                                             var mapOptions = {
                                                 center: location,
-                                                zoom: 16,
+                                                zoom: 12,
                                                 panControl: false,
                                                 mapTypeId: google.maps.MapTypeId.ROADMAP
                                             }
@@ -166,26 +166,197 @@
                                                 icon: markerImage
                                             });
 
-                                            var contentString =
-                                                '<div class="info-window text-center">' +
-                                                '<h3>University of Newcastle</h3>' +
-                                                '<div class="info-content">' +
-                                                '<p>This is a place where young adults go to serve their life sentence</p>' +
-                                                '</div>' +
-                                                '</div>';
+                                            //var contentString =
+                                            //    '<div class="info-window text-center">' +
+                                            //    '<h3>University of Newcastle</h3>' +
+                                            //    '<div class="info-content">' +
+                                            //    '<p>This is a place where young adults go to serve their life sentence</p>' +
+                                            //    '</div>' +
+                                            //    '</div>';
 
-                                            var infowindow = new google.maps.InfoWindow({
-                                                content: contentString,
-                                                maxWidth: 400
-                                            });
+                                            //var infowindow = new google.maps.InfoWindow({
+                                            //    content: contentString,
+                                            //    maxWidth: 400
+                                            //});
 
-                                            marker.addListener('click', function () {
-                                                infowindow.open(map, marker);
-                                            });
+                                            //marker.addListener('click', function () {
+                                            //    infowindow.open(map, marker);
+                                            //});
 
-                                            var styles = [{ "featureType": "landscape", "stylers": [{ "saturation": -100 }, { "lightness": 65 }, { "visibility": "on" }] }, { "featureType": "poi", "stylers": [{ "saturation": -100 }, { "lightness": 51 }, { "visibility": "simplified" }] }, { "featureType": "road.highway", "stylers": [{ "saturation": -100 }, { "visibility": "simplified" }] }, { "featureType": "road.arterial", "stylers": [{ "saturation": -100 }, { "lightness": 30 }, { "visibility": "on" }] }, { "featureType": "road.local", "stylers": [{ "saturation": -100 }, { "lightness": 40 }, { "visibility": "on" }] }, { "featureType": "transit", "stylers": [{ "saturation": -100 }, { "visibility": "simplified" }] }, { "featureType": "administrative.province", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": -25 }, { "saturation": -100 }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "hue": "#ffff00" }, { "lightness": -25 }, { "saturation": -97 }] }];
+                                            var styles = [
+                                                            {
+                                                                "featureType": "landscape.natural",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#bcddff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "road.highway",
+                                                                "elementType": "geometry.fill",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#5fb3ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "road.arterial",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#ebf4ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "road.local",
+                                                                "elementType": "geometry.fill",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#ebf4ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "road.local",
+                                                                "elementType": "geometry.stroke",
+                                                                "stylers": [
+                                                                    {
+                                                                        "visibility": "on"
+                                                                    },
+                                                                    {
+                                                                        "color": "#93c8ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "landscape.man_made",
+                                                                "elementType": "geometry",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#c7e2ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "transit.station.airport",
+                                                                "elementType": "geometry",
+                                                                "stylers": [
+                                                                    {
+                                                                        "saturation": 100
+                                                                    },
+                                                                    {
+                                                                        "gamma": 0.82
+                                                                    },
+                                                                    {
+                                                                        "hue": "#0088ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "elementType": "labels.text.fill",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#1673cb"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "road.highway",
+                                                                "elementType": "labels.icon",
+                                                                "stylers": [
+                                                                    {
+                                                                        "saturation": 58
+                                                                    },
+                                                                    {
+                                                                        "hue": "#006eff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "poi",
+                                                                "elementType": "geometry",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#4797e0"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "poi.park",
+                                                                "elementType": "geometry",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#209ee1"
+                                                                    },
+                                                                    {
+                                                                        "lightness": 49
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "transit.line",
+                                                                "elementType": "geometry.fill",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#83befc"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "road.highway",
+                                                                "elementType": "geometry.stroke",
+                                                                "stylers": [
+                                                                    {
+                                                                        "color": "#3ea3ff"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "administrative",
+                                                                "elementType": "geometry.stroke",
+                                                                "stylers": [
+                                                                    {
+                                                                        "saturation": 86
+                                                                    },
+                                                                    {
+                                                                        "hue": "#0077ff"
+                                                                    },
+                                                                    {
+                                                                        "weight": 0.8
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "elementType": "labels.icon",
+                                                                "stylers": [
+                                                                    {
+                                                                        "hue": "#0066ff"
+                                                                    },
+                                                                    {
+                                                                        "weight": 1.9
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "featureType": "poi",
+                                                                "elementType": "geometry.fill",
+                                                                "stylers": [
+                                                                    {
+                                                                        "hue": "#0077ff"
+                                                                    },
+                                                                    {
+                                                                        "saturation": -7
+                                                                    },
+                                                                    {
+                                                                        "lightness": 24
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
 
-                                            //map.set('styles', styles);
+                                            map.set('styles', styles);
                                         }
 
                                         google.maps.event.addDomListener(window, 'load', initMap);

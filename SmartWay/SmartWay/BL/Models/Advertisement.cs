@@ -52,6 +52,19 @@ namespace SmartWay.BL.Models
             active = init_active;
         }
 
+        public Advertisement(int init_ID, int init_sellerID,int init_buyerID, string init_title, string init_description,DateTime init_dateComplete, DateTime init_datePosted, decimal init_price, bool init_active)
+        {
+            ID = init_ID;
+            sellerID = init_sellerID;
+            buyerID = init_buyerID;
+            title = init_title;
+            description = init_description;
+            dateComplete = init_dateComplete;
+            datePosted = init_datePosted;
+            price = init_price;
+            active = init_active;
+        }
+
         public Advertisement(int init_ID, int init_sellerID, string init_title, string init_description, DateTime init_datePosted, decimal init_price, bool init_active)
         {
             ID = init_ID;
@@ -59,7 +72,6 @@ namespace SmartWay.BL.Models
             title = init_title;
             description = init_description;
             datePosted = init_datePosted;
-            dateComplete = null;
             price = init_price;
             active = init_active;
         }

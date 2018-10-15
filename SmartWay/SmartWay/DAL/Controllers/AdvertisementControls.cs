@@ -302,7 +302,41 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
-        [DataObjectMethod(DataObjectMethodType.Insert)]
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getSoldUserAdvertisements(int tempUserID)
+        {
+            List<Advertisement> userAdds = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            //string query = "EXEC sp_SaleItems " + tempUserID; //the sql request
+            //SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            string query = "SELECT * FROM Advertisement WHERE sellerID = @userID AND buyerID IS NOT NULL"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = tempUserID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement tempAd = new Advertisement(
+                                        (int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        (int)reader["buyerID"],
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (DateTime)reader["dateCompleted"],
+                                        (DateTime)reader["creationDate"],
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
+                userAdds.Add(tempAd);
+            }
+            connection.Close();
+            return userAdds;
+        }
+
+    [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addViewCount(int adID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
@@ -411,11 +445,13 @@ namespace SmartWay.DAL.Controllers
         public void cancelOffer(int offerID)
         {
             bool cancel = false;
+            int declined = 0;
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "UPDATE AddOffer SET active = @cancel WHERE ID = @offerID";
+            string query = "UPDATE AddOffer SET active = @cancel, offerAccepted = @declined WHERE ID = @offerID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
             cmd.Parameters.Add("@cancel", SqlDbType.Bit).Value = cancel;
+            cmd.Parameters.Add("@declined", SqlDbType.Int).Value = declined;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
@@ -461,7 +497,7 @@ namespace SmartWay.DAL.Controllers
             int pending = 2;
             int declined = 0;
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "UPDATE AddOffer SET active = @active, offerAccepted = @declined WHERE AddID = @adID AND offerAccepted = @pending";
+            string query = "UPDATE AddOffer SET active = @active, offerAccepted = @declined WHERE AddID = @adID AND offerAccepted = @pending AND offerAccepted = @declined";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
             cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
@@ -496,6 +532,46 @@ namespace SmartWay.DAL.Controllers
             }
             connection.Close();
             return address;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public Offer getOffer(int offerID)
+        {
+            Offer offer = new Offer();
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT ID, buyerID, sellerID, addID, offerAmount, offerAccepted, active FROM AddOffer WHERE ID = @offerID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                offer.offerID = (int)reader["ID"];
+                offer.offerBuyerID = (int)reader["buyerID"];
+                offer.offerSellerID = (int)reader["sellerID"];
+                offer.offerAdID = (int)reader["addID"];
+                offer.offerAmountOffered = (decimal)reader["offerAmount"];
+                offer.offerOfferAccepted = (int)reader["offerAccepted"];
+                offer.offerActive = (bool)reader["active"];
+            }
+            connection.Close();
+            return offer;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update)]
+        public void advertisementSold(int adID, decimal amount, int buyerID)
+        {
+            DateTime date = DateTime.Now;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "UPDATE Advertisement SET price = @amount, buyerID = @buyerID, dateCompleted = @date WHERE ID = @adID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@buyerID", SqlDbType.Int).Value = buyerID;
+            cmd.Parameters.Add("@amount", SqlDbType.Decimal).Value = amount;
+            cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]

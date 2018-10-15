@@ -13,12 +13,21 @@ namespace SmartWay.UL.Views {
     public partial class MyAdvertisements {
         
         /// <summary>
-        /// adList control.
+        /// adListActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView adList;
+        protected global::System.Web.UI.WebControls.ListView adListActive;
+        
+        /// <summary>
+        /// adListSold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView adListSold;
     }
 }
