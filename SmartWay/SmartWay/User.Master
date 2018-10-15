@@ -30,7 +30,7 @@
                 <a class="navbar-brand" href="Index.aspx"><img style="width: 120px; display: block;" src="../Images/smartway-logo.png" /></a>
                 <% if (Session["currentUser"] != null)%>
                 <% { Person user = (Person)Session["currentUser"]; %>
-                    <p class="nav-link m-1 text-white">Welcome, <%=user.userName %></p>
+                    <p class="nav-link m-1 text-white d-none d-lg-block animated jackInTheBox" id="welcome">Welcome, <%=user.userName %></p>
                 <% } %>
                 <!----------------- Toggle for mobile devices ------------------->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -80,6 +80,11 @@
                                 <a class="dropdown-item" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
                             </div>
                         </li>
+                                            <a href ="account.aspx"><li class="inset">
+                                            <% UserControls UC = new UserControls(); %>
+                                            <% string filePath = UC.getProfileImage(currentUser.userID); %>
+                                            <img src="<%=filePath %>" class="mx-auto img-fluid img-circle" alt="avatar" /></li></a>
+                        <%--</li>--%>
                         <%--                        <li class="nav-item"><a class="nav-link m-1" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-1"></i>My Offers</a></li>
                         <li class="nav-item"><a class="nav-link m-1" href="MyAdvertisements.aspx"><i class="fas fa-list mr-1"></i>My Advertisements</a></li>
                         <li class="nav-item"><a class="nav-link m-1" href="Account.aspx?userID=<%=currentUser.userID%>"><i class="fas fa-user-alt mr-1"></i>Profile</a> </li>
