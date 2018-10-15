@@ -23,10 +23,10 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 my-1">
-                        <asp:Button ID="btnBuyNow" Text="Buy it Now" CssClass="btn btn-warning btn-block" OnClick="BuyNow" runat="server" />
+                        <asp:Button ID="btnSold" Text="Sold" CssClass="btn btn-warning btn-block" OnClick="adSold" runat="server" />
                     </div>
                     <div class="col-lg-6 col-md-12 my-1">
-                        <asp:Button ID="btnMakeOffer" Text="Make an offer" CssClass="btn btn-danger btn-block" OnClick="MakeOffer" runat="server" />
+                        <asp:Button ID="btnCancel" Text="Cancel" CssClass="btn btn-danger btn-block" OnClick="cancelAd" runat="server" />
                     </div>
                 </div>
             </div>

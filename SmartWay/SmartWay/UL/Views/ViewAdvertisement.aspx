@@ -31,7 +31,6 @@
                 </tr>
             </GroupTemplate>
             <ItemTemplate>
-                <div class="p-2 mb-2 bg-primary text-white"><%#:Item.advertisementTitle%></div>
                 <div class="card">
                     <div id="adImages" class="carousel slide container-fluid h-25" data-ride="carousel" style="background-color: grey">
                         <!-- Indicators -->
@@ -70,8 +69,17 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-lg-12">
+                                <h2><%#:Item.advertisementTitle%></h2>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6">
-                                <h4>Price: <%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4>Price: <%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <ul class="list-unstyled list-inline">
@@ -79,98 +87,56 @@
                                                 <p>Offers<i class="fas fa-hand-holding-usd m-2"></i><%#:getOfferCount(Item.advertisementID)%></p>
                                             </li>
                                             <li class="list-inline-item pr-2 black-text">Views<i class="fas fa-eye m-2"></i> <%=txtViewCount.Value %></li>
-                                        </ul> <h4>Description</h4>
-                                        <p><%#:Item.advertisementDescription %></p>
+                                        </ul> 
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h4>
-                                    <img class="avatar" src="<%#:getSellerAvatar(Item.advertisementSellerID) %>" />
-                                    <%#:getSellerUsername(Item.advertisementSellerID) %></h4>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item pr-2 black-text">
-                                        <p>Joined: <%#:getSellerRegoDate(Item.advertisementSellerID)%></p>
-                                    </li>
-                                    <li class="list-inline-item pr-2 black-text">
-                                        <p>Rating: 5 <i class="fas fa-star"></i></p>
-                                    </li>
-                                </ul>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <a href="#" class="badge badge-dark badge-pill mb-2 p-2">Is this still available?</a>
-                                        <a href="#" class="badge badge-dark badge-pill mb-2 p-2">Can you deliver?</a>
-                                        <a href="#" class="badge badge-dark badge-pill mb-2 p-2">How old is it?</a>
+                                        <h4>
+                                            <img class="avatar" src="<%#:getSellerAvatar(Item.advertisementSellerID) %>" />
+                                            <%#:getSellerUsername(Item.advertisementSellerID) %>
+                                        </h4>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <asp:Button ID="Button1" Text="Interested" CssClass="btn btn-success btn-block mt-2" OnClick="WantToBuy" runat="server" />
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <asp:Button ID="btnContact" Text="Contact" OnClick="ContactSeller" CssClass="btn btn-info btn-block mt-2" runat="server" />
+                                    <div class="col-lg-12">
+                                        <ul class="list-unstyled list-inline">
+                                            <li class="list-inline-item pr-2 black-text">
+                                                <p>Joined: <%#:getSellerRegoDate(Item.advertisementSellerID)%></p>
+                                            </li>
+                                            <li class="list-inline-item pr-2 black-text">
+                                                <p>Rating: 5 <i class="fas fa-star"></i></p>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-2">
+                                        <asp:Button ID="Button1" Text="Interested" CssClass="btn btn-sm btn-success btn-block" OnClick="WantToBuy" runat="server" />
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <asp:Button ID="btnContact" Text="Contact" OnClick="ContactSeller" CssClass="btn btn-sm btn-info btn-block" runat="server" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-2">
+                                <a href="#" class="badge badge-primary badge-pill mb-2 p-2">Is this still available?</a>
+                                <a href="#" class="badge badge-primary badge-pill mb-2 p-2">Can you deliver?</a>
+                                <a href="#" class="badge badge-primary badge-pill mb-2 p-2">How old is it?</a>
+                            </div>
+                        </div>
+                        <hr />
                         <div class="row">
                             <div class="col-lg-12">
-                                <%--                                <h4>Description</h4>
-                                <p><%#:Item.advertisementDescription %></p>--%>
+                                <h4>Description</h4>
+                                <p><%#:Item.advertisementDescription %></p>
                             </div>
-                            <%--<div class="col-lg-6 card-text">
-                                <div id="map" style="height: 200px;"></div>
-                                <script>
-                                    $(function () {
-
-                                        function initMap() {
-
-                                            var location = new google.maps.LatLng(-32.89235, 151.69862);
-
-                                            var mapCanvas = document.getElementById('map');
-                                            var mapOptions = {
-                                                center: location,
-                                                zoom: 16,
-                                                panControl: false,
-                                                mapTypeId: google.maps.MapTypeId.ROADMAP
-                                            }
-                                            var map = new google.maps.Map(mapCanvas, mapOptions);
-
-                                            var markerImage = '../Images/map-pin-solid.svg';
-
-                                            var marker = new google.maps.Marker({
-                                                position: location,
-                                                map: map,
-                                                icon: markerImage
-                                            });
-
-                                            var contentString =
-                                                    '<div class="info-window text-center">' +
-                                                    '<h3>University of Newcastle</h3>' +
-                                                    '<div class="info-content">' +
-                                                    '<p>This is a place where young adults go to serve their life sentence</p>' +
-                                                    '</div>' +
-                                                    '</div>';
-
-                                            var infowindow = new google.maps.InfoWindow({
-                                                content: contentString,
-                                                maxWidth: 400
-                                            });
-
-                                            marker.addListener('click', function () {
-                                                infowindow.open(map, marker);
-                                            });
-
-                                            var styles = [{ "featureType": "landscape", "stylers": [{ "saturation": -100 }, { "lightness": 65 }, { "visibility": "on" }] }, { "featureType": "poi", "stylers": [{ "saturation": -100 }, { "lightness": 51 }, { "visibility": "simplified" }] }, { "featureType": "road.highway", "stylers": [{ "saturation": -100 }, { "visibility": "simplified" }] }, { "featureType": "road.arterial", "stylers": [{ "saturation": -100 }, { "lightness": 30 }, { "visibility": "on" }] }, { "featureType": "road.local", "stylers": [{ "saturation": -100 }, { "lightness": 40 }, { "visibility": "on" }] }, { "featureType": "transit", "stylers": [{ "saturation": -100 }, { "visibility": "simplified" }] }, { "featureType": "administrative.province", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": -25 }, { "saturation": -100 }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "hue": "#ffff00" }, { "lightness": -25 }, { "saturation": -97 }] }];
-
-                                            //map.set('styles', styles);
-                                        }
-
-                                        google.maps.event.addDomListener(window, 'load', initMap);
-                                    });
-                                </script>
-                            </div>--%>
                         </div>
                         <hr />
                         <div class="row">
@@ -234,7 +200,7 @@
                             </div>
                             <div class="col-lg-4 col-md-0"></div>
                             <div class="col-lg-4 col-md-12 my-1">
-                                <asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-danger btn-block" OnClick="ReportAd" runat="server" />
+                                <asp:Button ID="btnReport" Text="Report Listing" CssClass="btn btn-sm btn-danger btn-block" OnClick="ReportAd" runat="server" />
                             </div>
                         </div>
                         <br />
