@@ -52,6 +52,7 @@ namespace SmartWay.UL.Views
                     {
                         //if (tempUser.userAdmin == "admin")
                         Session["currentUser"] = tempUser;
+                        Session["animationsPlayed"] = "false";
                         Response.Redirect("Index.aspx");
                     }
                 }

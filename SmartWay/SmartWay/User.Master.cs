@@ -14,7 +14,7 @@ namespace SmartWay
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            checkAnimation();
         }
 
         protected void userLogout(object sender, EventArgs e)
@@ -70,6 +70,7 @@ namespace SmartWay
                     {
                         //if (tempUser.userAdmin == "admin")
                         Session["currentUser"] = tempUser;
+                        Session["animationsPlayed"] = "false";
                         Response.Redirect("Index.aspx");
                     }
                 }
@@ -83,6 +84,21 @@ namespace SmartWay
             //Response.Redirect("Index.aspx");
         }
 
+        public void checkAnimation()
+        {
+            if (Session["animationsPlayed"] != null)
+            {
+                string hasPlayed = Session["animationsPlayed"].ToString();
+                if (hasPlayed == "true")
+                {
+                    animations.Attributes["class"] = animations.Attributes["class"].Replace("animated", "");
+                }
+                else
+                {
+                    Session["animationsPlayed"] = "true";
+                }
+            }
+        }
 
     }
 }
