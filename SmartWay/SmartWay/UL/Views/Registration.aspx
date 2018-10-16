@@ -467,17 +467,11 @@
             </div>
             <div class="card-footer">
                 <div class="row mt-2">
-                            <%--<div class="col-sm">
-                                <hr />
-                            </div>--%>
-                            <div class="col-lg-12 text-center">
-                                <hr />
-                                <asp:Button ID="registrationButton" Text="Submit" runat="server" OnClick="RegisterUser" UseSubmitBehavior="false" OnClientClick="this.disabled='true'; this.value='Please wait...';" CssClass="btn btn-primary btn-block" />
-                            </div>
-                            <%--<div class="col-sm">
-                                <hr />
-                            </div>--%>
-                        </div>
+                    <div class="col-lg-12 text-center">
+                        <hr />
+                        <asp:Button ID="registrationButton" Text="Submit" runat="server" OnClick="RegisterUser" UseSubmitBehavior="false" OnClientClick="this.disabled='true'; this.value='Please wait...';" CssClass="btn btn-primary btn-block" />
+                    </div>
+                </div>
             </div>
         </div>
         <br />

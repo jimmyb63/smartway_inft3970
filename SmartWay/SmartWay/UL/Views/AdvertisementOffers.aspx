@@ -45,6 +45,7 @@
                             </tr>
                         </GroupTemplate>
                         <ItemTemplate>
+                            <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted != 0 %>'>
                             <div class="col-lg-12 my-2" runat="server">
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -78,9 +79,24 @@
                                             <asp:Button CssClass="btn btn-block btn-sm btn-danger" Text="Decline" runat="server" CommandName="decline" CommandArgument="<%# Container.DataItemIndex %>"/>
                                         </div>
                                     </asp:PlaceHolder>
+                                    <asp:PlaceHolder runat="server" visible='<%# Item.offerOfferAccepted == 3 %>'>
+                                        <div class="col-lg-2">
+                                            <%#:String.Format("{0:c}", Item.offerAmountOffered)%> 
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <p>Other ofeer Accepted</p> 
+                                        </div>
+                                        <div class="col-lg-2 mb-2">
+                                            <asp:Button CssClass="btn btn-block btn-sm btn-success" Text="Accept" runat="server" Enabled="false" />  
+                                        </div>
+                                        <div class="col-lg-2 mb-2">
+                                            <asp:Button CssClass="btn btn-block btn-sm btn-danger" Text="Decline" runat="server" Enabled="false" />
+                                        </div>
+                                    </asp:PlaceHolder>
                                 </div>
                                 <hr />
                             </div>
+                            </asp:PlaceHolder>
                         </ItemTemplate>
                         <LayoutTemplate>
                             <%--<table>

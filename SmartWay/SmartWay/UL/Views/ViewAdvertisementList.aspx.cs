@@ -77,10 +77,10 @@ namespace SmartWay.UL.Views
             return tempAds;
         }
 
-        public string getAdThumbnail(int adID, int userID)
+        public string getAdImage(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
-            string filePath = AC.getAdThumbnail(adID, userID);
+            string filePath = AC.getAdImage(adID);
             return filePath;
         }
 

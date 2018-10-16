@@ -130,10 +130,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\JavaScript.js" />
+    <Content Include="UL\Images\DefaultImg\GenericAddImage.png" />
     <Content Include="UL\Images\DefaultImg\GenericForumImage.png" />
+<<<<<<< HEAD
     <Content Include="UL\Images\GirlBanner1.png" />
+=======
+    <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
+>>>>>>> 9ae8fa9304e5981c8ef72f4f18b8e3711416f0a7
     <Content Include="UL\Images\ProfileImg\1012.png" />
     <Content Include="UL\Images\ProfileImg\1014.png" />
+    <Content Include="UL\Images\smartway-map-pin.png" />
     <Content Include="UL\Images\TestImg\1000.png" />
     <Content Include="UL\Images\TestImg\1001.jpg" />
     <Content Include="UL\Images\TestImg\1002.jpg" />
