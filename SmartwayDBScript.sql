@@ -78,9 +78,9 @@ IF OBJECT_ID('dbo.StateName', 'U') IS NOT NULL
 --This table will be used to link the Address States to the postal Address in the Database
 --The values of the ID in the database will be the same as the value associated with that selection in the dropdown menu in the UserLayer,
 CREATE TABLE StateName		(	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-							stateName VARCHAR(20) NOT NULL,
-							creationDate DATE NOT NULL DEFAULT GETDATE(),
-							active BIT DEFAULT 1,
+								stateName VARCHAR(20) NOT NULL,
+								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
+								active BIT DEFAULT 1,
 							)
 
 --This table will be used to store the Address of the Users that register with SmartWay.
@@ -92,7 +92,7 @@ CREATE TABLE PostalAddress	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								postCode INT NOT NULL,
 								stateName INT NOT NULL, -- References a saved StateName.
 								country VARCHAR(30) NOT NULL,
-								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
 								FOREIGN KEY (stateName) REFERENCES StateName(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							)
@@ -117,8 +117,8 @@ CREATE TABLE Person			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								paypalID INT,
 								SWUsername VARCHAR(30),
 								SWPassword VARCHAR(30),
-								verificationDate DATE,
-								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								verificationDate DATETIME,
+								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
 								FOREIGN KEY (PhoneNumberId) REFERENCES PhoneNumber(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								FOREIGN KEY (addressId) REFERENCES PostalAddress(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
@@ -128,7 +128,7 @@ CREATE TABLE Person			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 CREATE TABLE VerificationCode(	ID INT IDENTITY(1,1) PRIMARY KEY,
 								code VARCHAR(8) NOT NULL,
 								personID INT,
-								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
 								FOREIGN KEY (personID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 							  )
@@ -139,7 +139,7 @@ CREATE TABLE VerificationCode(	ID INT IDENTITY(1,1) PRIMARY KEY,
 CREATE TABLE Staff			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								personID INT,
 								position VARCHAR(30) NOT NULL,
-								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
 								FOREIGN KEY (personID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
@@ -152,7 +152,7 @@ CREATE TABLE PaypalDetails (	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								paypalUserName VARCHAR(32) NOT NULL,
 								paypalAccountNumber VARCHAR(32),
 								primaryPaymentMethod BIT DEFAULT 0,
-								creationDate DATE NOT NULL DEFAULT GETDATE(),
+								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
 								FOREIGN KEY (PersonID) REFERENCES Person(ID) 
 								)
@@ -169,7 +169,7 @@ CREATE TABLE PaypalDetails (	ID INT IDENTITY(1000,1) PRIMARY KEY,
 CREATE TABLE AddCategory	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									category VARCHAR(30) NOT NULL,
 									subCategory VARCHAR(30)NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1
 							)
 
@@ -186,8 +186,8 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									--addStatusID INT NOT NULL DEFAULT 0,
 									categoryID INT NOT NULL,
 									price DECIMAL NOT NULL,		
-									dateCompleted DATE,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									dateCompleted DATETIME,
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -203,7 +203,7 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 CREATE TABLE ProfileImage	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									filePath VARCHAR(260) NOT NULL,
 									userID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1
 									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
@@ -215,7 +215,7 @@ CREATE TABLE AddImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									filePath VARCHAR(260) NOT NULL,
 									userID INT NOT NULL,
 									adID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -232,8 +232,8 @@ CREATE TABLE FeedBack		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									buyerID INT,
 									addID INT NOT NULL,
 									rating INT NOT NULL,
-									comment VARCHAR(30) NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									comment VARCHAR(75) NOT NULL,
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -246,7 +246,7 @@ CREATE TABLE RecycleLocations	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 									imageID INT NOT NULL,
 									addressID INT NOT NULL,
 									categoryID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -259,7 +259,7 @@ CREATE TABLE RecycleLocations	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 --Requirements. Date of Birth should not be in the future.
 CREATE TABLE ReviewReason	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									reviewReason VARCHAR(30) NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1
 							)
 
@@ -272,8 +272,8 @@ CREATE TABLE AddReview		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									adDescription VARCHAR(150) NOT NULL,
 									adminComments VARCHAR(150),
 									inReview BIT,
-									dateCompleted DATE,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									dateCompleted DATETIME,
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -288,7 +288,7 @@ CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									addID INT NOT NULL,
 									offerAmount DECIMAL,
 									offerAccepted INT DEFAULT 2, -- 0 for declined, 1 for accepted, 2 for pending, 3 accepted another offer
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1, 
 									--foreignkeys
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -301,7 +301,7 @@ CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									watcherID INT NOT NULL,
 									addID INT NOT NULL,
 									currentlyWatching BIT DEFAULT 1, -- 1 is Watching, 0 is not watching.
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (watcherID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -313,7 +313,7 @@ CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 CREATE TABLE ForumTag		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									tagName VARCHAR(30) NOT NULL,
 									--subCategory VARCHAR(30)NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1
 							)
 
@@ -324,7 +324,7 @@ CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									title VARCHAR(50) NOT NULL,
 									forumDescription VARCHAR(500) NOT NULL,
 									--imageID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys	
 									FOREIGN KEY (personID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -337,7 +337,7 @@ CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									forumPostID INT NOT NULL,
 									filePath VARCHAR(260) NOT NULL,
 									userID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -345,9 +345,9 @@ CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 							)	
 
 CREATE TABLE ForumPostTags	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
-									ForumPostID INT,
-									ForumTagID INT,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									ForumPostID INT NOT NULL,
+									ForumTagID INT NOT NULL,
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys	
 									FOREIGN KEY (ForumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -360,7 +360,7 @@ CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									forumPostID INT NOT NULL,
 									comment VARCHAR(150) NOT NULL,
 									imageID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (forumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -371,7 +371,7 @@ CREATE TABLE PrivateMessageChain(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 									addID INT NOT NULL,
 									sendersUserID INT NOT NULL,
 									receiverUserID INT NOT NULL,
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -386,7 +386,7 @@ CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									messageDetails VARCHAR(250) NOT NULL,
 									messageRead BIT DEFAULT 0,		-- 0 is Not Read, 1 is Read
 									messageReplied BIT DEFAULT 0,	-- 0 is Not Replied, 1 is Replied
-									creationDate DATE NOT NULL DEFAULT GETDATE(),
+									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (PrivateMessageChainID) REFERENCES PrivateMessageChain(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
