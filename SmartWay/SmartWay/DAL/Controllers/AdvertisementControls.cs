@@ -240,6 +240,15 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getAdImage(int adID)
+        {
+            List<string> adImages = new List<string>();
+            adImages = getAdImages(adID);
+            string adImage = adImages[0];
+            return adImage;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<string> getAdImages(int adID)
         {
             List<string> adImages = new List<string>();
@@ -256,10 +265,15 @@ namespace SmartWay.DAL.Controllers
                 string adImage = reader["filePath"].ToString();
                 adImages.Add(adImage);
             }
+            if (adImages.Count < 1)
+            {
+                List<string> defaultImages = new List<string>();
+                defaultImages.Add("../Images/DefaultImg/GenericAddImage.png");
+                adImages = defaultImages;
+            }
             connection.Close();
             return adImages;
         }
-
         [DataObjectMethod(DataObjectMethodType.Select)]
         public string getAdThumbnail(int adID, int userID)
         {
@@ -468,41 +482,22 @@ namespace SmartWay.DAL.Controllers
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            if (accepted == 0)
+            if (accepted == 1)
             {
-                deactivateDeclined(offerID);
-            }
-            else if (accepted == 1)
-            {
-                deactivateAccepted(adID);
+                offerAccepted(adID);
             }
         }
 
-        public void deactivateDeclined(int offerID)
+        public void offerAccepted(int adID)
         {
-            bool active = false;
-            SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "UPDATE AddOffer SET active = @active WHERE ID = @offerID";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
-            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-        }
-
-        public void deactivateAccepted(int adID)
-        {
-            bool active = false;
+            int notAccepted = 3;
             int pending = 2;
-            int declined = 0;
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "UPDATE AddOffer SET active = @active, offerAccepted = @declined WHERE AddID = @adID AND offerAccepted = @pending AND offerAccepted = @declined";
+            string query = "UPDATE AddOffer SET offerAccepted = @notAccepted WHERE AddID = @adID AND offerAccepted = @pending";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
-            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
+            cmd.Parameters.Add("@notAccepted", SqlDbType.Int).Value = notAccepted;
             cmd.Parameters.Add("@pending", SqlDbType.Int).Value = pending;
-            cmd.Parameters.Add("@declined", SqlDbType.Int).Value = declined;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();

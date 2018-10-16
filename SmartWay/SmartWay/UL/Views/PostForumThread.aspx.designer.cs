@@ -67,6 +67,15 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
+        /// RequiredDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredDescription;
+        
+        /// <summary>
         /// FileUpload1 control.
         /// </summary>
         /// <remarks>

@@ -25,7 +25,7 @@ namespace SmartWay.UL.Views
             decimal amount = finalOffer.offerAmountOffered;
             int buyerID = finalOffer.offerBuyerID;
             AC.advertisementSold(adID, amount, buyerID);
-            AC.deactivateAccepted(adID);
+            //AC.deactivateAccepted(adID);
             Response.Redirect("MyAdvertisements.aspx");
         }
 
