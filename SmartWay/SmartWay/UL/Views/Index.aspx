@@ -70,8 +70,8 @@
                             <!-- Card content -->
                             <div class="card-body">
                                 <!-- Title -->
-                                <h4 class="card-title"><a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a></h4>
-                                <h5 class="card-title"><%#:String.Format("{0:c}", Item.advertisementPrice)%></h5>
+                                <h4 class="card-text"><a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a></h4>
+                                <h5 class="card-text"><%#:String.Format("{0:c}", Item.advertisementPrice)%></h5>
                             </div>
                         </div>
                     </div>
