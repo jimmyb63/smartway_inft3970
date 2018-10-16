@@ -51,11 +51,11 @@ namespace SmartWay.UL.Views
             return tempAds;
         }
 
-        public string getAdThumbnail(int adID)
+        public string getAdImage(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
             Person currentUser = (Person)Session["currentUser"];
-            string filePath = AC.getAdThumbnail(adID, currentUser.userID);
+            string filePath = AC.getAdImage(adID);
             return filePath;
         }
 

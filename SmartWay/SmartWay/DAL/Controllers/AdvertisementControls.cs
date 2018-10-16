@@ -240,6 +240,15 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getAdImage(int adID)
+        {
+            List<string> adImages = new List<string>();
+            adImages = getAdImages(adID);
+            string adImage = adImages[0];
+            return adImage;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<string> getAdImages(int adID)
         {
             List<string> adImages = new List<string>();
@@ -256,10 +265,15 @@ namespace SmartWay.DAL.Controllers
                 string adImage = reader["filePath"].ToString();
                 adImages.Add(adImage);
             }
+            if (adImages.Count < 1)
+            {
+                List<string> defaultImages = new List<string>();
+                defaultImages.Add("../Images/DefaultImg/GenericAddImage.png");
+                adImages = defaultImages;
+            }
             connection.Close();
             return adImages;
         }
-
         [DataObjectMethod(DataObjectMethodType.Select)]
         public string getAdThumbnail(int adID, int userID)
         {

@@ -86,7 +86,7 @@
                                     <div class="view overlay" style="background-color: #263238">
                                         <div class="thumbnail">
                                             <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
-                                                <img class="img-responsive" src="<%#:getAdThumbnail(Item.advertisementID, Item.advertisementSellerID)%>" alt="" /></a>
+                                                <img class="img-responsive" src="<%#:getAdImage(Item.advertisementID)%>" alt="" /></a>
                                         </div>
                                     </div>
                                 </div>

@@ -829,7 +829,7 @@ END
 
 RETURN  
 GO 
-
+EXEC sp_GetProfileImg 1000
 --New Private Message
 IF OBJECT_ID('sp_NewPrivateMessage', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewPrivateMessage;  
@@ -1347,7 +1347,7 @@ INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1015_1
 EXEC sp_NewAdvertisement 1009, 'Tape Deck', 'offer', 'goods', 'electronics', 'What a Tape Deck!', 1009, 50, 5;
 INSERT INTO AddImage(filePath, userID, adID) VALUES ('../Images/TestImg/1_1016_1009.jpg', 1009, 1016); 
 
-
+EXEC sp_NewAdvertisement 1009, 'iPhone 5', 'offer', 'goods', 'electronics', 'Is so amazing Phone, Pictures couldnt describe!', 1009, 50, 5;
 
 --Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;

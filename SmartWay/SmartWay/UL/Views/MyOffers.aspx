@@ -37,7 +37,7 @@
                                     <div class="view overlay" style="background-color: #263238">
                                         <div class="thumbnail">
                                             <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>">
-                                                <img class="img-responsive" src="<%#getAdThumbnail(Item.offerAdID, Item.offerSellerID)%>" />
+                                                <img class="img-responsive" src="<%#getAdImage(Item.offerAdID)%>" />
                                             </a>
                                         </div>
                                     </div>
@@ -139,7 +139,7 @@
                                     <div class="view overlay" style="background-color: #263238">
                                         <div class="thumbnail">
                                             <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>">
-                                                <img class="img-responsive" src="<%#getAdThumbnail(Item.offerAdID, Item.offerSellerID)%>" />
+                                                <img class="img-responsive" src="<%#getAdImage(Item.offerAdID)%>" />
                                             </a>
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@
                                     <div class="view overlay" style="background-color: #263238">
                                         <div class="thumbnail">
                                             <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.offerAdID%>">
-                                                <img class="img-responsive" src="<%#getAdThumbnail(Item.offerAdID, Item.offerSellerID)%>" />
+                                                <img class="img-responsive" src="<%#getAdImage(Item.offerAdID)%>" />
                                             </a>
                                         </div>
                                     </div>
