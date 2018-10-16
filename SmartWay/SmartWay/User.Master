@@ -242,6 +242,7 @@
                                 <a href="ViewAdvertisementList.aspx?subCategory=tools required" class="list-group-item">Tools Required</a>
                                 <a href="ViewAdvertisementList.aspx?subCategory=skills required" class="list-group-item">Skills Required</a>
                             </div>
+<<<<<<< HEAD
                         </div>
                         <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                         <div id="collapseThree" class="collapse" data-parent="#accordion">
@@ -249,6 +250,15 @@
                                 <a href="#!" class="list-group-item">Last Day</a>
                                 <a href="#!" class="list-group-item">Last Week</a>
                                 <a href="#!" class="list-group-item">Last Month</a>
+=======
+                            <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                <div class="list-group">
+                                    <a href="#!" class="list-group-item">Daily</a>
+                                    <a href="#!" class="list-group-item">Weekly</a>
+                                    <a href="#!" class="list-group-item">Monthly</a>
+                                </div>
+>>>>>>> b437f8df760cd75a2fa1dc8d03117f51e90df7d3
                             </div>
                         </div>
                     </div>

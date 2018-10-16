@@ -38,147 +38,48 @@
         <!-------------Popular Goods----------->
         <div class="p-2 mt-2 blue lighten-1 text-white">Popular Goods</div>
         <div class="col-12 testimonial-group">
-            <div class="row text-center flex-nowrap">
                 <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-
-                                <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-
-                                <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-
-                                <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-
-                                <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-
-                                <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-
-                                <!---------------- Card ------------------>
-                <div class="col-lg-4  col-6 my-2">
-                    <div class="card">
-                        <!-- Card image -->
-                        <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title">Card title</h4>
-                            <h5 class="card-title">Price</h5>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Card -->
-            </div>
+                <asp:ListView ID="popularAds" runat="server"
+                        DataKeyNames="advertisementID"
+                        ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="getPopularGoods">
+                        <EmptyDataTemplate>
+                            <div class="row">
+                                <div class="col-1 my-2"></div>
+                                <div class="col-10 my-2">
+                                    <p class="card-text"><h4 class="text-center">No offers Accepted yet!</h4></p>
+                                </div>
+                                <div class="col-1 my-2"></div>
+                            </div>
+                        </EmptyDataTemplate>
+                        <EmptyItemTemplate>
+                            <td />
+                        </EmptyItemTemplate>
+                        <ItemTemplate>
+                            <div class="col-lg-4  col-6 my-2">
+                                <div class="card">
+                                    <!-- Card image -->
+                                    <div class="view overlay" style="background-color: #263238">
+                                            <div class="thumbnail">
+                                                <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
+                                                    <img class="img-responsive" src="<%#getAdImage(Item.advertisementID)%>" alt="" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <!-- Card content -->
+                                    <div class="card-body">
+                                        <!-- Title -->
+                                        <h4 class="card-title"><a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a></h4>
+                                        <h5 class="card-title"><%#:String.Format("{0:c}", Item.advertisementPrice)%></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                        <LayoutTemplate>
+                            <div class="row text-center flex-nowrap" runat="server">
+                                <asp:PlaceHolder id="itemPlaceholder" runat="server" />
+                            </div>
+                        </LayoutTemplate>
+                    </asp:ListView>
         </div>
     </div>
 </asp:Content>
