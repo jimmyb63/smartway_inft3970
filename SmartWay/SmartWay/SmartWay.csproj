@@ -134,6 +134,7 @@
     <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
     <Content Include="UL\Images\ProfileImg\1012.png" />
     <Content Include="UL\Images\ProfileImg\1014.png" />
+    <Content Include="UL\Images\smartway-map-pin.png" />
     <Content Include="UL\Images\TestImg\1000.png" />
     <Content Include="UL\Images\TestImg\1001.jpg" />
     <Content Include="UL\Images\TestImg\1002.jpg" />

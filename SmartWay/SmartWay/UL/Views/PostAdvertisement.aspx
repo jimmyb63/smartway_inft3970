@@ -2,6 +2,10 @@
 
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+       Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+       function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -243,11 +247,7 @@
                         </div>
                         <hr />
                     <%-- SUBMIT AD BUTTON --%>
-                        <asp:Button 
-                            CssClass="btn btn-block btn-success"
-                            Text="Submit" 
-                            runat="server" 
-                            OnClick="postAd" />
+                        <asp:Button CssClass="btn btn-block btn-success" Text="Submit" runat="server" OnClick="postAd"  UseSubmitBehavior="false" OnClientClick="this.disabled='true'; this.value='Please wait...';" />
                         </div>
                     </div>
                 </>
@@ -285,7 +285,6 @@
             </div>
     <% } %>
     </div>
-</div> 
   
 
 </asp:Content>
