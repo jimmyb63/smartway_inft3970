@@ -1,40 +1,40 @@
 body {
-  padding-top: 54px;
+    padding-top: 54px;
 }
 
 @media (min-width: 992px) {
-  body {
-    padding-top: 56px;
-  }
+    body {
+        padding-top: 56px;
+    }
 }
 
 
 
 .form-control-border {
-	border-left-color: rgba(0,0,0,.125);
- 	border-bottom: none;
-	border-right: none;
-	border-top: none;
-	border-radius: 0;
+    border-left-color: rgba(0,0,0,.125);
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
 }
 
 .form-control-borderless {
-	border: none;
+    border: none;
 }
 
-.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus{
-    border: none;
-    outline: none;
-    box-shadow: none;
-}
+    .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
 
 .form-control-border:hover, .form-control-border:active, .form-control-border:focus {
-	border-left-color: rgba(0,0,0,.125);
- 	border-bottom: none;
-	border-right: none;
-	border-top: none;
-	border-radius: 0;
-	outline: none;
+    border-left-color: rgba(0,0,0,.125);
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+    outline: none;
     box-shadow: none;
 }
 
@@ -43,17 +43,17 @@ body {
 }
 
 .hero {
-	padding-bottom: 25px;
+    padding-bottom: 25px;
 }
 
 .padding-bottom-top {
-	padding-bottom: 5px;
-	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
-.card-sm{
-	border-radius: 10px;
-	height: 3rem;
+.card-sm {
+    border-radius: 10px;
+    height: 3rem;
 }
 
 /* not active */
@@ -70,16 +70,16 @@ body {
 }
 
 
-.borderradius{
-	padding: 0px;
+.borderradius {
+    padding: 0px;
     border: 0px solid grey;
     border-radius: 5px 5px;
-	background: white;
+    background: white;
 }
 
 .textcol {
-	color:black;
-	text-align: center;
+    color: black;
+    text-align: center;
 }
 
 
@@ -93,7 +93,6 @@ body {
     content: "\f054";
     transform: rotate(90deg);
     transition: all linear 0.25s;
-
 }
 
 [data-toggle="collapse"].collapsed .fa:before {
@@ -102,18 +101,15 @@ body {
 
 
 .imagePreview {
-    width:100%;
-    height:200px;
-
+    width: 100%;
+    height: 200px;
     background-position: center center;
     background: url(http://silkbrassband.co.uk/images/no-image-selected.png);
-    background-color: #fff; 
+    background-color: #fff;
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
     box-shadow: 0px -3px 6px 2px rgba(0,0,0,0.2);
-
-
 }
 
 .btn-primary {
@@ -144,25 +140,25 @@ body {
         margin: auto;
     }
 
-    .avatar{
-        /* avatar image */
-        position: relative;
-        bottom: auto;
-        top: 10px;
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
-        height: 25px;
-        width: 25px;
-        border-radius: 50%;
-        display: inline;
-    }
+.avatar {
+    /* avatar image */
+    position: relative;
+    bottom: auto;
+    top: 10px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline;
+}
 
-    .small-search{
-        background-color: transparent;
-    }
+.small-search {
+    background-color: transparent;
+}
 
 .information-content {
     position: absolute;
@@ -191,20 +187,79 @@ body {
         z-index: 998;
     }
 
-    .noti_container {
-        position: relative;
-        width: 25px;
-        height: 25px;
+.noti_container {
+    position: relative;
+    width: 25px;
+    height: 25px;
+}
+
+.noti_bubble {
+    position: absolute;
+    top: 6px;
+    right: 112px;
+    padding: 1px 2px 1px 3px;
+    background-color: red;
+    color: white;
+    font-size: 0.55em;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px gray;
+}
+
+h3 {
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    color: grey;
+   
+}
+
+    h3 span {
+        display: inline-block;
+        padding: 0 10px;
+        background: #fff;
     }
 
-    .noti_bubble {
+    h3:before {
+        content: "";
+        display: block;
         position: absolute;
-        top: 6px;
-        right: 112px;
-        padding: 1px 2px 1px 3px;
-        background-color: red;
-        color: white;
-        font-size: 0.55em;
-        border-radius: 30px;
-        box-shadow: 1px 1px 1px gray;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 1px;
+        background: #ccc;
+    }
+
+/* The heart of the matter */
+.testimonial-group > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+    .testimonial-group > .row > .col-4 {
+        display: inline-block;
+        float: none;
+    }
+
+/* width */
+::-webkit-scrollbar {
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #fafafa;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #29b6f6;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #29b6f6;
     }

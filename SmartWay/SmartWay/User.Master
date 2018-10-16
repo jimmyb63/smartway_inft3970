@@ -75,11 +75,14 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle m-1" id="mystuffdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<%=filePath %>" class="avatar mr-1 noti_container" alt="avatar" /><div class="noti_bubble">2</div>My Account</a>
                             <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" aria-labelledby="mystuffdropdown">
-                                <a class="dropdown-item" href="Account.aspx?userID=<%=currentUser.userID%>"><i class="fas fa-user-alt mr-1"></i>Profile</a>
-                                <a class="dropdown-item" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-1"></i>My Offers</a>
-                                <a class="dropdown-item" href="MyAdvertisements.aspx"><i class="fas fa-list mr-1"></i>My Advertisements</a>
+                                <a class="dropdown-item" href="Account.aspx?userID=<%=currentUser.userID%>"><i class="fas fa-user-alt mr-2"></i>Profile</a>
+                                <a class="dropdown-item" href="MyAdvertisements.aspx"><i class="fas fa-list mr-2"></i>Advertisements</a>
+                                <a class="dropdown-item" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-2"></i>Offers</a>
+                                <a class="dropdown-item" href=".aspx"><i class="far fa-comments mr-2"></i>Forum Posts</a>
+                                <a class="dropdown-item" href=".aspx"><i class="far fa-envelope mr-2"></i>Messages</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
+                                <a class="dropdown-item" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+
                             </div>
                         </li>
                                             <%--<a href ="account.aspx"><li class="inset">
@@ -203,16 +206,14 @@
         <!--Sidebar Navigation-->
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 d-none d-lg-block">
-                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Post Advertisement</a>
-                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Post in Forum</a>
-                    <hr />
-                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="MyAdvertisements.aspx">My Advertisements</a>
-                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="MyOffers.aspx">My Offers</a>
-                    <hr />
+                <div class="col-lg-3 d-none d-lg-block mt-2">
+                    <h3><span>Post</span></h3>
+                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Advertisement</a>
+                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Forum Post</a>
+                    <br/>
+                    <h3><span>Browse</span></h3>
                     <!--Sidebar Accordion-->
                     <div id="accordion">
-                        <div class="card">
                             <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseOne" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
@@ -229,9 +230,7 @@
                                     <a href="ViewAdvertisementList.aspx?subCategory=other" class="list-group-item">Other</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card mt-2">
-                            <a class=" blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewAdvertisementList.aspx?category=services" class="list-group-item">Browse all Services</a>
@@ -240,19 +239,21 @@
                                     <a href="ViewAdvertisementList.aspx?subCategory=skills required" class="list-group-item">Skills Required</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card mt-2">
-                            <a class=" blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
-                                    <a href="#!" class="list-group-item">Forum cat 1</a>
-                                    <a href="#!" class="list-group-item">Forum cat 2</a>
-                                    <a href="#!" class="list-group-item">Forum cat 3</a>
-                                    <a href="#!" class="list-group-item">Forum cat 4</a>
+                                    <a href="#!" class="list-group-item">Last Day</a>
+                                    <a href="#!" class="list-group-item">Last Week</a>
+                                    <a href="#!" class="list-group-item">Last Month</a>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                    <br />
+                    <h3><span>My Account</span></h3>
+                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="MyAdvertisements.aspx">Advertisements</a>
+                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="MyOffers.aspx">Offers</a>
+                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="#!">Forum Posts</a>
+                    <a class="blue darken-2 btn btn-block mt-2 col-lg-12" href="#!">Messages</a>
                 </div>
                 <!--/Sidebar Navigation-->
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
