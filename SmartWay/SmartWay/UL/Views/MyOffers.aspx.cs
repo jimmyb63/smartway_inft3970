@@ -35,6 +35,54 @@ namespace SmartWay.UL.Views
             return tempOffers;
         }
 
+        public List<BL.Models.Offer> getAcceptedOffers()
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            Person currentUser = (Person)Session["currentUser"];
+            List<BL.Models.Offer> offers = AC.getUserOffers(currentUser.userID);
+            List<BL.Models.Offer> tempOffers = new List<BL.Models.Offer>();
+            for (int i = 0; i < offers.Count; i++)
+            {
+                if (offers[i].offerActive == true && offers[i].offerOfferAccepted == 1)
+                {
+                    tempOffers.Add(offers[i]);
+                }
+            }
+            return tempOffers;
+        }
+
+        public List<BL.Models.Offer> getPendingOffers()
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            Person currentUser = (Person)Session["currentUser"];
+            List<BL.Models.Offer> offers = AC.getUserOffers(currentUser.userID);
+            List<BL.Models.Offer> tempOffers = new List<BL.Models.Offer>();
+            for (int i = 0; i < offers.Count; i++)
+            {
+                if (offers[i].offerActive == true && offers[i].offerOfferAccepted == 2)
+                {
+                    tempOffers.Add(offers[i]);
+                }
+            }
+            return tempOffers;
+        }
+
+        public List<BL.Models.Offer> getNotAcceptedOffers()
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            Person currentUser = (Person)Session["currentUser"];
+            List<BL.Models.Offer> offers = AC.getUserOffers(currentUser.userID);
+            List<BL.Models.Offer> tempOffers = new List<BL.Models.Offer>();
+            for (int i = 0; i < offers.Count; i++)
+            {
+                if (offers[i].offerActive == true && (offers[i].offerOfferAccepted == 0 || offers[i].offerOfferAccepted == 3))
+                {
+                    tempOffers.Add(offers[i]);
+                }
+            }
+            return tempOffers;
+        }
+
         public decimal getAdPrice(int adID)
         {
             List<Advertisement> ad = getAd(adID);
@@ -72,6 +120,10 @@ namespace SmartWay.UL.Views
             else if (accepted == 2)
             {
                 status = "Pending";
+            }
+            else if (accepted == 3)
+            {
+                status = "Not Accepted";
             }
             return status;
         }
