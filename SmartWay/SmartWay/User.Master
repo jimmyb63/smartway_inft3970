@@ -242,9 +242,9 @@
                             <a class="mt-2 blue darken-3 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
-                                    <a href="#!" class="list-group-item">Last Day</a>
-                                    <a href="#!" class="list-group-item">Last Week</a>
-                                    <a href="#!" class="list-group-item">Last Month</a>
+                                    <a href="#!" class="list-group-item">Daily</a>
+                                    <a href="#!" class="list-group-item">Weekly</a>
+                                    <a href="#!" class="list-group-item">Monthly</a>
                                 </div>
                             </div>
                     </div>

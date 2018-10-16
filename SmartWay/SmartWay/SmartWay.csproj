@@ -236,6 +236,7 @@
     <Compile Include="BL\Models\ForumThread.cs" />
     <Compile Include="BL\Models\RecycleLocation.cs" />
     <Compile Include="BL\Models\Person.cs" />
+    <Compile Include="BL\Models\ViewCount.cs" />
     <Compile Include="DAL\Controllers\AddressControls.cs" />
     <Compile Include="DAL\Controllers\AdvertisementControls.cs" />
     <Compile Include="DAL\Controllers\ForumControls.cs" />
