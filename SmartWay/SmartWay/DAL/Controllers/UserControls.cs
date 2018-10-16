@@ -224,17 +224,39 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public string getProfileImage(int userID)
+        public List<string> getProfileImages(int userID)
         {
+            List<string> profileImages = new List<string>();
             SqlConnection connection = new SqlConnection(getconnectionString());
             //string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
-            string query = "EXEC sp_GetProfileImg @userID";
+            string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
             connection.Open();
-            string filePath = cmd.ExecuteScalar().ToString();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                string profileImage = reader["filePath"].ToString();
+                profileImages.Add(profileImage);
+            }
+            if (profileImages.Count < 1)
+            {
+                List<string> defaultImages = new List<string>();
+                defaultImages.Add("../Images/DefaultImg/GenericProfileImage.png");
+                profileImages = defaultImages;
+            }
             connection.Close();
-            return filePath;
+            return profileImages;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public string getProfileImage(int userID)
+        {
+            List<string> profileImages = new List<string>();
+            profileImages = getProfileImages(userID);
+            string filePAth = profileImages[0];
+            return filePAth;
         }
 
         [DataObjectMethod(DataObjectMethodType.Insert)]
