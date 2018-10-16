@@ -15,7 +15,7 @@
                     runat="server"
                     ForeColor="Red"
                     HeaderText="Please fix these entries:" />
-                <h5>Forum Thread Title</h5>
+                <h5>Forum Thread Title*</h5>
                 <asp:TextBox 
                     CssClass="form-control" 
                     ID="txtTitle" 
@@ -47,13 +47,22 @@
                 <hr />
                 <hr />           
                 <div class="form-group">
-                <h5>Forum Thread Description</h5>
+                    <%-- TEXTBOX --%>
+                <h5>Forum Thread Description*</h5>
                 <asp:TextBox 
                     CssClass="form-control" 
                     TextMode="MultiLine" 
                     ID="txtDescription" 
                     rows="8" 
                     runat="server"/>
+                    <%-- VALIDATION for TEXTBOX --%>
+                <asp:RequiredFieldValidator
+                    ID="RequiredDescription"
+                    runat="server"
+                    ControlToValidate="txtDescription"
+                    ErrorMessage="Description is required."
+                    ForeColor="Red">
+                </asp:RequiredFieldValidator>
                 </div>
                 <hr />
                 <h5>Upload photos</h5>
