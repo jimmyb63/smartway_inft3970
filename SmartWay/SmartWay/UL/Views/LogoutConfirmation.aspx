@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--New style sample for confirmation pages-->
     <div class="col-lg-9 mt-2">
-        <div class="alert alert-success text-center" role="alert">
+        <div class="alert alert-success text-center animated flipInX" role="alert">
             <h4 class="alert-heading">Logout Successful</h4>
             <p>Click <a href="index.aspx">here</a> to go to home.</p>
             <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.</p>
