@@ -46,8 +46,7 @@
                 <hr />
 
                 <%-- TYPE of ad --%>
-                <h5>Type of ad</h5>
-              
+                <h5>Type of ad</h5>              
                 <asp:RadioButtonList 
                     CssClass="form-group" 
                     ID="rbAdType" 
@@ -78,6 +77,7 @@
                     runat="server" AutoPostBack="true">
                 </asp:DropDownList>                
                 <br />
+
                 <%-- Required to pick a subcategory --%>
                 <asp:RequiredFieldValidator
                     ErrorMessage="Sub-category Required"
@@ -90,8 +90,7 @@
                     ></asp:RequiredFieldValidator>
                 <hr />
 
-                <%-- PRICE for the ad --%>
-                
+                <%-- PRICE for the ad --%>                
                 <h5>Price*</h5>
                 <div class="row">
                     <div class="col-lg-4">      
@@ -127,7 +126,15 @@
                             ControlToValidate="txtPrice"
                             runat="server"></asp:RequiredFieldValidator>
 
-
+						<%-- ONLY NUMBERS --%>
+						<asp:RegularExpressionValidator
+							ID="PriceRegulator"
+							runat="server"
+							ErrorMessage="Numbers only."
+							ForeColor="Red"
+							ValidationExpression="^[0-9]*$"
+							ControlToValidate="txtPrice">
+						</asp:RegularExpressionValidator>
                     </div>
                     <%--Might not need this code - radio buttons next to price --%>
                     <%--<div class="col-lg-8 mt-2">
@@ -247,7 +254,13 @@
                         </div>
                         <hr />
                     <%-- SUBMIT AD BUTTON --%>
-                        <asp:Button CssClass="btn btn-block btn-success" Text="Submit" runat="server" OnClick="postAd"  UseSubmitBehavior="false" OnClientClick="this.disabled='true'; this.value='Please wait...';" />
+                        <asp:Button 
+							CssClass="btn btn-block btn-success" 
+							Text="Submit" 
+							runat="server" 
+							OnClick="postAd"  
+							UseSubmitBehavior="false" 
+							OnClientClick="this.disabled='true'; this.value='Please wait...';" />
                         </div>
                     </div>
                 </>
@@ -289,6 +302,5 @@
             </div>
     <% } %>
     </div>
-  
 
 </asp:Content>
