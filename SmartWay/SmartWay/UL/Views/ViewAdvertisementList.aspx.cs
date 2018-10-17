@@ -14,7 +14,22 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            BindListView();
+        }
+
+        protected void onPageChange(object sender, PagePropertiesChangingEventArgs e)
+        {
+            //set current page startindex, max rows and rebind to false
+            DataPagerAds.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+
+            //rebind List View
+            BindListView();
+        }
+
+        void BindListView()
+        {
+            adList.DataSource = getAds();
+            adList.DataBind();
         }
 
         public List<string> keySearchWords(string[] searchWords)
@@ -102,6 +117,8 @@ namespace SmartWay.UL.Views
                 sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
                 sortedAds.Reverse();
             }
+            //adList.DataSource = sortedAds;
+            //adList.DataBind();
             return sortedAds;
         }
 

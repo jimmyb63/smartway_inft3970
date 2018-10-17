@@ -43,8 +43,8 @@
                 runat="server"
                 DataKeyNames="advertisementID" 
                 GroupItemCount="4"
-                ItemType="SmartWay.BL.Models.Advertisement" 
-                SelectMethod="GetAds">
+                ItemType="SmartWay.BL.Models.Advertisement"
+                OnPagePropertiesChanging="onPageChange">
                 <EmptyDataTemplate>
                     <div class="col-12 my-2" runat="server">
                         <% if (Request.QueryString["search"] != null) %>
@@ -143,6 +143,22 @@
                     </table>--%>
                 </LayoutTemplate>
             </asp:ListView>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <asp:DataPager ID="DataPagerAds" runat="server" class="btn-group d-flex" PagedControlID="adList" PageSize="5" >
+                    <Fields>
+                        <asp:NextPreviousPagerField PreviousPageText="Back" ShowPreviousPageButton="true"
+                            ShowFirstPageButton="false" ShowNextPageButton="false" ShowLastPageButton="false"
+                            ButtonCssClass="btn btn-blue w-100" RenderNonBreakingSpacesBetweenControls="false" RenderDisabledButtonsAsLabels="false" />
+                        <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="btn btn-blue w-100 disabled d-none d-lg-block"  RenderNonBreakingSpacesBetweenControls="false"
+                            NumericButtonCssClass="btn btn-blue w-100 d-none d-lg-block" ButtonCount="10" NextPageText="..." NextPreviousButtonCssClass="btn btn-blue" />
+                        <asp:NextPreviousPagerField NextPageText="Next" ShowNextPageButton="true"
+                            ShowLastPageButton="false" ShowPreviousPageButton="false" ShowFirstPageButton="false"
+                            ButtonCssClass="btn btn-blue w-100" RenderNonBreakingSpacesBetweenControls="false" RenderDisabledButtonsAsLabels="false"/>
+                    </Fields>
+                </asp:DataPager>
+            </div>
         </div>
     </div>
 </asp:Content>
