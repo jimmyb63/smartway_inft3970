@@ -246,6 +246,7 @@
                             <a class="mt-2 blue darken-2 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
+                                    <a href="ViewForumPostList.aspx" class="list-group-item">Browse all</a>
                                     <a href="#!" class="list-group-item">Daily</a>
                                     <a href="#!" class="list-group-item">Weekly</a>
                                     <a href="#!" class="list-group-item">Monthly</a>

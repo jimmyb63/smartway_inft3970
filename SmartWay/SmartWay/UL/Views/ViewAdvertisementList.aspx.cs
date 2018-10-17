@@ -40,7 +40,7 @@ namespace SmartWay.UL.Views
             return searchWordsList;
         }
 
-        public List<Advertisement> getAds([Control]string ID)
+        public List<Advertisement> getAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
             List<Advertisement> ads = new List<Advertisement>();
@@ -74,7 +74,35 @@ namespace SmartWay.UL.Views
                     tempAds.Add(ads[i]);
                 }
             }
-            return tempAds;
+            List<Advertisement> sortedAds = new List<Advertisement>();
+            if (Request.QueryString["sort"] != null)
+            {
+                string sort = Request.QueryString["sort"];
+                if (sort == "h2l")
+                {
+                    sortedAds = tempAds.OrderByDescending(x => x.advertisementPrice).ToList();
+                }
+                else if (sort == "l2h")
+                {
+                    sortedAds = tempAds.OrderByDescending(x => x.advertisementPrice).ToList();
+                    sortedAds.Reverse();
+                }
+                else if (sort == "n2o")
+                {
+                    sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
+                    sortedAds.Reverse();
+                }
+                else if (sort == "o2n")
+                {
+                    sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
+                }
+            }
+            else
+            {
+                sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
+                sortedAds.Reverse();
+            }
+            return sortedAds;
         }
 
         public string getAdImage(int adID)
@@ -98,6 +126,24 @@ namespace SmartWay.UL.Views
             return count;
         }
 
+        public void sortAds(object sender, EventArgs e)
+        {
+            string value = ddSort.SelectedValue;
+            string query = "";
+            if (Request.QueryString["search"] != null)
+            {
+                query = "search=" + Request.QueryString["search"];
+            }
+            else if (Request.QueryString["category"] != null)
+            {
+                query = "category=" + Request.QueryString["category"];
+            }
+            else if (Request.QueryString["subCategory"] != null)
+            {
+                query = "subCategory=" + Request.QueryString["subCategory"];
+            }
+            Response.Redirect("ViewAdvertisementList.aspx?" + query + "&sort=" + value);
+        }
         //public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
         //{
 

@@ -68,11 +68,11 @@
                 </GroupTemplate>
                 <ItemTemplate>
                     <div class="col-lg-12">
-                        <div class="card mt-2 grey lighten-5">
+                        <div class="card mt-2 grey lighten-5 zoom hoverable z-depth-3">
                             <div class="row">
                                 <!-- Card image -->
                                 <div class="col-lg-5 col-md-12">
-                                    <div class="view overlay" style="background-color: #263238">
+                                    <div class="view overlay zoom" style="background-color: #263238">
                                         <div class="thumbnail">
                                             <a href="ViewForumPost.aspx?forumID=<%#:Item.forumID%>">
                                                 <img class="img-responsive" src="<%#:getForumThumbnail(Item.forumID)%>" alt="" /></a>

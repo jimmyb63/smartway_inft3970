@@ -20,6 +20,7 @@ namespace SmartWay
         protected void userLogout(object sender, EventArgs e)
         {
             Session["currentUser"] = null;
+            Session.Abandon();
             Response.Redirect("LogoutConfirmation.aspx");
         }
 

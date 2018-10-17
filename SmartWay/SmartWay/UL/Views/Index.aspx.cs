@@ -97,15 +97,19 @@ namespace SmartWay.UL.Views
             for (int i = 0; i < ads.Count; i++)
             {
                 int count = AC.getViewCount(ads[i].advertisementID);
-                ViewCount view = new ViewCount(ads[i].advertisementID, count);
+                ViewCount view = new ViewCount(count, ads[i].advertisementID);
+                views.Add(view);
             }
             List<ViewCount> popularViews = views.OrderByDescending(x => x.count).ToList();
             List<Advertisement> popularAds = new List<Advertisement>();
             for (int i = 0; i < popularViews.Count; i++)
             {
-                if (ads[i].advertisementID == popularViews[i].adID)
+                for (int x = 0; x < ads.Count; x++)
                 {
-                    popularAds.Add(ads[i]);
+                    if (ads[x].advertisementID == popularViews[i].adID)
+                    {
+                        popularAds.Add(ads[i]);
+                    }
                 }
             }
             if (popularAds.Count > 6)
