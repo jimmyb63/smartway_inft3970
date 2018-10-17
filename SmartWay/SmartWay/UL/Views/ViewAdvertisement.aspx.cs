@@ -104,10 +104,13 @@ namespace SmartWay.UL.Views
             int count = AC.getOfferCount(adID);
             return count;
         }
-
+        
 		public void ContactSeller(object sender, EventArgs e)
 		{
-			Response.Redirect("PrivateMessage.aspx");
+            // we need to send adID as well to the private message
+            //< a href = "ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>" >
+            int ad = Convert.ToInt32(adID.Value);    
+            Response.Redirect("PrivateMessage.aspx?advertisementID="+ ad);
 		}
 
         public double getLat(int addressID)

@@ -1,4 +1,4 @@
-﻿using SmartWay.BL.Models;
+﻿ using SmartWay.BL.Models;
 using SmartWay.DAL.Controllers;
 using System;
 using System.Collections.Generic;
@@ -13,8 +13,10 @@ namespace SmartWay.UL.Views
     {
         // SENDER - PERSON INTERESTED/MAKING AN OFFER/CONTACTING SELLER
         // RECIPIENT - PERSON THAT WILL RECEIVE THE MESSAGE (SELLER OF THE SELECTED GOODS/SERVICES)
-        int adID = 1000;               
 
+        // We need to pull adID from database in order for this to work.
+        int adID = 0;               
+        
         AdvertisementControls AC = new AdvertisementControls();
         UserControls UC = new UserControls();
 
@@ -44,6 +46,18 @@ namespace SmartWay.UL.Views
             }
             else
             {
+
+                string tempAdID = "";
+                if (Request.QueryString["advertisementID"] != "" && Request.QueryString["advertisementID"] != null)
+                {
+                    tempAdID = Request.QueryString["advertisementID"];
+                    // adID.Value = adId;
+                    AdvertisementControls AC = new AdvertisementControls();
+                    adID = Convert.ToInt32(tempAdID);
+                }
+                
+
+                // adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
 
                 tempSender = (Person)Session["currentUser"]; // Sender - grabbing from session
                 tempSenderID = tempSender.userID;

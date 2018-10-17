@@ -606,7 +606,7 @@ namespace SmartWay.DAL.Controllers
             Advertisement returnAd = new Advertisement();
             //setting connection string and sql request
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
-            string query = "EXEC sp_SaleItems " + tempAdID; //the sql request
+            string query = "EXEC sp_GetAd " + tempAdID; //the sql request
             SqlCommand cmd = new SqlCommand(query, connection);
             //use command
             connection.Open();
