@@ -161,6 +161,7 @@
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
     <Content Include="UL\Views\FinaliseAdvertisement.aspx" />
     <Content Include="UL\Views\MessageHistory.aspx" />
+    <Content Include="UL\Views\MessageSentConfirmation.aspx" />
     <Content Include="UL\Views\MyAdvertisements.aspx" />
     <Content Include="UL\Views\MyOffers.aspx" />
     <Content Include="UL\Views\NewAddReviewRequest.aspx" />
@@ -335,6 +336,13 @@
     </Compile>
     <Compile Include="UL\Views\MessageHistory.aspx.designer.cs">
       <DependentUpon>MessageHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\MessageSentConfirmation.aspx.cs">
+      <DependentUpon>MessageSentConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\MessageSentConfirmation.aspx.designer.cs">
+      <DependentUpon>MessageSentConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\MyAdvertisements.aspx.cs">
       <DependentUpon>MyAdvertisements.aspx</DependentUpon>

@@ -79,7 +79,9 @@ namespace SmartWay.UL.Views
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             string tempMessage = txtMessage.Text;
+            // saves to DB at the moment
             UC.savePrivateMessage(tempSenderID, tempRecipientID, adID, tempMessage );
+            Response.Redirect("MessageSentConfirmation.aspx");
 
 
         }
