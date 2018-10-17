@@ -203,7 +203,6 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\jquery-2.1.4.js" />
     <Content Include="scripts\jquery.menu-aim.js" />
-    <Content Include="scripts\main.js" />
     <Content Include="scripts\modernizr.js" />
     <Content Include="UL\Images\cd-arrow.svg" />
     <Content Include="UL\Images\cd-avatar.png" />
