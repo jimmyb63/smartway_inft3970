@@ -171,7 +171,7 @@
                               <div class="col-lg-6">
                                 <div class="imgUp">
                                     <div class="imagePreview"></div>
-                                    <label class="btn btn-primary btn-block">
+                                    <label class="btn btn-primary btn-block mb-3">
                                         Select Image 1<asp:FileUpload
                                             CssClass="uploadFile img"
                                             ID="FileUpload1"
@@ -183,7 +183,7 @@
                             <div class="col-lg-6">
                                 <div class="imgUp">
                                     <div class="imagePreview"></div>
-                                    <label class="btn btn-primary btn-block">
+                                    <label class="btn btn-primary btn-block mb-3">
                                         Select Image 2<asp:FileUpload
                                             CssClass="uploadFile img"
                                             ID="FileUpload2"
@@ -197,7 +197,7 @@
                               <div class="col-lg-6">
                                 <div class="imgUp">
                                     <div class="imagePreview"></div>
-                                    <label class="btn btn-primary btn-block">
+                                    <label class="btn btn-primary btn-block mb-3">
                                         Select Image 3<asp:FileUpload
                                             CssClass="uploadFile img"
                                             ID="FileUpload3"
@@ -209,7 +209,7 @@
                             <div class="col-lg-6">
                                 <div class="imgUp">
                                     <div class="imagePreview"></div>
-                                    <label class="btn btn-primary btn-block">
+                                    <label class="btn btn-primary btn-block mb-3">
                                         Select Image 4<asp:FileUpload
                                             CssClass="uploadFile img"
                                             ID="FileUpload4"
@@ -223,7 +223,7 @@
                               <div class="col-lg-6">
                                 <div class="imgUp">
                                     <div class="imagePreview"></div>
-                                    <label class="btn btn-primary btn-block">
+                                    <label class="btn btn-primary btn-block mb-3">
                                         Select Image 5<asp:FileUpload
                                             CssClass="uploadFile img"
                                             ID="FileUpload5"
@@ -235,7 +235,7 @@
                             <div class="col-lg-6">
                                 <div class="imgUp">
                                     <div class="imagePreview"></div>
-                                    <label class="btn btn-primary btn-block">
+                                    <label class="btn btn-primary btn-block mb-3">
                                         Select Image 6<asp:FileUpload
                                             CssClass="uploadFile img"
                                             ID="FileUpload6"

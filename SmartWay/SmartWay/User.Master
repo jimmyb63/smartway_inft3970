@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link href="Content/smartway.css" rel="stylesheet" />
     <link href="Content/mdb.css" rel="stylesheet" />
+    <link href="Content/smartway.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -192,7 +192,7 @@
                                 <!--Shown on all devices -->
                                 <div class="col-auto">
                                     <div class="d-none d-sm-block">
-                                        <asp:LinkButton ID="btnSearchLg" CssClass="btn btn-primary btn-sm" OnClick="searchLg" runat="server"><i class="fas fa-search"></i> Search</asp:LinkButton>
+                                        <asp:LinkButton ID="btnSearchLg" CssClass="btn btn-primary btn-sm mr-2" OnClick="searchLg" runat="server"><i class="fas fa-search"></i> Search</asp:LinkButton>
                                     </div>
                                     <div class="d-sm-none">
                                         <asp:LinkButton ID="btnSearchSm" CssClass="small-search" OnClick="searchSm" runat="server"><i class="fas fa-search"></i></asp:LinkButton>
@@ -212,13 +212,13 @@
             <div class="row">
                 <div class="col-lg-3 d-none d-lg-block mt-2">
                     <h3><span>Post</span></h3>
-                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostAdvertisement.aspx">Advertisement</a>
-                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12" href="PostForumThread.aspx">Forum Post</a>
+                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12 btn-custom" href="PostAdvertisement.aspx">Advertisement</a>
+                    <a class="blue darken-1 btn btn-block mt-2 col-lg-12 btn-custom" href="PostForumThread.aspx">Forum Post</a>
                     <br />
                     <h3><span>Browse</span></h3>
                     <!--Sidebar Accordion-->
                     <div id="accordion">
-                        <a class="mt-2 blue darken-2 collapsed btn btn-block" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                        <a class="mt-2 blue darken-2 collapsed btn btn-block btn-custom" data-toggle="collapse" href="#collapseOne">Goods<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                         <div id="collapseOne" class="collapse" data-parent="#accordion">
                             <div class="list-group">
                                 <a href="ViewAdvertisementList.aspx?category=goods" class="list-group-item">Browse all Goods</a>
@@ -234,7 +234,7 @@
                                 <a href="ViewAdvertisementList.aspx?subCategory=other" class="list-group-item">Other</a>
                             </div>
                         </div>
-                        <a class="mt-2 blue darken-2 collapsed btn btn-block" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                        <a class="mt-2 blue darken-2 collapsed btn btn-block btn-custom" data-toggle="collapse" href="#collapseTwo">Services<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                         <div id="collapseTwo" class="collapse" data-parent="#accordion">
                             <div class="list-group">
                                 <a href="ViewAdvertisementList.aspx?category=services" class="list-group-item">Browse all Services</a>
@@ -243,7 +243,7 @@
                                 <a href="ViewAdvertisementList.aspx?subCategory=skills required" class="list-group-item">Skills Required</a>
                             </div>
                         </div>
-                            <a class="mt-2 blue darken-2 collapsed btn btn-block" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
+                            <a class="mt-2 blue darken-2 collapsed btn btn-block btn-custom" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewForumPostList.aspx" class="list-group-item">Browse all</a>
@@ -262,10 +262,10 @@
                     <br />
                     <div id="animations" class="animated slideInLeft" runat="server">
                     <h3><span>My Account</span></h3>
-                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12" href="MyAdvertisements.aspx">Advertisements</a>
-                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12" href="MyOffers.aspx">Offers</a>
-                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12" href="#!">Forum Posts</a>
-                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12" href="#!">Messages</a>
+                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="MyAdvertisements.aspx">Advertisements</a>
+                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="MyOffers.aspx">Offers</a>
+                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="#!">Forum Posts</a>
+                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="#!">Messages</a>
                     </div>
                     <% } %>
                     
@@ -299,7 +299,7 @@
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
-                        <h6 class="text-uppercase">Quick Links</h6>
+                        <h6 class="text-uppercase">useful Links</h6>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="Contact.aspx">Contact</a>
@@ -329,7 +329,7 @@
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
-                        <h6 class="text-uppercase">Quick Links</h6>
+                        <h6 class="text-uppercase">useful Links</h6>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="termsofService.aspx#termsofservice">Terms of Service</a>

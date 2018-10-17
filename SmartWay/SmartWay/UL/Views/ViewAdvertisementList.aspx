@@ -20,13 +20,13 @@
         <% value = Request.QueryString["search"];
             }%>
         <%--<div class="mb-2 bg-primary text-white">--%>
-            <div class="row p-2 bg-primary text-white">
+            <div class="row p-2 bg-primary text-white align-content-center align-items-center align">
                 <div class="col-lg-4">
-                    <h5>Search results for <%= value %></h5>
+                    <h6 class="mt-2">Search results for <%= value %></h6>
                 </div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
-                    <asp:DropDownList ID="ddSort" runat="server" CssClass="btn btn-white btn-sm fa-pull-right" AutoPostBack="true" OnSelectedIndexChanged="sortAds">
+                    <asp:DropDownList ID="ddSort" runat="server" CssClass="btn btn-sm btn-white btn-sort fa-pull-right" AutoPostBack="true" OnSelectedIndexChanged="sortAds">
                         <asp:ListItem Enabled="true" Text="Sort by..." Value=""></asp:ListItem>
                         <asp:ListItem Text="Price (High to Low)" Value="h2l"></asp:ListItem>
                         <asp:ListItem Text="Price (Low to High)" Value="l2h"></asp:ListItem>

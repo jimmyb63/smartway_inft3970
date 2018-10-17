@@ -38,10 +38,6 @@ body {
     box-shadow: none;
 }
 
-.btn-sm {
-    border-radius: 3rem;
-}
-
 .hero {
     padding-bottom: 25px;
 }
@@ -109,14 +105,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-    box-shadow: 0px -3px 6px 2px rgba(0,0,0,0.2);
-}
-
-.btn-primary {
-    display: block;
-    border-radius: 0px;
-    box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.2);
-    margin-top: -5px;
+    /*box-shadow: 0px -3px 6px 2px rgba(0,0,0,0.2);*/
 }
 
 /*------------------- displays images on list pages---------------*/
@@ -267,15 +256,13 @@ h3 {
     color: #2196f3 !important; 
 }
 
-/*@media screen and (max-width: 767px) {
-    h4 {
-        font-size: 0.9em;
-    }
+
+/*------------------- Sort by button--------------*/
+.btn-sort{
+    margin:0px;
 }
 
-
-@media screen and (min-width: 768px) {
-    h4 {
-        font-size: 1em;
-    }
-}*/
+/*------------------- removes conflicting hover color for side navigation buttons--------------*/
+a.btn.btn-custom:hover, .btn.btn-custom:focus {
+    color: #e0e0e0;
+}
