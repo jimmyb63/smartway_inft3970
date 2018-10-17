@@ -103,7 +103,7 @@
                     <td />
                 </EmptyItemTemplate>
                 <ItemTemplate>
-                    <div class="col-lg-4  col-6 my-2">
+                    <div class="col-lg-4  col-6 my-2 mx-1">
                         <div class="card zoom hoverable z-depth-3">
                             <!-- Card image -->
                             <div class="view overlay" style="background-color: #263238">

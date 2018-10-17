@@ -19,8 +19,23 @@
             { %>
         <% value = Request.QueryString["search"];
             }%>
-        <div class="p-2 mb-2 bg-primary text-white">Search results for <%= value %></div>
-        <div class="p-2 mb-2 bg-info text-white">Refine Search</div>
+        <%--<div class="mb-2 bg-primary text-white">--%>
+            <div class="row p-2 bg-primary text-white">
+                <div class="col-lg-4">
+                    <h5>Search results for <%= value %></h5>
+                </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <asp:DropDownList ID="ddSort" runat="server" CssClass="btn btn-white btn-sm fa-pull-right" AutoPostBack="true" OnSelectedIndexChanged="sortAds">
+                        <asp:ListItem Enabled="true" Text="Sort by..." Value=""></asp:ListItem>
+                        <asp:ListItem Text="Price (High to Low)" Value="h2l"></asp:ListItem>
+                        <asp:ListItem Text="Price (Low to High)" Value="l2h"></asp:ListItem>
+                        <asp:ListItem Text="New to Old" Value="n2o"></asp:ListItem>
+                        <asp:ListItem Text="Old to New" Value="o2n"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+        <%--</div>--%>
         <div class="row">
             <asp:HiddenField ID="ID" runat="server" />
             <asp:ListView 
