@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartWay.DAL.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,10 @@ namespace SmartWay.BL.Models
     {
         //Private Variables
         private int ID;
+        private int privateMessageChainID;
         private int sendersUserID;
         private int receiverUserID;
-        //private int addID;
+        private int addID;
         //private int forumID;
         private string messageDetails;
         private bool messageRead;
@@ -46,10 +48,11 @@ namespace SmartWay.BL.Models
         }
 
         //Constructor for when reading from DB
-        public PrivateMsg(int tempID, int tempSendersUserID, int tempReceiverUserID,
+        public PrivateMsg(int tempID, int tempPrivateMessageChainID, int tempSendersUserID, int tempReceiverUserID,
                 string tempMessageDetails, bool tempMessageRead, bool tempMessageReplied, DateTime tempCreationDate, bool tempActive)
         {
             ID = tempID;
+            privateMessageChainID = tempPrivateMessageChainID;
             sendersUserID = tempSendersUserID;
             receiverUserID = tempReceiverUserID;
             //addID = tempAddID;
@@ -58,9 +61,18 @@ namespace SmartWay.BL.Models
             messageReplied = tempMessageReplied;
             creationDate = tempCreationDate;
             active = tempActive;
+            addID = getAddIDPrivateMessageChain(tempPrivateMessageChainID);
         }
 
+        //Action Methods
 
+        public int getAddIDPrivateMessageChain(int tempPrivateMessageChainID)
+        {
+            int returnAdID = 0;
+            UserControls UC = new UserControls();
+            returnAdID = UC.getAddIDPrivateMessageChain(tempPrivateMessageChainID);
+            return returnAdID;
+        }
 
         //Getter and Setters
         public int pmID
@@ -72,6 +84,18 @@ namespace SmartWay.BL.Models
             set
             {
                 ID = value;
+            }
+        }
+
+        public int pmPrivateMessageChainID
+        {
+            get
+            {
+                return privateMessageChainID;
+            }
+            set
+            {
+                privateMessageChainID = value;
             }
         }
 
@@ -100,7 +124,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        /*public int pmAdID
+        public int pmAdID
         {
             get
             {
@@ -112,7 +136,7 @@ namespace SmartWay.BL.Models
             }
         }
 
-        public int pmForumID
+        /*public int pmForumID
         {
             get
             {

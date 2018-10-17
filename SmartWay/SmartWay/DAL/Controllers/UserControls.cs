@@ -439,6 +439,37 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<PrivateMsg> getPrivateMessageListforUser(int tempUserID)
+        {
+            List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT * FROM PrivateMessage WHERE sendersUserID = @tempUserID OR receiverUserID = @tempUserID ORDER BY PrivateMessageChainID, creationDate ASC"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempUserID", SqlDbType.Int).Value = tempUserID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                PrivateMsg newPM = new PrivateMsg(
+                                        (int)reader["ID"],
+                                        (int)reader["PrivateMessageChainID"],
+                                        (int)reader["sendersUserID"],
+                                        (int)reader["receiverUserID"],
+                                        reader["messageDetails"].ToString(),
+                                        (bool)reader["messageRead"],
+                                        (bool)reader["messageReplied"],
+                                        (DateTime)reader["creationDate"],
+                                        (bool)reader["active"]);
+                currentPrivateMessage.Add(newPM);
+            }
+            connection.Close();
+            return currentPrivateMessage;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<PrivateMsg> getPrivateMessageList (int tempSenderID, int tempReceiversID, int tempAdID)
         {
             List<PrivateMsg> currentPrivateMessage = new List<PrivateMsg>();
@@ -457,6 +488,7 @@ namespace SmartWay.DAL.Controllers
                 //for each rows of the database corresponding to the request we create a product and add it to the list
                 PrivateMsg newPM = new PrivateMsg(
                                         (int)reader["ID"],
+                                        (int)reader["PrivateMessageChainID"],
                                         (int)reader["sendersUserID"],
                                         (int)reader["receiverUserID"],
                                         //(int)reader["addID"],
@@ -551,6 +583,7 @@ namespace SmartWay.DAL.Controllers
                 //for each rows of the database corresponding to the request we create a product and add it to the list
                 PrivateMsg newPrivateMessage = new PrivateMsg(
                                         (int)reader["ID"],
+                                        (int)reader["PrivateMessageChainID"],
                                         (int)reader["sendersUserID"],
                                         (int)reader["receiverUserID"],
                                         //(int)reader["addID"],
@@ -566,6 +599,28 @@ namespace SmartWay.DAL.Controllers
             }
             connection.Close();
             return tempPrivateMessage;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int getAddIDPrivateMessageChain(int tempPrivateMessageChainID)
+        {
+            int returnAdID = 0;
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            string query = "SELECT addID FROM PrivateMessageChain WHERE ID = @tempPrivateMessageChainID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempPrivateMessageChainID", SqlDbType.Int).Value = tempPrivateMessageChainID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                int tempAdID = (int)reader["addID"];
+                returnAdID = tempAdID;
+            }
+            connection.Close();
+            return returnAdID;
         }
 
 

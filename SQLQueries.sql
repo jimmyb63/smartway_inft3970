@@ -161,3 +161,6 @@ SELECT ForumPost.ID AS ForumPostID, ForumPost.personID, ForumPost.title, ForumPo
 FROM ForumPostTags
 INNER JOIN ForumPost ON ForumPost.ID = ForumPostTags.ForumPostID
 INNER JOIN ForumTag ON ForumPostTags.ForumTagID=ForumTag.ID;
+
+
+SELECT * FROM PrivateMessage WHERE sendersUserID = 1003 OR receiverUserID = 1003 ORDER BY PrivateMessageChainID, creationDate ASC

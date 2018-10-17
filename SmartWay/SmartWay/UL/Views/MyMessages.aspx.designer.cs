@@ -13,42 +13,6 @@ namespace SmartWay.UL.Views {
     public partial class MyMessages {
         
         /// <summary>
-        /// lblSender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSender;
-        
-        /// <summary>
-        /// lblAdDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdDetails;
-        
-        /// <summary>
-        /// lblSentDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSentDate;
-        
-        /// <summary>
-        /// lblAdTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAdTitle;
-        
-        /// <summary>
         /// lvNotRepliedMessages control.
         /// </summary>
         /// <remarks>
@@ -58,21 +22,12 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.ListView lvNotRepliedMessages;
         
         /// <summary>
-        /// gvNotRepliedMessages control.
+        /// ListView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvNotRepliedMessages;
-        
-        /// <summary>
-        /// gvRepliedMessages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRepliedMessages;
+        protected global::System.Web.UI.WebControls.ListView ListView1;
     }
 }
