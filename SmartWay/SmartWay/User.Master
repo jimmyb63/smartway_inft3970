@@ -83,7 +83,7 @@
                                 <a class="dropdown-item" href="MyAdvertisements.aspx"><i class="fas fa-list mr-2"></i>Advertisements</a>
                                 <a class="dropdown-item" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-2"></i>Offers</a>
                                 <a class="dropdown-item" href=".aspx"><i class="far fa-comments mr-2"></i>Forum Posts</a>
-                                <a class="dropdown-item" href=".aspx"><i class="far fa-envelope mr-2"></i>Messages</a>
+                                <a class="dropdown-item" href="MyMessages.aspx"><i class="far fa-envelope mr-2"></i>Messages</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
 

@@ -23,9 +23,13 @@
         <div class="p-2 mb-2 bg-info text-white">Refine Search</div>
         <div class="row">
             <asp:HiddenField ID="ID" runat="server" />
-            <asp:ListView ID="adList" runat="server"
-                DataKeyNames="advertisementID" GroupItemCount="4"
-                ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="GetAds">
+            <asp:ListView 
+                ID="adList" 
+                runat="server"
+                DataKeyNames="advertisementID" 
+                GroupItemCount="4"
+                ItemType="SmartWay.BL.Models.Advertisement" 
+                SelectMethod="GetAds">
                 <EmptyDataTemplate>
                     <div class="col-12 my-2" runat="server">
                         <% if (Request.QueryString["search"] != null) %>
