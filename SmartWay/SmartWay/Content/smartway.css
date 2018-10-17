@@ -9,7 +9,7 @@ body {
 }
 
 
-
+/*------------------- Custom searchbar---------------*/
 .form-control-border {
     border-left-color: rgba(0,0,0,.125);
     border-bottom: none;
@@ -99,7 +99,7 @@ body {
     transform: rotate(0deg);
 }
 
-
+/*------------------- Custom image preview when uploading---------------*/
 .imagePreview {
     width: 100%;
     height: 200px;
@@ -119,6 +119,7 @@ body {
     margin-top: -5px;
 }
 
+/*------------------- displays images on list pages---------------*/
 .thumbnail > a {
     display: block;
     /* 4:3 aspect ratio */
@@ -140,8 +141,8 @@ body {
         margin: auto;
     }
 
+/*------------------- Avatar image---------------*/
 .avatar {
-    /* avatar image */
     position: relative;
     bottom: auto;
     top: 10px;
@@ -165,28 +166,13 @@ body {
     bottom: 0;
 }
 
+/*------------------- Width of navbar dropdowns---------------*/
 .dropdown-menu-small {
     min-width: 14rem;
 }
 
-.inset {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.6), 0 1px 1px rgba(0,0,0,0.1);
-    background-color: transparent !important;
-    z-index: 999;
-}
 
-    .inset img {
-        border-radius: inherit;
-        width: inherit;
-        height: inherit;
-        display: block;
-        position: relative;
-        z-index: 998;
-    }
-
+/*------------------- Profile image in navbar---------------*/
 .noti_container {
     position: relative;
     width: 25px;
@@ -205,6 +191,7 @@ body {
     box-shadow: 1px 1px 1px gray;
 }
 
+/*------------------- Custom text above side navigation---------------*/
 h3 {
     position: relative;
     text-align: center;
@@ -231,7 +218,7 @@ h3 {
         background: #ccc;
     }
 
-/* The heart of the matter */
+/*------------------- horizontal scrolling cards on index---------------*/
 .testimonial-group > .row {
     overflow-x: auto;
     white-space: nowrap;
@@ -242,6 +229,7 @@ h3 {
         float: none;
     }
 
+/*------------------- Custom Scrollbar---------------*/
 /* width */
 ::-webkit-scrollbar {
     height: 5px;
@@ -263,3 +251,16 @@ h3 {
     ::-webkit-scrollbar-thumb:hover {
         background: #29b6f6;
     }
+
+/*@media screen and (max-width: 767px) {
+    h4 {
+        font-size: 0.9em;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    h4 {
+        font-size: 1em;
+    }
+}*/
