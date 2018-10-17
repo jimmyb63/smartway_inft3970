@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-lg-9 mt-2">
         <%-- Main Page Content Goes Here--%>
+        <asp:HiddenField ID="hfAdID" runat="server" />
         <div class="p-2 mb-2 bg-primary text-white">Reply Messages</div>
             <div class="card">
                 <div class="card-body">

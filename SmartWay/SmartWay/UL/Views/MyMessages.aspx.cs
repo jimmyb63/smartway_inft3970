@@ -56,9 +56,9 @@ namespace SmartWay.UL.Views
             Person currentUser = new Person();
             currentUser = (Person)Session["currentUser"];
             int tempSenderID2 = currentUser.userID;
-            tempRecipientID2 = 1003;
-            tempAddID2 = 1003;
-            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageList(tempSenderID2, tempRecipientID2, tempAddID2);
+            //tempRecipientID2 = 1003;
+            //tempAddID2 = 1003;
+            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageListforUser(tempSenderID2);
             return tempPrivateMsg;
         }
 
@@ -66,24 +66,50 @@ namespace SmartWay.UL.Views
         {
             UserControls UC = new UserControls();
             Person currentUser = new Person();
-            currentUser = (Person)Session["currentUser"];
-            int tempSenderID2 = currentUser.userID;
-            tempRecipientID2 = 1003;
-            tempAddID2 = 1003;
-            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageListReplied(tempSenderID2, tempRecipientID2, tempAddID2);
-            return tempPrivateMsg;
+            List<PrivateMsg> tempPrivateMsg = getPrivateMsgList();
+            List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
+            for (var i = 0; i < tempPrivateMsg.Count; i++)
+            {
+                if (tempPrivateMsg[i].pmMessageReplied == true)
+                {
+                    tempReturnList.Add(tempPrivateMsg[i]);
+                }
+            };
+            return tempReturnList;
         }
 
         public List<PrivateMsg> getNotRepliedPrivateMsgList()
         {
             UserControls UC = new UserControls();
             Person currentUser = new Person();
-            currentUser = (Person)Session["currentUser"];
-            int tempSenderID2 = currentUser.userID;
-            tempRecipientID2 = 1003;
-            tempAddID2 = 1003;
-            List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageListNotReplied(tempSenderID2, tempRecipientID2, tempAddID2);
-            return tempPrivateMsg;
+            List<PrivateMsg> tempPrivateMsg = getPrivateMsgList();
+            List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
+            for (var i = 0; i < tempPrivateMsg.Count; i++)
+            {
+                if (tempPrivateMsg[i].pmMessageReplied == false)
+                {
+                    tempReturnList.Add(tempPrivateMsg[i]);
+                }
+            };
+            return tempReturnList;
+        }
+
+        public string getAdTitle(int tempAdID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            Advertisement currentAd = new Advertisement();
+            currentAd = AC.getAd(tempAdID);
+            string returnAddTitle = currentAd.advertisementTitle;
+            return returnAddTitle;
+        }
+
+        public string getUsername(int tempUserID)
+        {
+            UserControls UC = new UserControls();
+            Person currentUser = new Person();
+            currentUser = UC.getUserByID(tempUserID);
+            string returnUserName = currentUser.userName;
+            return returnUserName;
         }
     }
 }
