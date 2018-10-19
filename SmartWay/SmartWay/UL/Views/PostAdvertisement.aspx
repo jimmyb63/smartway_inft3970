@@ -6,6 +6,7 @@
        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
        function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
     </script>
+            <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS_nOmu7Z5my3ELOiqHOgxrzOnoHfvJNU&libraries=places&callback=initAutocomplete" async defer></script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -136,25 +137,6 @@
 							ControlToValidate="txtPrice">
 						</asp:RegularExpressionValidator>
                     </div>
-                    <%--Might not need this code - radio buttons next to price --%>
-                    <%--<div class="col-lg-8 mt-2">
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Amount</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Negotiable</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Free</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">Swap / Trade</label>
-                    </div>
-                </div>--%>
                 </div>
                 <br />
                 <hr />
@@ -266,7 +248,8 @@
                 </>
             </div>
             <div class="warning">
-                <asp:Label Text="" ID="errorMessage" runat="server" /></div>
+                <asp:Label Text="" ID="errorMessage" runat="server" />
+            </div>
             <% }
                 else
                 {%>

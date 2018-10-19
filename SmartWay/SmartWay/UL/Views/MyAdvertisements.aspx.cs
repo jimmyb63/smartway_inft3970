@@ -15,6 +15,7 @@ namespace SmartWay.UL.Views
         {
             if (Session["currentUser"] == null)
             {
+                Session["returnURL"] = "MyAdvertisements.aspx";
                 Response.Redirect("Login.aspx");
             }
         }

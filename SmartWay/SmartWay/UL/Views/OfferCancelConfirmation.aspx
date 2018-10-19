@@ -7,7 +7,7 @@
     <div class="col-lg-9 mt-2">
         <div class="alert alert-success text-center animated flipInX" role="alert">
             <h4 class="alert-heading">Your Offer has been cancelled</h4>
-            <p>Click <a href="index.aspx">here</a> to go to home.</p>
+            <p>Click <a href="MyOffers.aspx">here</a> to go to My Offers.</p>
             <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.</p>
         </div> </div>
     <!-- JavaScript part -->
@@ -16,7 +16,7 @@
         function countdown() {
             seconds = seconds - 1;
             if (seconds < 0) {
-                window.location = "index.aspx";
+                window.location = "MyOffers.aspx";
             } else {
                 document.getElementById("countdown").innerHTML = seconds;
                 window.setTimeout("countdown()", 1000);

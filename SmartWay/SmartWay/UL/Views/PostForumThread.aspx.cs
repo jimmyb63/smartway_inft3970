@@ -27,6 +27,7 @@ namespace SmartWay.UL.Views
         {
             if (Session["currentUser"] == null)
             {
+                Session["returnURL"] = "PostForumThread.aspx";
                 Response.Redirect("Login.aspx");
             }
 

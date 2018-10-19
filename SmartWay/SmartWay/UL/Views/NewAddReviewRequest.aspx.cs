@@ -13,6 +13,7 @@ namespace SmartWay.UL.Views
         {
             if (Session["currentUser"] == null)
             {
+                Session["returnURL"] = "NewAddReviewRequest.aspx";
                 Response.Redirect("Login.aspx");
             }
         }

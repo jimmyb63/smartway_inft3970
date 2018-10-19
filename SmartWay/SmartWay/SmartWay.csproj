@@ -75,6 +75,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -136,6 +140,7 @@
     <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
     <Content Include="UL\Images\ProfileImg\1012.png" />
     <Content Include="UL\Images\ProfileImg\1014.png" />
+    <Content Include="UL\Images\reuseBanner.png" />
     <Content Include="UL\Images\smartway-map-pin.png" />
     <Content Include="UL\Images\TestImg\1000.png" />
     <Content Include="UL\Images\TestImg\1001.jpg" />
@@ -224,6 +229,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\Controllers\MailSender.cs" />
     <Compile Include="BL\Controllers\SMSSender.cs" />
     <Compile Include="BL\Controllers\Validation.cs" />

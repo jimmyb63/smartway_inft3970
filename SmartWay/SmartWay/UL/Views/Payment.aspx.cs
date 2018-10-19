@@ -13,6 +13,8 @@ namespace SmartWay.UL.Views
         {
             if (Session["currentUser"] == null)
             {
+                int adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
+                Session["returnURL"] = "Payment.aspx?advertisementID=" + adID;
                 Response.Redirect("Login.aspx");
             }
         }

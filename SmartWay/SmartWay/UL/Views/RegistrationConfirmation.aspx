@@ -16,7 +16,7 @@
         function countdown() {
             seconds = seconds - 1;
             if (seconds < 0) {
-                window.location = "index.aspx";
+                window.location = "Login.aspx";
             } else {
                 document.getElementById("countdown").innerHTML = seconds;
                 window.setTimeout("countdown()", 1000);

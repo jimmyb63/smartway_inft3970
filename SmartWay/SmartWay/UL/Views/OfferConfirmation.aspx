@@ -9,7 +9,7 @@
     <!--New style sample for confirmation pages-->
     <div class="col-lg-9 mt-2">
         <div class="alert alert-success text-center animated flipInX" role="alert">
-            <h4 class="alert-heading">Your offer has been sucessfully submitted</h4>
+            <h4 class="alert-heading">Your offer has been submitted</h4>
             <% string adID = Request.QueryString["advertisementID"]; %>
             <p>Click <a href="ViewAdvertisement.aspx?advertisementID=<%=adID %>">here</a> to return to Advertisement.</p>
             <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.</p>
@@ -21,7 +21,7 @@
         function countdown() {
             seconds = seconds - 1;
             if (seconds < 0) {
-                window.location = "index.aspx";
+                window.location = "ViewAdvertisement.aspx?advertisementID=".concat(Request.QueryString["advertisementID"]);
             } else {
                 document.getElementById("countdown").innerHTML = seconds;
                 window.setTimeout("countdown()", 1000);
