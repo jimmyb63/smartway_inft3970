@@ -133,7 +133,7 @@
 							runat="server"
 							ErrorMessage="Numbers only."
 							ForeColor="Red"
-							ValidationExpression="^(?!^0\.00$)(([1-9][\d]{0,6})|([0]))\.[\d]{2}$"
+							ValidationExpression="^\d{1,8}(?:\.\d{1,2})?$"
 							ControlToValidate="txtPrice">
 						</asp:RegularExpressionValidator>
                     </div>
