@@ -17,7 +17,7 @@
                     <img class="d-block img-fluid" src="../Images/reuseBanner.png" alt="First slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block img-fluid" src="../Images/GirlBanner1.png" alt="First slide" />
+                    <img class="d-block img-fluid" src="../Images/liveBanner.png" alt="First slide" />
                 </div>
             </div>
             <a class="carousel-control-prev"

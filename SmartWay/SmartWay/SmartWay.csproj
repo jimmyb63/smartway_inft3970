@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -138,6 +139,7 @@
     <Content Include="UL\Images\DefaultImg\GenericForumImage.png" />
     <Content Include="UL\Images\GirlBanner1.png" />
     <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
+    <Content Include="UL\Images\liveBanner.png" />
     <Content Include="UL\Images\ProfileImg\1012.png" />
     <Content Include="UL\Images\ProfileImg\1014.png" />
     <Content Include="UL\Images\reuseBanner.png" />
@@ -610,6 +612,8 @@
           <DevelopmentServerPort>51728</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:51728/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:51728/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
