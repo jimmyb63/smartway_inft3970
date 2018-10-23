@@ -13,15 +13,6 @@ namespace SmartWay.UL.Views {
     public partial class ViewForumPostList {
         
         /// <summary>
-        /// ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ID;
-        
-        /// <summary>
         /// forumList control.
         /// </summary>
         /// <remarks>

@@ -8,7 +8,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--New style sample for confirmation pages-->
     <div class="col-lg-9 mt-2">
-        <div class="alert alert-success text-center animated flipInX" role="alert">
+        <div class="alert alert-warning text-center animated flipInX" role="alert">
             <h4 class="alert-heading">Your offer has been submitted</h4>
             <% string adID = Request.QueryString["advertisementID"]; %>
             <p>Click <a href="ViewAdvertisement.aspx?advertisementID=<%=adID %>">here</a> to return to Advertisement.</p>

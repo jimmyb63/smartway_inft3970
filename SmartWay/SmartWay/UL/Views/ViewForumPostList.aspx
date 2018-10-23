@@ -11,7 +11,7 @@
         <div class="p-2 mb-2 bg-primary text-white">Search results for <%= value %></div>
         <div class="p-2 mb-2 bg-info text-white">Refine Search</div>
         <div class="row">
-            <asp:HiddenField ID="ID" runat="server" />
+            <%--<asp:HiddenField ID="ID" runat="server" />--%>
             <asp:ListView ID="forumList" runat="server"
                 DataKeyNames="forumID" GroupItemCount="4"
                 ItemType="SmartWay.BL.Models.ForumThread" SelectMethod="getForumPosts">

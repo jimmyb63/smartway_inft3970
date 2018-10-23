@@ -41,7 +41,7 @@ namespace SmartWay.UL.Views
                     string DOB = txtDOB.Text;
                     string password = txtPassword.Text;
                     int phoneNumber = Convert.ToInt32(txtPhone.Text);
-                    int paypalID = 20;
+                    //int paypalID = 20;
                     string uNum = "";
                     uNum = txtUnitNumber.Text;
                     string sNum = txtStreetNumber.Text;

@@ -30,7 +30,7 @@ namespace SmartWay.UL.Views
         string tempAdReference;
         int tempRecipientID;
         Advertisement tempAd = new Advertisement();  
-        string tempMessage = ""; // add Kind regards + Username of the sender
+        //string tempMessage = ""; // add Kind regards + Username of the sender
 
 
         protected void Page_Load(object sender, EventArgs e)

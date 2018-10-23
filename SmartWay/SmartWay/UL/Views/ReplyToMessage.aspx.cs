@@ -31,7 +31,7 @@ namespace SmartWay.UL.Views
         Person tempRecipient = new Person();
         // need an ID
         int tempRecipientID;
-        int tempRecipientID2;
+        //int tempRecipientID2;
         string tempRecipientUsername;
         
 
@@ -40,7 +40,7 @@ namespace SmartWay.UL.Views
         // need a title
         string tempTitle;               
         int adID;
-        int tempAddID2;
+        //int tempAddID2;
 
         // LOGGED ID:
         Person tempCurrent = new Person();

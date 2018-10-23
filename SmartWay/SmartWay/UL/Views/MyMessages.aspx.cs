@@ -13,37 +13,37 @@ namespace SmartWay.UL.Views
     {
         AdvertisementControls AC = new AdvertisementControls();
         UserControls UC = new UserControls();
-        int privateMessageID = 1000; // for testing
+        //int privateMessageID = 1000; // for testing
 
         // PRIVATE MESSAGE:
         PrivateMsg tempPrivateMessage = new PrivateMsg();
-        DateTime tempSentDate = new DateTime();
+        //DateTime tempSentDate = new DateTime();
 
         // SENDER:
         Person tempSender = new Person();
         // need username and ID
-        string tempSenderUsername;
-        int tempSenderID;
+        //string tempSenderUsername;
+        //int tempSenderID;
 
 
         // RECIPIENT:
         Person tempRecipient = new Person();
         // need an ID
-        int tempRecipientID;
-        int tempRecipientID2;
-        string tempRecipientUsername;
+        //int tempRecipientID;
+        //int tempRecipientID2;
+        //string tempRecipientUsername;
 
 
         // AD: 
         Advertisement tempAd = new Advertisement();
         // need a title
-        string tempTitle;
-        int adID;
-        int tempAddID2;
+        //string tempTitle;
+        //int adID;
+        //int tempAddID2;
 
         // LOGGED ID:
         Person tempCurrent = new Person();
-        int tempCurrentID;
+        //int tempCurrentID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
