@@ -1046,6 +1046,7 @@ BEGIN
 			INSERT INTO ForumImage (filePath, userID, forumPostID)
 			VALUES (@tempFilePath, @tempPersonID, @returnForumPostID);
 			SET @tempImageID = (SELECT MAX(ID) FROM ForumImage);
+			SELECT @returnForumPostID;
 		END
 	END
 END
