@@ -13,6 +13,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 
 using SmartWay.BL.Models;
+using System.Text;
+
 namespace SmartWay.UL.Views
 {
     public partial class PostForumThread : System.Web.UI.Page
@@ -21,7 +23,7 @@ namespace SmartWay.UL.Views
         ForumControls FC = new ForumControls();
         UserControls UC = new UserControls();
         Person currentUser = new Person();
-
+        List<ForumTag> tempTagsSelected = new List<ForumTag>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,22 +33,27 @@ namespace SmartWay.UL.Views
                 Response.Redirect("Login.aspx");
             }
 
-            List<ForumTag> forumTags = getForumTags();
-            cblForumTags.DataSource = forumTags;
-            cblForumTags.DataTextField = "forumTagName";
-            cblForumTags.DataValueField = "forumTagID";
-            cblForumTags.DataBind();
+            //List<ForumTag> forumTags = getForumTags();
+            //cblForumTags.DataSource = forumTags;
+            //cblForumTags.DataTextField = "forumTagName";
+            //cblForumTags.DataValueField = "forumTagID";
+            //cblForumTags.DataBind();
 
             //gvForsaleItems.DataSource = saleItems;
             //gvForsaleItems.DataBind();
         }
 
-        public List<ForumTag> getForumTags()
+        //public List<ForumTag> getForumTags()
+        public void getForumTags(object sender, EventArgs e)
         {
 
             ForumControls FC = new ForumControls();
             List<ForumTag> tempTagList = FC.getForumTags();
-            return tempTagList;
+            //return tempTagList;
+            cblForumTags.DataSource = tempTagList;
+            cblForumTags.DataTextField = "forumTagName";
+            cblForumTags.DataValueField = "forumTagID";
+            cblForumTags.DataBind();
         }
 
         protected void postAd(object sender, EventArgs e)
@@ -75,20 +82,47 @@ namespace SmartWay.UL.Views
             }
 
 
-            /*//To Add  Tags Linked to ForumPost
-            List <string> strItem = new List<string>();
-            foreach (ListItem item in lbForumTags.Items)
+            if (cblForumTags.SelectedItem != null)
             {
-                if (item.Selected)
+                List<ForumTag> currentTagsSelected = new List<ForumTag>();
+                foreach (ListItem li in cblForumTags.Items)
                 {
-                    string tempTagName = item.Text;
-                    strItem.Add(tempTagName);
+                    if (li.Selected)
+                    {
+                        int tempID = Convert.ToInt32(li.Value);
+                        ForumTag tempTag = new ForumTag(tempID, li.Text);
+                        currentTagsSelected.Add(tempTag);
+                    }
                 }
-            }*/
+                FC.addForumTagsToForumPost(currentTagsSelected, forumID);
+            }
+            //To Add  Tags Linked to ForumPost
 
 
 
 
+        }
+
+        protected void cblForumTags_SelectedIndexChanged
+                (object sender, EventArgs e)
+        {
+            //if (cblForumTags.SelectedItem == null)
+            //{
+            //    lblTestData.Text = "<br />No Selections Made.";
+            //}
+            //else
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Selected are:");
+                foreach (ListItem li in cblForumTags.Items)
+                {
+                    if (li.Selected)
+                    {
+                        sb.Append("<br/>" + li.Value + " - " + li.Text);
+                    }
+                }
+                lblTestData.Text = sb.ToString();
+            }
         }
 
         protected string forumImageUpload(Bitmap image, int index, int forumID, string fileName, int userID)
@@ -189,6 +223,32 @@ namespace SmartWay.UL.Views
         {
             //Redirect To NewForumTag.aspx
             Response.Redirect("NewForumTag.aspx");
+        }
+
+        protected void cblForumTags_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            if (cblForumTags.SelectedItem == null)
+            {
+                lblTestData.Text = "<br />No Selections Made.";
+            }
+            else
+            {
+                List<ForumTag> currentTagsSelected = new List<ForumTag>();
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Selected are:");
+                foreach (ListItem li in cblForumTags.Items)
+                {
+                    if (li.Selected)
+                    {
+                        sb.Append("<br/>" + li.Value + " - " + li.Text);
+                        int tempID = Convert.ToInt32(li.Value);
+                        ForumTag tempTag = new ForumTag(tempID, li.Text);
+                        currentTagsSelected.Add(tempTag);
+                    }
+                }
+                lblTestData.Text = sb.ToString();
+                tempTagsSelected = currentTagsSelected;
+            }
         }
     }
 }
