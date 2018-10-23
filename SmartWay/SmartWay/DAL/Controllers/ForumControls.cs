@@ -31,7 +31,7 @@ namespace SmartWay.DAL.Controllers
 
 
         //sp_NewForumPost
-        [DataObjectMethod(DataObjectMethodType.Insert)]
+        /*[DataObjectMethod(DataObjectMethodType.Insert)]
         public void addForumPost(int tempPersonID, string tempTitle, string tempForumDescription, string tempFilePath)
         {
             // Add address to database
@@ -46,8 +46,47 @@ namespace SmartWay.DAL.Controllers
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-            //int addressID = getAddressID(uNum, sNum, sName, pCode);
-            //return addressID;
+            int addressID = getAddressID(uNum, sNum, sName, pCode);
+            return addressID;
+        }*/
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public int addForumPost(int tempPersonID, string tempTitle, string tempForumDescription, string tempFilePath)
+        {
+            SqlConnection connection = new SqlConnection(getConnectionString());
+            string procedure = "sp_NewForumPost";
+            SqlCommand cmd = new SqlCommand(procedure, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+            param = cmd.Parameters.Add("@tempPersonID", SqlDbType.Int);
+            param.Value = tempPersonID;
+            param = cmd.Parameters.Add("@tempTitle", SqlDbType.VarChar, 50);
+            param.Value = tempTitle;
+            param = cmd.Parameters.Add("@tempForumDescription", SqlDbType.VarChar, 500);
+            param.Value = tempForumDescription;
+            param = cmd.Parameters.Add("@tempFilePath", SqlDbType.VarChar, 260);
+            param.Value = tempFilePath;
+            param = cmd.Parameters.Add("@returnForumPostID", SqlDbType.Int);
+            param.Direction = ParameterDirection.Output;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            int forumID = (int)param.Value;
+            return forumID;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void addForumImage(string tempFilePath, int tempUserID, int tempForumID)
+        {
+            SqlConnection connection = new SqlConnection(getConnectionString());
+            string query = "INSERT INTO ForumImage (filePath, userID, forumPostID) VALUES(@tempFilePath, @tempUserID, @tempForumID)";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempFilePath", SqlDbType.VarChar, 260).Value = tempFilePath;
+            cmd.Parameters.Add("@tempUserID", SqlDbType.Int).Value = tempUserID;
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         //sp_LinkForumTag
