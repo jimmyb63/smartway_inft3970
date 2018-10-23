@@ -1038,7 +1038,6 @@ BEGIN
 	ELSE
 	BEGIN
 		BEGIN --Image Filepath Was Supplied
-			
 			INSERT INTO ForumPost (personID, title, forumDescription) 
 			VALUES(@tempPersonID, @tempTitle, @tempForumDescription);
 			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
@@ -1046,6 +1045,7 @@ BEGIN
 			INSERT INTO ForumImage (filePath, userID, forumPostID)
 			VALUES (@tempFilePath, @tempPersonID, @returnForumPostID);
 			SET @tempImageID = (SELECT MAX(ID) FROM ForumImage);
+			SELECT @returnForumPostID;
 		END
 	END
 END
