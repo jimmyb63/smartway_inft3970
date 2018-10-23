@@ -4,8 +4,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      
     <!------- Page Content -------->
-        <div class="col-lg-9 mt-2">
-            <div class="p-2 mb-2 bg-primary text-white">Post a Forum Thread</div>
+    <asp:HiddenField ID="hfSelectedForumTags" runat="server" />    
+    <div class="col-lg-9 mt-2">
+        <div class="p-2 mb-2 bg-primary text-white">Post a Forum Thread</div>
             <div class="card">
             <!------- Main Page Content Goes Here-------->
             <div class="card-body">
@@ -31,13 +32,17 @@
                 <hr />
                 <h5>Select Tags that Best Apply</h5>
                 <asp:CheckBoxList 
-                    ID="cblForumTags" 
-                    CssClass="form-group" 
+                    ID="cblForumTags"
+                    oninit="getForumTags"
+                    AutoPostBack="true"
+                    CssClass="form-group"
                     RepeatLayout="Table" 
                     RepeatColumns = "3" 
                     RepeatDirection="Horizontal" 
-                    runat="server">
+                    runat="server" OnSelectedIndexChanged="cblForumTags_SelectedIndexChanged1">
+                    <asp:ListItem>Item 1</asp:ListItem>
                 </asp:CheckBoxList>
+
                 <asp:Button 
                     ID="btnAddforumTag" 
                     CssClass="btn btn-block btn-info" 
@@ -45,6 +50,7 @@
                     runat="server" 
                     OnClick="btnAddforumTag_Click" />
                 <hr />
+                <asp:Label ID="lblTestData" runat="server" Text="Selected are:"></asp:Label>
                 <hr />           
                 <div class="form-group">
                     <%-- TEXTBOX --%>

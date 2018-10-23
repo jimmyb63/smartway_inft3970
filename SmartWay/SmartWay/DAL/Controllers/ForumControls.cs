@@ -17,7 +17,7 @@ namespace SmartWay.DAL.Controllers
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addForumTag(string tempTagName)
         {
-            // Add address to database
+            // Add ForumTag to database
             SqlConnection connection = new SqlConnection(getConnectionString());
             String query = "EXEC sp_NewForumTag @tagName, 2222";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -30,25 +30,25 @@ namespace SmartWay.DAL.Controllers
         }
 
 
-        //sp_NewForumPost
-        /*[DataObjectMethod(DataObjectMethodType.Insert)]
-        public int addForumPost(int tempPersonID, string tempTitle, string tempForumDescription, string tempFilePath)
+        //Link ForumTag to Forum Post
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void addForumTagsToForumPost(List<ForumTag> tempTagsSelected, int forumID)
         {
-            // Add address to database
-            SqlConnection connection = new SqlConnection(getConnectionString());
-            String query = "EXEC sp_NewForumPost @tempPersonID, @tempTitle, @tempForumDescription, @tempFilePath, 2222";
-            SqlCommand cmd = new SqlCommand(query, connection);
+            //Using the List we will Loop Through and Add each Tag in the DB to the new Forum Post 
+            for (int i = 0; i < tempTagsSelected.Count; i++)
+            {
+                string tempTagName = tempTagsSelected[i].forumTagName;
+                SqlConnection connection = new SqlConnection(getConnectionString());
+                String query = "EXEC sp_LinkForumTag @tempTagName, @tempForumPostID, 2222";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.Add("@tempTagName", SqlDbType.VarChar, 30).Value = tempTagName;
+                cmd.Parameters.Add("@tempForumPostID", SqlDbType.Int).Value = forumID;
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
 
-            cmd.Parameters.Add("@tempPersonID", SqlDbType.Int).Value = tempPersonID;
-            cmd.Parameters.Add("@tempTitle", SqlDbType.VarChar, 30).Value = tempTitle;
-            cmd.Parameters.Add("@tempForumDescription", SqlDbType.VarChar, 500).Value = tempForumDescription;
-            cmd.Parameters.Add("@tempFilePath", SqlDbType.VarChar, 260).Value = tempFilePath;
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-            int addressID = getAddressID(uNum, sNum, sName, pCode);
-            return addressID;
-        }*/
+        }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
         public int addForumPost(int tempPersonID, string tempTitle, string tempForumDescription, string tempFilePath)
@@ -264,3 +264,4 @@ namespace SmartWay.DAL.Controllers
 
 
 }
+ 
