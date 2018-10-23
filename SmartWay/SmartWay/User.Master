@@ -82,7 +82,7 @@
                                 <a class="dropdown-item" href="Account.aspx?userID=<%=currentUser.userID%>"><i class="fas fa-user-alt mr-2"></i>Profile</a>
                                 <a class="dropdown-item" href="MyAdvertisements.aspx"><i class="fas fa-list mr-2"></i>Advertisements</a>
                                 <a class="dropdown-item" href="MyOffers.aspx"><i class="fas fa-comment-dollar mr-2"></i>Offers</a>
-                                <a class="dropdown-item" href=".aspx"><i class="far fa-comments mr-2"></i>Forum Posts</a>
+                                <a class="dropdown-item" href="ViewForumPostList.aspx"><i class="far fa-comments mr-2"></i>Forum Posts</a>
                                 <a class="dropdown-item" href="MyMessages.aspx"><i class="far fa-envelope mr-2"></i>Messages</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
@@ -147,9 +147,20 @@
                                             ValidationGroup="one"
                                             runat="server" />
                                     </div>
-                                    <asp:Button ID="loginButton" Text="Login" runat="server" OnClick="userLogin" ValidationGroup="one" CssClass="btn btn-sm btn-primary btn-block" />
+                                    <asp:Button 
+                                        ID="loginButton" 
+                                        Text="Login" 
+                                        runat="server" 
+                                        OnClick="userLogin" 
+                                        ValidationGroup="one" 
+                                        CssClass="btn btn-sm btn-primary btn-block" />
                                     <div class="dropdown-divider"></div>
-                                    <asp:LinkButton ID="registerButton" Text="Register" runat="server" PostBackUrl="~/UL/Views/Registration.aspx" CssClass="btn btn-sm btn-primary btn-block" />
+                                    <asp:LinkButton 
+                                        ID="registerButton" 
+                                        Text="Register" 
+                                        runat="server" 
+                                        PostBackUrl="~/UL/Views/Registration.aspx"
+                                        CssClass="btn btn-sm btn-primary btn-block" />
                                     <div class="warning">
                                         <asp:Label Text="" ID="errorMessage" runat="server" />
                                     </div>
@@ -179,23 +190,46 @@
 
                                 <!--Show only on sm devices and up -->
                                 <div class="col d-none d-sm-block">
-                                    <asp:TextBox ID="txtSearchLg" CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="What are you searching for?" runat="server" />
+                                    <asp:TextBox 
+                                        ID="txtSearchLg" 
+                                        CssClass="form-control form-control-lg form-control-borderless" 
+                                        type="search" 
+                                        placeholder="What are you searching for?" 
+                                        runat="server" />
                                 </div>
                                 <!--Show on xs devices only - simplified text to "search"-->
                                 <div class="col d-sm-none">
-                                    <asp:TextBox ID="txtSearchSm" CssClass="form-control form-control-lg form-control-borderless" type="search" placeholder="Search" runat="server" />
+                                    <asp:TextBox 
+                                        ID="txtSearchSm" 
+                                        CssClass="form-control form-control-lg form-control-borderless" 
+                                        type="search" 
+                                        placeholder="Search" 
+                                        runat="server" />
                                 </div>
                                 <!--Shown on lg devices -->
                                 <div class="col d-none d-lg-block">
-                                    <asp:TextBox ID="txtSearchLocation" CssClass="form-control form-control-lg form-control-border" type="search" placeholder="Location" runat="server" />
+                                    <asp:TextBox 
+                                        ID="txtSearchLocation" 
+                                        CssClass="form-control form-control-lg form-control-border" 
+                                        type="search" 
+                                        placeholder="Location" 
+                                        runat="server" />
                                 </div>
                                 <!--Shown on all devices -->
                                 <div class="col-auto">
                                     <div class="d-none d-sm-block">
-                                        <asp:LinkButton ID="btnSearchLg" CssClass="btn btn-primary btn-sm mr-2" OnClick="searchLg" runat="server"><i class="fas fa-search"></i> Search</asp:LinkButton>
+                                        <asp:LinkButton 
+                                            ID="btnSearchLg" 
+                                            CssClass="btn btn-primary btn-sm mr-2" 
+                                            OnClick="searchLg" 
+                                            runat="server"><i class="fas fa-search"></i> Search</asp:LinkButton>
                                     </div>
                                     <div class="d-sm-none">
-                                        <asp:LinkButton ID="btnSearchSm" CssClass="small-search" OnClick="searchSm" runat="server"><i class="fas fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton 
+                                            ID="btnSearchSm" 
+                                            CssClass="small-search" 
+                                            OnClick="searchSm" 
+                                            runat="server"><i class="fas fa-search"></i></asp:LinkButton>
                                     </div>
                                     <%--<a href="ViewAdvertisementList.aspx?search=<% txt %>" class="btn btn-primary btn-sm"><div class="d-none d-sm-block">Search</div><div class="d-sm-none"><i class="fas fa-search"></i></div></a>--%>
                                 </div>
@@ -264,8 +298,9 @@
                     <h3><span>My Account</span></h3>
                     <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="MyAdvertisements.aspx">Advertisements</a>
                     <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="MyOffers.aspx">Offers</a>
-                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="#!">Forum Posts</a>
-                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="#!">Messages</a>
+                        <%-- Forum posts lists all the posts --%>
+                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="ViewForumPostList.aspx">Forum Posts</a>
+                    <a class="blue darken-3 btn btn-block mt-2 col-lg-12 btn-custom" href="MyMessages.aspx">Messages</a>
                     </div>
                     <% } %>
                     

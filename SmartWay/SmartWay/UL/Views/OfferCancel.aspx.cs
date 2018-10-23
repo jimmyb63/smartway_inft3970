@@ -12,7 +12,7 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["currentUser"] != null)
+            if (Session["currentUser"] == null)
             {
                 int offerID = Convert.ToInt32(Request.QueryString["offerID"]);
                 Session["returnURL"] = "OfferCancel.aspx?offerID=" + offerID;

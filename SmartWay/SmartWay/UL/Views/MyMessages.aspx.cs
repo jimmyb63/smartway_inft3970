@@ -47,7 +47,7 @@ namespace SmartWay.UL.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["currentUser"] != null)
+            if (Session["currentUser"] == null)
             {
                 Session["returnURL"] = "MyMessages.aspx";
                 Response.Redirect("Login.aspx");
