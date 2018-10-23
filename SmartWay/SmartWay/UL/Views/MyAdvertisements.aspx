@@ -44,7 +44,7 @@
                         <ItemTemplate>
                             <asp:PlaceHolder runat="server" visible='<%# Item.advertisementBuyerID == 0 %>'>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-lg-3">
                                         <div class="view overlay" style="background-color: #263238">
                                             <div class="thumbnail">
                                                 <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-lg-9">
                                         <div class="card-body align-items-center">
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-6">
@@ -147,7 +147,7 @@
                         <ItemTemplate>
                             <asp:PlaceHolder runat="server" visible='<%# Item.advertisementBuyerID != 0 %>'>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-lg-3">
                                         <div class="view overlay" style="background-color: #263238">
                                             <div class="thumbnail">
                                                 <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>">
@@ -156,7 +156,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-lg-9">
                                         <div class="card-body align-items-center">
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-12">

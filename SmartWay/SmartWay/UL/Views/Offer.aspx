@@ -35,6 +35,22 @@
                     </div>
                     <div class="col-lg-3">
                         <asp:TextBox ID="txtOfferAmount" PlaceHolder="Offer Amount" CssClass="form-control" runat="server" />
+                        <asp:RequiredFieldValidator
+                            ErrorMessage="Price Required"
+                            Display="Dynamic"
+                            ForeColor="Red"
+                            ControlToValidate="txtOfferAmount"
+                            runat="server"></asp:RequiredFieldValidator>
+
+						<%-- ONLY NUMBERS --%>
+						<asp:RegularExpressionValidator
+							ID="PriceRegulator"
+							runat="server"
+							ErrorMessage="Numbers only."
+							ForeColor="Red"
+							ValidationExpression="^\d{1,8}(?:\.\d{1,2})?$"
+							ControlToValidate="txtOfferAmount">
+						</asp:RegularExpressionValidator>
                     </div>
                     <div class="col-lg-3"></div>
                 </div>

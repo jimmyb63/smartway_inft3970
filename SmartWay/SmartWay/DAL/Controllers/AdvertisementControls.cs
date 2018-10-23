@@ -472,6 +472,22 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Update)]
+        public void reactivateOffers(int adID)
+        {
+            int pending = 2;
+            int otherOffer = 3;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "UPDATE AddOffer SET offerAccepted = @pending WHERE addID = @adID AND offerAccepted = @otherOffer";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@pending", SqlDbType.Bit).Value = pending;
+            cmd.Parameters.Add("@otherOffer", SqlDbType.Bit).Value = otherOffer;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update)]
         public void updateOfferAccepted(int accepted, int offerID, int adID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString());
@@ -557,13 +573,15 @@ namespace SmartWay.DAL.Controllers
         public void advertisementSold(int adID, decimal amount, int buyerID)
         {
             DateTime date = DateTime.Now;
+            bool active = false;
             SqlConnection connection = new SqlConnection(getconnectionString());
-            string query = "UPDATE Advertisement SET price = @amount, buyerID = @buyerID, dateCompleted = @date WHERE ID = @adID";
+            string query = "UPDATE Advertisement SET price = @amount, buyerID = @buyerID, dateCompleted = @date, active = @active WHERE ID = @adID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
             cmd.Parameters.Add("@buyerID", SqlDbType.Int).Value = buyerID;
             cmd.Parameters.Add("@amount", SqlDbType.Decimal).Value = amount;
             cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();

@@ -93,11 +93,11 @@ namespace SmartWay.UL.Views
             if (Request.QueryString["sort"] != null)
             {
                 string sort = Request.QueryString["sort"];
-                if (sort == "h2l")
+                if (sort == "l2h")
                 {
                     sortedAds = tempAds.OrderByDescending(x => x.advertisementPrice).ToList();
                 }
-                else if (sort == "l2h")
+                else if (sort == "h2l")
                 {
                     sortedAds = tempAds.OrderByDescending(x => x.advertisementPrice).ToList();
                     sortedAds.Reverse();

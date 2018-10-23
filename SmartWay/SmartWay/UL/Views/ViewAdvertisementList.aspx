@@ -37,7 +37,7 @@
             </div>
         <%--</div>--%>
         <div class="row">
-            <asp:HiddenField ID="ID" runat="server" />
+            <%--<asp:HiddenField ID="ID" runat="server" />--%>
             <asp:ListView 
                 ID="adList" 
                 runat="server"

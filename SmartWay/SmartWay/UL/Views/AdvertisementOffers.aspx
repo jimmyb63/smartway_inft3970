@@ -10,7 +10,7 @@
         <% List<Advertisement> ad = AC.getAdvertisement(adID); %>
         <div class="p-2 mb-2 bg-primary text-white">My Advertisements Offers - <%=ad[0].advertisementTitle %></div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-lg-none d-block">
                 <div class="row">
                     <div class="col-3"><p class="font-weight-bold">Username</p></div>
                     <div class="col-2"><p class="font-weight-bold">Amount</p></div>

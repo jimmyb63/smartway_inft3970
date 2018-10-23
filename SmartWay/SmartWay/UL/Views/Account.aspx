@@ -19,7 +19,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item pill-1"><a href="" data-target="#profile" data-toggle="tab" class="nav-link active">My profile</a> </li>
                 <li class="nav-item pill-1"><a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a> </li>
-                <li class="nav-item pill-1"><a href="" data-target="#ForSaleItems" data-toggle="tab" class="nav-link">For Sale Items</a> </li>
+                <%--<li class="nav-item pill-1"><a href="" data-target="#ForSaleItems" data-toggle="tab" class="nav-link">For Sale Items</a> </li>--%>
             </ul>
         </div>
         <div class="card">
@@ -324,7 +324,7 @@
                                     </div>
                                 </div>
                                 <!---------- Sale Items Tab Content ---------->
-                                <div class="tab-pane" id="ForSaleItems">
+                                <%--<div class="tab-pane" id="ForSaleItems">
                                     <h5 class="mb-3">For Sale Items</h5>
                                     <hr />
                                     <div class="row">
@@ -353,7 +353,7 @@
                                             </Columns>
                                         </asp:GridView>----->
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
 
                             <!---------- Profile Picture and File Upload ---------->

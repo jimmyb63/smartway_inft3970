@@ -9,15 +9,16 @@
             <h4 class="alert-heading">Your Advertisement Has Been Posted</h4>
                         <%-- After successful verification, user is redirected to homepage --%>
                         <p>Click <a href="ViewAdvertisement.aspx?advertisementID=<%=Request.QueryString["advertisementID"] %>">here</a> to go to Advertisement or <a href="PostAdvertisement.aspx">post another ad!</a></p>
-                        <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.
+                        <p>Your browser will automatically take you there in <span id="countdown">10</span> seconds.</p>
         </div> </div>
+    <% string query = Request.QueryString["advertisementID"]; %>
     <!-- JavaScript part -->
     <script type="text/javascript">
         var seconds = 10;
         function countdown() {
             seconds = seconds - 1;
             if (seconds < 0) {
-                window.location = "ViewAdvertisement.aspx?advertisementID=".concat(Request.QueryString["advertisementID"];
+                window.location = "ViewAdvertisement.aspx?advertisementID=".concat(<%=query%>);
             } else {
                 document.getElementById("countdown").innerHTML = seconds;
                 window.setTimeout("countdown()", 1000);

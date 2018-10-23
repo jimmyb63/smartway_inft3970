@@ -34,7 +34,7 @@
                     aria-hidden="true"></span>
                 <span class="sr-only">Next</span> </a>
         </div>
-
+        
         <!-------------Popular Goods----------->
         <div class="p-2 mt-2 blue lighten-1 text-white">Popular Goods</div>
         <div class="col-12 testimonial-group">

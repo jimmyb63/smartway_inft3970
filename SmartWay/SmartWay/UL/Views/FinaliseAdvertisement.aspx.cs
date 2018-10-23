@@ -33,7 +33,9 @@ namespace SmartWay.UL.Views
         {
             AdvertisementControls AC = new AdvertisementControls();
             int offerID = Convert.ToInt32(Request.QueryString["offerID"]);
+            int adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
             AC.cancelOffer(offerID);
+            AC.reactivateOffers(adID);
             Response.Redirect("MyAdvertisements.aspx");
         }
 

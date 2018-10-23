@@ -41,15 +41,15 @@ namespace SmartWay.UL.Views
             AdvertisementControls AC = new AdvertisementControls();
             Person currentUser = (Person)Session["currentUser"];
             List<Advertisement> ads = AC.getSoldUserAdvertisements(currentUser.userID);
-            List<Advertisement> tempAds = new List<Advertisement>();
-            for (int i = 0; i < ads.Count; i++)
-            {
-                if (ads[i].advertisementActive == true)
-                {
-                    tempAds.Add(ads[i]);
-                }
-            }
-            return tempAds;
+            //List<Advertisement> tempAds = new List<Advertisement>();
+            //for (int i = 0; i < ads.Count; i++)
+            //{
+            //    if (ads[i].advertisementActive == true)
+            //    {
+            //        tempAds.Add(ads[i]);
+            //    }
+            //}
+            return ads;
         }
 
         public string getAdImage(int adID)

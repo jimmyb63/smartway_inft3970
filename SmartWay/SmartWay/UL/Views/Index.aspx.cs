@@ -13,7 +13,17 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //if (Session["index"] == null)
+            //{ 
+            //    Session["index"] = "yes";
+            //    Response.Redirect("/UL/Views/Index.aspx");
+            //}
+
+            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            if (url == "https://inft3970smartway.azurewebsites.net/UL/Views/Index.aspx")
+            {
+                Response.Redirect("/UL/Views/Index.aspx");
+            }
         }
 
         public List<Advertisement> getAds()
