@@ -74,7 +74,7 @@ namespace SmartWay.UL.Views
             List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
             for (var i = 0; i < tempPrivateMsg.Count; i++)
             {
-                if (tempPrivateMsg[i].pmMessageReplied == true)
+                if (tempPrivateMsg[i].pmMessageRead == true)
                 {
                     tempReturnList.Add(tempPrivateMsg[i]);
                 }
@@ -90,7 +90,7 @@ namespace SmartWay.UL.Views
             List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
             for (var i = 0; i < tempPrivateMsg.Count; i++)
             {
-                if (tempPrivateMsg[i].pmMessageReplied == false)
+                if (tempPrivateMsg[i].pmMessageRead == false)
                 {
                     tempReturnList.Add(tempPrivateMsg[i]);
                 }
