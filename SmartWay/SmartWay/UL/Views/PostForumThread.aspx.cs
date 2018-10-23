@@ -56,7 +56,24 @@ namespace SmartWay.UL.Views
             string forumTitle = txtTitle.Text;
             int userID = currentUser.userID;
             string tempFilePath = "";
-            FC.addForumPost(userID, forumTitle, tempDescription, tempFilePath);
+            int forumID = FC.addForumPost(userID, forumTitle, tempDescription, tempFilePath);
+
+            if (FileUpload1.HasFile)
+            {
+                int index = 1;
+                string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                Bitmap image = new Bitmap(FileUpload1.FileContent);
+                string filePath = forumImageUpload(image, index, forumID, fileName, currentUser.userID);
+                FC.addForumImage(filePath, currentUser.userID, forumID);
+            }
+            if (FileUpload2.HasFile)
+            {
+                int index = 2;
+                string fileName = Path.GetFileName(FileUpload2.PostedFile.FileName);
+                Bitmap image = new Bitmap(FileUpload2.FileContent);
+                string filePath = forumImageUpload(image, index, forumID, fileName, currentUser.userID);
+                FC.addForumImage(filePath, currentUser.userID, forumID);
+            }
 
 
             /*//To Add  Tags Linked to ForumPost
@@ -69,26 +86,26 @@ namespace SmartWay.UL.Views
                     strItem.Add(tempTagName);
                 }
             }*/
-            
+
 
 
         }
 
-        protected void adImageUpload(Bitmap image, int index, int adID, string fileName, int userID)
+        protected string forumImageUpload(Bitmap image, int index, int forumID, string fileName, int userID)
         {
-            /*string path = "";
+            string path = "";
             string filePath = "";
-            string profileImageFolder = "../Images/AdImg/";
+            string forumImageFolder = "../Images/ForumImg/";
             string fileWithoutExt = Path.GetFileNameWithoutExtension(fileName);
             string fileExtension = Path.GetExtension(fileName.ToLower());
             if (fileExtension == ".jpg" || fileExtension == ".bmp" || fileExtension == ".png")
             {
-                if (!Directory.Exists(Server.MapPath(profileImageFolder)))
+                if (!Directory.Exists(Server.MapPath(forumImageFolder)))
                 {
-                    Directory.CreateDirectory(Server.MapPath(profileImageFolder));
+                    Directory.CreateDirectory(Server.MapPath(forumImageFolder));
                 }
-                path = Server.MapPath(profileImageFolder) + index + "_" + adID + "_" + userID + fileExtension;
-                filePath = profileImageFolder + index + "_" + adID + "_" + userID + fileExtension;
+                path = Server.MapPath(forumImageFolder) + index + "_" + forumID + "_" + userID + fileExtension;
+                filePath = forumImageFolder + index + "_" + forumID + "_" + userID + fileExtension;
                 //FileUpload1.PostedFile.SaveAs(path);
                 Bitmap originalImage = image;
 
@@ -136,8 +153,8 @@ namespace SmartWay.UL.Views
             {
                 errorMessage.Text = "Image format is not correct";
             }
-            return filePath;*/
-            //FileUpload1.SaveAs(profileImageFolder + Path.GetFileName(FileUpload1.FileName));
+            return filePath;
+            //FileUpload1.SaveAs(forumImageFolder + Path.GetFileName(FileUpload1.FileName));
         }
 
         protected void rbAdCategory_SelectedIndexChanged(object sender, EventArgs e)

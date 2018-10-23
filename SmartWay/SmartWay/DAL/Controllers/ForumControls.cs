@@ -75,6 +75,19 @@ namespace SmartWay.DAL.Controllers
             return forumID;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void addForumImage(string tempFilePath, int tempUserID, int tempForumID)
+        {
+            SqlConnection connection = new SqlConnection(getConnectionString());
+            string query = "INSERT INTO ForumImage (filePath, userID, forumPostID) VALUES(@tempFilePath, @tempUserID, @tempForumID)";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempFilePath", SqlDbType.VarChar, 260).Value = tempFilePath;
+            cmd.Parameters.Add("@tempUserID", SqlDbType.Int).Value = tempUserID;
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
 
         //sp_LinkForumTag
         [DataObjectMethod(DataObjectMethodType.Insert)]
