@@ -203,6 +203,7 @@
     <Content Include="UL\Views\PrivateMessage.aspx" />
     <Content Include="UL\Views\ReplyToMessage.aspx" />
     <Content Include="UL\Views\sellerFeedback.aspx" />
+    <Content Include="UL\Views\sellerFeedbackConfirmation.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="UL\Views\ViewForumPost.aspx" />
@@ -544,6 +545,13 @@
     </Compile>
     <Compile Include="UL\Views\sellerFeedback.aspx.designer.cs">
       <DependentUpon>sellerFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\sellerFeedbackConfirmation.aspx.cs">
+      <DependentUpon>sellerFeedbackConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\sellerFeedbackConfirmation.aspx.designer.cs">
+      <DependentUpon>sellerFeedbackConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\ViewAdvertisement.aspx.cs">
       <DependentUpon>ViewAdvertisement.aspx</DependentUpon>

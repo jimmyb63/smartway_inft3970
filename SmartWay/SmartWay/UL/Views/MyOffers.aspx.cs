@@ -71,7 +71,7 @@ namespace SmartWay.UL.Views
         public bool adFinalised(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
-            List<Advertisement> ad = AC.getAdvertisement(adID);
+            List<Advertisement> ad = AC.getSoldUserAdvertisement(adID);
             if (ad[0].advertisementBuyerID != 0)
             {
                 return true;

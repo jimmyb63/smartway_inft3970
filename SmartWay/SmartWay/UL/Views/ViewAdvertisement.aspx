@@ -107,7 +107,12 @@
                                                 <p>Joined: <%#:getSellerRegoDate(Item.advertisementSellerID)%></p>
                                             </li>
                                             <li class="list-inline-item pr-2 black-text">
-                                                <p>Rating: 5 <i class="fas fa-star"></i></p>
+                                                <asp:PlaceHolder Visible="<%# getSellerRating(Item.advertisementSellerID) != null %>" runat="server">
+                                                    <p>Rating: <%#: getSellerRating(Item.advertisementSellerID)%> <i class="fas fa-star"></i></p>
+                                                </asp:PlaceHolder>
+                                                <asp:PlaceHolder Visible="<%# getSellerRating(Item.advertisementSellerID) == null %>" runat="server">
+                                                    <p>New Seller <i class="fas fa-user-plus"></i></p>
+                                                </asp:PlaceHolder>
                                             </li>
                                         </ul>
                                     </div>

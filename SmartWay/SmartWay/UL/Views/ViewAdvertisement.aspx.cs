@@ -59,6 +59,14 @@ namespace SmartWay.UL.Views
             return false;
         }
 
+        public string getSellerRating(int sellerID)
+        {
+            string rating = null;
+            AdvertisementControls AC = new AdvertisementControls();
+            rating = AC.getSellerRating(sellerID);
+            return rating;
+        }
+
         public List<Advertisement> getAd([Control]string adID)
         {
             int id = Convert.ToInt32(adID);

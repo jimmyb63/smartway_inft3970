@@ -29,7 +29,7 @@
             <%="" %>
                 <!----------------- logo ------------------->
                 <a class="navbar-brand" href="Index.aspx">
-                    <img style="width: 160px; display: block;" src="../Images/smartway-logo2.png" /></a>
+                    <img style="width: 150px; display: block;" src="../Images/smartway-logo2.png" /></a>
                 <% if (Session["currentUser"] != null)%>
                 <% {
                         Person user = (Person)Session["currentUser"]; %>

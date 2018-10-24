@@ -86,8 +86,8 @@
                                                     </asp:PlaceHolder>
                                                     <asp:PlaceHolder runat="server" visible='<%# adFinalised(Item.offerAdID) == true %>'>
                                                         <div class="col-lg-12">
-                                                            <a href="PrivateMessage.aspx?advertisementID=<%#:Item.offerAdID %>&buyerID=<%#: Item.offerBuyerID%>">
-                                                                <button type="button" class="btn btn-success btn-block">Message</button>
+                                                            <a href="sellerFeedback.aspx?advertisementID=<%#:Item.offerAdID %>&sellerID=<%#: Item.offerSellerID%>&offerID=<%#: Item.offerID%>">
+                                                                <button type="button" class="btn blue btn-block">Feedback</button>
                                                             </a>
                                                         </div>
                                                     </asp:PlaceHolder>

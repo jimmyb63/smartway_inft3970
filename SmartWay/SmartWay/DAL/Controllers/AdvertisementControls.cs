@@ -317,6 +317,40 @@ namespace SmartWay.DAL.Controllers
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<Advertisement> getSoldUserAdvertisement(int adID)
+        {
+            List<Advertisement> userAdds = new List<Advertisement>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
+            //string query = "EXEC sp_SaleItems " + tempUserID; //the sql request
+            //SqlCommand cmd = new SqlCommand(query, connection);
+            //use command
+            string query = "SELECT * FROM Advertisement WHERE ID = @adID"; //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            //use command
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                //for each rows of the database corresponding to the request we create a product and add it to the list
+                Advertisement tempAd = new Advertisement(
+                                        (int)reader["ID"],
+                                        (int)reader["sellerID"],
+                                        (int)reader["buyerID"],
+                                        reader["title"].ToString(),
+                                        reader["adDescription"].ToString(),
+                                        (DateTime)reader["dateCompleted"],
+                                        (DateTime)reader["creationDate"],
+                                        (decimal)reader["price"],
+                                        (bool)reader["active"]);
+                userAdds.Add(tempAd);
+            }
+            connection.Close();
+            return userAdds;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getSoldUserAdvertisements(int tempUserID)
         {
             List<Advertisement> userAdds = new List<Advertisement>();
@@ -387,6 +421,22 @@ namespace SmartWay.DAL.Controllers
             viewCount = (int)cmd.ExecuteScalar();
             connection.Close();
             return viewCount;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void submitFeedback(int rating, string comment, int buyerID, int sellerID, int adID)
+        {
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "INSERT INTO FeedBack (sellerID, buyerID, addID, rating, comment) VALUES (@sellerID, @buyerID, @adID, @rating, @comment)";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@buyerID", SqlDbType.Int).Value = buyerID;
+            cmd.Parameters.Add("@sellerID", SqlDbType.Int).Value = sellerID;
+            cmd.Parameters.Add("@rating", SqlDbType.Int).Value = rating;
+            cmd.Parameters.Add("@comment", SqlDbType.VarChar, 75).Value = comment;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
@@ -521,6 +571,44 @@ namespace SmartWay.DAL.Controllers
             {
                 offerAccepted(adID);
             }
+        }
+
+        public void deactivateAcceptedOffer(int offerID)
+        {
+            bool active = false;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "UPDATE AddOffer SET active = @active WHERE ID = @offerID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@offerID", SqlDbType.Int).Value = offerID;
+            cmd.Parameters.Add("@active", SqlDbType.Bit).Value = active;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public string getSellerRating(int sellerID)
+        {
+            string rating = null;
+            int ratingNumber = 0;
+            int counter = 0;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT rating FROM FeedBack WHERE sellerID = @sellerID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@sellerID", SqlDbType.Int).Value = sellerID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    ratingNumber = ratingNumber + ((int)reader["rating"]);
+                    counter++;
+                }
+                double result = ratingNumber / counter;
+                rating = result.ToString();
+            }
+            connection.Close();
+            return rating;
         }
 
         public void offerAccepted(int adID)
