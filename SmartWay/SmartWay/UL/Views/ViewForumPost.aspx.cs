@@ -88,5 +88,14 @@ namespace SmartWay.UL.Views
         {
             Response.Redirect("PrivateMessage.aspx");
         }
+
+
+        public List<ForumTag> getForumTagsByForumID()
+        {
+            int forumID = Convert.ToInt32(forumId.Value);
+            ForumControls FC = new ForumControls();
+            List<ForumTag> currentForumTags = FC.getForumTagsbyForumID(forumID);
+            return currentForumTags;
+        }
     }
 }

@@ -93,6 +93,61 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="card mt-2 grey lighten-5">
+                                    <div class="row">                                        
+                                        <div>
+                                            <div class="card-body">
+                                                <!-- List View of Associated Tags -->
+                                                <asp:ListView 
+                                                    ID="lvForumTags" 
+                                                    runat="server"
+                                                    DataKeyNames="forumTagID" 
+                                                    GroupItemCount="4"
+                                                    ItemType="SmartWay.BL.Models.ForumTag" 
+                                                    SelectMethod="getForumTagsByForumID">
+                                                    <%-- Empty Data Template --%>
+                                                    <EmptyDataTemplate>
+                                                        <div class="card h-100">
+                                                        <div class="row">
+                                
+                                                            <div class="col-1 my-2"></div>
+                                                            <br />
+                                                            <hr />
+                                                            <br />
+                                                            <div class="col-10 my-2">
+                                                                <br />
+                                                                    <p class="card-text">
+                                                                    <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
+                                                                    <h4 class="text-center">No Forum Tags Selected.</h4>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-1 my-2"></div>
+                                                        </div>                            
+                                                    </div>
+                                                    </EmptyDataTemplate>   
+                                                    <%-- Empty Item Template --%>
+                                                        <EmptyItemTemplate>
+                                                    <td />
+                                                    </EmptyItemTemplate> 
+                                                    <%-- Group Template --%>
+                                                    <GroupTemplate>
+                                                        <tr id="itemPlaceholderContainer" runat="server">
+                                                            <td id="itemPlaceholder" runat="server"></td>
+                                                        </tr>
+                                                    </GroupTemplate>  
+                                                    <%-- Item Template --%>
+                                                    <ItemTemplate>
+                                                        <!-- Forum Tag Badge -->
+                                                        <a href="#" class="badge badge-primary badge-pill mb-2 p-2"><%#: Item.forumTagName%></a>
+                                                    </ItemTemplate>  
+                                                </asp:ListView>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                         <br />
 

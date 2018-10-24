@@ -127,6 +127,28 @@ namespace SmartWay.DAL.Controllers
             return tempFormTagList;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<ForumTag> getForumTagsbyForumID(int tempForumID)
+        {
+            List<ForumTag> tempFormTagList = new List<ForumTag>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getConnectionString()); //getting connection string
+            string query = "EXEC sp_GetLinkedForumTag @tempForumID";  //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ForumTag tempForumTag = new ForumTag(
+                                (int)reader["ID"],
+                                reader["tagName"].ToString());
+                tempFormTagList.Add(tempForumTag);
+            }
+            connection.Close();
+            return tempFormTagList;
+        }
+
         //getForumPosts
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<ForumThread> getForumPosts()
