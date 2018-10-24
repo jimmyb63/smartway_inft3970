@@ -337,7 +337,7 @@
 
                     </div>
                     <!-- Grid column -->
-                    <hr class="clearfix w-100 d-md-none pb-3">
+                    <hr class="clearfix w-100 d-md-none pb-3" />
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
@@ -352,6 +352,13 @@
                                     int userID = currentUser.userID;%>
                             <li>
                                 <a href="LogoutConfirmation.aspx">Logout</a>
+                            </li>
+                            <li>
+                                <a href="PostAdvertisement.aspx">Post Advertisement</a>
+                            </li>
+                            <li>
+                                <a href="PostForumThread.aspx">Post Forum Thread</a>
+                            </li>
                             </li>
                             <% }
                                 else
