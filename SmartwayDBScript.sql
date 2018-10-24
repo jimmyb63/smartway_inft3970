@@ -1113,6 +1113,21 @@ BEGIN
 END
 RETURN  
 GO
+
+--Get Tag Name of Tag Linked to a Forum Posts
+IF OBJECT_ID('sp_GetLinkedForumTag', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetLinkedForumTag;  
+GO  
+
+CREATE PROCEDURE sp_GetLinkedForumTag(
+	@tempForumPostID INT)
+AS
+	DECLARE @tempTagID INT
+BEGIN
+	SELECT ft.ID, ft.tagName FROM ForumPostTags fpt INNER JOIN ForumTag ft ON fpt.ForumTagID = ft.ID WHERE  ForumPostID = @tempForumPostID;
+END
+RETURN  
+GO
 --
 
 --DATALOAD

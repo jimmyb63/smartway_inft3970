@@ -152,6 +152,8 @@ SELECT * FROM ForumTag WHERE tagName LIKE 'reuse'
 
 SELECT * FROM ForumPostTags
 
+EXEC sp_GetLinkedForumTag 1000;
+
 SELECT ID FROM ForumTag WHERE tagName = 'reuse'
 
 
@@ -164,3 +166,5 @@ INNER JOIN ForumTag ON ForumPostTags.ForumTagID=ForumTag.ID;
 
 
 SELECT * FROM PrivateMessage WHERE sendersUserID = 1003 OR receiverUserID = 1003 ORDER BY PrivateMessageChainID, creationDate ASC
+
+
