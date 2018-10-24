@@ -117,9 +117,16 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="row">
-                                    <div class="col-lg-6 mb-2">
-                                        <asp:Button ID="Button1" Text="Interested" CssClass="btn btn-sm btn-success btn-block" OnClick="WantToBuy" runat="server" />
-                                    </div>
+                                    <asp:PlaceHolder runat="server" visible='<%# pendingOffer() == false %>'>
+                                        <div class="col-lg-6 mb-2">
+                                            <asp:Button ID="btnInterested" Text="Interested" CssClass="btn btn-sm btn-success btn-block" OnClick="WantToBuy" runat="server" />
+                                        </div>
+                                    </asp:PlaceHolder>
+                                    <asp:PlaceHolder runat="server" visible='<%# pendingOffer() == true %>'>
+                                        <div class="col-lg-6 mb-2">
+                                            <button id="Button1" class="btn btn-sm btn-success btn-block" disabled="disabled">Offer Pending</button>
+                                        </div>
+                                    </asp:PlaceHolder>
                                     <div class="col-lg-6 mb-2">
                                         <asp:Button ID="btnContact" Text="Contact" OnClick="ContactSeller" CssClass="btn btn-sm btn-info btn-block" runat="server" />
                                     </div>

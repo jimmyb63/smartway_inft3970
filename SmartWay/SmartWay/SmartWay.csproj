@@ -135,13 +135,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="scripts\JavaScript.js" />
+    <Content Include="smartway-icon.ico" />
+    <Content Include="UL\Images\AdImg\1_1000_1000.jpg" />
     <Content Include="UL\Images\DefaultImg\GenericAddImage.png" />
     <Content Include="UL\Images\DefaultImg\GenericForumImage.png" />
+    <Content Include="UL\Images\girlBanner.png" />
     <Content Include="UL\Images\GirlBanner1.png" />
     <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
     <Content Include="UL\Images\liveBanner.png" />
-    <Content Include="UL\Images\ProfileImg\1012.png" />
     <Content Include="UL\Images\reuseBanner.png" />
+    <Content Include="UL\Images\smartway-icon.ico" />
+    <Content Include="UL\Images\smartway-logo2.png" />
     <Content Include="UL\Images\smartway-map-pin.png" />
     <Content Include="UL\Images\TestImg\1000.png" />
     <Content Include="UL\Images\TestImg\1001.jpg" />
@@ -155,6 +159,19 @@
     <Content Include="UL\Images\TestImg\1_1002_1002.jpg" />
     <Content Include="UL\Images\TestImg\1_1003_1000.jpg" />
     <Content Include="UL\Images\TestImg\1_1003_1006.jpg" />
+    <Content Include="UL\Images\TestImg\1_1004_1005.JPG" />
+    <Content Include="UL\Images\TestImg\1_1005_1007.JPG" />
+    <Content Include="UL\Images\TestImg\1_1006_1013.JPG" />
+    <Content Include="UL\Images\TestImg\1_1007_1010.JPG" />
+    <Content Include="UL\Images\TestImg\1_1008_1007.JPG" />
+    <Content Include="UL\Images\TestImg\1_1009_1002.JPG" />
+    <Content Include="UL\Images\TestImg\1_1010_1003.JPG" />
+    <Content Include="UL\Images\TestImg\1_1011_1002.JPG" />
+    <Content Include="UL\Images\TestImg\1_1012_1009.JPG" />
+    <Content Include="UL\Images\TestImg\1_1013_1009.JPG" />
+    <Content Include="UL\Images\TestImg\1_1014_1011.JPG" />
+    <Content Include="UL\Images\TestImg\1_1015_1014.JPG" />
+    <Content Include="UL\Images\TestImg\1_1016_1009.JPG" />
     <Content Include="UL\Images\TestImg\2_1002_1002.jpg" />
     <Content Include="UL\Views\Account.aspx" />
     <Content Include="UL\Views\AccountVerification.aspx" />
@@ -185,6 +202,7 @@
     <Content Include="UL\Views\PostForumThread.aspx" />
     <Content Include="UL\Views\PrivateMessage.aspx" />
     <Content Include="UL\Views\ReplyToMessage.aspx" />
+    <Content Include="UL\Views\sellerFeedback.aspx" />
     <Content Include="UL\Views\ViewAdvertisement.aspx" />
     <Content Include="UL\Views\ViewAdvertisementList.aspx" />
     <Content Include="UL\Views\ViewForumPost.aspx" />
@@ -520,6 +538,13 @@
     <Compile Include="UL\Views\ReplyToMessage.aspx.designer.cs">
       <DependentUpon>ReplyToMessage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UL\Views\sellerFeedback.aspx.cs">
+      <DependentUpon>sellerFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\sellerFeedback.aspx.designer.cs">
+      <DependentUpon>sellerFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UL\Views\ViewAdvertisement.aspx.cs">
       <DependentUpon>ViewAdvertisement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -594,11 +619,15 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="UL\Images\AdImg\" />
+    <Folder Include="UL\Images\ProfileImg\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

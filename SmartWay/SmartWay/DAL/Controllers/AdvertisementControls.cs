@@ -455,6 +455,25 @@ namespace SmartWay.DAL.Controllers
             return count;
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public bool offerExists(int adID, int userID)
+        {
+            int count = 0;
+            bool active = false;
+            SqlConnection connection = new SqlConnection(getconnectionString());
+            string query = "SELECT COUNT(ID) FROM AddOffer WHERE addID = @adID AND buyerID = @userID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@adID", SqlDbType.Int).Value = adID;
+            cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
+            connection.Open();
+            count = (int)cmd.ExecuteScalar();
+            if (count > 0)
+            {
+                active = true;
+            }
+            return active;
+        }
+
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void cancelOffer(int offerID)
         {

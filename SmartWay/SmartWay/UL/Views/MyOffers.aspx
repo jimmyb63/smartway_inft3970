@@ -77,11 +77,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <a href="Payment.aspx?advertisementID=<%#:Item.offerAdID %>">
-                                                        <button type="button" class="btn btn-success btn-block">Pay Now</button>
-                                                    </a>
-                                                    </div>
+                                                    <asp:PlaceHolder runat="server" visible='<%# adFinalised(Item.offerAdID) == false %>'>
+                                                        <div class="col-lg-12">
+                                                            <a href="PrivateMessage.aspx?advertisementID=<%#:Item.offerAdID %>&buyerID=<%#: Item.offerBuyerID%>">
+                                                                <button type="button" class="btn btn-success btn-block">Message</button>
+                                                            </a>
+                                                        </div>
+                                                    </asp:PlaceHolder>
+                                                    <asp:PlaceHolder runat="server" visible='<%# adFinalised(Item.offerAdID) == true %>'>
+                                                        <div class="col-lg-12">
+                                                            <a href="PrivateMessage.aspx?advertisementID=<%#:Item.offerAdID %>&buyerID=<%#: Item.offerBuyerID%>">
+                                                                <button type="button" class="btn btn-success btn-block">Message</button>
+                                                            </a>
+                                                        </div>
+                                                    </asp:PlaceHolder>
                                                 </div>
                                             </div>
                                         </div>

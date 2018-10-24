@@ -68,6 +68,17 @@ namespace SmartWay.UL.Views
             return tempOffers;
         }
 
+        public bool adFinalised(int adID)
+        {
+            AdvertisementControls AC = new AdvertisementControls();
+            List<Advertisement> ad = AC.getAdvertisement(adID);
+            if (ad[0].advertisementBuyerID != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public List<BL.Models.Offer> getNotAcceptedOffers()
         {
             AdvertisementControls AC = new AdvertisementControls();

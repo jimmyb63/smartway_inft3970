@@ -45,6 +45,20 @@ namespace SmartWay.UL.Views
             Response.Redirect("NewAddReviewRequest.aspx?userID=" + userID + "&adID=" + ad);
         }
 
+        public bool pendingOffer()
+        {
+            int adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
+            if (Session["currentUser"] != null)
+            {
+                Person currentUser = (Person)Session["currentUser"];
+                int userID = currentUser.userID;
+                AdvertisementControls AC = new AdvertisementControls();
+                bool offerExists = AC.offerExists(adID, userID);
+                return offerExists;
+            }
+            return false;
+        }
+
         public List<Advertisement> getAd([Control]string adID)
         {
             int id = Convert.ToInt32(adID);

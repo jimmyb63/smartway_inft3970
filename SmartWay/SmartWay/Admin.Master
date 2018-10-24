@@ -7,6 +7,7 @@
     <title></title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="UL/Images/smartway-icon.ico" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
     <link href="Content/smartway.css" rel="stylesheet" />
@@ -61,13 +62,13 @@
                     <!--Page Content -->
                 </asp:ContentPlaceHolder>
             </div>
-            <footer class="py-2 bg-primary fixed-bottom">
-              <div class="container">
-                <p class="m-0 text-center text-white">Copyright SmartWay 2018</p>
-              </div>
-            <!-- /.container --> 
-            </footer>
         </div>
+        <footer class="page-footer font-small bg-primary p-4">
+            <div class="container-fluid text-center">
+            <p class="m-0 text-center text-white">Copyright SmartWay 2018</p>
+            </div>
+        <!-- /.container --> 
+        </footer>
     </form>
 </body>
 </html>

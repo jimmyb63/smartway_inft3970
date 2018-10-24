@@ -93,21 +93,21 @@ namespace SmartWay.UL.Views
             if (Request.QueryString["sort"] != null)
             {
                 string sort = Request.QueryString["sort"];
-                if (sort == "l2h")
+                if (sort == "h2l")
                 {
                     sortedAds = tempAds.OrderByDescending(x => x.advertisementPrice).ToList();
                 }
-                else if (sort == "h2l")
+                else if (sort == "l2h")
                 {
                     sortedAds = tempAds.OrderByDescending(x => x.advertisementPrice).ToList();
                     sortedAds.Reverse();
                 }
-                else if (sort == "n2o")
+                else if (sort == "o2n")
                 {
                     sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
                     sortedAds.Reverse();
                 }
-                else if (sort == "o2n")
+                else if (sort == "n2o")
                 {
                     sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
                 }
@@ -115,7 +115,6 @@ namespace SmartWay.UL.Views
             else
             {
                 sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
-                sortedAds.Reverse();
             }
             //adList.DataSource = sortedAds;
             //adList.DataBind();
