@@ -341,7 +341,6 @@
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
-                        <h6 class="text-uppercase">useful Links</h6>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="Contact.aspx">Contact</a>
@@ -371,7 +370,6 @@
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
-                        <h6 class="text-uppercase">useful Links</h6>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="termsofService.aspx#termsofservice">Terms of Service</a>

@@ -17,10 +17,9 @@
                     ForeColor="Red"
                     ShowMessageBox="false"
                     HeaderText="Please fix these entries:" />
-                <h2>Contact us</h2>
                 <p>Please fill out the below form to contact admin</p>
                 <%-- FIRST NAME --%>
-                <h5>First Name*</h5>
+                <h6>First Name*</h6>
                 <asp:TextBox 
                     CssClass="form-control" 
                     ID="txtFirstName" 
@@ -32,7 +31,7 @@
                     ControlToValidate="txtFirstName"
                     runat="server" />
                 <%-- LAST NAME --%>
-                <h5>Last Name*</h5>
+                <h6>Last Name*</h6>
                 <asp:TextBox 
                     CssClass="form-control" 
                     ID="txtLastName" 
@@ -44,7 +43,7 @@
                     ControlToValidate="txtLastName"
                     runat="server" />
                 <%-- EMAIL --%>
-                <h5>Email*</h5>
+                <h6>Email*</h6>
                 <asp:TextBox 
                     CssClass="form-control" 
                     ID="txtEmail" 
@@ -65,13 +64,13 @@
                     ErrorMessage="Invalid email address." />
                 <br />
                 <%-- MESSAGE --%>
-                <h5>Message*:</h5>
+                <h6>Message*:</h6>
                 <asp:TextBox 
                     CssClass="form-control" 
                     runat="server" 
                     ID="txtContent" 
                     TextMode="MultiLine" 
-                    Rows="10" />
+                    Rows="4" />
                 <asp:RequiredFieldValidator
                     ErrorMessage="Message required"
                     Display="Dynamic"

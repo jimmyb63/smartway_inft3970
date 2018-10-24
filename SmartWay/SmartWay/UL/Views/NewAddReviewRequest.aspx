@@ -29,10 +29,10 @@
                 </div>
                 <br />
                 <div class="row align-items-center">
-                    <div class="col-lg-6 text-right">
+                    <div class="col-lg-4 col-12">
                         <p>Reason For Review Request: </p>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8 col-12">
                         <asp:DropDownList CssClass="form-control" ID="ddlAddReviewReason" runat="server">
                             <asp:ListItem Enabled="true" Text="Please Choose the Best Reason" Value="-1"></asp:ListItem>
                             <asp:ListItem Text="Offensive Language" Value="1"></asp:ListItem>
@@ -46,10 +46,10 @@
                 </div>
                 <br />
                 <div class="row align-items-center">
-                    <div class="col-lg-6 text-right">
+                    <div class="col-lg-4">
                         <p>Please explain in more detail:</p>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" TextMode="MultiLine" Rows="10" /><br />
                         <asp:Button CssClass="btn btn-block btn-primary" ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                     </div>

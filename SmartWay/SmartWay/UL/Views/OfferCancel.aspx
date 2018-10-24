@@ -8,22 +8,20 @@
         <asp:HiddenField ID="offerID" runat="server" />
         <% int offerID = Convert.ToInt32(Request.QueryString["offerID"]); %>
         <% AdvertisementControls AC = new AdvertisementControls(); %>
-        <div class="card text-center">
-            <div class="row card-body text-center">
-                <h5 class="card-title">Are you sure you want to cancel?</h5>
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-lg-12 my-1">
-                        <asp:Button ID="btnCancel" Text="Yes, Cancel" CssClass="btn btn-warning btn-block" OnClick="cancelOffer" runat="server" />
+   <div class="alert alert-danger text-center" role="alert">
+            <h4 class="alert-heading">Are you sure you want to cancel?</h4>
+                       <div class="row">
+                    <div class="col-6 my-1">
+                        <asp:Button ID="btnCancel" Text="Yes, Cancel" CssClass="btn btn-success btn-block" OnClick="cancelOffer" runat="server" />
                     </div>
+                                        <div class="col-6 my-1">
+                        <a class="btn btn-block btn-danger" href="MyOffers.aspx">No, go back</a>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 my-1">
-                        <a href="MyOffers.aspx">No, go back</a>
-                    </div>
-                </div>
-            </div>
+        </div> 
         </div>
-    </div>
+
+
+
+
+
 </asp:Content>

@@ -35,15 +35,14 @@
                                     <h5 class="mb-3">User Profile</h5>
                                     <hr />
                                     <div class="row">
-
                                         <div class="col-lg-4">
                                             <% UserControls UC = new UserControls(); %>
                                             <% string filePath = UC.getProfileImage(currentUser.userID); %>
-                                            <img src="<%=filePath %>" class="mx-auto img-fluid img-circle d-block" alt="avatar" />
-
-                                        </div>
-
+                                            <img src="<%=filePath %>" class="mx-auto img-fluid img-circle d-block mb-4" alt="avatar" />
+                                            </div>
                                         <div class="col-md-4">
+                                            <h6>Personal Details</h6>
+                                            <hr />
                                             <div class="card-text">
                                                 <b>Username: </b>
                                                 <asp:Label ID="lblUserName" runat="server" Text="Label" />
@@ -77,6 +76,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <h6>Address Details</h6>
+                                            <hr />
                                             <div class="card-text">
                                                 <b>Unit Number: </b>
                                                 <asp:Label ID="lblUnitNum" runat="server" Text="Label" />
@@ -111,49 +111,14 @@
                                             <br />
                                         </div>
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h6>About</h6>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dignissim pulvinar dapibus. Pellentesque rutrum magna et suscipit vulputate. Nunc erat.</p>
-                                        </div>
-
-                                        <!---------- Recent Searches and History ---------->
-
-                                        <div class="col-md-6">
-                                            <h6>Recent Searches</h6>
-                                            <a href="#" class="badge badge-dark badge-pill">Washing Machine</a> <a href="#" class="badge badge-dark badge-pill">Gardener</a> <a href="#" class="badge badge-dark badge-pill">House Painter</a> <a href="#" class="badge badge-dark badge-pill">Lawn Mower</a>
-                                            <hr />
-                                            <h6>Purchase and Sale History</h6>
-                                            <span class="badge badge-primary"><i class="fa fa-user"></i>13 Sales</span> <span class="badge badge-success"><i class="fa fa-cog"></i>2 Purchases</span> <span class="badge badge-danger"><i class="fa fa-eye"></i>12 Reviews</span>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <br />
-                                            <hr />
-                                            <h5 class="mt-2">Recent Activity</h5>
-                                            <table class="table table-sm table-hover table-striped">
-                                                <tbody>
-                                                    <tr>
-                                                        <td><strong>Brock</strong> Searched for <strong>Washing Machines</strong> in <strong>Newcastle</strong></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Brock</strong> purchased a <strong>Lawn Mower</strong> from <strong>James Bailey</strong></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>James</strong> commented on your post in <strong>General Discussion</strong></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <!---------- Edit Tab Content ---------->
 
                                 <div class="tab-pane" id="edit">
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">First name:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">First name:</label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxFName" 
@@ -163,8 +128,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Last name:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">Last name:</label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxLName" 
@@ -173,8 +138,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Email:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">Email:</label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 type="email" 
@@ -184,8 +149,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">DOB:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">DOB:</label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 type="date" 
@@ -195,8 +160,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Phone Number:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">Phone Number:</label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxPhoneNumber" 
@@ -205,15 +170,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Address:</label>
-                                        <div class="col-lg-4">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">Address:</label>
+                                        <div class="col-lg-4 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxUnitNumber" 
                                                 placeholder="Unit number" 
                                                 runat="server" />
                                         </div>
-                                        <div class="col-lg-5">
+                                        <div class="col-lg-5 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxStreetNumber" 
@@ -222,8 +187,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label"></label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxStreetName" 
@@ -232,15 +197,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                                        <div class="col-lg-6">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label"></label>
+                                        <div class="col-lg-6 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxCity" 
                                                 placeholder="City" 
                                                 runat="server" />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-3 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxState" 
@@ -249,15 +214,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                                        <div class="col-lg-6">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label"></label>
+                                        <div class="col-lg-6 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxCountry" 
                                                 placeholder="Country" 
                                                 runat="server" />
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-3 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxPostcode" 
@@ -266,8 +231,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Username:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">Username:</label>
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 ID="tbxUName" 
@@ -276,8 +241,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label form-control-label">Password:</label>
-                                        <div class="col-lg-9">
+                                        <label class="col-lg-3 col-12 col-form-label form-control-label">Password:</label><br />
+                                        <div class="col-lg-9 col-12">
                                             <asp:TextBox 
                                                 CssClass="form-control" 
                                                 type="password" 
@@ -287,8 +252,6 @@
                                         </div>
                                         <!---------- Change Password Button ---------->
                                     </div>
-                                    <br />
-
                                     <br />
                                     <div class="row">
                                         <div class="col-lg-6 offset-lg-3">
@@ -304,6 +267,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br />
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <button 

@@ -15,8 +15,8 @@
             </div>
             <div class="row card-body">
                 <div class="col-lg-3"><img class="card-img" src="<%=adImages[0] %>" width="20%" /></div>
-                <div class="col-lg-6"><div class="card-text"><%=ad[0].advertisementTitle %></div></div>
-                <div class="col-lg-3"><div class="card-text"><%=String.Format("{0:c}", ad[0].advertisementPrice) %></div></div>
+                <div class="col-lg-6"><h6><%=ad[0].advertisementTitle %></h6></div>
+                <div class="col-lg-3"><h6><%=String.Format("{0:c}", ad[0].advertisementPrice) %></h6></div>
             </div>
             <div class="card-footer">
                 <div class="row">

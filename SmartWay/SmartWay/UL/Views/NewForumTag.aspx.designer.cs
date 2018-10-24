@@ -13,15 +13,6 @@ namespace SmartWay.UL.Views {
     public partial class NewForumTag {
         
         /// <summary>
-        /// lblEnterTag control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEnterTag;
-        
-        /// <summary>
         /// txbNewTag control.
         /// </summary>
         /// <remarks>
@@ -31,15 +22,6 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txbNewTag;
         
         /// <summary>
-        /// lblNewTagVal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNewTagVal;
-        
-        /// <summary>
         /// btnNewTagSubmit control.
         /// </summary>
         /// <remarks>
@@ -47,6 +29,15 @@ namespace SmartWay.UL.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNewTagSubmit;
+        
+        /// <summary>
+        /// lblNewTagVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNewTagVal;
         
         /// <summary>
         /// gvTagsColumn1 control.
