@@ -16,22 +16,24 @@
                 <p>Please enter code to verify account</p>
                 <div class="row my-2">
                     <div class="col-lg-2 col-md-0"></div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 mb-2">
                         <asp:TextBox ID="txtVerficiationCode" CssClass="form-control text-center" placeholder="Enter Code" runat="server"></asp:TextBox>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <asp:Button CssClass="btn btn-sm btn-info btn-block" Text="Resend Code" runat="server" OnClick="resendVerificationCode" />
+                        <asp:Button CssClass="btn btn-sm btn-info btn-block mt-1" Text="Resend Code" runat="server" OnClick="resendVerificationCode" />
                     </div>
                     <div class="col-lg-2 col-md-0"></div>
                 </div>
                 <div class="warning">
                     <asp:Label Text="" ID="errorMessage" runat="server" />
                 </div>
+                <div class="d-lg-block d-none">
                 <hr />
+                </div>
                 <div class="row my-2">
                     <div class="col-lg-3 col-md-0"></div>
                     <div class="col-lg-6">
-                        <asp:Button CssClass="btn btn-success btn-block" Text="Verify" runat="server" OnClick="VerifyUser" />
+                        <asp:Button CssClass="btn btn-success btn-block btn-sm" Text="Verify" runat="server" OnClick="VerifyUser" />
                     </div>
                     <div class="col-lg-3 col-md-0"></div>
                 </div>

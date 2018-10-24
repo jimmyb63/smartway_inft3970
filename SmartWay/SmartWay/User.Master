@@ -338,11 +338,10 @@
 
                     </div>
                     <!-- Grid column -->
-                    <hr class="clearfix w-100 d-md-none pb-3">
+                    <hr class="clearfix w-100 d-md-none pb-3" />
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
-                        <h6 class="text-uppercase">useful Links</h6>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="Contact.aspx">Contact</a>
@@ -354,6 +353,13 @@
                                     int userID = currentUser.userID;%>
                             <li>
                                 <a href="LogoutConfirmation.aspx">Logout</a>
+                            </li>
+                            <li>
+                                <a href="PostAdvertisement.aspx">Post Advertisement</a>
+                            </li>
+                            <li>
+                                <a href="PostForumThread.aspx">Post Forum Thread</a>
+                            </li>
                             </li>
                             <% }
                                 else
@@ -372,7 +378,6 @@
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
                         <!-- Links -->
-                        <h6 class="text-uppercase">useful Links</h6>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="termsofService.aspx#termsofservice">Terms of Service</a>

@@ -60,14 +60,18 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="row">
+                                                                <div class="col-12">
                                                                 <h5 class="card-title">
                                                                     <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a>
                                                                 </h5>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
+                                                                <div class="col-12">
                                                                 <p class="card-text">
                                                                     <%#:String.Format("{0:c}", Item.advertisementPrice)%>
                                                                 </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -163,14 +167,18 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="row">
+                                                                <div class="col-12">
                                                                 <h5 class="card-title">
                                                                     <a href="ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>"><%#:Item.advertisementTitle%></a>
                                                                 </h5>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
+                                                                <div class="col-12">
                                                                 <p class="card-text text-danger">
                                                                     Sold Price: <%#:String.Format("{0:c}", Item.advertisementPrice)%>
                                                                 </p>
+                                                           </div>
                                                             </div>
                                                         </div>
                                                     </div>

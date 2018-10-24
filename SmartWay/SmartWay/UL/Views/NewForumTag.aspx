@@ -9,41 +9,35 @@
                 <div class="card-body">
                 <%-- LABELS for Name and Title --%>
                 <%-- NAME --%>
-                    <table style="width:100%">
+                    <div class="row">
                         <%-- FIRST ROW --%>
-                        <tr>
                             <%-- Label: --%>
-                            <td style="width:30%">
-                                <asp:Label
-                                    ID="lblEnterTag"
-                                    runat="server"
-                                    Text="Enter A New Forum Tag: ">
-                                </asp:Label>
-                            </td>
+                            <div class="col-lg-4 col-12 d-flex align-items-center">
+                                <h6>Enter A New Forum Tag: </h6>
+                            </div>
                             <%-- TxtBox --%>
-                            <td style="width:40%">
-                                <asp:textbox ID="txbNewTag" CssClass="form-control" runat="server"></asp:textbox>
-                            </td>
-                            <%-- ValidationMsg --%>
-                            <td style="width:30%">
+                            <div class="col-lg-4 col-12 d-flex align-items-center">
+                                <asp:textbox ID="txbNewTag" CssClass="form-control mb-2" runat="server"></asp:textbox>
+                            </div>     
+                      <div class="col-lg-4 col-12 d-flex mt-0">
+                        <asp:Button ID="btnNewTagSubmit" runat="server" Text="Add New Forum Tag" CssClass="btn btn-block btn-info" OnClick="btnNewTagSubmit_Click" />
+                    </div>
+                    </div>
+                    <div class="row">
+                     <%-- ValidationMsg --%>
+                            <div class="col-12 d-flex align-items-center">
                                 <asp:Label
                                     ID="lblNewTagVal"
                                     runat="server"
                                     Text="" ForeColor="Red">
                                 </asp:Label>
-                            </td>
-                        </tr>                   
-                    </table>
-                    <br />
-                
-                    <div>
-                        <asp:Button ID="btnNewTagSubmit" runat="server" Text="Add New Forum Tag" CssClass="btn btn-block btn-info" OnClick="btnNewTagSubmit_Click" />
+                            </div>       
                     </div>
-
                     <br />
                      <%-- CURRENT LIST --%>
-                    <h5>These are some Tags that already exist:</h5>
+                    <h6>These are some Tags that already exist:</h6>
                     <div class="row">
+                        <div class="col-12">
                         <table style="width:100%">
                         <%-- FIRST ROW --%>
                         <tr>
@@ -104,7 +98,7 @@
                             </td>
                         </tr>                   
                     </table>
-                    
+                    </div>
                 </div>
 
                 <br />

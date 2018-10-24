@@ -11,9 +11,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4">
                             <p>Jump To: </p>
+                                    </div>
+                                <div class="col-lg-4">
                             <p><a href="#termsofservice">Terms of Service</a></p>
+                                    </div>
+                                <div class="col-lg-4">
                             <p><a href="#privacypolicy">Privacy policy</a></p>
+                                    </div>
+                            </div>
                             <h2><a id="privacypolicy">Privacy Policy</a></h2>
                             <p>Your privacy is important to us. It is SmartWay's policy to respect your privacy regarding any information we may collect from you across our website, SmartWay, and other sites we own and operate.</p>
                             <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>

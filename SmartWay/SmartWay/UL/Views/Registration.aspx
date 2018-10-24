@@ -12,20 +12,18 @@
             <div class="card-header">
                 <div class="row my-2">
                     <div class="col-lg-12 text-center">
-                        <h2 class="display-4">Register </h2>
-                        <hr />
-                        <p class="lead"><a href="Login.aspx">Already have an account?</a> </p>
+                        <h4>Register</h4>
+                        <p><a href="Login.aspx">Already have an account?</a></p>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <div class="row mt-2">
+                <div class="row">
                     <div class="container">
-                        <div class="row mt-2">
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="row mt-2">
                                     <div class="col-lg-12">
-                                        <hr />
                                         <p class="lead">Basic Information</p>
                                         <div class="row mt-2">
                                             <div class="col-lg-6">
@@ -467,7 +465,6 @@
             <div class="card-footer">
                 <div class="row mt-2">
                     <div class="col-lg-12 text-center">
-                        <hr />
                         <asp:Button ID="registrationButton" Text="Submit" runat="server" OnClick="RegisterUser" UseSubmitBehavior="false" OnClientClick="this.disabled='true'; this.value='Please wait...';" CssClass="btn btn-primary btn-block" />
                     </div>
                 </div>

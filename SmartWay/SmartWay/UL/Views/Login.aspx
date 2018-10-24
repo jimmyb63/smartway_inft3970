@@ -12,19 +12,18 @@
                     <div class="card-header">
                         <div class="row my-2">
                             <div class="col-lg-12 text-center">
-                                <h2 class="display-4">Login</h2>
-                                <hr />
+                                <h4>Login</h4>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-lg-12 text-center">
-                                <p class="lead"><a href="Registration.aspx">Don't have an account?</a></p>
+                                <h6><a href="Registration.aspx">Don't have an account?</a></h6>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row mt-2">
-                            <div class="col-lg-6 text-center">
+                            <div class="col-lg-6 text-center mb-3">
                                 <asp:TextBox
                                 ID="txtEmail"
                                 placeholder="Email Address"
@@ -64,7 +63,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-lg-12 text-center">
-                                <a href="ForgotPassword.aspx">Forgot Password?</a>
+                                <h6><a href="ForgotPassword.aspx">Forgot Password?</a></h6>
                             </div>
                         </div>
                     </div>
