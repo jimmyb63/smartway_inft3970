@@ -359,12 +359,12 @@ CREATE TABLE ForumPostTags	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									forumPostID INT NOT NULL,
 									comment VARCHAR(150) NOT NULL,
-									imageID INT NOT NULL,
+									repliersID INT NOT NULL,
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys
 									FOREIGN KEY (forumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION,
-									FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
+									FOREIGN KEY (repliersID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
 CREATE TABLE PrivateMessageChain(	ID INT IDENTITY(1000,1) PRIMARY KEY,
@@ -1128,6 +1128,48 @@ BEGIN
 END
 RETURN  
 GO
+
+--Add New Forum Reply(Comment) For Forum Posts
+IF OBJECT_ID('sp_NewForumReply', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_NewForumReply;  
+GO  
+
+CREATE PROCEDURE sp_NewForumReply(
+	@tempForumPostID INT,
+	@tempComment VARCHAR(150),
+	@tempRepliersID INT)
+AS
+BEGIN
+	INSERT INTO ForumComment (forumPostID,comment,repliersID) 
+	VALUES(@tempForumPostID, @tempComment, @tempRepliersID);
+END
+RETURN  
+GO
+
+--Get ForumReplies(Comments) with Repiers Name and filepth to their image
+IF OBJECT_ID('sp_GetForumRepliesByForumID', 'P') IS NOT NULL  
+   DROP PROCEDURE sp_GetForumRepliesByForumID;  
+GO
+
+ CREATE PROCEDURE sp_GetForumRepliesByForumID(
+	@tempForumPostID INT)
+AS
+BEGIN
+	SELECT fc.ID AS ForumCommentID, fc.forumPostID, fc.comment, fc.repliersID, fc.creationDate, fc.active, Person.SWUsername, ProfileImage.filePath
+	FROM ForumComment fc
+	INNER JOIN Person ON Person.ID = fc.repliersID
+	FULL OUTER JOIN ProfileImage ON fc.repliersID = ProfileImage.userID
+	WHERE forumPostID = @tempForumPostID;
+END
+RETURN  
+GO
+
+
+
+
+
+
+
 --
 
 --DATALOAD
@@ -1414,6 +1456,9 @@ EXEC sp_LinkForumTag 'under5mins', 1000, 2222
 EXEC sp_LinkForumTag 'holidayfun', 1000, 2222
 EXEC sp_LinkForumTag 'funwithkids', 1000, 2222
 EXEC sp_LinkForumTag 'kidsbirthdayideas', 1000, 2222
+EXEC sp_NewForumReply 1000,'Wow this was such a great idea!', 1004
+EXEC sp_NewForumReply 1000,'We made these and the Kids had so much fun.', 1013
+EXEC sp_NewForumReply 1000,'Was a Useful Tip Ty.', 1000
 
 EXEC sp_NewForumPost 1006, 'Easy Watering Can', 
 'Wash out the bottle a few times and let dry. Make a few holes in the cap of the bottle. Fill with water and is ready to go.', '', 2222
@@ -1422,6 +1467,8 @@ EXEC sp_LinkForumTag 'repurpose', 1001, 2222
 EXEC sp_LinkForumTag 'savemoney', 1001, 2222
 EXEC sp_LinkForumTag 'garden', 1001, 2222
 EXEC sp_LinkForumTag 'under5mins', 1001, 2222
+
+EXEC sp_NewForumReply 1001,'Wow this was such a great idea!', 1004
 ---PostalAddress Loading
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
 --INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');

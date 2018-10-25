@@ -109,51 +109,49 @@
                                                     <%-- Empty Data Template --%>
                                                     <EmptyDataTemplate>
                                                         <div class="card h-100">
-                                                        <div class="row">
+                                                            <div class="row">
                                 
-                                                            <div class="col-1 my-2"></div>
-                                                            <br />
-                                                            <hr />
-                                                            <br />
-                                                            <div class="col-10 my-2">
+                                                                <div class="col-1 my-2"></div>
                                                                 <br />
-                                                                    <p class="card-text">
-                                                                    <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
-                                                                    <h4 class="text-center">No Forum Tags Selected.</h4>
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-1 my-2"></div>
-                                                        </div>                            
+                                                                <hr />
+                                                                <br />
+                                                                <div class="col-10 my-2">
+                                                                    <br />
+                                                                        <p class="card-text">
+                                                                        <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
+                                                                        <h4 class="text-center">No Forum Tags Selected.</h4>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-1 my-2"></div>
+                                                            </div>                            
+                                                        </div>
+                                                        </EmptyDataTemplate>   
+                                                        <%-- Empty Item Template --%>
+                                                            <EmptyItemTemplate>
+                                                        <td />
+                                                        </EmptyItemTemplate> 
+                                                        <%-- Group Template --%>
+                                                        <GroupTemplate>
+                                                            <tr id="itemPlaceholderContainer" runat="server">
+                                                                <td id="itemPlaceholder" runat="server"></td>
+                                                            </tr>
+                                                        </GroupTemplate>  
+                                                        <%-- Item Template --%>
+                                                        <ItemTemplate>
+                                                            <!-- Forum Tag Badge -->
+                                                            <a href="#" class="badge badge-primary badge-pill mb-2 p-2"><%#: Item.forumTagName%></a>
+                                                        </ItemTemplate>  
+                                                    </asp:ListView>
                                                     </div>
-                                                    </EmptyDataTemplate>   
-                                                    <%-- Empty Item Template --%>
-                                                        <EmptyItemTemplate>
-                                                    <td />
-                                                    </EmptyItemTemplate> 
-                                                    <%-- Group Template --%>
-                                                    <GroupTemplate>
-                                                        <tr id="itemPlaceholderContainer" runat="server">
-                                                            <td id="itemPlaceholder" runat="server"></td>
-                                                        </tr>
-                                                    </GroupTemplate>  
-                                                    <%-- Item Template --%>
-                                                    <ItemTemplate>
-                                                        <!-- Forum Tag Badge -->
-                                                        <a href="#" class="badge badge-primary badge-pill mb-2 p-2"><%#: Item.forumTagName%></a>
-                                                    </ItemTemplate>  
-                                                </asp:ListView>
-                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         </div>
                         <br />
-
                         <hr />
-                        
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-lg-4 col-md-12 my-1">
                                 <%--<asp:Button ID="btnContact" Text="Contact Seller" OnClick="ContactSeller" CssClass="btn btn-info btn-block" runat="server" />--%>
                             </div>
@@ -162,10 +160,10 @@
                                 <asp:Button ID="btnReplytoPost" Text="Reply to Post" CssClass="btn btn-danger btn-block" OnClick="ReportAd" runat="server" />
                             </div>
                         </div>
-                        <br />
+                        <br />-->
                     </div>
                 </div>
-                </div>
+            </div>
             </ItemTemplate>
             <LayoutTemplate>
                 <table style="width: 100%;">
@@ -185,8 +183,100 @@
                 </table>
             </LayoutTemplate>
         </asp:ListView>
-    </div>
+        <h5>Forum Comments:</h5>
+        <div class="row">
+            <asp:ListView 
+                ID="lvForumComments" 
+                runat="server"
+                DataKeyNames="forumReplyID" 
+                GroupItemCount="4"
+                ItemType="SmartWay.BL.Models.ForumReply" 
+                SelectMethod="getForumRepliedListbyID">
+                <%-- Empty Data Template --%>
+                <EmptyDataTemplate>
+                    <div class="card h-100">
+                    <div class="row">
+                        <br />
+                        <hr />
+                        <br />
+                        <div class="col-1 my-2"></div>
+                        <div class="col-10 my-2">
+                            <p class="card-text">
+                                <%-- TODO: Check when no messages are present if this place is default --%>
+                                <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
+                                <h4 class="text-center">No messages to reply to.</h4>
+                            </p>
+                        </div>
+                        <div class="col-1 my-2"></div>
+                    </div>                            
+                </div>
+                </EmptyDataTemplate>   
+                <%-- Empty Item Template --%>
+                    <EmptyItemTemplate>
+                <td />
+                </EmptyItemTemplate> 
+                <%-- Group Template --%>
+                <GroupTemplate>
+                    <tr id="itemPlaceholderContainer" runat="server">
+                        <td id="itemPlaceholder" runat="server"></td>
+                    </tr>
+                </GroupTemplate>  
+                <%-- Item Template --%>
+                <ItemTemplate>
+                    <div class="col-lg-12">
+                        <div class="card mt-2 grey lighten-5">
+                            <div class="row">                                        
+                                <div>
+                                    <div class="card-body">
+                                        <!-- Repliers Img -->
+                                            <img class="avatar" src="<%#:Item.forumReplyRepliersImgFilePath %>" />
+                                            <%#:Item.forumReplyRepliersName %>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <ul class="list-unstyled list-inline font-small information-content">
+                                            <li class="list-inline-item pr-2 black-text"><i class="far fa-calendar-alt mr-2"></i><%#:"Commented: "+(Item.forumReplyCreationDate).ToString("dd/MM/yyyy HH:mm")%></li>
+                                            <br />                                             
+                                            <h6><li class="list-inline-item pr-2 black-text"><i class="fas fa-hand-holding-usd mr-2"></i><%#:": "+ Item.forumReplyComment%></li></h6>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>  
+            </asp:ListView>                                    
+        </div>
+        <% if (Session["currentUser"] != null)
+            { %>
+        <!--Reply To Post Section   -->
+        <div class="col-lg-12">
+            <div class="card mt-2 grey lighten-5">
+                <div class="row">                                        
+                    <div class="col-lg-12">
+                        <div class="card-body">
+                            <!-- Reply To Post Text Section -->
+                            <h4>Reply To Post:</h4>
+                            <asp:TextBox 
+                            CssClass="form-control" 
+                            runat="server" 
+                            ID="txtReplyMessage" 
+                            TextMode="MultiLine"                     
+                            Rows="5" />
+                            <br />
+                            <!-- Button Submit Section -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-lg-12 col-md-12 my-1">
+            <asp:Button ID="btnReplytoPost" Text="Reply to Post" CssClass="btn btn-danger btn-block" OnClick="PostReplyComment" runat="server" />
+        </div>
+        <% } %>
+    </div>
 
 
 

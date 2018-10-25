@@ -164,3 +164,15 @@ INNER JOIN ForumTag ON ForumPostTags.ForumTagID=ForumTag.ID;
 
 
 SELECT * FROM PrivateMessage WHERE sendersUserID = 1003 OR receiverUserID = 1003 ORDER BY PrivateMessageChainID, creationDate ASC
+
+
+SELECT fc.ID AS ForumCommentID, fc.forumPostID, fc.comment, fc.repliersID, fc.creationDate, fc.active, Person.firstName, ProfileImage.filePath
+FROM ForumComment fc
+INNER JOIN Person ON Person.ID = fc.repliersID
+FULL OUTER JOIN ProfileImage ON fc.repliersID = ProfileImage.userID
+WHERE forumPostID = 1000;
+
+EXEC sp_GetForumRepliesByForumID 1000
+SELECT * FROM ForumComment
+Select * From Person
+SELECT * FROM ForumPost

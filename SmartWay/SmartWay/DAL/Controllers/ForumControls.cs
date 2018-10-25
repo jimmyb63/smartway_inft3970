@@ -281,6 +281,47 @@ namespace SmartWay.DAL.Controllers
             }
             return returnValue;
         }
+
+        [DataObjectMethod(DataObjectMethodType.Insert)]
+        public void addForumReply(int tempForumID, string tempReplyComment,  int tempRepliersID)
+        {
+            SqlConnection connection = new SqlConnection(getConnectionString());
+            string query = "EXEC sp_NewForumReply  @tempForumPostID, @tempComment, @tempRepliersID";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempForumPostID", SqlDbType.Int).Value = tempForumID;
+            cmd.Parameters.Add("@tempComment", SqlDbType.VarChar, 150).Value = tempReplyComment;
+            cmd.Parameters.Add("@tempRepliersID", SqlDbType.Int).Value = tempRepliersID;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public List<ForumReply> getForumRepliedListbyID(int tempForumID)
+        {
+            List<ForumReply> tempForumReplyList = new List<ForumReply>();
+            //setting connection string and sql request
+            SqlConnection connection = new SqlConnection(getConnectionString()); //getting connection string
+            string query = "EXEC sp_GetForumRepliesByForumID @tempForumID";  //the sql request
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@tempForumID", SqlDbType.Int).Value = tempForumID;
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ForumReply tempForumReply = new ForumReply(
+                                (int)reader["ForumCommentID"],
+                                (int)reader["forumPostID"],
+                                reader["comment"].ToString(),
+                                (int)reader["repliersID"],
+                                reader["SWUsername"].ToString(),
+                                reader["filePath"].ToString()
+                                );
+                tempForumReplyList.Add(tempForumReply);
+            }
+            connection.Close();
+            return tempForumReplyList;
+        }
     }
 
 

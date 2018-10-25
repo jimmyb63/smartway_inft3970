@@ -97,5 +97,24 @@ namespace SmartWay.UL.Views
             List<ForumTag> currentForumTags = FC.getForumTagsbyForumID(forumID);
             return currentForumTags;
         }
+
+        public List<ForumReply> getForumRepliedListbyID()
+        {
+            int forumID = Convert.ToInt32(forumId.Value);
+            ForumControls FC = new ForumControls();
+            List<ForumReply> currentForumReplies = FC.getForumRepliedListbyID(forumID);
+            return currentForumReplies;
+        }
+
+        protected void PostReplyComment(object sender, EventArgs e)
+        {
+            ForumControls FC = new ForumControls();
+            int forumID = Convert.ToInt32(forumId.Value);
+            Person currentUser = (Person)Session["currentUser"];
+            int currentUserID = currentUser.userID;
+            string currentComment = txtReplyMessage.Text;
+            FC.addForumReply(forumID, currentComment, currentUserID);
+            Response.Redirect("ViewForumPost.aspx?forumID=" + forumID);
+        }
     }
 }

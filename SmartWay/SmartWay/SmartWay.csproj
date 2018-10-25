@@ -139,9 +139,9 @@
     <Content Include="UL\Images\AdImg\1_1000_1000.jpg" />
     <Content Include="UL\Images\DefaultImg\GenericAddImage.png" />
     <Content Include="UL\Images\DefaultImg\GenericForumImage.png" />
+    <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
     <Content Include="UL\Images\girlBanner.png" />
     <Content Include="UL\Images\GirlBanner1.png" />
-    <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
     <Content Include="UL\Images\liveBanner.png" />
     <Content Include="UL\Images\reuseBanner.png" />
     <Content Include="UL\Images\smartway-icon.ico" />
@@ -255,6 +255,7 @@
     <Compile Include="BL\Controllers\SMSSender.cs" />
     <Compile Include="BL\Controllers\Validation.cs" />
     <Compile Include="BL\Models\Address.cs" />
+    <Compile Include="BL\Models\ForumReply.cs" />
     <Compile Include="BL\Models\ForumTag.cs" />
     <Compile Include="BL\Models\Offer.cs" />
     <Compile Include="BL\Models\PrivateMsg.cs" />
