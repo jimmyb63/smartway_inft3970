@@ -215,6 +215,7 @@
     <Content Include="UL\Views\TEST PAGE.aspx" />
     <Content Include="User.Master" />
     <Content Include="Admin.Master" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\inft3970smartway - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -247,7 +248,9 @@
     <Content Include="UL\Views\LogoutConfirmation.aspx" />
     <Content Include="UL\Views\Registration.aspx" />
     <Content Include="UL\Views\RegistrationConfirmation.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

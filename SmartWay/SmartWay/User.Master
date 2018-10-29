@@ -360,7 +360,6 @@
                             <li>
                                 <a href="PostForumThread.aspx">Post Forum Thread</a>
                             </li>
-                            </li>
                             <% }
                                 else
                                 { %>
@@ -399,6 +398,7 @@
             <div class="footer-copyright text-center py-3">
                 © 2018 Copyright:
       <a href="index.aspx">SmartWay</a>
+               <span id="siteseal" class="mx-5"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=aZZAogfwLOxIZEwv3eC3hqxbU2CAMxYM4xpRyv9GSeB30Je7nm9WMnevr8fR"></script></span>
             </div>
             <!-- Copyright -->
 
