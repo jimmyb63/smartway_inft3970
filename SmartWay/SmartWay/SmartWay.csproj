@@ -129,6 +129,7 @@
     <Content Include="Content\map.css" />
     <Content Include="Content\mdb.css" />
     <Content Include="Content\smartway.css" />
+    <Content Include="Default.aspx" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -273,6 +274,13 @@
     <Compile Include="DAL\Controllers\AdvertisementControls.cs" />
     <Compile Include="DAL\Controllers\ForumControls.cs" />
     <Compile Include="DAL\Controllers\UserControls.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
