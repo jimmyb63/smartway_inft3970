@@ -188,7 +188,7 @@
         <!---------------------------------------------------------------------------------------------------------------->
 
         <!--search box and image-->
-        <div style="background: url(http://sp1.spiegelvloot.nl/images/vloot/woningaanbod.png) no-repeat" class="hero align-items-center">
+        <div style="background: url(../Images/master_background.jpg) no-repeat" class="hero align-items-center">
             <div class="container">
                 <br />
                 <div class="row justify-content-center">

@@ -27,9 +27,7 @@
                 <div class="container">
                     <div class="row my-2">
                         <div class="col-lg-12 order-lg-2">
-
                             <!---------- My Profile Tab Content ---------->
-
                             <div class="tab-content py-2">
                                 <div class="tab-pane active" id="profile">
                                     <h5 class="mb-3">User Profile</h5>
