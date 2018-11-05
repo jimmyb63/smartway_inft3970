@@ -854,6 +854,9 @@ BEGIN
 			VALUES(@tempPrivateMessageChainID, @tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
 			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
 			SELECT @returnNewMessageID;
+			UPDATE PrivateMessage 
+			SET messageRead = 1, messageReplied = 1
+			WHERE PrivateMessageChainID = @tempPrivateMessageChainID AND receiverUserID = @tempSendersUserID;
 		END
 		ELSE
 		BEGIN

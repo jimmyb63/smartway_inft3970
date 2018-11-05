@@ -102,7 +102,7 @@ EXEC sp_NewPrivateMessage 1000, 1003, 1000, 0, 'Yes is raining here also', 1003,
 
 EXEC sp_NewPrivateMessage 1002, 1004, 1001, 0, 'No it sold, but i have a F-16 forsale.', 1002, 2222
 
-
+EXEC sp_getPMList 1000, 1003, 1000
 EXEC getUserPMIDList 1000
 
 EXEC getUserPMIDList 1003

@@ -22,13 +22,22 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.HiddenField hfAdID;
         
         /// <summary>
-        /// lblSender control.
+        /// hfUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSender;
+        protected global::System.Web.UI.WebControls.HiddenField hfUserID;
+        
+        /// <summary>
+        /// hfUserSenderID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfUserSenderID;
         
         /// <summary>
         /// lblAdDetails control.
@@ -40,15 +49,6 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.Label lblAdDetails;
         
         /// <summary>
-        /// lblSentDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSentDate;
-        
-        /// <summary>
         /// lblAdTitle control.
         /// </summary>
         /// <remarks>
@@ -58,13 +58,13 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.Label lblAdTitle;
         
         /// <summary>
-        /// gvNotRepliedMessages control.
+        /// lvNotRepliedMessages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvNotRepliedMessages;
+        protected global::System.Web.UI.WebControls.ListView lvNotRepliedMessages;
         
         /// <summary>
         /// txtMessage control.
@@ -76,12 +76,21 @@ namespace SmartWay.UL.Views {
         protected global::System.Web.UI.WebControls.TextBox txtMessage;
         
         /// <summary>
-        /// gvRepliedMessages control.
+        /// btnReply control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRepliedMessages;
+        protected global::System.Web.UI.WebControls.Button btnReply;
+        
+        /// <summary>
+        /// lvRepliedMessages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvRepliedMessages;
     }
 }

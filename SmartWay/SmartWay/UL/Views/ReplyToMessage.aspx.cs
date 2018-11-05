@@ -54,7 +54,7 @@ namespace SmartWay.UL.Views
             {
                 tempPmID = Request.QueryString["privateMessageID"];
                 // adID.Value = adId;
-                AdvertisementControls AC = new AdvertisementControls();
+                
                 privateMessageID = Convert.ToInt32(tempPmID);
             }
             tempPrivateMessage = UC.getPrivateMessageByID(privateMessageID);
@@ -64,10 +64,9 @@ namespace SmartWay.UL.Views
             tempRecipientID = tempPrivateMessage.pmReceiverUserID;
             tempCurrent = (Person)Session["currentUser"];
             tempCurrentID = tempCurrent.userID;
+            hfUserID.Value = tempCurrentID.ToString().Trim();
             adID = tempPrivateMessage.pmAdID;
-            hfAdID.Value = adID.ToString();
-
-
+            hfAdID.Value = adID.ToString().Trim();
 
             // HERE GOES NOTHING
             if (tempSenderID != tempCurrentID)
@@ -88,10 +87,9 @@ namespace SmartWay.UL.Views
             tempAd = AC.getAd(adID);
             tempTitle = tempAd.advertisementTitle;
             // update labels
-            lblSender.Text = "From: " + tempRecipientUsername;
-            lblAdTitle.Text = "Title: " + tempTitle;
-            lblSentDate.Text = "Sent: " + tempSentDate.ToString();
-            
+            lblAdTitle.Text = "<h5>Title: " + tempTitle + "</h5>";
+
+
         }
 
         public List<PrivateMsg> getPrivateMsgListofAd()
@@ -148,6 +146,53 @@ namespace SmartWay.UL.Views
             return tempReturnList;
         }
 
+        public string getUsername(int tempUserID)
+        {
+            UserControls UC = new UserControls();
+            Person currentUser = new Person();
+            currentUser = UC.getUserByID(tempUserID);
+            string returnUserName = currentUser.userName;
+            return returnUserName;
+        }
 
+        public string setMessageStyle(int senderID)
+        {
+            tempCurrent = (Person)Session["currentUser"];
+            tempCurrentID = tempCurrent.userID;
+            if (senderID != tempCurrentID)
+            {
+                return "background-color: #FEEFB3; ";
+            }
+            else
+            {
+                return "background-color: #33b5e5; text-align: right; color: white;";
+            }
+            
+        }
+
+        public string messageFromStyle(int senderID)
+        {
+            tempCurrent = (Person)Session["currentUser"];
+            tempCurrentID = tempCurrent.userID;
+            string senderName = getUsername(senderID);
+            if (senderID != tempCurrentID)
+            {
+                return "Message From: " + senderName;
+            }
+            else
+            {
+                return "Your Response ";
+            }
+
+        }
+
+        protected void btnReply_Click(object sender, EventArgs e)
+        {
+
+            string tempMessage = txtMessage.Text;
+            // saves to DB at the moment
+            UC.savePrivateMessage(tempCurrentID, tempRecipientID, adID, tempMessage);
+            Response.Redirect("MessageSentConfirmation.aspx");
+        }
     }
 }
