@@ -144,6 +144,7 @@
     <Content Include="UL\Images\girlBanner.png" />
     <Content Include="UL\Images\GirlBanner1.png" />
     <Content Include="UL\Images\liveBanner.png" />
+    <Content Include="UL\Images\master_background.jpg" />
     <Content Include="UL\Images\reuseBanner.png" />
     <Content Include="UL\Images\smartway-icon.ico" />
     <Content Include="UL\Images\smartway-logo2.png" />

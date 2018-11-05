@@ -3,4 +3,3 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
-<!-- This page is only here to redirect to the corrct index page in /UL/Views/inex.aspx. -->
