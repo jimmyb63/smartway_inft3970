@@ -77,7 +77,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle m-1" id="forumdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-comments mr-2"></i>Forum</a>
                             <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" aria-labelledby="forumdropdown">
-                                <a class="dropdown-item" href="ViewAdvertisementList.aspx?category=services">Browse All</a>
+                                <a class="dropdown-item" href="ViewForumPostList.aspx">Browse All</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#!">Daily</a>
                                 <a class="dropdown-item" href="#!">Weekly</a>
