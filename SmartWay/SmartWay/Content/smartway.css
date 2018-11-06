@@ -272,3 +272,9 @@ a.btn.btn-custom:hover, .btn.btn-custom:focus {
     width: 70%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/*------------Courgette font----------*/
+.MeetTheTeam {
+    font-family: 'Courgette', cursive;
+    font-size:30px;
+}
