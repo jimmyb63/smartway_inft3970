@@ -9,6 +9,10 @@
         <%-- Main Page Content Goes Here--%>
         <div class="p-2 mb-2 bg-primary text-white">Contact Us</div>
         <div class="card">
+            <div class="card-header">
+                <p style="text-align:center">Got a question?</p>
+                <p style="text-align:center">We'd love to hear from you. Send us a message and we'll respond as soon as possible</p>
+            </div>
             <div class="card-body">
                 <%-- ERROR SUMMARY --%>
                 <asp:ValidationSummary
@@ -17,7 +21,6 @@
                     ForeColor="Red"
                     ShowMessageBox="false"
                     HeaderText="Please fix these entries:" />
-                <p>Please fill out the below form to contact admin</p>
                 <%-- FIRST NAME --%>
                 <h6>First Name*</h6>
                 <asp:TextBox 

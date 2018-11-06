@@ -13,7 +13,7 @@
                 <p>An 8 digit verficiation code has been sent to you via SMS and email</p>
             </div>
             <div class="card-body">
-                <p>Please enter code to verify account</p>
+                <p>Please enter the code to verify your account</p>
                 <div class="row my-2">
                     <div class="col-lg-2 col-md-0"></div>
                     <div class="col-lg-4 col-md-6 mb-2">
