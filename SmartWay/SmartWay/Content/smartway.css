@@ -265,3 +265,10 @@ h3 {
 a.btn.btn-custom:hover, .btn.btn-custom:focus {
     color: #e0e0e0;
 }
+
+/*-----------------About Us Photos-------------*/
+.aboutUsPhoto {
+    border-radius: 50%;
+    width: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

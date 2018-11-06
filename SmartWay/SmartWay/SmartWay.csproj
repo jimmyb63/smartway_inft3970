@@ -138,9 +138,15 @@
     <Content Include="scripts\JavaScript.js" />
     <Content Include="smartway-icon.ico" />
     <Content Include="UL\Images\AdImg\1_1000_1000.jpg" />
+    <Content Include="UL\Images\DefaultImg\Ashley.png" />
+    <Content Include="UL\Images\DefaultImg\Brock.png" />
+    <Content Include="UL\Images\DefaultImg\Gabby.png" />
     <Content Include="UL\Images\DefaultImg\GenericAddImage.png" />
     <Content Include="UL\Images\DefaultImg\GenericForumImage.png" />
     <Content Include="UL\Images\DefaultImg\GenericProfileImage.png" />
+    <Content Include="UL\Images\DefaultImg\Graham.png" />
+    <Content Include="UL\Images\DefaultImg\James.png" />
+    <Content Include="UL\Images\DefaultImg\Zac.png" />
     <Content Include="UL\Images\girlBanner.png" />
     <Content Include="UL\Images\GirlBanner1.png" />
     <Content Include="UL\Images\liveBanner.png" />

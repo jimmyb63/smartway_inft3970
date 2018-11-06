@@ -341,16 +341,16 @@
                 <!-- Grid row -->
                 <div class="row">
                     <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
+                    <div class="col-md-8 mt-md-0 mt-3">
                         <!-- Content -->
                         <h5><a href="TermsofService.aspx" class="text-uppercase">Privacy Policy & Terms of Service</a></h5>
-                        <p>Your privacy is important to us. It is SmartWay's policy to respect your privacy regarding any information we may collect from you across our website, SmartWay, and other sites we own and operate.</p>
+                        <p><a href="TermsofService.aspx">Your privacy is important to us. It is SmartWay's policy to respect your privacy regarding any information we may collect from you.</a></p>
 
                     </div>
                     <!-- Grid column -->
                     <hr class="clearfix w-100 d-md-none pb-3" />
                     <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
+                    <div class="col-md-2 mb-md-0 mb-3">
                         <!-- Links -->
                         <ul class="list-unstyled">
                             <li>
@@ -385,9 +385,12 @@
                     <!-- /Grid column -->
 
                     <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
+                    <div class="col-md-2 mb-md-0 mb-3">
                         <!-- Links -->
                         <ul class="list-unstyled">
+                            <li>
+                                <a href="about.aspx">Meet The Team</a>
+                            </li>
                             <li>
                                 <a href="termsofService.aspx#termsofservice">Terms of Service</a>
                             </li>

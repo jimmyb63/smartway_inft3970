@@ -6,32 +6,45 @@
 
     <%--Page Content--%>
     <div class="col-lg-9 mt-2">
-        <div class="p-2 mb-2 bg-primary text-white">About Us</div>
+        <div class="p-2 mb-2 bg-primary text-white">Meet the SmartWay Team</div>
         <div class="card">
-            <div class="card-body">
-                <%--------Main Page Content Goes Here--------%>
-                <div class="jumbotron text-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h3>Column 1</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Column 2</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h3>Column 3</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-                            </div>
+            <%--------Main Page Content Goes Here--------%>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/James.png" />
+                            <h5>James Bailey</h5>
+                            <p>Position</p>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Ashley.png" />
+                            <h5>Ashley Ballinger</h5>
+                            <p>Position</p>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Zac.png" />
+                            <h5>Zac Skoumbourdis</h5>
+                            <p>Position</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Brock.png" />
+                            <h5>Brock Buttsworth</h5>
+                            <p>Position</p>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Graham.png" />
+                            <h5>Graham Johnstone</h5>
+                            <p>Position</p>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Gabby.png" />
+                            <h5>Gabriele Urbonaite</h5>
+                            <p>Position</p>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </asp:Content>
