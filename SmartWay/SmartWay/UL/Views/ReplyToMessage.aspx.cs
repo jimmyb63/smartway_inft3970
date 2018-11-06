@@ -14,12 +14,12 @@ namespace SmartWay.UL.Views
         
         AdvertisementControls AC = new AdvertisementControls();
         UserControls UC = new UserControls();
-        int privateMessageID = 1000; // for testing
+        int privateMessageID;// = 1000; // for testing
 
         // PRIVATE MESSAGE:
         PrivateMsg tempPrivateMessage = new PrivateMsg();
         DateTime tempSentDate = new DateTime();
-
+        int tempPrivateMessageChainID;
         // SENDER:
         Person tempSender = new Person();
         // need username and ID
@@ -56,12 +56,14 @@ namespace SmartWay.UL.Views
                 // adID.Value = adId;
                 
                 privateMessageID = Convert.ToInt32(tempPmID);
+                //hfpmChainID = privateMessageID
             }
             tempPrivateMessage = UC.getPrivateMessageByID(privateMessageID);
             //adID = tempPrivateMessage.pmAdID;
             tempSentDate = tempPrivateMessage.pmCreationDate;
             tempSenderID = tempPrivateMessage.pmSendersUserID;
             tempRecipientID = tempPrivateMessage.pmReceiverUserID;
+            tempPrivateMessageChainID = tempPrivateMessage.pmPrivateMessageChainID;
             tempCurrent = (Person)Session["currentUser"];
             tempCurrentID = tempCurrent.userID;
             hfUserID.Value = tempCurrentID.ToString().Trim();
@@ -124,9 +126,19 @@ namespace SmartWay.UL.Views
             {
                 if (tempPrivateMsg[i].pmMessageReplied == true)
                 {
-                    tempReturnList.Add(tempPrivateMsg[i]);
+                    if (tempPrivateMsg[i].pmPrivateMessageChainID == tempPrivateMessageChainID)
+                    {
+                        tempReturnList.Add(tempPrivateMsg[i]);
+                    }                        
                 }
             };
+            // with this method, list is shown in the 'newest' order
+            // if the list is empty, there is no need for reversing as there is nothing there
+            if (tempReturnList.Count != 0)
+            {
+                tempReturnList = returnReverseList(tempReturnList);
+
+            }
             return tempReturnList;
         }
 
@@ -138,11 +150,20 @@ namespace SmartWay.UL.Views
             List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
             for (var i = 0; i < tempPrivateMsg.Count; i++)
             {
-                if (tempPrivateMsg[i].pmMessageReplied == false)
+                if (tempPrivateMsg[i].pmPrivateMessageChainID == tempPrivateMessageChainID)
                 {
-                    tempReturnList.Add(tempPrivateMsg[i]);
+                    if (tempPrivateMsg[i].pmMessageReplied == false)
+                    {
+                        tempReturnList.Add(tempPrivateMsg[i]);
+                    }
                 }
             };
+            // with this method, list is shown in the 'newest' order
+            // if list is empty, no reversing is needed as there is nothing there
+            if (tempReturnList.Count != 0)
+            {
+                tempReturnList = returnReverseList(tempReturnList);
+            }
             return tempReturnList;
         }
 
@@ -184,6 +205,31 @@ namespace SmartWay.UL.Views
                 return "Your Response ";
             }
 
+        }
+
+        /// <summary>
+        /// Will return messages in 'Newest' order
+        /// </summary>
+        /// <param name="tempOriginalList">List of privateMsg objects</param>
+        /// <returns></returns>
+        private List<PrivateMsg> returnReverseList(List<PrivateMsg> tempOriginalList)
+        {
+            // creating a list to fill in
+            List<PrivateMsg> reversedList = new List<PrivateMsg>();
+            // move through the list and add them to the new list in the opposite order
+            // explanation:
+            // int i = tempOriginalList.Count -1 = original list's total message amount -1 because index starts at 0 and not 1
+            // i <= 0  = the end of the loop aka where we stop checking - equal or less than 0 (value)
+            // i--  = minus 1 each loop
+            for (int i = tempOriginalList.Count -1; i >= 0; i--)
+            {
+                // we take the original list of messages
+                // taking the last message in the list 
+                // it goes through the loop
+                // gets added to the start of the new list
+                reversedList.Add(tempOriginalList[i]);
+            }
+            return reversedList;
         }
 
         protected void btnReply_Click(object sender, EventArgs e)

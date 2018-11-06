@@ -63,22 +63,55 @@ namespace SmartWay.UL.Views
             //tempRecipientID2 = 1003;
             //tempAddID2 = 1003;
             List<PrivateMsg> tempPrivateMsg = UC.getPrivateMessageListforUser(tempSenderID2);
-            return tempPrivateMsg;
+            List<PrivateMsg> returnMessageList = new List<PrivateMsg>();
+            // for (var i = 0; i < tempPrivateMsg.Count; i++)
+            int thisCount = tempPrivateMsg.Count;
+            for (var i = tempPrivateMsg.Count -1; i >= 0; i--)
+                {
+
+                // creating a private message of the message in the list
+                // at that position of the loop             
+                PrivateMsg tempMessage = tempPrivateMsg[i];
+                int pmChain = tempMessage.pmPrivateMessageChainID;
+                bool pmChainExists = false;
+                for (var j = 0; j < returnMessageList.Count; j++)
+                {
+                    if (returnMessageList[j].pmPrivateMessageChainID == pmChain)
+                    {
+                        pmChainExists = true;
+                    }
+                }
+                    if (pmChainExists == false) // we're checking if the private message does NOT exist
+                    {
+                        returnMessageList.Add(tempMessage); // if true, it adds to the list
+                    }
+            }
+            // we return returnMessageList - list of messages that did not exist and were added to the list
+            return returnMessageList;
         }
 
         public List<PrivateMsg> getRepliedPrivateMsgList()
         {
             UserControls UC = new UserControls();
             Person currentUser = new Person();
+            currentUser = (Person)Session["currentUser"];
+            int currentUserID = currentUser.userID;
             List<PrivateMsg> tempPrivateMsg = getPrivateMsgList();
             List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
             for (var i = 0; i < tempPrivateMsg.Count; i++)
             {
-                if (tempPrivateMsg[i].pmMessageRead == true)
+                // we are taking logged in user's ID and see if it matches with pm recipient's ID 
+                if (currentUserID != tempPrivateMsg[i].pmReceiverUserID)
                 {
-                    tempReturnList.Add(tempPrivateMsg[i]);
+                    // if it doesn't match, we check if the message was read (true)
+                    if (tempPrivateMsg[i].pmMessageRead == false)
+                    {
+                        // we adding those read messages to a list for displaying
+                        tempReturnList.Add(tempPrivateMsg[i]);
+                    }
                 }
             };
+            // returning the list of read messages
             return tempReturnList;
         }
 
@@ -86,14 +119,24 @@ namespace SmartWay.UL.Views
         {
             UserControls UC = new UserControls();
             Person currentUser = new Person();
+            currentUser = (Person)Session["currentUser"];
+            int currentUserID = currentUser.userID;            
             List<PrivateMsg> tempPrivateMsg = getPrivateMsgList();
             List<PrivateMsg> tempReturnList = new List<PrivateMsg>();
+            // going through a loop
             for (var i = 0; i < tempPrivateMsg.Count; i++)
             {
-                if (tempPrivateMsg[i].pmMessageRead == false)
+                // we are taking logged in user's ID and see if it matches with pm recipient's ID               
+                if (currentUserID == tempPrivateMsg[i].pmReceiverUserID)
                 {
-                    tempReturnList.Add(tempPrivateMsg[i]);
-                }
+                    // if it matches, then we check if the message was NOT read (false)
+                    if (tempPrivateMsg[i].pmMessageRead == false)
+                    {
+                        // if the message was not read, it is added to the message list
+                        // to be displayed to the user
+                        tempReturnList.Add(tempPrivateMsg[i]);
+                    }
+                }                
             };
             return tempReturnList;
         }

@@ -10,7 +10,7 @@
                 <br />
                 <div class="row">
                 <%-- MESSAGE NOT REPLIED TO --%>
-                <h5>Messages Not Replied To:</h5>  
+                <h5>Unread Messages:</h5>  
                     <%-- LIST VIEW BEGINS --%>
                     <asp:ListView 
                         ID="lvNotRepliedMessages" 
@@ -79,7 +79,7 @@
                 <br />
 
                 <%-- MESSAGE REPLIED TO --%>
-                <h5>Messages Replied To:</h5>
+                <h5>Message History:</h5>
                 <div class="row">
                     <asp:ListView 
                         ID="ListView1" 

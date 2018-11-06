@@ -8,6 +8,7 @@
         <asp:HiddenField ID="hfAdID" runat="server" />
         <asp:HiddenField ID="hfUserID" runat="server" />
         <asp:HiddenField ID="hfUserSenderID" runat="server"/>
+        <asp:HiddenField ID="hfpmChainID" runat="server"/>
         <div class="p-2 mb-2 bg-primary text-white">Reply Messages</div>
             <div class="card">
                 <div class="card-body">
