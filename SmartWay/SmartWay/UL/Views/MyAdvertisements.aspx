@@ -103,7 +103,6 @@
                                         </div>
                                     </div>
                             </asp:PlaceHolder>
-                            <hr />
                         </ItemTemplate>
                         <LayoutTemplate>
                             <%--<table>
@@ -194,7 +193,6 @@
                                     </div>
                                 </div>
                             </asp:PlaceHolder>
-                            <hr />
                         </ItemTemplate>
                         <LayoutTemplate>
                             <%--<table>
