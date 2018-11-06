@@ -185,7 +185,7 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									addressID INT NOT NULL,
 									--addStatusID INT NOT NULL DEFAULT 0,
 									categoryID INT NOT NULL,
-									price DECIMAL NOT NULL,		
+									price DECIMAL(7,2) NOT NULL,		
 									dateCompleted DATETIME,
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
@@ -521,7 +521,7 @@ CREATE PROCEDURE sp_NewAdvertisement(
 	@tempSubCategory varchar(30),
 	@tempDescription varchar(250),
 	@tempAddressID INT,
-	@tempPrice DECIMAL,
+	@tempPrice DECIMAL(7,2),
 	@returnAdID INT OUTPUT)
 AS
 	DECLARE @tempCategoryID INT;
