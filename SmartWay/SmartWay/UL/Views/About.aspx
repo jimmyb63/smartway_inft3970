@@ -12,34 +12,34 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-4 text-center">
-                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/James.png" />
+                            <img class="aboutUsPhoto m-2 animated rollIn" src="../Images/DefaultImg/James.png" />
                             <h5>James Bailey</h5>
                             <p>Position</p>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Ashley.png" />
+                            <img class="aboutUsPhoto m-2 animated rollIn" src="../Images/DefaultImg/Ashley.png" />
                             <h5>Ashley Ballinger</h5>
                             <p>Position</p>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Zac.png" />
+                            <img class="aboutUsPhoto m-2 animated rollIn" src="../Images/DefaultImg/Zac.png" />
                             <h5>Zac Skoumbourdis</h5>
                             <p>Position</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 text-center">
-                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Brock.png" />
+                            <img class="aboutUsPhoto m-2 animated rollIn" src="../Images/DefaultImg/Brock.png" />
                             <h5>Brock Buttsworth</h5>
                             <p>Position</p>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Graham.png" />
+                            <img class="aboutUsPhoto m-2 animated rollIn" src="../Images/DefaultImg/Graham.png" />
                             <h5>Graham Johnstone</h5>
                             <p>Position</p>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <img class="aboutUsPhoto m-2" src="../Images/DefaultImg/Gabby.png" />
+                            <img class="aboutUsPhoto m-2 animated rollIn" src="../Images/DefaultImg/Gabby.png" />
                             <h5>Gabriele Urbonaite</h5>
                             <p>Position</p>
                         </div>
