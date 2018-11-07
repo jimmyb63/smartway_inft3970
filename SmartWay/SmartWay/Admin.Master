@@ -8,24 +8,22 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="shortcut icon" href="UL/Images/smartway-icon.ico" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link href="Content/mdb.css" rel="stylesheet" />
     <link href="Content/smartway.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src='<%=ResolveUrl("~/scripts/JavaScript.js") %>'></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form runat="server">    
-<<<<<<< HEAD
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
-          <div class="container-fluid"> <a class="navbar-brand" href="#">SmartWay - Admin Console</a>
-=======
         <nav class="navbar navbar-expand-lg navbar-dark cyan fixed-top">
-          <div class="container"> <a class="navbar-brand" href="#">SmartWay - Admin Console</a>
->>>>>>> 95418a137c9ce8eee222ee64d8262120a95dcf8c
+          <div class="container-fluid"> <a class="navbar-brand" href="#">SmartWay - Admin Console</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto">
@@ -50,13 +48,13 @@
                 <div class="col-lg-6 input-group mb-3">
                     <asp:TextBox ID="txtUserSearch" CssClass="form-control" placeholder="Search User ID or User Name" aria-label="Search User ID or User Name" aria-describedby="button-addon2" runat="server" />
                     <div class="input-group-append">
-                        <asp:Button Text="Search" runat="server" OnClick="searchUser" CssClass="btn btn-outline-secondary" />
+                        <asp:Button Text="Search" runat="server" OnClick="searchUser" CssClass="btn cyan" />
                     </div>
                 </div>
 		        <div class="col-lg-6 input-group mb-3">
                     <asp:TextBox ID="txtAdSearch" CssClass="form-control" placeholder="Search Ad ID" aria-label="Search Ad ID" aria-describedby="button-addon2" runat="server" />
                     <div class="input-group-append">
-                        <asp:Button Text="Search" runat="server" OnClick="searchAd" CssClass="btn btn-outline-secondary" />
+                        <asp:Button Text="Search" runat="server" OnClick="searchAd" CssClass="btn cyan" />
                     </div>
                 </div>
 	        </div>
@@ -90,30 +88,6 @@
                             <li>
                                 <a href="map.aspx">Recycle Locations</a>
                             </li>
-                            <% if (Session["currentUser"] != null)
-                                {
-                                    Person currentUser = new Person();
-                                    currentUser = (Person)Session["currentUser"];
-                                    int userID = currentUser.userID;%>
-                            <li>
-                                <a href="PostAdvertisement.aspx">Post Advertisement</a>
-                            </li>
-                            <li>
-                                <a href="PostForumThread.aspx">Post Forum Thread</a>
-                            </li>
-                                                        <li>
-                                <a href="LogoutConfirmation.aspx">Logout</a>
-                            </li>
-                            <% }
-                                else
-                                { %>
-                            <li>
-                                <a href="Login.aspx">Login</a>
-                            </li>
-                            <li>
-                                <a href="Registration.aspx">Register</a>
-                            </li>
-                            <% } %>
                         </ul>
                     </div>
                     <!-- /Grid column -->
