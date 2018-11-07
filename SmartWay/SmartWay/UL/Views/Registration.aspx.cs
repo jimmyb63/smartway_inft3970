@@ -41,7 +41,6 @@ namespace SmartWay.UL.Views
                     string DOB = txtDOB.Text;
                     string password = txtPassword.Text;
                     int phoneNumber = Convert.ToInt32(txtPhone.Text);
-                    int paypalID = 20;
                     string uNum = "";
                     uNum = txtUnitNumber.Text;
                     string sNum = txtStreetNumber.Text;
@@ -59,7 +58,10 @@ namespace SmartWay.UL.Views
                     }
                     Session["userID"] = userID;
                     MS.sendVerificationEmail(email, fName, verificationCode);
-                    SS.SendSMS(phoneNumber, verificationCode);
+                    if (phoneNumber == 0422628242 || phoneNumber == 0434837691 || phoneNumber == 0421030606 || phoneNumber == 0466548976 || phoneNumber == 0450025977 || phoneNumber == 0439627096)
+                    {
+                        SS.SendSMS(phoneNumber, verificationCode);
+                    }
                     Response.Redirect("AccountVerification.aspx");
                 }
                     
