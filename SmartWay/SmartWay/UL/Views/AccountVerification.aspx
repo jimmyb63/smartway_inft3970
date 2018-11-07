@@ -8,9 +8,9 @@
         <%--<div class="p-2 mb-2 bg-primary text-white">Account Verification</div>--%>
         <div class="card text-center">
             <div class="card-header">
-                <h2>Account Verfifcation</h2>
+                <h2>Account Verification</h2>
                 <hr />
-                <p>An 8 digit verficiation code has been sent to you via SMS / email. If you do not receive the email within a few minutes, please check your Spam or Bulk E-Mail folder just in case the verification email got delivered there instead of your inbox.</p>
+                <p>An 8 digit verification code has been sent to you via SMS / email. If you do not receive the email within a few minutes, please check your Spam or Bulk E-Mail folder just in case the verification email got delivered there instead of your inbox.</p>
             </div>
             <div class="card-body">
                 <p>Please enter the code to verify your account</p>
