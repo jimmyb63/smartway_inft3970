@@ -1,4 +1,4 @@
-﻿veri<%@ Page Title="SmartWay - My Advertisements" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="MyAdvertisements.aspx.cs" Inherits="SmartWay.UL.Views.MyAdvertisements" %>
+﻿<%@ Page Title="SmartWay - My Advertisements" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="MyAdvertisements.aspx.cs" Inherits="SmartWay.UL.Views.MyAdvertisements" %>
 <%@ Import Namespace="SmartWay.BL.Models" %>
 <%@ Import Namespace="SmartWay.DAL.Controllers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
