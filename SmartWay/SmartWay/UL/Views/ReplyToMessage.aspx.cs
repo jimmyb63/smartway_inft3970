@@ -182,7 +182,7 @@ namespace SmartWay.UL.Views
             tempCurrentID = tempCurrent.userID;
             if (senderID != tempCurrentID)
             {
-                return "background-color: #FEEFB3; ";
+                return "background-color: #F8DDA4; ";
             }
             else
             {

@@ -14,19 +14,8 @@
                 <div class="card-body">
                 <%-- LABELS for Name and Title --%>
                 <%-- NAME --%>
-                <table style="width:100%">
+                <table style="width:100%">                    
                     <%-- FIRST ROW --%>
-                    <tr>    
-                        <%-- Ad Details: --%>
-                        <td style="width:100%">                      
-                        <asp:Label
-                        ID="lblAdDetails"
-                        runat="server"
-                        Text="<h4>Ad Details: </h4>">
-                        </asp:Label>
-                        </td>
-                    </tr>
-                    <%-- SECOND ROW --%>
                     <tr>
                         <%-- TITLE --%>
                         <td style="width:100%">
@@ -40,7 +29,8 @@
                 </table>
                 <br />
                 <%-- MESSAGE NOT REPLIED TO --%>
-                <h4>New Messages:</h4>
+                <h5>New Messages:</h5>
+                <div class="col-lg-12" >
                 <div class="row">
                     <asp:ListView 
                         ID="lvNotRepliedMessages" 
@@ -52,19 +42,17 @@
                         <%-- Empty Data Template --%>
                         <EmptyDataTemplate>
                             <div class="card h-100">
-                            <div class="row">
-                                
+                            <div class="row">                                
                                 <div class="col-1 my-2"></div>
                                 <br />
                                 <hr />
                                 <br />
                                 <div class="col-10 my-2">
                                     <br />
-
                                     <p class="card-text">
                                         <%-- TODO: Check when no messages are present if this place is default --%>
-                                        <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
-                                        <h4 class="text-center">No messages to reply to.</h4>
+                                        <h2 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h2>
+                                        <h5 class="text-center">No messages to reply to.</h5>
                                     </p>
                                 </div>
                                 <div class="col-1 my-2"></div>
@@ -91,10 +79,10 @@
                                             <div class="card-body">
                                                 <div >
                                                     <!-- Title -->
-                                                    <h5 class="card-title">
+                                                    <h6 class="card-title">
                                                         <asp:Label ID="lblReplyHeader" runat="server" Text="<%#: messageFromStyle(Item.pmSendersUserID) %>"></asp:Label>
-                                                        <%#:"On : "+ (Item.pmCreationDate).ToString("dd/MM/yyyy HH:mm")%></h5>
-                                                    <h5><B><%#: (Item.pmMessageDetails)%></B></h5>
+                                                        <%#:"On : "+ (Item.pmCreationDate).ToString("dd/MM/yyyy HH:mm")%></h6>
+                                                    <h5><%#: (Item.pmMessageDetails)%></h5>
                                                     <br />
                                                 </div>
                                             </div>
@@ -105,21 +93,23 @@
                         </ItemTemplate>  
                     </asp:ListView>   
                 </div>
+                </div>
                 <br />
                 <%-- MESSAGE BOX --%>
-                <h4>Reply Message:</h4>
+                <h5>Reply Message:</h5>
                 <asp:TextBox 
-                CssClass="form-control" 
-                runat="server" 
-                ID="txtMessage" 
-                TextMode="MultiLine"                     
-                Rows="5" />
+                    CssClass="form-control" 
+                    runat="server" 
+                    ID="txtMessage" 
+                    TextMode="MultiLine"                     
+                    Rows="5" />
                 <br />
                 <asp:Button ID="btnReply" runat="server" Text="Reply" CssClass="btn btn-block btn-info" OnClick="btnReply_Click" />
                 <br />
                 <%-- MESSAGE REPLIED TO --%>
-                <h4>Messages History:</h4>
+                <h5>Messages History:</h5>
                 <div class="row">
+                <div class="col-lg-12" >
                     <asp:ListView 
                         ID="lvRepliedMessages" 
                         runat="server"
@@ -130,19 +120,17 @@
                         <%-- Empty Data Template --%>
                         <EmptyDataTemplate>
                             <div class="card h-100">
-                            <div class="row">
-                                
+                            <div class="row">                                
                                 <div class="col-1 my-2"></div>
                                 <br />
                                 <hr />
                                 <br />
                                 <div class="col-10 my-2">
                                     <br />
-
                                     <p class="card-text">
                                         <%-- TODO: Check when no messages are present if this place is default --%>
-                                        <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
-                                        <h4 class="text-center">No messages to reply to.</h4>
+                                        <h2 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h2>
+                                        <h5 class="text-center">No messages to reply to.</h5>
                                     </p>
                                 </div>
                                 <div class="col-1 my-2"></div>
@@ -169,10 +157,10 @@
                                             <div class="card-body" >
                                                 <div>
                                                     <!-- Title -->
-                                                    <h5 class="card-title">
+                                                    <h6 class="card-title">
                                                         <asp:Label ID="lblReplyHeader" runat="server" Text="<%#: messageFromStyle(Item.pmSendersUserID) %>"></asp:Label>
-                                                        <%#:"On : "+ (Item.pmCreationDate).ToString("dd/MM/yyyy HH:mm")%></h5>
-                                                    <h5><B><%#: (Item.pmMessageDetails)%></B></h5>
+                                                        <%#:"On : "+ (Item.pmCreationDate).ToString("dd/MM/yyyy HH:mm")%></h6>
+                                                    <h5><%#: (Item.pmMessageDetails)%></h5>
                                                     <br />
                                                 </div>
                                             </div>
@@ -184,6 +172,7 @@
                     </asp:ListView>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </asp:Content>
