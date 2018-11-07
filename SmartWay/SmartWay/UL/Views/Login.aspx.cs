@@ -37,7 +37,7 @@ namespace SmartWay.UL.Views
                 {
                     //if (tempUser.userAdmin == "admin")
                     Session["currentAdmin"] = tempAdmin;
-                    Response.Redirect("AdminIndex.aspx");
+                    Response.Redirect("AdminReviewUsers.aspx");
                 }
             }
             else if (tempUser.userEmail != null)
