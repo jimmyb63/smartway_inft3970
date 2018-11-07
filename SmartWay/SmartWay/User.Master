@@ -48,6 +48,7 @@
                             <a class="success-color btn btn-block btn-sm mt-2 btn-custom" href="PostForumThread.aspx">Post in Forum</a>
                         </li>
                         <li class="nav-item"><a class="nav-link m-1" href="index.aspx"><i class="fas fa-home mr-1"></i>Home</a> </li>
+                        <li class="nav-item"><a class="nav-link m-1" href="map.aspx"><i class="fas fa-map-marked-alt mr-1"></i>Recycling Locations</a> </li>
                         <li class="nav-item dropdown" aria-labelledby="goodsdropdown">
                             <a class="nav-link dropdown-toggle m-1" id="goodsdropdown" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-shopping-cart mr-1"></i>Goods</a>
                             <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" aria-labelledby="goodsdropdown">

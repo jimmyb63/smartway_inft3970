@@ -10,7 +10,7 @@
             <div class="card-header">
                 <h2>Account Verfifcation</h2>
                 <hr />
-                <p>An 8 digit verficiation code has been sent to you via SMS and email</p>
+                <p>An 8 digit verficiation code has been sent to you via SMS and email. If you do not receive the email within a few minutes, please check your Spam or Bulk E-Mail folder just in case the verification email got delivered there instead of your inbox.</p>
             </div>
             <div class="card-body">
                 <p>Please enter the code to verify your account</p>
