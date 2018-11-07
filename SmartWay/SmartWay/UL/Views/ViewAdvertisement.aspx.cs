@@ -173,5 +173,5 @@ namespace SmartWay.UL.Views
             coordinates.Add(longitude);
             return coordinates;
         }
-	}
+    }
 }
