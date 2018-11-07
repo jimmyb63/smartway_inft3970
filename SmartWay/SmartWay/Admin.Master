@@ -19,8 +19,13 @@
 </head>
 <body>
     <form runat="server">    
+<<<<<<< HEAD
         <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
           <div class="container-fluid"> <a class="navbar-brand" href="#">SmartWay - Admin Console</a>
+=======
+        <nav class="navbar navbar-expand-lg navbar-dark cyan fixed-top">
+          <div class="container"> <a class="navbar-brand" href="#">SmartWay - Admin Console</a>
+>>>>>>> 95418a137c9ce8eee222ee64d8262120a95dcf8c
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto">
@@ -63,12 +68,92 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
-        <footer class="page-footer font-small bg-primary p-4">
-            <div class="container-fluid text-center">
-            <p class="m-0 text-center text-white">Copyright SmartWay 2018</p>
+        <!-- Footer -->
+        <footer class="page-footer font-small cyan pt-4">
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+                <!-- Grid row -->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-8 mt-md-0 mt-3">
+                        <!-- Content -->
+                        <h5><a href="TermsofService.aspx" class="text-uppercase">Privacy Policy & Terms of Service</a></h5>
+                        <p><a href="TermsofService.aspx">Your privacy is important to us. It is SmartWay's policy to respect your privacy regarding any information we may collect from you.</a></p>
+
+                    </div>
+                    <!-- Grid column -->
+                    <hr class="clearfix w-100 d-md-none pb-3" />
+                    <!-- Grid column -->
+                    <div class="col-md-2 mb-md-0 mb-3">
+                        <!-- Links -->
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="map.aspx">Recycle Locations</a>
+                            </li>
+                            <% if (Session["currentUser"] != null)
+                                {
+                                    Person currentUser = new Person();
+                                    currentUser = (Person)Session["currentUser"];
+                                    int userID = currentUser.userID;%>
+                            <li>
+                                <a href="PostAdvertisement.aspx">Post Advertisement</a>
+                            </li>
+                            <li>
+                                <a href="PostForumThread.aspx">Post Forum Thread</a>
+                            </li>
+                                                        <li>
+                                <a href="LogoutConfirmation.aspx">Logout</a>
+                            </li>
+                            <% }
+                                else
+                                { %>
+                            <li>
+                                <a href="Login.aspx">Login</a>
+                            </li>
+                            <li>
+                                <a href="Registration.aspx">Register</a>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <!-- /Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 mb-md-0 mb-3">
+                        <!-- Links -->
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="Contact.aspx">Contact</a>
+                            </li>
+                            <li>
+                                <a href="about.aspx">Meet The Developers</a>
+                            </li>
+                            <li>
+                                <a href="termsofService.aspx#termsofservice">Terms of Service</a>
+                            </li>
+                            <li>
+                                <a href="termsofService.aspx#privacypolicy">Privacy Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Grid column -->
+
+                </div>
+                <!-- /Grid row -->
+
             </div>
-        <!-- /.container --> 
+            <!-- /Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2018 Copyright:
+      <a href="index.aspx">SmartWay</a>
+               <span id="siteseal" class="mx-5"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=aZZAogfwLOxIZEwv3eC3hqxbU2CAMxYM4xpRyv9GSeB30Je7nm9WMnevr8fR"></script></span>
+            </div>
+            <!-- Copyright -->
+
         </footer>
+        <!-- Footer -->
     </form>
 </body>
 </html>

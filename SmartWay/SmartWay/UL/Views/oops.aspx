@@ -8,7 +8,7 @@
         <h1 class="mt-4" style="font-family:'Courgette', cursive;">oops!</h1>
         <h2 style="font-family:'Courgette', cursive;">Something went wrong</h2>
         <br />
-        <a href="contact.aspx">CLick here to contact one of our friendly staff.</a>
+        <a href="contact.aspx">Click here to contact one of our friendly staff.</a>
         <br />
         <a href="index.aspx">Click here to go home.</a>
         <br />
