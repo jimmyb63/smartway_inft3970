@@ -98,6 +98,7 @@ namespace SmartWay.UL.Views
             }
             //To Add  Tags Linked to ForumPost
 
+            Response.Redirect("ForumPostConfirmation.aspx?forumID=" + forumID);
 
 
 
