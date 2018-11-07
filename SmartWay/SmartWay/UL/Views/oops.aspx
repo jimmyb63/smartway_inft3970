@@ -4,25 +4,29 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-lg-9 mt-2">
-        <div class="p-2 mt-2 danger-color text-white">Page Not Found</div>
-    <div class="card">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="error-template">
-                <h1>
-                    Oops!</h1>
-                <h2>
-                    404 Not Found</h2>
-                <div class="error-details">
-                    Sorry, an error has occured, Requested page not found!
-                </div>
-                <div class="error-actions">
-                    <a href="http://www.jquery2dotnet.com" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Take Me Home </a><a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
-                </div>
-            </div>
+    <div class="card text-center">
+        <h1 class="mt-4" style="font-family:'Courgette', cursive;">oops!</h1>
+        <h2 style="font-family:'Courgette', cursive;">Something went wrong</h2>
+        <br />
+        <a href="contact.aspx">CLick here to contact one of our friendly staff.</a>
+        <br />
+        <a href="index.aspx">Click here to go home.</a>
+        <br />
+        <p>Your browser will automatically take you home in <span id="countdown">20</span> seconds.</p>
+        
         </div>
     </div>
-</div>
-        </div>
+        <script type="text/javascript">
+        var seconds = 20;
+        function countdown() {
+            seconds = seconds - 1;
+            if (seconds < 0) {
+                window.location = "index.aspx";
+            } else {
+                document.getElementById("countdown").innerHTML = seconds;
+                window.setTimeout("countdown()", 1000);
+            }
+        }
+        countdown();
+    </script>
 </asp:Content>
