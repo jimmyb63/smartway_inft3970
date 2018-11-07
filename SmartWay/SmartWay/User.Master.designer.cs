@@ -85,15 +85,6 @@ namespace SmartWay {
         protected global::System.Web.UI.WebControls.TextBox txtSearchSm;
         
         /// <summary>
-        /// txtSearchLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchLocation;
-        
-        /// <summary>
         /// btnSearchLg control.
         /// </summary>
         /// <remarks>

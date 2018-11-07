@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="ViewForumPostList.aspx.cs" Inherits="SmartWay.UL.Views.ViewForumPostList" %>
+﻿<%@ Page Title="SmartWay - Forum Post List" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="ViewForumPostList.aspx.cs" Inherits="SmartWay.UL.Views.ViewForumPostList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -8,12 +8,18 @@
             { %>
         <% value = Request.QueryString["search"];
             }%>
-        <div class="p-2 mb-2 bg-primary text-white">Forum Posts</div>
+        <div class="row p-2 bg-primary text-white align-content-center align-items-center align">
+                <div class="col-lg-4 d-none d-lg-block">
+                    <h6 class="mt-2">Forum Posts</h6>
+                </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4"></div>
+            </div>
         <div class="row">
             <%--<asp:HiddenField ID="ID" runat="server" />--%>
             <asp:ListView ID="forumList" runat="server"
                 DataKeyNames="forumID" GroupItemCount="4"
-                ItemType="SmartWay.BL.Models.ForumThread" SelectMethod="getForumPosts">
+                ItemType="SmartWay.BL.Models.ForumThread" OnPagePropertiesChanging="onPageChange">
                 <EmptyDataTemplate>
                     <div class="col-12 my-2" runat="server">
                         <% if (Request.QueryString["search"] != null) %>
@@ -110,6 +116,22 @@
                     </table>--%>
                 </LayoutTemplate>
             </asp:ListView>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <asp:DataPager ID="DataPagerForum" runat="server" class="btn-group d-flex" PagedControlID="forumList" PageSize="5" >
+                    <Fields>
+                        <asp:NextPreviousPagerField PreviousPageText="Back" ShowPreviousPageButton="true"
+                            ShowFirstPageButton="false" ShowNextPageButton="false" ShowLastPageButton="false"
+                            ButtonCssClass="btn btn-blue w-100" RenderNonBreakingSpacesBetweenControls="false" RenderDisabledButtonsAsLabels="false" />
+                        <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="btn btn-blue w-100 disabled d-none d-lg-block"  RenderNonBreakingSpacesBetweenControls="false"
+                            NumericButtonCssClass="btn btn-blue w-100 d-none d-lg-block" ButtonCount="10" NextPageText="..." NextPreviousButtonCssClass="btn btn-blue" />
+                        <asp:NextPreviousPagerField NextPageText="Next" ShowNextPageButton="true"
+                            ShowLastPageButton="false" ShowPreviousPageButton="false" ShowFirstPageButton="false"
+                            ButtonCssClass="btn btn-blue w-100" RenderNonBreakingSpacesBetweenControls="false" RenderDisabledButtonsAsLabels="false"/>
+                    </Fields>
+                </asp:DataPager>
+            </div>
         </div>
     </div>
 

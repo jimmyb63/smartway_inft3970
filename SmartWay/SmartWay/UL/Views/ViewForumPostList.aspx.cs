@@ -14,10 +14,25 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            BindListView();
         }
 
-        public List<ForumThread> getForumPosts([Control]string ID)
+        protected void onPageChange(object sender, PagePropertiesChangingEventArgs e)
+        {
+            //set current page startindex, max rows and rebind to false
+            DataPagerForum.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+
+            //rebind List View
+            BindListView();
+        }
+
+        void BindListView()
+        {
+            forumList.DataSource = getForumPosts();
+            forumList.DataBind();
+        }
+
+        public List<ForumThread> getForumPosts()
         {
             ForumControls FC = new ForumControls();
             List<ForumThread> forumPosts = new List<ForumThread>();

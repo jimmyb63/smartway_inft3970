@@ -76,7 +76,8 @@
                                 <a class="dropdown-item" href="ViewAdvertisementList.aspx?subCategory=skills required">Skills Required</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item"><a class="nav-link m-1" href="ViewForumPostList.aspx"><i class="fas fa-comments mr-2"></i>Forum</a> </li>
+                        <%--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle m-1" id="forumdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-comments mr-2"></i>Forum</a>
                             <div class="dropdown-menu dropdown-menu-small dropdown-menu-right" aria-labelledby="forumdropdown">
                                 <a class="dropdown-item" href="ViewForumPostList.aspx">Browse All</a>
@@ -85,7 +86,7 @@
                                 <a class="dropdown-item" href="#!">Weekly</a>
                                 <a class="dropdown-item" href="#!">Monthly</a>
                             </div>
-                        </li>
+                        </li>--%>
                         <% if (Session["currentUser"] != null)
                             {
                                 Person currentUser = new Person();
@@ -204,7 +205,8 @@
             <div class="container">
                 <br />
                 <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-3 d-none d-lg-block"></div>
+                    <div class="col-lg-9 col-sm-12">
                         <div class="card card-sm">
                             <div class="card-body row no-gutters align-items-center">
 
@@ -227,14 +229,14 @@
                                         runat="server" />
                                 </div>
                                 <!--Shown on lg devices -->
-                                <div class="col d-none d-lg-block">
+                                <%--<div class="col d-none d-lg-block">
                                     <asp:TextBox 
                                         ID="txtSearchLocation" 
                                         CssClass="form-control form-control-lg form-control-border" 
                                         type="search" 
                                         placeholder="Location" 
                                         runat="server" />
-                                </div>
+                                </div>--%>
                                 <!--Shown on all devices -->
                                 <div class="col-auto">
                                     <div class="d-none d-sm-block">
@@ -297,15 +299,15 @@
                                 <a href="ViewAdvertisementList.aspx?subCategory=skills required" class="list-group-item">Skills Required</a>
                             </div>
                         </div>
-                            <a class="mt-2 blue darken-2 collapsed btn btn-block btn-custom" data-toggle="collapse" href="#collapseThree">Forum<i class="fa fa-pull-right" aria-hidden="true"></i></a>
-                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                            <a class="mt-2 blue darken-2 btn btn-block btn-custom" href="ViewForumPostList.aspx">Forum</a>
+                            <%--<div id="collapseThree" class="collapse" data-parent="#accordion">
                                 <div class="list-group">
                                     <a href="ViewForumPostList.aspx" class="list-group-item">Browse all</a>
                                     <a href="#!" class="list-group-item">Daily</a>
                                     <a href="#!" class="list-group-item">Weekly</a>
                                     <a href="#!" class="list-group-item">Monthly</a>
                                 </div>
-                            </div>
+                            </div>--%>
                         </div>
                   
                     <% if (Session["currentUser"] != null)
