@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-lg-9 mt-2">
-        <div class="p-2 mb-2 blue lighten-1 text-white">Map</div>
+        <div class="p-2 mb-2 blue lighten-1 text-white">Recycle Locations</div>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div id="map" style="height: 500px;"></div>
