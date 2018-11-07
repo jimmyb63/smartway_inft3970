@@ -243,6 +243,7 @@
         </div>
         <% if (Session["currentUser"] != null)
             { %>
+        <br />
         <!--Reply To Post Section   -->
         <div class="col-lg-12">
             <div class="card mt-2 grey lighten-5">
@@ -264,19 +265,11 @@
                 </div>
             </div>
         </div>
+        <br />       
 
         <div class="col-lg-12 col-md-12 my-1">
             <asp:Button ID="btnReplytoPost" Text="Reply to Post" CssClass="btn btn-danger btn-block" OnClick="PostReplyComment" runat="server" />
         </div>
         <% } %>
     </div>
-
-
-
-
-
-
-
-
-
 </asp:Content>
