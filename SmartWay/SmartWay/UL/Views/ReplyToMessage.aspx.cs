@@ -99,7 +99,7 @@ namespace SmartWay.UL.Views
             UserControls UC = new UserControls();
             Person currentUser = new Person();
             PrivateMsg PM = new PrivateMsg();
-            int tempPrivateMessageID = Convert.ToInt32(hfAdID.Value);
+            int tempPrivateMessageID = privateMessageID;
             PM = UC.getPrivateMessageByID(tempPrivateMessageID);
             adID = PM.pmAdID;
             currentUser = (Person)Session["currentUser"];
