@@ -16,7 +16,7 @@
                 <br />
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <p>ReqID # Blah Blah Blah</p>
+                        <p>Thank you. We will review your submission as soon as possible.</p>
                     </div>
                 </div>
                 <br />
