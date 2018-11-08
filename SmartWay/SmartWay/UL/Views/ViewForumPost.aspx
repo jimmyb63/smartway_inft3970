@@ -116,8 +116,8 @@
                                                 <div class="col-10 my-2">
                                                     <br />
                                                     <p class="card-text">
-                                                        <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i>Empty!</h1>
-                                                        <h4 class="text-center">No Forum Tags Selected.</h4>
+                                                        <h2 class="text-center"><i class="fas fa-exclamation-triangle"></i>Empty!</h2>
+                                                        <h5 class="text-center">No Forum Tags Selected.</h5>
                                                     </p>
                                                 </div>
                                                 <div class="col-1 my-2"></div>
@@ -174,6 +174,7 @@
             </LayoutTemplate>--%>
         </asp:ListView>
         <br />
+        <%-- FORUM COMMENTS --%>
         <h5>Forum Comments:</h5>
         <div class="row">
             <asp:ListView
@@ -184,24 +185,22 @@
                 ItemType="SmartWay.BL.Models.ForumReply"
                 SelectMethod="getForumRepliedListbyID">
                 <%-- Empty Data Template --%>
-                <EmptyDataTemplate>
-                    <div class="card h-100">
-                        <div class="row">
-                            <br />
-                            <hr />
-                            <br />
-                            <div class="col-1 my-2"></div>
-                            <div class="col-10 my-2">
-                                <p class="card-text">
-                                    <%-- TODO: Check when no messages are present if this place is default --%>
-                                    <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i>Empty!</h1>
-                                    <h4 class="text-center">No messages to reply to.</h4>
-                                </p>
-                            </div>
-                            <div class="col-1 my-2"></div>
-                        </div>
-                    </div>
-                </EmptyDataTemplate>
+                   <EmptyDataTemplate>
+                                <div class="col-lg-12">
+                                    <div class="card mt-2 grey lighten-5">
+                                        <div class="row">                                
+                                            <br />
+                                            <hr />
+                                            <br />
+                                            <div class="card-body">
+                                                <%-- TODO: Check when no messages are present if this place is default --%>
+                                                <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
+                                                <h4 class="text-center">No comments to reply to.</h4>                                        
+                                            </div>
+                                        </div>                              
+                                    </div>                                                            
+                                </div>
+                            </EmptyDataTemplate> 
                 <%-- Empty Item Template --%>
                 <EmptyItemTemplate>
                     <td />
@@ -268,7 +267,12 @@
         <br />       
 
         <div class="col-lg-12 col-md-12 my-1">
-            <asp:Button ID="btnReplytoPost" Text="Reply to Post" CssClass="btn btn-danger btn-block" OnClick="PostReplyComment" runat="server" />
+            <asp:Button 
+                ID="btnReplytoPost" 
+                Text="Reply to Post" 
+                CssClass="btn btn-danger btn-block" 
+                OnClick="PostReplyComment" 
+                runat="server" />
         </div>
         <% } %>
     </div>
