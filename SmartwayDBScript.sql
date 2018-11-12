@@ -94,6 +94,7 @@ CREATE TABLE PostalAddress	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								country VARCHAR(30) NOT NULL,
 								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
+								--foreignkeys
 								FOREIGN KEY (stateName) REFERENCES StateName(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 							)
 
@@ -120,6 +121,7 @@ CREATE TABLE Person			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								verificationDate DATETIME,
 								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
+								--foreignkeys
 								FOREIGN KEY (PhoneNumberId) REFERENCES PhoneNumber(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 								FOREIGN KEY (addressId) REFERENCES PostalAddress(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
@@ -130,6 +132,7 @@ CREATE TABLE VerificationCode(	ID INT IDENTITY(1,1) PRIMARY KEY,
 								personID INT,
 								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
+								--foreignkeys
 								FOREIGN KEY (personID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION,
 							  )
 
@@ -141,6 +144,7 @@ CREATE TABLE Staff			(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								position VARCHAR(30) NOT NULL,
 								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
+								--foreignkeys
 								FOREIGN KEY (personID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
@@ -154,15 +158,9 @@ CREATE TABLE PaypalDetails (	ID INT IDENTITY(1000,1) PRIMARY KEY,
 								primaryPaymentMethod BIT DEFAULT 0,
 								creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 								active BIT DEFAULT 1,
+								--foreignkeys
 								FOREIGN KEY (PersonID) REFERENCES Person(ID) 
 								)
-
-----Add comments
---create table AddStatus (		ID INT IDENTITY(1000,1) PRIMARY KEY,
---								StatusName VARCHAR(30) NOT NULL,
---								creationDate DATE NOT NULL DEFAULT GETDATE(),
---								active BIT DEFAULT 1
---								)
 
 --This table will be used to store the Add Categories of the Advertisements with SmartWay.
 --Requirements:-
@@ -183,7 +181,6 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									title VARCHAR(50) NOT NULL,
 									adDescription VARCHAR(250) NOT NULL,
 									addressID INT NOT NULL,
-									--addStatusID INT NOT NULL DEFAULT 0,
 									categoryID INT NOT NULL,
 									price DECIMAL(7,2) NOT NULL,		
 									dateCompleted DATETIME,
@@ -193,7 +190,6 @@ CREATE TABLE Advertisement	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (addressID) REFERENCES PostalAddress(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
-									--FOREIGN KEY (addStatusID) REFERENCES AddStatus(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (categoryID) REFERENCES AddCategory(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
@@ -205,11 +201,11 @@ CREATE TABLE ProfileImage	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									userID INT NOT NULL,
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1
+									--foreignkeys
 									FOREIGN KEY (userID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 --This table will be used to link the Imgs to attach to details.
 --Will link to Person via their ID
---Requirements. Date of Birth should not be in the future.
 CREATE TABLE AddImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									--imageID INT NOT NULL,
 									filePath VARCHAR(260) NOT NULL,
@@ -235,11 +231,13 @@ CREATE TABLE FeedBack		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									comment VARCHAR(75),
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
+									--foreignkeys
 									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (buyerID) REFERENCES Person(ID)				ON UPDATE NO ACTION ON DELETE NO ACTION,
 									FOREIGN KEY (addID) REFERENCES Advertisement(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
---Add comments
+
+--This table will be used to store the Recycle Location Details of the Users that register with SmartWay.
 CREATE TABLE RecycleLocations	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 									title VARCHAR(30) NOT NULL,
 									shortDescription VARCHAR(50) NOT NULL,
@@ -256,7 +254,7 @@ CREATE TABLE RecycleLocations	(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 									
 --This table will be used to link the Imgs to attach to details.
 --Will link to Person via their ID
---Requirements. Date of Birth should not be in the future.
+--Requirements reviewReason can't be blank on creation.
 CREATE TABLE ReviewReason	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									reviewReason VARCHAR(30) NOT NULL,
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
@@ -264,12 +262,13 @@ CREATE TABLE ReviewReason	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 							)
 
 --This Table will be used to capture requests for Admin to review an Add.
+--Requirements addID, sellerID, reporterUserID, reviewReason, reviewDescriptionDetails can't be blank on creation.
 CREATE TABLE AddReview		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									addID INT NOT NULL,
 									sellerID INT NOT NULL,
 									reporterUserID INT,
 									reviewReason INT NOT NULL,
-									adDescription VARCHAR(150) NOT NULL,
+									reviewDescriptionDetails VARCHAR(150) NOT NULL,
 									adminComments VARCHAR(150),
 									inReview BIT,
 									dateCompleted DATETIME,
@@ -282,11 +281,13 @@ CREATE TABLE AddReview		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (reviewReason) REFERENCES ReviewReason(ID)	ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
+--This Table will be used to capture add offers for Sellers to review.
+--Requirements buyerID, sellerID, addID, offerAmount can't be blank on creation.
 CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									buyerID INT NOT NULL,
 									sellerID INT NOT NULL,
 									addID INT NOT NULL,
-									offerAmount DECIMAL,
+									offerAmount DECIMAL (7,2) NOT NULL,
 									offerAccepted INT DEFAULT 2, -- 0 for declined, 1 for accepted, 2 for pending, 3 accepted another offer
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1, 
@@ -296,7 +297,8 @@ CREATE TABLE AddOffer 		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (sellerID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
-
+--This Table will be used to capture Adds on a WatchList for Buyers to track.
+--Requirements watcherID, addID can't be blank on creation.
 CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									watcherID INT NOT NULL,
 									addID INT NOT NULL,
@@ -309,30 +311,29 @@ CREATE TABLE WatchListItem 	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 							)
 
 --This table will be used to store the Tags associated with a  ForumPost.
---Requirements:-
+--Requirements:- tagName can't be blank on creation.
 CREATE TABLE ForumTag		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									tagName VARCHAR(30) NOT NULL,
-									--subCategory VARCHAR(30)NOT NULL,
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1
 							)
-
-								
---Add comments							
+		
+--This table will be used to store ForumPost Details.
+--Requirements:- personID, title, forumDescription can't be blank.						
 CREATE TABLE ForumPost		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									personID INT NOT NULL,
 									title VARCHAR(50) NOT NULL,
 									forumDescription VARCHAR(500) NOT NULL,
-									--imageID INT NOT NULL,
 									creationDate DATETIME NOT NULL DEFAULT GETDATE(),
 									active BIT DEFAULT 1,
 									--foreignkeys	
 									FOREIGN KEY (personID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION,
 									--FOREIGN KEY (imageID) REFERENCES ProfileImage(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
---This table will be used to link the Imgs to attach to ForumPosts and ForumComments.
---Will link to Person via their ID
---Requirements. filePath, userID should not be Null on creation .
+
+--This table will be used to link the Imgs to attach to ForumPosts.
+--Will link to ForumPost via the ForumPostID
+--Requirements. filePath, forumPostID, userID should not be Null on creation .
 CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									forumPostID INT NOT NULL,
 									filePath VARCHAR(260) NOT NULL,
@@ -344,6 +345,8 @@ CREATE TABLE ForumImage		(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (forumPostID) REFERENCES ForumPost(ID)		ON UPDATE NO ACTION ON DELETE NO ACTION
 							)	
 
+--This table will be used to ForumTags to ForumPosts.
+--Requirements. ForumPostID, ForumTagID should not be Null on creation .
 CREATE TABLE ForumPostTags	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									ForumPostID INT NOT NULL,
 									ForumTagID INT NOT NULL,
@@ -355,7 +358,8 @@ CREATE TABLE ForumPostTags	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 							)
 
 								
---Add comments	
+--This table will be used to store Forum Comments.
+--Requirements. ForumPostID, comment, repliersID should not be Null on creation.
 CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									forumPostID INT NOT NULL,
 									comment VARCHAR(150) NOT NULL,
@@ -367,6 +371,8 @@ CREATE TABLE ForumComment	(		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (repliersID) REFERENCES Person(ID)			ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
+--This table will be used to store Private Message Chains.
+--Requirements. addID, sendersUserID, receiverUserID should not be Null on creation.
 CREATE TABLE PrivateMessageChain(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 									addID INT NOT NULL,
 									sendersUserID INT NOT NULL,
@@ -379,6 +385,8 @@ CREATE TABLE PrivateMessageChain(	ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (receiverUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
+--This table will be used to store Private Message Details.
+--Requirements. PrivateMessageChainID, sendersUserID, receiverUserID, messageDetails should not be Null on creation.
 CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									PrivateMessageChainID INT,
 									sendersUserID INT NOT NULL,
@@ -394,6 +402,8 @@ CREATE TABLE PrivateMessage (		ID INT IDENTITY(1000,1) PRIMARY KEY,
 									FOREIGN KEY (receiverUserID) REFERENCES Person(ID)					ON UPDATE NO ACTION ON DELETE NO ACTION
 							)
 
+--This table will be used to store Private Message Details.
+--Requirements. adID should not be Null on creation.
 CREATE TABLE ViewCounter	(
 									ID INT IDENTITY(1000,1) PRIMARY KEY,
 									adID INT NOT NULL,
@@ -403,11 +413,15 @@ CREATE TABLE ViewCounter	(
 							)
 
 --STORE PROCEDURES
+--Store Procedures are dropped if they exist and new Store Procedure is created.
 
+--Drop New State SP
 IF ( OBJECT_ID('sp_state_insert') IS NOT NULL ) 
    DROP PROCEDURE sp_state_insert
 GO
 
+--Store Procedure Inserts State Names to be referenced by addresses
+--Requires StateName
 CREATE PROCEDURE sp_state_insert(
 	@stateName VARCHAR(20))
 AS
@@ -417,17 +431,18 @@ BEGIN
 END
 GO
 
---New Registration
+--Drop New Person SP
 IF OBJECT_ID('sp_NewPerson', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewPerson;  
 GO  
 
+--Store Procedure Inserts New Person details on registration
+--Requires Firstname, Lastname, Email Address and Password
 CREATE PROCEDURE sp_NewPerson(
 	@tempFirstname VARCHAR(20),
 	@tempLastName VARCHAR(20), 
 	@tempEmail VARCHAR(320),
 	@tempPassword VARCHAR(30))
---Return on DEFAULT = newID;
 AS
 BEGIN
 	INSERT INTO Person (firstName, lastName, email, SWPassword) 
@@ -437,12 +452,13 @@ END
 RETURN  
 GO 
 	
--- If New Address Exists
+-- Drop New Address SP
 IF OBJECT_ID('sp_NewAddress', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewAddress;  
 GO  
 
---New Address
+--Store Procedure Inserts New Address Details
+--Requires Address Details
 CREATE PROCEDURE sp_NewAddress(
 	@tempUnitNumber VARCHAR(4), -- unit number can be letter or number
 	@tempStreetAddress VARCHAR(20),
@@ -451,7 +467,6 @@ CREATE PROCEDURE sp_NewAddress(
 	@tempPostCode INT,
 	@tempStateName INT, -- References a saved StateName.
 	@tempCountry VARCHAR(30))
---Return on DEFAULT = newID;
 AS
 BEGIN
 	INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country) 
@@ -461,12 +476,13 @@ END
 RETURN  
 GO 
 
--- IF New Admin Exists
+-- Drop Admin Exists SP
 IF OBJECT_ID('sp_NewAdmin', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewAdmin;  
 GO  
 
---Add New Admin
+--Store Procedure Inserts New Admin Details
+--Requires PersonID and Position
 CREATE PROCEDURE sp_NewAdmin(
 	@tempPersonID INT,
 	@tempPosition VARCHAR(30))
@@ -475,7 +491,6 @@ BEGIN
 	INSERT INTO Staff (personID, position) 
 	VALUES(@tempPersonID, @tempPosition );
 END
-
 RETURN  
 GO 
 
@@ -483,7 +498,8 @@ IF ( OBJECT_ID('sp_newPhone') IS NOT NULL )
    DROP PROCEDURE sp_newPhone
 GO
 
---New Phone
+--Store Procedure Inserts New Phone Details
+--Requires Phone Number
 CREATE PROCEDURE sp_newPhone(
 	@tempPhone INT)
 AS
@@ -497,7 +513,8 @@ IF ( OBJECT_ID('sp_newVerificationCode') IS NOT NULL )
    DROP PROCEDURE sp_newVerificationCode
 GO
 
---New Verification Code
+--Store Procedure Inserts New Verification Code Details for later Verification.
+--Requires VerificationCode and PersonID
 CREATE PROCEDURE sp_newVerificationCode(
 	@tempVerificationCode VARCHAR(8),
 	@tempPersonId INT)
@@ -508,11 +525,13 @@ BEGIN
 END
 GO
 
---New Advertisement
+--Drop Advertisement SP
 IF OBJECT_ID('sp_NewAdvertisement', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewAdvertisement;  
 GO 
 
+--Store Procedure Inserts New Advertisement Details.
+--Requires VerificationCode and PersonID
 CREATE PROCEDURE sp_NewAdvertisement(
 	@tempSellerID INT,
 	@tempTitle varchar(50),
@@ -535,11 +554,13 @@ BEGIN
 END
 GO
 
---New Registration
+--Drop Registration SP
 IF OBJECT_ID('sp_NewRegistration', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewRegistration;  
 GO  
 
+--Store Procedure Inserts New Registration Details.
+--Requires Firstname, Lastname, Email Address and Password, Address details, Phone and Verification Code
 CREATE PROCEDURE sp_NewRegistration(
 	@tempFirstname VARCHAR(20),
 	@tempLastName VARCHAR(20),
@@ -557,33 +578,39 @@ CREATE PROCEDURE sp_NewRegistration(
 	@tempCountry VARCHAR(30),
 	@tempVerificationCode VARCHAR(8),
 	@returnPersonID INT OUTPUT)
---Return on DEFAULT = newID;
 AS
- --DECLARE Temp PRIMARY KEY Variables
 	DECLARE @tempPostalAddressID INT;
 	DECLARE @tempPhoneID INT;
-	--DECLARE @returnPersonID INT;
 BEGIN
+	--Saves New Address
 	INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country) 
 	VALUES(@tempUnitNumber, @tempStreetAddress, @tempStreetName, @tempCity, @tempPostCode, @tempStateName, @tempCountry);
+	--Saves New Phone
 	INSERT INTO PhoneNumber (phoneNumber) 
 	VALUES(@tempPhone);
+	--Gets Phone and Postal ID's just created
 	SET @tempPostalAddressID =(SELECT MAX(ID) FROM PostalAddress);
 	SET @tempPhoneID =(SELECT MAX(ID) FROM PhoneNumber);
+	--Saves New Person
 	INSERT INTO Person (firstName, lastName, email, DOB, SWUsername, SWPassword, phoneNumberId, addressId) 
 	VALUES(@tempFirstname, @tempLastName, @tempEmail, @tempDOB, @tempUsername, @tempPassword, @tempPhoneID, @tempPostalAddressID );
+	--Gets Person ID just created
 	SET @returnPersonID =(SELECT MAX(ID) FROM Person);
+	--Saves Verification Code
 	INSERT INTO VerificationCode (code, personID) 
 	VALUES(@tempVerificationCode, @returnPersonID);
+	--Returns person ID
 	SELECT @returnPersonID;
-	--RETURN @returnPersonID;
 END
 GO 
 
+--Drop Update Person SP
 IF ( OBJECT_ID('sp_updatePerson') IS NOT NULL ) 
    DROP PROCEDURE sp_updatePerson
 GO
 
+--Store Procedure to update Person Details.
+--Requires Firstname, Lastname, Email Address PersonID
 CREATE PROCEDURE sp_updatePerson(
 	@tempFirstName VARCHAR(20),
 	@tempLastName VARCHAR(20),
@@ -592,17 +619,21 @@ CREATE PROCEDURE sp_updatePerson(
 
 AS
 BEGIN
+	--Updates Person Details.
 	UPDATE Person
 	SET firstName = @tempFirstName, lastName= @tempLastName, email=@tempEmail
+	--Where the PersonID matches.
 	WHERE ID = @tempID;
 END
 GO
 
-
+--Drop Verifiy Person SP
 IF ( OBJECT_ID('sp_verifyPerson') IS NOT NULL ) 
    DROP PROCEDURE sp_verifyPerson
 GO
 
+--Store Procedure to Verify a Person.
+--Requires verificationCode and PersonID
 CREATE PROCEDURE sp_verifyPerson(
 	@tempVerificationCode VARCHAR(8),
 	@tempPersonId INT)
@@ -629,6 +660,7 @@ BEGIN
 END
 GO
 
+--Drop Person and Staff View SP
 IF OBJECT_ID('view_PersonStaff') IS NOT NULL  
    DROP VIEW view_PersonStaff;  
 GO
@@ -639,12 +671,13 @@ CREATE VIEW view_PersonStaff AS
 
 GO
 
---View of Sale Items
+--Drop Sale Items SP
 IF ( OBJECT_ID('sp_SaleItems') IS NOT NULL ) 
    DROP PROCEDURE sp_SaleItems
 GO
 
---New Phone
+--Store Procedure to view Sales Items.
+--Requires PersonID
 CREATE PROCEDURE sp_SaleItems(
 	@tempUserID INT)
 AS
@@ -654,27 +687,29 @@ BEGIN
 END
 GO
 
--- Drop GetAd
+-- Drop GetAd SP
 IF ( OBJECT_ID('sp_GetAd') IS NOT NULL ) 
    DROP PROCEDURE sp_GetAd
 GO
 
---Get Add by add ID
+--Store Procedure to view Ad Details.
+--Requires Ad ID
 CREATE PROCEDURE sp_GetAd(
-	@tempAddID INT)
+	@tempAdID INT)
 AS
 BEGIN
 	SELECT * FROM Advertisement 
-	WHERE ID = (@tempAddID);
+	WHERE ID = (@tempAdID);
 END
 GO
 
---- Drop GetUserByID
+--- Drop GetUserByID SP
 IF ( OBJECT_ID('sp_GetUserByID') IS NOT NULL ) 
    DROP PROCEDURE sp_GetUserByID
 GO
 
--- Get User by ID
+--Store Procedure to view User Details.
+--Requires Person ID
 CREATE PROCEDURE sp_GetUserByID(
 	@tempID INT)
 AS
@@ -684,11 +719,13 @@ BEGIN
 END
 GO
 
+--Drop Search Sale Items by Title SP
 IF ( OBJECT_ID('sp_SearchSaleItemsByTitle') IS NOT NULL ) 
    DROP PROCEDURE sp_SearchSaleItemsByTitle
 GO
 
---New Phone
+--Store Procedure to view Sale Items that match a title.
+--Requires Search word
 CREATE PROCEDURE sp_SearchSaleItemsByTitle(
 	@tempSearchWord VARCHAR(30))
 AS
@@ -698,11 +735,13 @@ BEGIN
 END
 GO
 
+--Drop Search Sale Items by Description SP
 IF ( OBJECT_ID('sp_SearchSaleItemsByDescription') IS NOT NULL ) 
    DROP PROCEDURE sp_SearchSaleItemsByDescription
 GO
 
---New Phone
+--Store Procedure to view Sale Items that match a word in the description.
+--Requires Search word
 CREATE PROCEDURE sp_SearchSaleItemsByDescription(
 	@tempSearchWord VARCHAR(30))
 AS
@@ -718,6 +757,7 @@ IF OBJECT_ID('sp_Admin_Check', 'P') IS NOT NULL
 GO  
 
 --Admin Check is used to check if a user is admin via their email address.
+--Requires email address
 CREATE PROCEDURE sp_Admin_Check(
 	@email VARCHAR(320), -- email address
 	@returnAdminID INT OUTPUT)  -- temp variable used to return AdminID
@@ -737,11 +777,13 @@ END
 GO 
 
 
---New Profile Image
+--Drop Profile Image SP
 IF OBJECT_ID('sp_NewProfileImg', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewProfileImg;  
 GO  
 
+--Store Procedure Inserts New Profile Image Details.
+--Requires Filepath and PersonID
 CREATE PROCEDURE sp_NewProfileImg(
 	@tempFilePath VARCHAR(260),
 	@tempUserID VARCHAR(20))
@@ -754,11 +796,13 @@ END
 RETURN  
 GO 
 
---Get Profile Image
+--Drop Get Profile Image SP
 IF OBJECT_ID('sp_GetProfileImg', 'P') IS NOT NULL  
    DROP PROCEDURE sp_GetProfileImg;  
 GO  
 
+--Store Procedure to view Profile Image Details.
+--Requires PersonID
 CREATE PROCEDURE sp_GetProfileImg(
 	@tempUserID VARCHAR(20))
 AS
@@ -778,16 +822,18 @@ END
 RETURN  
 GO
 
---New Offer
+--DROP New Offer SP
 IF OBJECT_ID('sp_NewAddOffer', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewAddOffer;  
 GO  
 
+--Store Procedure Inserts New Ad Offer Details.
+--Requires BuyerID , SellerID, AdID, OfferAmount
 CREATE PROCEDURE sp_NewAddOffer(
 	@tempBuyerID INT,
 	@tempSellerID INT,
 	@tempAddID INT,
-	@tempOfferAmount DECIMAL,
+	@tempOfferAmount DECIMAL(7,2),
 	@returnCode INT Output)
 AS
 BEGIN
@@ -800,6 +846,7 @@ BEGIN
 	BEGIN
 		INSERT INTO AddOffer (buyerID, sellerID, addID, offerAmount) 
 		VALUES(@tempBuyerID, @tempSellerID, @tempAddID, @tempOfferAmount);
+		--return Ad Offer ID
 		SET @returnCode =(SELECT MAX(ID) FROM AddOffer);
 		SELECT @returnCode;
 	END
@@ -809,11 +856,12 @@ RETURN
 GO 
 
 
---Accept anOffer
+--Drop Accept an Ad Offer
 IF OBJECT_ID('sp_AcceptAddOffer', 'P') IS NOT NULL  
    DROP PROCEDURE sp_AcceptAddOffer;  
 GO  
-
+--Store Procedure Accepts an Ad Offer.
+--Requires Offer ID
 CREATE PROCEDURE sp_AcceptAddOffer(
 	@tempOfferID INT,
 	@returnCode INT Output)
@@ -829,12 +877,14 @@ END
 
 RETURN  
 GO 
-EXEC sp_GetProfileImg 1000
---New Private Message
+
+--Drop New Private Message SP
 IF OBJECT_ID('sp_NewPrivateMessage', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewPrivateMessage;  
 GO  
 
+--Store Procedure Inserts New Private Message Details.
+--Requires SenderID, Reciever'sID, AdID, OfferAmount
 CREATE PROCEDURE sp_NewPrivateMessage(
 	@tempSendersUserID INT,
 	@tempReceiverUserID INT,
@@ -847,25 +897,32 @@ BEGIN
 		IF EXISTS(SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
 			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID ) --There is a chain with matching AddID, sendersUserID and receiverUserID.
 		BEGIN
-			--Do Nothing
-			SET @tempPrivateMessageChainID = (SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
-			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID);
+			--Don't Create a Private Message Chain
+			--Get the Private Message Chain ID
+			SET @tempPrivateMessageChainID = (SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND addID = @tempAddID 
+			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND addID = @tempAddID);
+			--Save Private Message Details
 			INSERT INTO PrivateMessage (PrivateMessageChainID, sendersUserID, receiverUserID, messageDetails) 
 			VALUES(@tempPrivateMessageChainID, @tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
-			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
-			SELECT @returnNewMessageID;
+			--Update Private Messages as read
 			UPDATE PrivateMessage 
 			SET messageRead = 1, messageReplied = 1
+			--That have come before and where the User is the receiver
 			WHERE PrivateMessageChainID = @tempPrivateMessageChainID AND receiverUserID = @tempSendersUserID;
+			--Return New MessageID
+			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
+			SELECT @returnNewMessageID;
 		END
 		ELSE
 		BEGIN
+			--Create a Private Message Chain
 			INSERT INTO PrivateMessageChain (addID, sendersUserID, receiverUserID) 
 			VALUES(@tempAddID, @tempSendersUserID, @tempReceiverUserID);
 			SET @tempPrivateMessageChainID = (SELECT MAX(ID) FROM PrivateMessageChain);
-
+			--Save Private Message Details
 			INSERT INTO PrivateMessage (PrivateMessageChainID, sendersUserID, receiverUserID, messageDetails) 
 			VALUES(@tempPrivateMessageChainID, @tempSendersUserID, @tempReceiverUserID, @tempMessageDetails);
+			--Return New MessageID
 			SET @returnNewMessageID =(SELECT MAX(ID) FROM PrivateMessage);
 			SELECT @returnNewMessageID;
 		END
@@ -874,44 +931,50 @@ END
 RETURN  
 GO
 
---Get Private Message ID
+--Drop Get Private Message Chain ID SP
 IF OBJECT_ID('sp_GetPMChainID', 'P') IS NOT NULL  
    DROP PROCEDURE sp_GetPMChainID;  
 GO 
 
+--Store Procedure to view Private Message Chain ID
+--Requires Sender, Reciever and Ad ID's
 CREATE PROCEDURE sp_GetPMChainID(
 	@tempSendersUserID INT,
 	@tempReceiverUserID INT,
-	@tempAddID INT
+	@tempAdID INT
 	)
 AS
 BEGIN
-	SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
-			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID;
+	SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND addID = @tempAdID 
+			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND addID = @tempAdID;
 END
 RETURN
 GO
 
---Get PM List associated With a PrivateMessageChain by PMChain ID
+--Drop Get PM List SP
 IF OBJECT_ID('sp_getPMList2', 'P') IS NOT NULL  
    DROP PROCEDURE sp_getPMList2;  
-GO  
+GO
 
+--Store Procedure to view PM List associated With a PrivateMessageChain by PMChain ID
+--Requires Private Message Chain ID
 CREATE PROCEDURE sp_getPMList2(
 	@tempPrivateMessageChainID INT)
 AS
 BEGIN
-SELECT * FROM PrivateMessage WHERE  PrivateMessageChainID = @tempPrivateMessageChainID
-ORDER BY creationDate DESC;
+	SELECT * FROM PrivateMessage WHERE  PrivateMessageChainID = @tempPrivateMessageChainID
+	ORDER BY creationDate DESC;
 END
 RETURN  
 GO
 
---Get PM List associated With a PrivateMessageChain by Sender, Reciever and Add ID
+--DROP Get PM List SP
 IF OBJECT_ID('sp_getPMList', 'P') IS NOT NULL  
    DROP PROCEDURE sp_getPMList;  
 GO  
 
+--Store Procedure to view PM List associated With a PrivateMessageChain by Sender, Reciever and Add ID
+--Requires Sender, Receiver and Ad ID's
 CREATE PROCEDURE sp_getPMList(
 	@tempSendersUserID INT,
 	@tempReceiverUserID INT,
@@ -920,19 +983,23 @@ CREATE PROCEDURE sp_getPMList(
 AS
 	DECLARE @tempPrivateMessageChainID INT
 BEGIN
-SET @tempPrivateMessageChainID = (SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
-			OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID)
-SELECT * FROM PrivateMessage WHERE  PrivateMessageChainID = @tempPrivateMessageChainID
-ORDER BY creationDate DESC;
+	--Get Private Message Chain ID
+	SET @tempPrivateMessageChainID = (SELECT ID FROM PrivateMessageChain WHERE sendersUserID = @tempSendersUserID AND receiverUserID = @tempReceiverUserID AND @tempAddID = @tempAddID 
+				OR sendersUserID = @tempReceiverUserID AND receiverUserID = @tempSendersUserID AND @tempAddID = @tempAddID)
+	--Get Private Message s that have same Private Message Chain ID
+	SELECT * FROM PrivateMessage WHERE  PrivateMessageChainID = @tempPrivateMessageChainID
+	ORDER BY creationDate DESC;
 END
 RETURN  
 GO
 
---Get Private Message
+--DROP Get Private Message SP
 IF OBJECT_ID('sp_GetPrivateMsg', 'P') IS NOT NULL  
    DROP PROCEDURE sp_GetPrivateMsg;  
 GO  
 
+--Store Procedure to view Private Message details by Private Message ID
+--Requires Private Message ID
 CREATE PROCEDURE sp_GetPrivateMsg(
 	@tempPrvMsgID VARCHAR(20))
 AS
@@ -943,11 +1010,13 @@ RETURN
 GO
 
 
---Get Private Message
+--Drop Update Private Message Read SP
 IF OBJECT_ID('sp_UpdatePrivateMsgtoRead', 'P') IS NOT NULL  
    DROP PROCEDURE sp_UpdatePrivateMsgtoRead;  
 GO  
 
+--Store Procedure to update Private Message to Read that have the same Private Message Chain
+--Requires Private Message Chain ID
 CREATE PROCEDURE sp_UpdatePrivateMsgtoRead(
 	@tempPrivateMessageChainID INT)
 AS
@@ -959,10 +1028,13 @@ END
 RETURN  
 GO
 
+--Drop Update Private Message Replied SP
 IF OBJECT_ID('sp_UpdatePrivateMsgtoReplied', 'P') IS NOT NULL  
    DROP PROCEDURE sp_UpdatePrivateMsgtoReplied;  
 GO  
 
+--Store Procedure to update Private Message to Replied that have the same Private Message Chain
+--Requires Private Message Chain ID
 CREATE PROCEDURE sp_UpdatePrivateMsgtoReplied(
 	@tempPrivateMessageChainID INT)
 AS
@@ -974,12 +1046,13 @@ END
 RETURN  
 GO
 
-
---Add New Watched Item for User
+--DROP Add New Watched Item for User SP
 IF OBJECT_ID('sp_NewWatchedItem', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewWatchedItem;  
 GO  
 
+--Store Procedure Inserts New Watched Item for User
+--Requires AdID, PersonID
 CREATE PROCEDURE sp_NewWatchedItem(
 	@tempAddID INT,
 	@tempUserID INT,
@@ -988,18 +1061,20 @@ AS
 BEGIN
 		INSERT INTO WatchListItem (watcherID, addID) 
 		VALUES(@tempUserID, @tempAddID);
+		--Return new Watchlist ID
 		SET @returnWatchListID =(SELECT MAX(ID) FROM WatchListItem);
 		SELECT @returnWatchListID;
 END
 RETURN  
 GO
 
-
---Get Watched Items for User
+-- DROP Get Watched Items for User SP
 IF OBJECT_ID('sp_GetUserWatchList', 'P') IS NOT NULL  
    DROP PROCEDURE sp_GetUserWatchList;  
 GO  
 
+--Store Procedure to view Watched Items for User
+--Requires PersonID
 CREATE PROCEDURE sp_GetUserWatchList(
 	@tempUserID VARCHAR(20))
 AS
@@ -1010,11 +1085,13 @@ END
 RETURN
 GO
 
---Add New Forum Tag For Forum Posts
+-- Drop Add New Forum Posts SP
 IF OBJECT_ID('sp_NewForumPost', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewForumPost;  
-GO  
+GO
 
+--Store Procedure Inserts New Forum Posts Details
+--Requires PersonID, Title, Description and FilePath
 CREATE PROCEDURE sp_NewForumPost(
 	@tempPersonID INT,
 	@tempTitle VARCHAR(50),
@@ -1032,8 +1109,10 @@ BEGIN
 	IF(@tempFilePath LIKE '')
 	BEGIN --No Image was Supplied
 		BEGIN
+			--Save Forum Post Details
 			INSERT INTO ForumPost (personID, title, forumDescription) 
 			VALUES(@tempPersonID, @tempTitle, @tempForumDescription);
+			--Return new ForumPost ID
 			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
 			SELECT @returnForumPostID;
 		END
@@ -1041,27 +1120,28 @@ BEGIN
 	ELSE
 	BEGIN
 		BEGIN --Image Filepath Was Supplied
-			
+			--Save Forum Post Details
 			INSERT INTO ForumPost (personID, title, forumDescription) 
 			VALUES(@tempPersonID, @tempTitle, @tempForumDescription);
+			--Return new ForumPost ID
 			SET @returnForumPostID =(SELECT MAX(ID) FROM ForumPost);
 			SELECT @returnForumPostID;
+			--Saves Forum Image Details
 			INSERT INTO ForumImage (filePath, userID, forumPostID)
 			VALUES (@tempFilePath, @tempPersonID, @returnForumPostID);
-			SET @tempImageID = (SELECT MAX(ID) FROM ForumImage);
-			SELECT @returnForumPostID;
 		END
 	END
 END
 RETURN  
 GO
 
-
---Add New Forum Tag For Forum Posts
+--Drop Add New Forum Tag For Forum Posts SP
 IF OBJECT_ID('sp_NewForumTag', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewForumTag;  
 GO  
 
+--Store Procedure Inserts New Forum Tag For Forum Posts
+--Requires Tag Name
 CREATE PROCEDURE sp_NewForumTag(
 	@tempTagName VARCHAR(30),
 	@returnTagID INT Output)
@@ -1075,6 +1155,7 @@ BEGIN
 	BEGIN
 		INSERT INTO ForumTag (tagName) 
 		VALUES(@tempTagName);
+		--Return new ForumTag ID
 		SET @returnTagID =(SELECT MAX(ID) FROM ForumTag);
 		SELECT @returnTagID;
 	END
@@ -1082,12 +1163,12 @@ END
 RETURN  
 GO
 
-
---Add New Link from Forum Tag to a Forum Posts
+--Drop Add New Link from Forum Tag to a Forum Posts SP
 IF OBJECT_ID('sp_LinkForumTag', 'P') IS NOT NULL  
    DROP PROCEDURE sp_LinkForumTag;  
 GO  
-
+--Store Procedure Inserts New Link from Forum Tag to a Forum Posts
+--Requires Tag Name, ForumPost ID
 CREATE PROCEDURE sp_LinkForumTag(
 	@tempTagName VARCHAR(30),
 	@tempForumPostID INT,
@@ -1097,20 +1178,25 @@ AS
 BEGIN
 	IF EXISTS (SELECT ID FROM ForumTag WHERE tagName = @tempTagName )
 	BEGIN -- Match Existes in Database
+		--Get Forum Tag ID
 		SET @tempTagID = (SELECT ID FROM ForumTag WHERE tagName = @tempTagName );
+		--Link Forum tag to Forum Post
 		INSERT INTO ForumPostTags (ForumPostID, ForumTagID) 
 		VALUES(@tempForumPostID, @tempTagID);
+		--Return new ForumTag ID
 		SET @returnTagID =(SELECT MAX(ID) FROM ForumPostTags);
 		SELECT @returnTagID;
 	END
 	ELSE --No match was Found So Create the Tag and link it
 	BEGIN
+		--Create New Forum Tag
 		INSERT INTO ForumTag (tagName) 
 		VALUES(@tempTagName);
 		SET @tempTagID =(SELECT MAX(ID) FROM ForumTag);
-
+		--Link New tag to Forum Post
 		INSERT INTO ForumPostTags (ForumPostID, ForumTagID) 
 		VALUES(@tempForumPostID, @tempTagID);
+		--Return new ForumTag ID
 		SET @returnTagID =(SELECT MAX(ID) FROM ForumPostTags);
 		SELECT @returnTagID;
 	END
@@ -1118,16 +1204,22 @@ END
 RETURN  
 GO
 
---Get Tag Name of Tag Linked to a Forum Posts
+--Drop Get Tag Name of Tag Linked to a Forum Posts SP
 IF OBJECT_ID('sp_GetLinkedForumTag', 'P') IS NOT NULL  
    DROP PROCEDURE sp_GetLinkedForumTag;  
 GO  
+
+--Store Procedure to view Tag Name of Tag Linked to a Forum Posts
+--Requires ForumPost ID
  CREATE PROCEDURE sp_GetLinkedForumTag(
 	@tempForumPostID INT)
 AS
 	DECLARE @tempTagID INT
 BEGIN
-	SELECT ft.ID, ft.tagName FROM ForumPostTags fpt INNER JOIN ForumTag ft ON fpt.ForumTagID = ft.ID WHERE  ForumPostID = @tempForumPostID;
+	SELECT ft.ID, ft.tagName 
+	FROM ForumPostTags fpt 
+	INNER JOIN ForumTag ft ON fpt.ForumTagID = ft.ID 
+	WHERE  ForumPostID = @tempForumPostID;
 END
 RETURN  
 GO
@@ -1136,7 +1228,8 @@ GO
 IF OBJECT_ID('sp_NewForumReply', 'P') IS NOT NULL  
    DROP PROCEDURE sp_NewForumReply;  
 GO  
-
+--Store Procedure Inserts New Forum Reply(Comment) For Forum Posts
+--Requires ForumPost ID, Comment and Commenter's ID
 CREATE PROCEDURE sp_NewForumReply(
 	@tempForumPostID INT,
 	@tempComment VARCHAR(150),
@@ -1149,11 +1242,13 @@ END
 RETURN  
 GO
 
---Get ForumReplies(Comments) with Repiers Name and filepth to their image
+--Drop Get ForumReplies(Comments) SP
 IF OBJECT_ID('sp_GetForumRepliesByForumID', 'P') IS NOT NULL  
    DROP PROCEDURE sp_GetForumRepliesByForumID;  
 GO
 
+--Store Procedure to view ForumReplies(Comments)
+--Requires ForumPost ID
  CREATE PROCEDURE sp_GetForumRepliesByForumID(
 	@tempForumPostID INT)
 AS
@@ -1168,14 +1263,7 @@ RETURN
 GO
 
 
-
-
-
-
-
---
-
---DATALOAD
+-- DATALOAD
 
 ---StateName Loading
 
@@ -1412,9 +1500,6 @@ EXEC sp_NewAdvertisement 1009, 'iPhone 5', 'offer', 'goods', 'electronics', 'Is 
 --Add Test Offer
 EXEC sp_NewAddOffer 1003, 1000, 1000, 300.00, 5;
 
-
-
-
 --Add test Conversations
 --New Message Thread
 EXEC sp_NewPrivateMessage 1003, 1000, 1000,  'Hi. How are you?', 2222
@@ -1438,18 +1523,13 @@ EXEC sp_UpdatePrivateMsgtoReplied 1002
 
 EXEC sp_NewPrivateMessage 1004, 1002, 1002, 'No it sold, but i have a F-16 forsale.', 2222
 
---Adding Default Image for Forum Posts
---INSERT INTO ForumImage(filePath, userID) VALUES ('../Images/DefaultImg/GenericForumImage.png', 1000);
-
 --Adding Test data for ForumPost
-
-
-
 EXEC sp_NewForumPost 1003, 'Hanging Pot Plants from Plastic Bottles', 
 'Rip off the outside plastic labels and cut an opening into the side of the bottle with scissors an Exacto knife. (The Exacto cut more smoothly and evenly than scissors.) 
 Clean up any edges and then paint(optional). Make two small holes near the outside of the bottom of the bottle. 
 Run a piece of string through the one hole and out the top of the bottle, then run another piece through the other hole you made and through the top. 
 Your planter is now ready to hang.', '../Images/TestImg/1_1000_1003.jpg', 2222
+
 --Link Tags
 EXEC sp_LinkForumTag 'reuse', 1000, 2222
 EXEC sp_LinkForumTag 'repurpose', 1000, 2222
@@ -1463,25 +1543,13 @@ EXEC sp_NewForumReply 1000,'Wow this was such a great idea!', 1004
 EXEC sp_NewForumReply 1000,'We made these and the Kids had so much fun.', 1013
 EXEC sp_NewForumReply 1000,'Was a Useful Tip Ty.', 1000
 
+--Adding Test data for ForumPost
 EXEC sp_NewForumPost 1006, 'Easy Watering Can', 
 'Wash out the bottle a few times and let dry. Make a few holes in the cap of the bottle. Fill with water and is ready to go.', '', 2222
+--Link Tags
 EXEC sp_LinkForumTag 'reuse', 1001, 2222
 EXEC sp_LinkForumTag 'repurpose', 1001, 2222
 EXEC sp_LinkForumTag 'savemoney', 1001, 2222
 EXEC sp_LinkForumTag 'garden', 1001, 2222
 EXEC sp_LinkForumTag 'under5mins', 1001, 2222
-
 EXEC sp_NewForumReply 1001,'Wow this was such a great idea!', 1004
----PostalAddress Loading
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','64','Lewin Street','Barellan',2665,1,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('',	'13','Black Point Drive','Whyalla Jenkins',5609,5,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('A','4'	,'Warruga Street','	Corlette',2315,1,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('C','5'	,'Bayview Close','The Common',4701,2,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES (''	,'123','Fake Street','Newcastle',9009,1,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','75','Auricht Road','Tilley Swamp',5275, 5,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('A','22','Junction Street','Caldwell',2710,1,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','3','Wigley Street','Seacombe Heights',5047,5,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','8','Sunnyside Road','Murtho',5340,5,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','35','Dalgarno Street','Basin Plain',2380,1,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','41','Horsington Street','Box Hill South',3128,4,'Australia');
---INSERT INTO PostalAddress (unitNumber, streetAddress, streetName, city, postCode, stateName, country ) VALUES ('','58','Pelican Close','RoadHill',6798,3,'Australia');
