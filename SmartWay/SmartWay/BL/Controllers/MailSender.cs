@@ -33,6 +33,7 @@ namespace SmartWay.BL.Controllers
                 message.IsBodyHtml = true;
                 smtp.Send(message);
             }
+
             //Mail Settings for Gmail - Not compatible with GoDaddy
 
             //MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
@@ -85,6 +86,32 @@ namespace SmartWay.BL.Controllers
                 message.IsBodyHtml = true;
                 smtp.Send(message);
             }
+
+            //Mail Settings for Gmail - Not compatible with GoDaddy
+
+            //MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
+            //MailAddress toAddress = new MailAddress(toEmail, fName);
+            //string fromPassword = "SomethingEasy";
+            //string subject = "Reset Password";
+            //string body = getForgotPasswordEmail(verificationCode);
+            //SmtpClient smtp = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+            //using (MailMessage message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body
+            //})
+            //{
+            //    message.IsBodyHtml = true;
+            //    smtp.Send(message);
+            //
         }
 
         public void sendContactAdmin(string fName, string lName, string email, string content)
@@ -115,6 +142,36 @@ namespace SmartWay.BL.Controllers
                 message.IsBodyHtml = true;
                 smtp.Send(message);
             }
+
+            //Mail Settings for Gmail - Not compatible with GoDaddy
+        
+            //MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
+            //MailAddress toAddress = new MailAddress("bluecloudinft3970@gmail.com");
+            //string fromPassword = "SomethingEasy";
+            //string userFirstName = fName;
+            //string userLastName = lName;
+            //string userEmail = email;
+            //string userContent = content;
+            //string subject = "Query from " + userFirstName + " " + userLastName;
+            //string body = getContactAdmin(userEmail, userFirstName, userLastName, userContent);
+            //SmtpClient smtp = new SmtpClient
+            //{
+            //    Host = "smtp.gmail.com",
+            //    Port = 587,
+            //    EnableSsl = true,
+            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+            //using (MailMessage message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body
+            //})
+            //{
+            //    message.IsBodyHtml = true;
+            //    smtp.Send(message);
+            //
         }
 
         public string getContactAdmin(string email, string fName, string lName, string content)
