@@ -18,21 +18,14 @@ namespace SmartWay.UL.Views
             {
                 Response.Redirect("Login.aspx");
             }
-            else
-            {
-                string adId = "";
-                if (Request.QueryString["advertisementID"] != "" && Request.QueryString["advertisementID"] != null)
-                {
-                    adId = Request.QueryString["advertisementID"];
-                }
-
-                adID.Value = adId;
-            }
         }
 
+        /// <summary>
+        /// Updates a specific advertisement to deactive
+        /// </summary>
         public void DeactivateAd(object sender, EventArgs e)
         {
-            int ID = Convert.ToInt32(adID.Value);
+            int ID = Convert.ToInt32(Request.QueryString["advertisementID"]);
             AdvertisementControls AC = new AdvertisementControls();
             List<Advertisement> ad = AC.getAdvertisement(ID);
             ad[0].advertisementActive = false;
@@ -40,14 +33,23 @@ namespace SmartWay.UL.Views
             Response.Redirect("AdminReviewAdvertisements.aspx");
         }
 
-        public List<Advertisement> GetAd([Control]string adID)
+        /// <summary>
+        /// Populates a list of advertisements
+        /// </summary>
+        /// <returns> A list of advertisements </returns>
+        public List<Advertisement> GetAd()
         {
-            int id = Convert.ToInt32(adID);
+            int id = Convert.ToInt32(Request.QueryString["advertisementID"]);
             AdvertisementControls AC = new AdvertisementControls();
             List<Advertisement> ad = AC.getAdvertisement(id);
             return ad;
         }
 
+        /// <summary>
+        /// Retireves a list of filepaths for images linked to specific advertisment
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns> List of filepath strings </returns>
         public List<string> getAdImages(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();

@@ -10,6 +10,10 @@ namespace SmartWay.UL.Views
 {
     public partial class OfferCancel : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -26,6 +30,9 @@ namespace SmartWay.UL.Views
             offerID.Value = ID;
         }
 
+        /// <summary>
+        /// Cancels and deactivates the selected offer
+        /// </summary>
         public void cancelOffer(object sender, EventArgs e)
         {
             int ID = Convert.ToInt32(offerID.Value);

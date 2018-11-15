@@ -14,8 +14,12 @@ namespace SmartWay.UL.Views
 
         }
 
+        /// <summary>
+        /// All user specific data is captured and new user is registered
+        /// </summary>
         protected void RegisterUser(object sender, EventArgs e)
         {
+            // If client side validation is valid
             if (IsValid)
             {
                 AddressControls AC = new AddressControls();
@@ -26,6 +30,7 @@ namespace SmartWay.UL.Views
                 bool uNameExists = UC.uNameValidation(uName);
                 string email = txtEmail.Text;
                 bool emailExists = UC.emailValidation(email);
+                // Database is checked to see if the username or email entered already exists
                 if (uNameExists)
                 {
                     errorMessage.Text = "Username already exists";
@@ -50,16 +55,21 @@ namespace SmartWay.UL.Views
                     string country = txtCountry.Text;
                     int pCode = Convert.ToInt32(txtPostcode.Text);
                     string verificationCode = randomCodeGen();
+                    // New user is created in database and ID is returned
                     int userID = UC.newRegistration(fName, lName, uName, DOB, email, password, phoneNumber, uNum, sNum, sName, city, pCode, state, country, verificationCode);
+                    // Checks if profile picture has been uploaded
                     if (FileUpload1.HasFile)
                     {
                         string filePath = profileImageUpload(userID);
                         UC.addProfileImage(filePath, userID);
                     }
                     Session["userID"] = userID;
+                    // Sends verification code via the supplied email address
                     MS.sendVerificationEmail(email, fName, verificationCode);
+                    // Due to twilio trial account on these numbers can be sent SMS messages for verification
                     if (phoneNumber == 0422628242 || phoneNumber == 0434837691 || phoneNumber == 0421030606 || phoneNumber == 0466548976 || phoneNumber == 0450025977 || phoneNumber == 0439627096)
                     {
+                        // Sends verification code via SMS to supplied phone number
                         SS.SendSMS(phoneNumber, verificationCode);
                     }
                     Response.Redirect("AccountVerification.aspx");
@@ -68,6 +78,12 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Gets the image uploaded for profile image and resizes it to a maximum height or width of 100px,
+        /// image file is saved to a location on the server and the filepath is stored in database.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns>String filepath</returns>
         protected string profileImageUpload(int userID)
         {
             string path = "";
@@ -127,6 +143,10 @@ namespace SmartWay.UL.Views
             //FileUpload1.SaveAs(profileImageFolder + Path.GetFileName(FileUpload1.FileName));
         }
 
+        /// <summary>
+        /// Generates a random 8 digit verification code consisting of alpha-numeric characters
+        /// </summary>
+        /// <returns>String code</returns>
         protected string randomCodeGen()
         {
             string chars = "abcdefghijklmnopqrstuvwxyz0123456789";

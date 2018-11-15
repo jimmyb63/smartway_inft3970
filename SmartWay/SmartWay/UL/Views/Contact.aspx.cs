@@ -15,6 +15,9 @@ namespace SmartWay.UL.Views
 
         }
 
+        /// <summary>
+        /// Email is sent to admin email address
+        /// </summary>
         public void contactAdmin(object sender, EventArgs e)
         {
             string userFirstName = txtFirstName.Text;

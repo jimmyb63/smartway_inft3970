@@ -1,6 +1,6 @@
-﻿<%@ Page Title="SmartWay - Admin View Advertisement" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewAdvertisementDetail.aspx.cs" Inherits="SmartWay.UL.Views.AdminViewAdvertisementDetail" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminViewForumPostDetail.aspx.cs" Inherits="SmartWay.UL.Views.AdminViewForumPostDetail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
+     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
             width: 80%;
@@ -9,11 +9,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:HiddenField ID="forumID" runat="server" />
     <div class="col-lg-9 mt-2">
-        <asp:HiddenField ID="adID" runat="server" />
-        <asp:ListView ID="displayAd" runat="server"
-            DataKeyNames="advertisementID" GroupItemCount="3"
-            ItemType="SmartWay.BL.Models.Advertisement" SelectMethod="GetAd">
+        <asp:ListView ID="displayForumPost" runat="server"
+            DataKeyNames="forumID" GroupItemCount="3"
+            ItemType="SmartWay.BL.Models.ForumThread" SelectMethod="GetForumPost">
             <EmptyDataTemplate>
                 <table>
                     <tr>
@@ -30,50 +30,49 @@
                 </tr>
             </GroupTemplate>
             <ItemTemplate>
-                <div class="p-2 mb-2 bg-primary text-white"><%#:Item.advertisementTitle%></div>
+                <div class="p-2 mb-2 bg-primary text-white"><%#:Item.forumTitle%></div>
                 <div class="card">
                     <div id="adImages" class="carousel slide" data-ride="carousel" style="height: auto; background-color: grey">
                         <!-- Indicators -->
-                        <% int adID = Convert.ToInt32(Request.QueryString["advertisementID"]); %>
-                        <% List<string> adImages = getAdImages(adID); %>
+                        <% int forumID = Convert.ToInt32(Request.QueryString["forumID"]); %>
+                        <% List<string> forumImages = getForumImages(forumID); %>
                         <ul class="carousel-indicators">
-                            <li data-target="#adImages" data-slide-to="0" class="active"></li>
-                            <% for (int i = 1; i < adImages.Count; i++) %>
+                            <li data-target="#forumImages" data-slide-to="0" class="active"></li>
+                            <% for (int i = 1; i < forumImages.Count; i++) %>
                             <% { %>
-                            <li data-target="#adImages" data-slide-to="<%=i%>"></li>
+                            <li data-target="#forumImages" data-slide-to="<%=i%>"></li>
                             <% } %>
                         </ul>
 
                         <!-- The slideshow -->
                         <div class="carousel-inner" role="listbox" style="text-align: center">
                             <div class="carousel-item active" style="align-content: center">
-                                <a href="<%=adImages[0]%>">
-                                    <img src="<%=adImages[0]%>" height="800" alt="image"></a>
+                                <a href="<%=forumImages[0]%>">
+                                    <img src="<%=forumImages[0]%>" height="800" alt="image"></a>
                             </div>
-                            <% for (int i = 1; i < adImages.Count; i++)%>
+                            <% for (int i = 1; i < forumImages.Count; i++)%>
                             <% { %>
                             <div class="carousel-item" style="align-content: center">
-                                <a href="<%=adImages[i]%>">
-                                    <img src="<%=adImages[i]%>" alt="image"></a>
+                                <a href="<%=forumImages[i]%>">
+                                    <img src="<%=forumImages[i]%>" alt="image"></a>
                             </div>
                             <% } %>
                         </div>
 
                         <!-- Left and right controls -->
-                        <a class="carousel-control-prev" href="#adImages" data-slide="prev">
+                        <a class="carousel-control-prev" href="#forumImages" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
                         </a>
-                        <a class="carousel-control-next" href="#adImages" data-slide="next">
+                        <a class="carousel-control-next" href="#forumImages" data-slide="next">
                             <span class="carousel-control-next-icon"></span>
                         </a>
                     </div>
                     <div class="card-body">
-                        <h4><b>Price: </b><%#:String.Format("{0:c}", Item.advertisementPrice)%></h4>
                         <p class="card-text">
                             <h4>Description</h4>
-                            <p><%#:Item.advertisementDescription %></p>
+                            <p><%#:Item.forumDescription %></p>
                             <hr>
-                            <asp:Button ID="btnContact" Text="Contact Seller" CssClass="btn btn-info" runat="server" /><asp:Button ID="btnDeactivate" Text="Deactivate Listing" CssClass="btn btn-danger float-md-right" OnClick="DeactivateAd" runat="server" />
+                            <asp:Button ID="btnContact" Text="Contact User" CssClass="btn btn-info" runat="server" /><asp:Button ID="btnDeactivate" Text="Deactivate Thread" CssClass="btn btn-danger float-md-right" runat="server" />
                             <br>
                     </div>
                 </div>

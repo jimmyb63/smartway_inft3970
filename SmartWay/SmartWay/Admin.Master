@@ -27,11 +27,11 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"> <a class="nav-link m-1" href="index.html"><i class="fas fa-home"></i> Home</a> </li>
                 <li class="nav-item"> <a class="nav-link m-1" href="AdminReviewAdvertisements.aspx"><i class="fas fa-shopping-cart"></i> All Advertisements</a> </li>
                 <li class="nav-item"> <a class="nav-link m-1" href="AdminReviewUsers.aspx"><i class="fas fa-people-carry"></i> All Users</a> </li>
-                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-exclamation-circle"></i> Reported Advertisements</a> </li>
-                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-exclamation-circle"></i> Reported Users</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="AdminReviewForumPosts.aspx"><i class="fas fa-people-carry"></i> All Forum Posts</a> </li>
+                <%--<li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-exclamation-circle"></i> Reported Advertisements</a> </li>
+                <li class="nav-item"> <a class="nav-link m-1" href="#"><i class="fas fa-exclamation-circle"></i> Reported Users</a> </li>--%>
                 <li class="nav-item"> <a class="nav-link m-1" href="LogoutConfirmation.aspx"><i class="fas fa-sign-out-alt"></i> Logout</a> </li>
               </ul>
             </div>

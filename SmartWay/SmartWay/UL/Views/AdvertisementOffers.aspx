@@ -98,17 +98,9 @@
                             </asp:PlaceHolder>
                         </ItemTemplate>
                         <LayoutTemplate>
-                            <%--<table>
-                                <tbody>
-                                    <tr>
-                                        <td>--%>
-                                            <table id="groupPlaceholderContainer" runat="server" style="width: 100%">
-                                                <tr id="groupPlaceholder"></tr>
-                                            </table>
-                                        <%--</td>
-                                    </tr>
-                                </tbody>
-                            </table>--%>
+                            <table id="groupPlaceholderContainer" runat="server" style="width: 100%">
+                                <tr id="groupPlaceholder"></tr>
+                            </table>
                         </LayoutTemplate>
                     </asp:ListView>
                 </div>

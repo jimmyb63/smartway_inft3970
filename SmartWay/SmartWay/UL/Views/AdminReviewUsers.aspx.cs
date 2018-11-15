@@ -19,6 +19,10 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Populates a list of users
+        /// </summary>
+        /// <returns>List of Person objects</returns>
         public List<Person> getUsers()
         {
             UserControls UC = new UserControls();
@@ -26,10 +30,11 @@ namespace SmartWay.UL.Views
             return users;
         }
 
+        /// <summary>
+        /// Redirects users to a details page of the selected user
+        /// </summary>
         public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
         {
-
-
             if (e.CommandName == "UserDetail")
             {
                 int index = Convert.ToInt32(e.CommandArgument);

@@ -148,7 +148,6 @@
     <Content Include="UL\Images\DefaultImg\James.png" />
     <Content Include="UL\Images\DefaultImg\Zac.png" />
     <Content Include="UL\Images\girlBanner.png" />
-    <Content Include="UL\Images\GirlBanner1.png" />
     <Content Include="UL\Images\liveBanner.png" />
     <Content Include="UL\Images\master_background.jpg" />
     <Content Include="UL\Images\reuseBanner.png" />
@@ -183,10 +182,11 @@
     <Content Include="UL\Images\TestImg\2_1002_1002.jpg" />
     <Content Include="UL\Views\Account.aspx" />
     <Content Include="UL\Views\AccountVerification.aspx" />
-    <Content Include="UL\Views\AdminIndex.aspx" />
     <Content Include="UL\Views\AdminReviewAdvertisements.aspx" />
+    <Content Include="UL\Views\AdminReviewForumPosts.aspx" />
     <Content Include="UL\Views\AdminReviewUsers.aspx" />
     <Content Include="UL\Views\AdminViewAdvertisementDetail.aspx" />
+    <Content Include="UL\Views\AdminViewForumPostDetail.aspx" />
     <Content Include="UL\Views\AdminViewUserDetail.aspx" />
     <Content Include="UL\Views\AdvertisementOffers.aspx" />
     <Content Include="UL\Views\ContentReviewSuccessful.aspx" />
@@ -206,7 +206,6 @@
     <Content Include="UL\Views\OfferConfirmation.aspx" />
     <Content Include="UL\Views\PostAdvertisement.aspx" />
     <Content Include="UL\Views\Map.aspx" />
-    <Content Include="UL\Views\MapPage.aspx" />
     <Content Include="UL\Views\Payment.aspx" />
     <Content Include="UL\Views\PostForumThread.aspx" />
     <Content Include="UL\Views\PrivateMessage.aspx" />
@@ -240,15 +239,6 @@
     <Content Include="scripts\jquery-2.1.4.js" />
     <Content Include="scripts\jquery.menu-aim.js" />
     <Content Include="scripts\modernizr.js" />
-    <Content Include="UL\Images\cd-arrow.svg" />
-    <Content Include="UL\Images\cd-avatar.png" />
-    <Content Include="UL\Images\cd-logo.svg" />
-    <Content Include="UL\Images\cd-nav-icons.svg" />
-    <Content Include="UL\Images\cd-search.svg" />
-    <Content Include="UL\Images\home-solid.svg" />
-    <Content Include="UL\Images\map-pin-solid.svg" />
-    <Content Include="UL\Images\smartway-logo.png" />
-    <Content Include="UL\Images\user-circle-regular.svg" />
     <Content Include="UL\Views\About.aspx" />
     <Content Include="UL\Views\Contact.aspx" />
     <Content Include="UL\Views\ForgotPassword.aspx" />
@@ -321,19 +311,19 @@
     <Compile Include="UL\Views\AccountVerification.aspx.designer.cs">
       <DependentUpon>AccountVerification.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UL\Views\AdminIndex.aspx.cs">
-      <DependentUpon>AdminIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\Views\AdminIndex.aspx.designer.cs">
-      <DependentUpon>AdminIndex.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UL\Views\AdminReviewAdvertisements.aspx.cs">
       <DependentUpon>AdminReviewAdvertisements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UL\Views\AdminReviewAdvertisements.aspx.designer.cs">
       <DependentUpon>AdminReviewAdvertisements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\AdminReviewForumPosts.aspx.cs">
+      <DependentUpon>AdminReviewForumPosts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\AdminReviewForumPosts.aspx.designer.cs">
+      <DependentUpon>AdminReviewForumPosts.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\AdminReviewUsers.aspx.cs">
       <DependentUpon>AdminReviewUsers.aspx</DependentUpon>
@@ -348,6 +338,13 @@
     </Compile>
     <Compile Include="UL\Views\AdminViewAdvertisementDetail.aspx.designer.cs">
       <DependentUpon>AdminViewAdvertisementDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UL\Views\AdminViewForumPostDetail.aspx.cs">
+      <DependentUpon>AdminViewForumPostDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UL\Views\AdminViewForumPostDetail.aspx.designer.cs">
+      <DependentUpon>AdminViewForumPostDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\AdminViewUserDetail.aspx.cs">
       <DependentUpon>AdminViewUserDetail.aspx</DependentUpon>
@@ -516,13 +513,6 @@
     </Compile>
     <Compile Include="UL\Views\Map.aspx.designer.cs">
       <DependentUpon>Map.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UL\Views\MapPage.aspx.cs">
-      <DependentUpon>MapPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UL\Views\MapPage.aspx.designer.cs">
-      <DependentUpon>MapPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UL\Views\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>

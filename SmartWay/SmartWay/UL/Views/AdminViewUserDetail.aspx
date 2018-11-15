@@ -28,8 +28,6 @@
                         <br />
                         <div class="card-text"><b>Address: </b></div>
                         <br />
-                        <div class="card-text"><b>Password: </b><%=user.userPassword %></div>
-                        <br />
                         <div class="card-text"><b>Verification Date: </b><%=user.userVerDate %></div>
                         <br />
                         <div class="card-text"><b>Registration Date:</b><%=user.userCreateDate %></div>

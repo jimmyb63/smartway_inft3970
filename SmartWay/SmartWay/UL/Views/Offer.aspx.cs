@@ -11,6 +11,10 @@ namespace SmartWay.UL.Views
 {
     public partial class Offer : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -21,6 +25,9 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Creates a new offer and links it to the selected advertisement
+        /// </summary>
         public void MakeOffer(object sender, EventArgs e)
         {
             int adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
@@ -30,15 +37,9 @@ namespace SmartWay.UL.Views
             Person currentUser = (Person)Session["currentUser"];
             int buyerID = currentUser.userID;
             decimal offerAmount = Convert.ToDecimal(txtOfferAmount.Text);
+            // Creates a new offer in the database and returns the ID
             int code = AC.makeOffer(buyerID, sellerID, adID, offerAmount);
-            if (code == -1)
-            {
-                Response.Write("<script>alert('Offer Already Exists')</script>");
-            }
-            else
-            {
-                Response.Redirect("OfferConfirmation.aspx?advertisementID=" + Request.QueryString["advertisementID"]);
-            }
+            Response.Redirect("OfferConfirmation.aspx?advertisementID=" + Request.QueryString["advertisementID"]);
         }
     }
 }

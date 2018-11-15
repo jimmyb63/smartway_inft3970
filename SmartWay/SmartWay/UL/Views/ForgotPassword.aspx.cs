@@ -17,6 +17,9 @@ namespace SmartWay.UL.Views
 
         }
 
+        /// <summary>
+        /// Sends user an email when password has been forgotten
+        /// </summary>
         public void forgotPassword(object sender, EventArgs e)
         {
             string email = txtEmail.Text;

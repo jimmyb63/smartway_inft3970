@@ -11,6 +11,10 @@ namespace SmartWay.UL.Views
 {
     public partial class WantToBuy : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -21,6 +25,10 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Grabs the advertisemntID and userID from the Session, 
+        /// uses them both to create a new offer at the price listed on the specifies advertisement
+        /// </summary>
         public void BuyNow(object sender, EventArgs e)
         {
             // create an accepted offer
@@ -37,6 +45,9 @@ namespace SmartWay.UL.Views
             //Response.Redirect("Payment.aspx?advertisementID=" + adID);
         }
 
+        /// <summary>
+        /// User is redirected to the offer screen
+        /// </summary>
         public void MakeOffer(object sender, EventArgs e)
         {
             string adID = Request.QueryString["advertisementID"];

@@ -3,9 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="col-lg-9 mt-2">
-        <%--<div class="p-2 mb-2 bg-primary text-white">Account Verification</div>--%>
         <div class="card text-center">
             <div class="card-header">
                 <h2>Account Verification</h2>
@@ -40,5 +38,4 @@
             </div>
         </div>
     </div>
-
 </asp:Content>

@@ -11,6 +11,10 @@ namespace SmartWay.UL.Views
 {
     public partial class MyOffers : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -20,6 +24,10 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Populates a list of active offers that this specific user has made to others
+        /// </summary>
+        /// <returns>List of Offer objects</returns>
         public List<BL.Models.Offer> getOffers()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -36,6 +44,10 @@ namespace SmartWay.UL.Views
             return tempOffers;
         }
 
+        /// <summary>
+        /// Populates a list of offers made by this specific user that have been accepted by others
+        /// </summary>
+        /// <returns>List of Offer objects</returns>
         public List<BL.Models.Offer> getAcceptedOffers()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -52,6 +64,10 @@ namespace SmartWay.UL.Views
             return tempOffers;
         }
 
+        /// <summary>
+        /// Populates a list of active offers that this specific user has made to others
+        /// </summary>
+        /// <returns>List of Offer objects</returns>
         public List<BL.Models.Offer> getPendingOffers()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -68,6 +84,11 @@ namespace SmartWay.UL.Views
             return tempOffers;
         }
 
+        /// <summary>
+        /// Checks whether the specified advertisement has been finalised
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>True if finalised, False if not finalised</returns>
         public bool adFinalised(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -79,6 +100,10 @@ namespace SmartWay.UL.Views
             return false;
         }
 
+        /// <summary>
+        /// Populates a list of offers for this specific user that were not accepted
+        /// </summary>
+        /// <returns>List of Offer objects</returns>
         public List<BL.Models.Offer> getNotAcceptedOffers()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -95,6 +120,11 @@ namespace SmartWay.UL.Views
             return tempOffers;
         }
 
+        /// <summary>
+        /// Gets the price offered for the specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>Decimal price</returns>
         public decimal getAdPrice(int adID)
         {
             List<Advertisement> ad = getAd(adID);
@@ -102,6 +132,11 @@ namespace SmartWay.UL.Views
             return price;
         }
 
+        /// <summary>
+        /// Gets the Title of the specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>String title</returns>
         public string getAdTitle(int adID)
         {
             List<Advertisement> ad = getAd(adID);
@@ -109,6 +144,11 @@ namespace SmartWay.UL.Views
             return title;
         }
 
+        /// <summary>
+        /// Gets the status of the offer that has been placed on and advertisement
+        /// </summary>
+        /// <param name="offerID"></param>
+        /// <returns>String offer</returns>
         public string getOfferStatus(int offerID)
         {
             List<BL.Models.Offer> offers = getOffers();
@@ -140,6 +180,11 @@ namespace SmartWay.UL.Views
             return status;
         }
 
+        /// <summary>
+        /// Pupulates a list of adverisements
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>List of advertisment objects</returns>
         public List<Advertisement> getAd(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -147,6 +192,11 @@ namespace SmartWay.UL.Views
             return ad;
         }
 
+        /// <summary>
+        /// gets the filepath of the first image that is linked to this specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>String filepath</returns>
         public string getAdImage(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();

@@ -11,42 +11,18 @@ namespace SmartWay.BL.Controllers
     {
         public void sendVerificationEmail(string toEmail, string fName, string verificationCode)
         {
-            MailAddress fromAddress = new MailAddress("admin@smartwayapp.net", "SmartWay");
-            MailAddress toAddress = new MailAddress(toEmail, fName);
-            string fromPassword = "@SomethingEasy1";
-            string subject = "Verify Account";
-            string body = getVerificationEmail(verificationCode);
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "relay-hosting.secureserver.net",
-                Port = 25,
-                EnableSsl = false,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            using (MailMessage message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = body
-            })
-            {
-                message.IsBodyHtml = true;
-                smtp.Send(message);
-            }
+            //Mail Settings for GoDaddy
 
-            //Mail Settings for Gmail - Not compatible with GoDaddy
-
-            //MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
+            //MailAddress fromAddress = new MailAddress("admin@smartwayapp.net", "SmartWay");
             //MailAddress toAddress = new MailAddress(toEmail, fName);
-            //string fromPassword = "SomethingEasy";
+            //string fromPassword = "@SomethingEasy1";
             //string subject = "Verify Account";
             //string body = getVerificationEmail(verificationCode);
             //SmtpClient smtp = new SmtpClient
             //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    Host = "relay-hosting.secureserver.net",
+            //    Port = 25,
+            //    EnableSsl = false,
             //    UseDefaultCredentials = false,
             //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             //};
@@ -59,21 +35,75 @@ namespace SmartWay.BL.Controllers
             //    message.IsBodyHtml = true;
             //    smtp.Send(message);
             //}
+
+            //Mail Settings for Gmail - Not compatible with GoDaddy
+
+            MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
+            MailAddress toAddress = new MailAddress(toEmail, fName);
+            string fromPassword = "SomethingEasy";
+            string subject = "Verify Account";
+            string body = getVerificationEmail(verificationCode);
+            SmtpClient smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (MailMessage message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                message.IsBodyHtml = true;
+                smtp.Send(message);
+            }
         }
 
         public void sendForgotPasswordEmail(string email, string password)
         {
-            MailAddress fromAddress = new MailAddress("admin@smartwayapp.net", "SmartWay");
+            //Mail Settings for GoDaddy
+
+            //MailAddress fromAddress = new MailAddress("admin@smartwayapp.net", "SmartWay");
+            //MailAddress toAddress = new MailAddress(email);
+            //string fromPassword = "@SomethingEasy1";
+            //string subject = "Reset Password";
+            //string body = getForgotPasswordEmail(email, password);
+            //SmtpClient smtp = new SmtpClient
+            //{
+            //    Host = "relay-hosting.secureserver.net",
+            //    Port = 25,
+            //    EnableSsl = false,
+            //    //DeliveryMethod = SmtpDeliveryMethod.Network,
+            //    UseDefaultCredentials = false,
+            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            //};
+            //using (MailMessage message = new MailMessage(fromAddress, toAddress)
+            //{
+            //    Subject = subject,
+            //    Body = body
+            //})
+            //{
+            //    message.IsBodyHtml = true;
+            //    smtp.Send(message);
+            //}
+
+            //Mail Settings for Gmail - Not compatible with GoDaddy
+
+            MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
             MailAddress toAddress = new MailAddress(email);
-            string fromPassword = "@SomethingEasy1";
+            string fromPassword = "SomethingEasy";
             string subject = "Reset Password";
             string body = getForgotPasswordEmail(email, password);
             SmtpClient smtp = new SmtpClient
             {
-                Host = "relay-hosting.secureserver.net",
-                Port = 25,
-                EnableSsl = false,
-                //DeliveryMethod = SmtpDeliveryMethod.Network,
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             };
@@ -86,95 +116,72 @@ namespace SmartWay.BL.Controllers
                 message.IsBodyHtml = true;
                 smtp.Send(message);
             }
-
-            //Mail Settings for Gmail - Not compatible with GoDaddy
-
-            //MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
-            //MailAddress toAddress = new MailAddress(toEmail, fName);
-            //string fromPassword = "SomethingEasy";
-            //string subject = "Reset Password";
-            //string body = getForgotPasswordEmail(verificationCode);
-            //SmtpClient smtp = new SmtpClient
-            //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network,
-            //    UseDefaultCredentials = false,
-            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            //};
-            //using (MailMessage message = new MailMessage(fromAddress, toAddress)
-            //{
-            //    Subject = subject,
-            //    Body = body
-            //})
-            //{
-            //    message.IsBodyHtml = true;
-            //    smtp.Send(message);
-            //
         }
 
-        public void sendContactAdmin(string fName, string lName, string email, string content)
+            public void sendContactAdmin(string fName, string lName, string email, string content)
         {
-            MailAddress fromAddress = new MailAddress("admin@smartwayapp.net", "SmartWay");
-            MailAddress toAddress = new MailAddress("Admin@smartwayapp.net");
-            string fromPassword = "@SomethingEasy1";
-            string userFirstName = fName;
-            string userLastName = lName;
-            string userEmail = email;
-            string userContent = content;
-            string subject = "Query from " + userFirstName + " " + userLastName;
-            string body = getContactAdmin(userEmail, userFirstName, userLastName, userContent);
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "relay-hosting.secureserver.net",
-                Port = 25,
-                EnableSsl = false,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            using (MailMessage message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = body
-            })
-            {
-                message.IsBodyHtml = true;
-                smtp.Send(message);
+                //Mail Settings for GoDaddy
+
+                //MailAddress fromAddress = new MailAddress("admin@smartwayapp.net", "SmartWay");
+                //MailAddress toAddress = new MailAddress("Admin@smartwayapp.net");
+                //string fromPassword = "@SomethingEasy1";
+                //string userFirstName = fName;
+                //string userLastName = lName;
+                //string userEmail = email;
+                //string userContent = content;
+                //string subject = "Query from " + userFirstName + " " + userLastName;
+                //string body = getContactAdmin(userEmail, userFirstName, userLastName, userContent);
+                //SmtpClient smtp = new SmtpClient
+                //{
+                //    Host = "relay-hosting.secureserver.net",
+                //    Port = 25,
+                //    EnableSsl = false,
+                //    UseDefaultCredentials = false,
+                //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                //};
+                //using (MailMessage message = new MailMessage(fromAddress, toAddress)
+                //{
+                //    Subject = subject,
+                //    Body = body
+                //})
+                //{
+                //    message.IsBodyHtml = true;
+                //    smtp.Send(message);
+                //}
+
+                //Mail Settings for Gmail - Not compatible with GoDaddy
+
+                MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
+                MailAddress toAddress = new MailAddress("bluecloudinft3970@gmail.com");
+                string fromPassword = "SomethingEasy";
+                string userFirstName = fName;
+                string userLastName = lName;
+                string userEmail = email;
+                string userContent = content;
+                string subject = "Query from " + userFirstName + " " + userLastName;
+                string body = getContactAdmin(userEmail, userFirstName, userLastName, userContent);
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (MailMessage message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    message.IsBodyHtml = true;
+                    smtp.Send(message);
+                }
+
             }
 
-            //Mail Settings for Gmail - Not compatible with GoDaddy
-        
-            //MailAddress fromAddress = new MailAddress("bluecloudinft3970@gmail.com", "BlueCloud");
-            //MailAddress toAddress = new MailAddress("bluecloudinft3970@gmail.com");
-            //string fromPassword = "SomethingEasy";
-            //string userFirstName = fName;
-            //string userLastName = lName;
-            //string userEmail = email;
-            //string userContent = content;
-            //string subject = "Query from " + userFirstName + " " + userLastName;
-            //string body = getContactAdmin(userEmail, userFirstName, userLastName, userContent);
-            //SmtpClient smtp = new SmtpClient
-            //{
-            //    Host = "smtp.gmail.com",
-            //    Port = 587,
-            //    EnableSsl = true,
-            //    DeliveryMethod = SmtpDeliveryMethod.Network,
-            //    UseDefaultCredentials = false,
-            //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            //};
-            //using (MailMessage message = new MailMessage(fromAddress, toAddress)
-            //{
-            //    Subject = subject,
-            //    Body = body
-            //})
-            //{
-            //    message.IsBodyHtml = true;
-            //    smtp.Send(message);
-            //
-        }
-
-        public string getContactAdmin(string email, string fName, string lName, string content)
+            public string getContactAdmin(string email, string fName, string lName, string content)
         {
             return "<h2>Query from user: " + fName + " " + lName + "</h2>" +
                    "<br/><br/>" +

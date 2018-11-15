@@ -19,6 +19,10 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Pupulates a list of active advertisements
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -34,10 +38,11 @@ namespace SmartWay.UL.Views
             return ads;
         }
 
+        /// <summary>
+        /// Redirects users to a advertisment details page
+        /// </summary>
         public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
         {
-
-
             if (e.CommandName == "AdvertisementDetail")
             {
                 int index = Convert.ToInt32(e.CommandArgument);

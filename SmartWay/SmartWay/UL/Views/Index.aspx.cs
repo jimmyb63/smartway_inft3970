@@ -13,19 +13,13 @@ namespace SmartWay.UL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["index"] == null)
-            //{
-            //    Session["index"] = "yes";
-            //    Response.Redirect("/UL/Views/Index.aspx");
-            //}
-
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            if (url == "https://inft3970smartway.azurewebsites.net/UL/Views/Index.aspx")
-            {
-                Response.Redirect("/UL/Views/Index.aspx");
-            }
+            
         }
 
+        /// <summary>
+        /// Populates a list of adverisements for display
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -33,6 +27,10 @@ namespace SmartWay.UL.Views
             return ads;
         }
 
+        /// <summary>
+        /// Populates a list of the most popular advertisements based on the view count
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getPopularAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -98,6 +96,10 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Populates a list of the most popular services based on the view count
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getPopularServices()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -133,6 +135,11 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// gets the filepath of the first image that is linked to this specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>String filepath</returns>
         public string getAdImage(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();

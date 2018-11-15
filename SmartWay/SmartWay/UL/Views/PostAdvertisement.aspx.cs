@@ -17,6 +17,10 @@ namespace SmartWay.UL.Views
 {
     public partial class PostAdvertisement : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -26,6 +30,9 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// All advertisement specific data is captured and new user is registered
+        /// </summary>
         protected void postAd(object sender, EventArgs e)
         {
             string adTitle = txtTitle.Text;
@@ -46,53 +53,72 @@ namespace SmartWay.UL.Views
             int userID = currentUser.userID;
             int addressID = currentUser.userAddressID;
             AdvertisementControls AC = new AdvertisementControls();
+            // New add is created and ID is returned from database
             int adID = AC.newAdvertisement(userID, adTitle, adType, adCategory, adSubCategory, adDescription, addressID, adPrice);
+            // Checks if an image has been uploaded
             if (FileUpload1.HasFile)
             {
                 int index = 1;
                 string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
                 Bitmap image = new Bitmap(FileUpload1.FileContent);
+                // Adding a new image and returning the filepath
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
+                // Adding image to the database
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
+            // Checks if an image has been uploaded
             if (FileUpload2.HasFile)
             {
                 int index = 2;
                 string fileName = Path.GetFileName(FileUpload2.PostedFile.FileName);
                 Bitmap image = new Bitmap(FileUpload2.FileContent);
+                // Adding a new image and returning the filepath
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
+                // Adding image to the database
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
+            // Checks if an image has been uploaded
             if (FileUpload3.HasFile)
             {
                 int index = 3;
                 string fileName = Path.GetFileName(FileUpload3.PostedFile.FileName);
                 Bitmap image = new Bitmap(FileUpload3.FileContent);
+                // Adding a new image and returning the filepath
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
+                // Adding image to the database
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
+            // Checks if an image has been uploaded
             if (FileUpload4.HasFile)
             {
                 int index = 4;
                 string fileName = Path.GetFileName(FileUpload4.PostedFile.FileName);
                 Bitmap image = new Bitmap(FileUpload4.FileContent);
+                // Adding a new image and returning the filepath
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
+                // Adding image to the database
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
+            // Checks if an image has been uploaded
             if (FileUpload5.HasFile)
             {
                 int index = 5;
                 string fileName = Path.GetFileName(FileUpload5.PostedFile.FileName);
                 Bitmap image = new Bitmap(FileUpload5.FileContent);
+                // Adding a new image and returning the filepath
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
+                // Adding image to the database
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
+            // Checks if an image has been uploaded
             if (FileUpload6.HasFile)
             {
                 int index = 6;
                 string fileName = Path.GetFileName(FileUpload6.PostedFile.FileName);
                 Bitmap image = new Bitmap(FileUpload6.FileContent);
+                // Adding a new image and returning the filepath
                 string filePath = adImageUpload(image, index, adID, fileName, currentUser.userID);
+                // Adding image to the database
                 AC.addAdImage(filePath, currentUser.userID, adID);
             }
 
@@ -101,6 +127,17 @@ namespace SmartWay.UL.Views
             
         }
 
+        /// <summary>
+        /// Getting the uploaded image file, creates a relative file path to save to the server, resizes the image to
+        /// a maximum height and length of 600px for storage optimization, saves the file to a location on the server,
+        /// returns the filepath which will be saved in the database.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="index"></param>
+        /// <param name="adID"></param>
+        /// <param name="fileName"></param>
+        /// <param name="userID"></param>
+        /// <returns>String filepath</returns>
         protected string adImageUpload(Bitmap image, int index, int adID, string fileName, int userID)
         {
             string path = "";
@@ -164,10 +201,13 @@ namespace SmartWay.UL.Views
                 errorMessage.Text = "Image format is not correct";
             }
             return filePath;
-            //FileUpload1.SaveAs(profileImageFolder + Path.GetFileName(FileUpload1.FileName));
             
         }
 
+        /// <summary>
+        /// Changes the options of the sub-category dropdown depending on the value chosen
+        /// in the category dropdown menu
+        /// </summary>
         protected void rbAdCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             string category = rbAdCategory.SelectedValue;

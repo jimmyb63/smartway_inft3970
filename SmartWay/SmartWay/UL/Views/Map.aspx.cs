@@ -17,6 +17,11 @@ namespace SmartWay.UL.Views
 
         }
 
+        /// <summary>
+        /// Uses the coordinates of the address provided to get the latitude
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns>Double latitude</returns>
         public double getLat(string address)
         {
             double latitude = 0;
@@ -25,6 +30,11 @@ namespace SmartWay.UL.Views
             return latitude;
         }
 
+        /// <summary>
+        /// Uses the coordinates of the address provided to get the longitude
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns>Double longitude</returns>
         public double getLong(string address)
         {
             double longitude = 0;
@@ -33,6 +43,11 @@ namespace SmartWay.UL.Views
             return longitude;
         }
 
+        /// <summary>
+        /// Uses the address provided to get the coordinates
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns>List of Double objects</returns>
         public List<double> getCoordinates(string address)
         {
             string address1 = address;

@@ -12,6 +12,9 @@ namespace SmartWay.UL.Views
 {
     public partial class AccountVerification : System.Web.UI.Page
     {
+        /// <summary>
+        /// On page load grabs the users email address from the URL, converts it to the userID and puts it into a Session variable for future use
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["userEmail"] != "" && Request.QueryString["userEmail"] != null)
@@ -24,6 +27,11 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Grabs the userId from the session and uses it to compare with the verification code provided,
+        /// if the correct verification code is entered the user will be redirected to a confirmation page,
+        /// else if the verification code entered is incorrect users will be prompted to re enter code.
+        /// </summary>
         protected void VerifyUser(object sender, EventArgs e)
         {
             int userID = (int)Session["userID"];
@@ -42,6 +50,9 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Resends the verification code assigned to the users account via email.
+        /// </summary>
         protected void resendVerificationCode(object sender, EventArgs e)
         {
             string email = Request.QueryString["userEmail"];

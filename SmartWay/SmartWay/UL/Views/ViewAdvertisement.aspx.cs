@@ -14,6 +14,10 @@ namespace SmartWay.UL.Views
 {
     public partial class ViewAdvertisement : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             string adId = "";
@@ -37,6 +41,9 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Redirects users to the create review request page
+        /// </summary>
         public void ReportAd(object sender, EventArgs e)
         {
             int ad = Convert.ToInt32(adID.Value);
@@ -45,6 +52,10 @@ namespace SmartWay.UL.Views
             Response.Redirect("NewAddReviewRequest.aspx?userID=" + userID + "&adID=" + ad);
         }
 
+        /// <summary>
+        /// Used to check if an offer exists on a specific advertisement
+        /// </summary>
+        /// <returns>True if offer exists, False if offer doesnt exist</returns>
         public bool pendingOffer()
         {
             int adID = Convert.ToInt32(Request.QueryString["advertisementID"]);
@@ -59,6 +70,11 @@ namespace SmartWay.UL.Views
             return false;
         }
 
+        /// <summary>
+        /// Gets the average of all the feedback related to this specific seller and displays it as a star rating
+        /// </summary>
+        /// <param name="sellerID"></param>
+        /// <returns>Int seller rating</returns>
         public string getSellerRating(int sellerID)
         {
             string rating = null;
@@ -67,6 +83,11 @@ namespace SmartWay.UL.Views
             return rating;
         }
 
+        /// <summary>
+        /// Gets a specific advertisement whic is used to display
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>List of Advertisment objects</returns>
         public List<Advertisement> getAd([Control]string adID)
         {
             int id = Convert.ToInt32(adID);
@@ -75,6 +96,11 @@ namespace SmartWay.UL.Views
             return ad;
         }
 
+        /// <summary>
+        /// Gets the filepaths of the images linked to this specific advertisment
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>List of filepath strings</returns>
         public List<string> getAdImages(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -82,13 +108,14 @@ namespace SmartWay.UL.Views
             return adImages;
         }
 
+        /// <summary>
+        /// Redirects used to the make an offer page where they can 'buy it now' or 'make an offer'
+        /// </summary>
         public void WantToBuy(object sender, EventArgs e)
         {
             string adID = Request.QueryString["advertisementID"];
             if (Session["currentUser"] != null)
             {
-                //Person currentUser = (Person)Session["currentUser"];
-                //string userID = Convert.ToString(currentUser.userID);
                 Response.Redirect("WantToBuy.aspx?advertisementID=" + adID);
             }
             else
@@ -97,6 +124,11 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Gets the username of the specific user linked to the advertisement
+        /// </summary>
+        /// <param name="sellerID"></param>
+        /// <returns>String username</returns>
         public string getSellerUsername(int sellerID)
         {
             UserControls UC = new UserControls();
@@ -106,6 +138,11 @@ namespace SmartWay.UL.Views
             return username;
         }
 
+        /// <summary>
+        /// Gets the registration date of the seller linked to this advertisement
+        /// </summary>
+        /// <param name="sellerID"></param>
+        /// <returns>String registration date</returns>
         public string getSellerRegoDate(int sellerID)
         {
             UserControls UC = new UserControls();
@@ -113,6 +150,11 @@ namespace SmartWay.UL.Views
             return date;
         }
 
+        /// <summary>
+        /// Gets the filepath for the profile image of the seller related to the advertisement
+        /// </summary>
+        /// <param name="sellerID"></param>
+        /// <returns>String filepath</returns>
         public string getSellerAvatar(int sellerID)
         {
             UserControls UC = new UserControls();
@@ -120,6 +162,11 @@ namespace SmartWay.UL.Views
             return filepath;
         }
 
+        /// <summary>
+        /// Gets the count of offers made on this specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>Int offers</returns>
         public int getOfferCount(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -127,14 +174,20 @@ namespace SmartWay.UL.Views
             return count;
         }
         
+        /// <summary>
+        /// Redirects the user to the message page
+        /// </summary>
 		public void ContactSeller(object sender, EventArgs e)
 		{
-            // we need to send adID as well to the private message
-            //< a href = "ViewAdvertisement.aspx?advertisementID=<%#:Item.advertisementID%>" >
             int ad = Convert.ToInt32(adID.Value);    
             Response.Redirect("PrivateMessage.aspx?advertisementID="+ ad);
 		}
 
+        /// <summary>
+        /// Uses the coordinates of the address linked to the advertisement and gets the latitude
+        /// </summary>
+        /// <param name="addressID"></param>
+        /// <returns>Doubke latitude</returns>
         public double getLat(int addressID)
         {
             double latitude = 0;
@@ -143,6 +196,11 @@ namespace SmartWay.UL.Views
             return latitude;
         }
 
+        /// <summary>
+        /// Uses the coordinates of the address linked to the advertisement and gets the longitude
+        /// </summary>
+        /// <param name="addressID"></param>
+        /// <returns>Doubke longitude</returns>
         public double getLong(int addressID)
         {
             double longitude = 0;
@@ -151,6 +209,11 @@ namespace SmartWay.UL.Views
             return longitude;
         }
 
+        /// <summary>
+        /// Uses the address linked to the advertisement and gets the coordinates
+        /// </summary>
+        /// <param name="addressID"></param>
+        /// <returns>List of Doubles objects</returns>
         public List<double> getCoordinates(int addressID)
         {
             AdvertisementControls AC = new AdvertisementControls();

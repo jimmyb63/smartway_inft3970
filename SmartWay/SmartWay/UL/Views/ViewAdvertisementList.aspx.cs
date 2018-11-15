@@ -12,11 +12,17 @@ namespace SmartWay.UL.Views
 {
     public partial class ViewAdvertisementList : System.Web.UI.Page
     {
+        /// <summary>
+        /// Calls the method BindListView which ultimately populates a list of advertisements
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             BindListView();
         }
 
+        /// <summary>
+        /// Handles rhe paging of the listview control
+        /// </summary>
         protected void onPageChange(object sender, PagePropertiesChangingEventArgs e)
         {
             //set current page startindex, max rows and rebind to false
@@ -26,12 +32,22 @@ namespace SmartWay.UL.Views
             BindListView();
         }
 
+        /// <summary>
+        /// Binds a the data source (List of advertisements) to the listview control
+        /// </summary>
         void BindListView()
         {
             adList.DataSource = getAds();
             adList.DataBind();
         }
 
+        /// <summary>
+        /// Takes the string entered into the search bar by the user,
+        /// converts it to a list of strings by splitting with spaces (" "),
+        /// iterates through the list to remove any conjunction works to simplify the search process.
+        /// </summary>
+        /// <param name="searchWords"></param>
+        /// <returns>List of Strings</returns>
         public List<string> keySearchWords(string[] searchWords)
         {
             List<string> searchWordsList = new List<string>();
@@ -55,11 +71,17 @@ namespace SmartWay.UL.Views
             return searchWordsList;
         }
 
+        /// <summary>
+        /// Pulls adverisement data from the databse and creates a list which is 
+        /// used to be binded to a listview control
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
             List<Advertisement> ads = new List<Advertisement>();
             string query = "";
+            // Takes the query string and populates list, each query string will generate a different list
             if (Request.QueryString["search"] != "" && Request.QueryString["search"] != null)
             {
                 query = Request.QueryString["search"];
@@ -82,6 +104,7 @@ namespace SmartWay.UL.Views
                 ads = AC.getAdvertisements();
             }
             List<Advertisement> tempAds = new List<Advertisement>();
+            // Iterates though advertisements and removes any deactive advertisments
             for (int i = 0; i < ads.Count; i++)
             {
                 if (ads[i].advertisementActive == true)
@@ -90,6 +113,11 @@ namespace SmartWay.UL.Views
                 }
             }
             List<Advertisement> sortedAds = new List<Advertisement>();
+            // Sorts advertisment list by either:
+            // - Price(High - Low)
+            // - Price(Low - High)
+            // - Date Added(Old - New)
+            // - Date Added(New - Old)
             if (Request.QueryString["sort"] != null)
             {
                 string sort = Request.QueryString["sort"];
@@ -114,13 +142,17 @@ namespace SmartWay.UL.Views
             }
             else
             {
+                // Advertisment list is sorted by Date Added(New - Old) 
                 sortedAds = tempAds.OrderByDescending(x => x.advertisementDatePosted).ToList();
             }
-            //adList.DataSource = sortedAds;
-            //adList.DataBind();
             return sortedAds;
         }
 
+        /// <summary>
+        /// Gets the filepath of the first image linked to this specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>filepath String</returns>
         public string getAdImage(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -128,6 +160,11 @@ namespace SmartWay.UL.Views
             return filePath;
         }
 
+        /// <summary>
+        /// Gets the view count for a specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>Int advertisement views</returns>
         public int getViewCount(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -135,6 +172,11 @@ namespace SmartWay.UL.Views
             return viewCount;
         }
 
+        /// <summary>
+        /// Gets a count of the amount of offers made on a specific advertisemnt
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>Int offer count</returns>
         public int getOfferCount(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -142,6 +184,9 @@ namespace SmartWay.UL.Views
             return count;
         }
 
+        /// <summary>
+        /// Pulls query string and uses it to sort advertisment list
+        /// </summary>
         public void sortAds(object sender, EventArgs e)
         {
             string value = ddSort.SelectedValue;
@@ -160,18 +205,5 @@ namespace SmartWay.UL.Views
             }
             Response.Redirect("ViewAdvertisementList.aspx?" + query + "&sort=" + value);
         }
-        //public void SearchResult_RowCommand(Object sender, GridViewCommandEventArgs e)
-        //{
-
-
-        //    if (e.CommandName == "AdvertisementDetail")
-        //    {
-        //        int index = Convert.ToInt32(e.CommandArgument);
-        //        List<Advertisement> ads = getAds();
-        //        Advertisement ad = ads[index];
-        //        Session["selectedAd"] = ad;
-        //        Response.Redirect("ViewAdvertisement.aspx");
-        //    }
-        //}
     }
 }

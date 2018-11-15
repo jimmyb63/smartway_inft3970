@@ -16,6 +16,12 @@ namespace SmartWay.UL.Views
 
         }
 
+        /// <summary>
+        /// BuyerID is added to the specific advertisement and the price is updated signifying 
+        /// that the advertisement has been sold.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void adSold(object sender, EventArgs e)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -29,6 +35,9 @@ namespace SmartWay.UL.Views
             Response.Redirect("MyAdvertisements.aspx");
         }
 
+        /// <summary>
+        /// Offer placed on the specific advertisement is cancelled and made deactive
+        /// </summary>
         public void cancelOffer(object sender, EventArgs e)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -39,6 +48,11 @@ namespace SmartWay.UL.Views
             Response.Redirect("MyAdvertisements.aspx");
         }
 
+        /// <summary>
+        /// Retireves the username of the buyer
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns>String username</returns>
         public string getUsername(int userID)
         {
             UserControls UC = new UserControls();

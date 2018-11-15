@@ -11,6 +11,10 @@ namespace SmartWay.UL.Views
 {
     public partial class MyAdvertisements : System.Web.UI.Page
     {
+        /// <summary>
+        /// Check is there is a user logged in. 
+        /// If yes, page is loaded. If no, return URL is set and user is redirected to login screen
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["currentUser"] == null)
@@ -20,6 +24,10 @@ namespace SmartWay.UL.Views
             }
         }
 
+        /// <summary>
+        /// Populates a list of active advertisements which have been added by this specific user
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -36,22 +44,23 @@ namespace SmartWay.UL.Views
             return tempAds;
         }
 
+        /// <summary>
+        /// Populates a list of sold advertisements which have been added by this specific user
+        /// </summary>
+        /// <returns>List of Advertisement objects</returns>
         public List<Advertisement> getSoldAds()
         {
             AdvertisementControls AC = new AdvertisementControls();
             Person currentUser = (Person)Session["currentUser"];
             List<Advertisement> ads = AC.getSoldUserAdvertisements(currentUser.userID);
-            //List<Advertisement> tempAds = new List<Advertisement>();
-            //for (int i = 0; i < ads.Count; i++)
-            //{
-            //    if (ads[i].advertisementActive == true)
-            //    {
-            //        tempAds.Add(ads[i]);
-            //    }
-            //}
             return ads;
         }
 
+        /// <summary>
+        /// Gets the file path of the first image that is linked to this specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>String filepath</returns>
         public string getAdImage(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -60,6 +69,11 @@ namespace SmartWay.UL.Views
             return filePath;
         }
 
+        /// <summary>
+        /// Gets the count of offers made for this specific advertisement
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns>Int offer count</returns>
         public int getOfferCount(int adID)
         {
             AdvertisementControls AC = new AdvertisementControls();
@@ -67,6 +81,11 @@ namespace SmartWay.UL.Views
             return count;
         }
 
+        /// <summary>
+        /// Get the username of the user who made a successful offer of this specific advertisement
+        /// </summary>
+        /// <param name="buyerID"></param>
+        /// <returns></returns>
         public string getBuyerUsername(int buyerID)
         {
             string buyerName;

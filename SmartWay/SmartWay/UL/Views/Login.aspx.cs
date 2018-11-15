@@ -17,11 +17,15 @@ namespace SmartWay.UL.Views
 
         }
 
+        /// <summary>
+        /// Uses the email address and password provided to access a user account
+        /// </summary>
         protected void userLogin(Object sender, EventArgs e)
         {
             string email = txtEmail.Text;
             string password = txtPassword.Text;
             Validation validate = new Validation();
+            // Checks if valid email address format
             validate.IsValidEmail(email);
             // Check email exists, password matches email
             UserControls UC = new UserControls();
@@ -70,9 +74,6 @@ namespace SmartWay.UL.Views
                     Response.Redirect("AccountVerification.aspx?userEmail=" + email);
                 }
             }
-            
-            //Session["log"] = "logged";
-            //Response.Redirect("Index.aspx");
         }
     }
 }
