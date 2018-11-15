@@ -11,7 +11,7 @@ using System.Web;
 /*	
 	FileName	=	UserControls.cs
 	SmartWay - Major Project
-	Authors - Ashley Ballinger, James Bailey, Gabriele Urbonaite, Graham Johnstone, Zac Skoumbourdis and Brock Buttsworth
+	Authors - Ashley Ballinger, James Bailey, Brock Buttsworth, Gabriele Urbonaite, Graham Johnstone, and Zac Skoumbourdis.
 	Created September 2018
 	Purpose of the File-
 		To Handle communications between the BL and Database regarding User Actions

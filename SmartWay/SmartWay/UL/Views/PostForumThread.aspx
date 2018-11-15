@@ -110,7 +110,7 @@
                     CssClass="btn btn-block btn-success" 
                     Text="Submit" 
                     runat="server" 
-                    OnClick="postAd" />
+                    OnClick="postForumPost" />
                 <hr />
             </div>
         </div>            

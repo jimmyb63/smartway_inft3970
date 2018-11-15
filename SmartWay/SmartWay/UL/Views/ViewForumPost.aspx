@@ -143,35 +143,8 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="row">
-                            <div class="col-lg-4 col-md-12 my-1">
-                                <%--<asp:Button ID="btnContact" Text="Contact Seller" OnClick="ContactSeller" CssClass="btn btn-info btn-block" runat="server" />--%>
-                            </div>
-                            <div class="col-lg-4 col-md-0"></div>
-                            <div class="col-lg-4 col-md-12 my-1">
-                                <asp:Button ID="btnReplytoPost" Text="Reply to Post" CssClass="btn btn-danger btn-block" OnClick="ReportAd" runat="server" />
-                            </div>
-                        </div>
-                        <br />-->
                 </div>
             </ItemTemplate>
-            <%--            <LayoutTemplate>
-                <table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <table id="groupPlaceholderContainer" runat="server" style="width: 100%">
-                                    <tr id="groupPlaceholder"></tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
-                        <tr></tr>
-                    </tbody>
-                </table>
-            </LayoutTemplate>--%>
         </asp:ListView>
         <br />
         <%-- FORUM COMMENTS --%>
@@ -193,7 +166,6 @@
                                             <hr />
                                             <br />
                                             <div class="card-body">
-                                                <%-- TODO: Check when no messages are present if this place is default --%>
                                                 <h1 class="text-center"><i class="fas fa-exclamation-triangle"></i> Empty!</h1>
                                                 <h4 class="text-center">No comments to reply to.</h4>                                        
                                             </div>
@@ -258,14 +230,14 @@
                                 TextMode="MultiLine"
                                 Rows="5" />
                             <br />
-                            <!-- Button Submit Section -->
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <br />       
-
+        <!-- Button Submit Section -->
         <div class="col-lg-12 col-md-12 my-1">
             <asp:Button 
                 ID="btnReplytoPost" 
