@@ -8,6 +8,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+/*	
+	FileName	=	Account.aspx.cs
+	SmartWay - Major Project
+	Authors - Ashley Ballinger, Gabriele Urbonaite, Graham Johnstone, Zac Skoumbourdis, James Bailey and Brock Buttsworth
+	Created September 2018
+	Purpose of the File-
+		To Handle communications between the UL and BL regarding User Accounts
+*/
+
 namespace SmartWay.UL.Views
 {
     public partial class Account : System.Web.UI.Page
@@ -100,16 +109,13 @@ namespace SmartWay.UL.Views
                 lblCountry.Text = country;
                 lblPostcode.Text = postCode.ToString();
 
-                //List<Advertisement> saleItems = getAddSummary();
-
-                //gvForsaleItems.DataSource = saleItems;
-                //gvForsaleItems.DataBind();
-
-
             }
-
-
         }
+
+        /// <summary>
+        /// Get a List Of Adds associated with a User's ID.
+        /// </summary>
+        /// <returns></returns>
         public List<Advertisement> getAddSummary()
         {
             UserControls UC = new UserControls();
