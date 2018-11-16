@@ -18,9 +18,18 @@ using System.Web;
 */
 namespace SmartWay.DAL.Controllers
 {
+	
 	[DataObject(true)]
 	public class UserControls
 	{
+		/// <summary>
+		/// Adds a New User's details to the database.
+		/// </summary>
+		/// <param name="fName"></param>
+		/// <param name="lName"></param>
+		/// <param name="emailAddress"></param>
+		/// <param name="password"></param>
+		/// <param name="regoDate"></param>
 		[DataObjectMethod(DataObjectMethodType.Insert)]
 		public void addUser(string fName, string lName, string emailAddress, string password, string regoDate)
 		{
@@ -39,6 +48,11 @@ namespace SmartWay.DAL.Controllers
 			connection.Close();
 		}
 
+		/// <summary>
+		/// Used to Validate is a user's validation code matches the database
+		/// </summary>
+		/// <param name="uName"></param>
+		/// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public bool uNameValidation(string uName)
 		{
@@ -57,6 +71,11 @@ namespace SmartWay.DAL.Controllers
 			return exists;
 		}
 
+        /// <summary>
+		/// Used to Validate if a user's email address exists in the database.
+		/// </summary>
+		/// <param name="uName"></param>
+		/// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public bool emailValidation(string email)
 		{
@@ -75,6 +94,25 @@ namespace SmartWay.DAL.Controllers
 			return exists;
 		}
 
+        /// <summary>
+        /// Register a New user in the database.
+        /// </summary>
+        /// <param name="fName"></param>
+        /// <param name="lName"></param>
+        /// <param name="uName"></param>
+        /// <param name="DOB"></param>
+        /// <param name="emailAddress"></param>
+        /// <param name="password"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="uNum"></param>
+        /// <param name="sNum"></param>
+        /// <param name="sName"></param>
+        /// <param name="city"></param>
+        /// <param name="pCode"></param>
+        /// <param name="stateID"></param>
+        /// <param name="country"></param>
+        /// <param name="verificationCode"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public int newRegistration(string fName, string lName, string uName, string DOB, string emailAddress, string password, int phoneNumber, string uNum, string sNum, string sName, string city, int pCode, int stateID, string country, string verificationCode)
 		{
@@ -127,6 +165,10 @@ namespace SmartWay.DAL.Controllers
 			return personID;
 		}
 
+        /// <summary>
+        /// Get a list of all user's in the database.
+        /// </summary>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public List<Person> getUsers()
 		{
@@ -159,6 +201,11 @@ namespace SmartWay.DAL.Controllers
 			return users;
 		}
 
+        /// <summary>
+        /// Get from Database the verification code of a user
+        /// </summary>
+        /// <param name="personID"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public string getVerificationCode(int personID)
 		{
@@ -172,6 +219,11 @@ namespace SmartWay.DAL.Controllers
 			return verificationCode;
 		}
 
+        /// <summary>
+        /// Get the verification data of a user.
+        /// </summary>
+        /// <param name="personID"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public DateTime getVerificationDate(int personID)
 		{
@@ -185,6 +237,11 @@ namespace SmartWay.DAL.Controllers
 			return verificationDate;
 		}
 
+        /// <summary>
+        /// Used to Update the User as Verified if data is a match
+        /// </summary>
+        /// <param name="personID"></param>
+        /// <param name="verificationDate"></param>
 		[DataObjectMethod(DataObjectMethodType.Update)]
 		public void verifyUser(int personID, string verificationDate)
 		{
@@ -198,6 +255,11 @@ namespace SmartWay.DAL.Controllers
 			connection.Close();
 		}
 
+        /// <summary>
+        /// Used to Verify the user's email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public bool checkVerified(string email)
 		{
@@ -217,7 +279,11 @@ namespace SmartWay.DAL.Controllers
 		}
 
 
-
+        /// <summary>
+        /// Adds a Profile Image for a User
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="userID"></param>
 		[DataObjectMethod(DataObjectMethodType.Insert)]
 		public void addProfileImage(string filePath, int userID)
 		{
@@ -231,12 +297,16 @@ namespace SmartWay.DAL.Controllers
 			connection.Close();
 		}
 
+        /// <summary>
+        /// Gets Profile Image by user ID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public List<string> getProfileImages(int userID)
 		{
 			List<string> profileImages = new List<string>();
 			SqlConnection connection = new SqlConnection(getconnectionString());
-			//string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
 			string query = "SELECT filePath FROM ProfileImage WHERE userID = @userID";
 			SqlCommand cmd = new SqlCommand(query, connection);
 			cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
@@ -248,6 +318,7 @@ namespace SmartWay.DAL.Controllers
 				string profileImage = reader["filePath"].ToString();
 				profileImages.Add(profileImage);
 			}
+            //if no profile image exists adds a default image to be displayed
 			if (profileImages.Count < 1)
 			{
 				List<string> defaultImages = new List<string>();
@@ -258,6 +329,11 @@ namespace SmartWay.DAL.Controllers
 			return profileImages;
 		}
 
+        /// <summary>
+        /// Get a Profile Image by user ID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public string getProfileImage(int userID)
 		{
@@ -267,6 +343,10 @@ namespace SmartWay.DAL.Controllers
 			return filePAth;
 		}
 
+        /// <summary>
+        /// Add Phone number to the database
+        /// </summary>
+        /// <param name="phoneNumber"></param>
 		[DataObjectMethod(DataObjectMethodType.Insert)]
 		public void addPhoneNumber(int phoneNumber)
 		{
@@ -282,6 +362,11 @@ namespace SmartWay.DAL.Controllers
 			//return phoneID;
 		}
 
+        /// <summary>
+        /// Get Phone details for a User from the Database
+        /// </summary>
+        /// <param name="phoneNumber"></param>
+        /// <returns></returns>
 		[DataObjectMethod(DataObjectMethodType.Select)]
 		public int getPhoneID(int phoneNumber)
 		{

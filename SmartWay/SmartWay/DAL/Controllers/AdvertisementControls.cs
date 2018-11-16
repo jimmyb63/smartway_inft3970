@@ -8,11 +8,32 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+/*	
+	FileName	=	AdvertisementControls.cs
+	SmartWay - Major Project
+	Authors - Ashley Ballinger, James Bailey, Gabriele Urbonaite, Graham Johnstone, Zac Skoumbourdis and Brock Buttsworth
+	Created August 2018
+	Purpose of the File-
+		To Handle communications between the BL and Database regarding Advertisement Actions
+*/
+
 namespace SmartWay.DAL.Controllers
 {
     [DataObject(true)]
     public class AdvertisementControls
     {
+        /// <summary>
+        /// Add new advertisement details to the database.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="adTitle"></param>
+        /// <param name="adType"></param>
+        /// <param name="adCategory"></param>
+        /// <param name="adSubCategory"></param>
+        /// <param name="adDescription"></param>
+        /// <param name="adAddressID"></param>
+        /// <param name="adPrice"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public int newAdvertisement(int userID, string adTitle, string adType, string adCategory, string adSubCategory, string adDescription, int adAddressID, decimal adPrice)
         {
@@ -46,6 +67,12 @@ namespace SmartWay.DAL.Controllers
             return adID;
         }
 
+        /// <summary>
+        /// Add an Image to be linked to an advertisement in the database.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="userID"></param>
+        /// <param name="adID"></param>
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addAdImage(string filePath, int userID, int adID)
         {
@@ -60,6 +87,10 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get all advertisements that exist in the database
+        /// </summary>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisements()
         {
@@ -90,6 +121,10 @@ namespace SmartWay.DAL.Controllers
             return ads;
         }
 
+        /// <summary>
+        /// update advertisement details that exist in a database.
+        /// </summary>
+        /// <param name="ad"></param>
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void updateAd(Advertisement ad)
         {
@@ -104,6 +139,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get Advertisement's that match the search word list.
+        /// </summary>
+        /// <param name="searchList"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisementsSearch(List<string> searchList)
         {
@@ -142,6 +182,11 @@ namespace SmartWay.DAL.Controllers
             return ads;
         }
 
+        /// <summary>
+        /// Get Advertisement add categories from the database.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisementsCategory(string category)
         {
@@ -175,6 +220,11 @@ namespace SmartWay.DAL.Controllers
             return ads;
         }
 
+        /// <summary>
+        /// Get Advertisement Subcategories from the database.
+        /// </summary>
+        /// <param name="subCategory"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisementsSubCategory(string subCategory)
         {
@@ -208,6 +258,11 @@ namespace SmartWay.DAL.Controllers
             return ads;
         }
 
+        /// <summary>
+        /// Get advertisement details via the Ad Id from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getAdvertisement(int adID)
         {
@@ -239,6 +294,11 @@ namespace SmartWay.DAL.Controllers
             return ads;
         }
 
+        /// <summary>
+        /// Get advertisement images related to an Ad Id from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public string getAdImage(int adID)
         {
@@ -248,6 +308,11 @@ namespace SmartWay.DAL.Controllers
             return adImage;
         }
 
+        /// <summary>
+        /// Get advertisement images related to an Ad Id from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<string> getAdImages(int adID)
         {
@@ -265,6 +330,7 @@ namespace SmartWay.DAL.Controllers
                 string adImage = reader["filePath"].ToString();
                 adImages.Add(adImage);
             }
+            //Adds default Ad image if the list is empty
             if (adImages.Count < 1)
             {
                 List<string> defaultImages = new List<string>();
@@ -274,6 +340,13 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
             return adImages;
         }
+
+        /// <summary>
+        /// Gets Ad thumbnail image from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public string getAdThumbnail(int adID, int userID)
         {
@@ -288,6 +361,11 @@ namespace SmartWay.DAL.Controllers
             return filePath;
         }
 
+        /// <summary>
+        /// Get Advertisements related to a User's ID.
+        /// </summary>
+        /// <param name="tempUserID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getUserAdvertisements(int tempUserID)
         {
@@ -316,6 +394,11 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
+        /// <summary>
+        /// Get advertisements that have sold related to a Ad's ID from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getSoldUserAdvertisement(int adID)
         {
@@ -350,6 +433,11 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
+        /// <summary>
+        /// Get advertisements that have sold related to a User's ID from the database.
+        /// </summary>
+        /// <param name="tempUserID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Advertisement> getSoldUserAdvertisements(int tempUserID)
         {
@@ -384,7 +472,11 @@ namespace SmartWay.DAL.Controllers
             return userAdds;
         }
 
-    [DataObjectMethod(DataObjectMethodType.Insert)]
+        /// <summary>
+        /// Adds to the view count of an Ad in the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        [DataObjectMethod(DataObjectMethodType.Insert)]
         public void addViewCount(int adID)
         {
             SqlConnection connection = new SqlConnection(getconnectionString()); //getting connection string
@@ -396,6 +488,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Updates View count of an Ad in the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <param name="viewCount"></param>
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void updateViewCount(int adID, int viewCount)
         {
@@ -409,6 +506,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get the current view count of an Ad from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public int getViewCount(int adID)
         {
@@ -423,6 +525,14 @@ namespace SmartWay.DAL.Controllers
             return viewCount;
         }
 
+        /// <summary>
+        /// Add's a User's rating for a seller and an Ad in the database.
+        /// </summary>
+        /// <param name="rating"></param>
+        /// <param name="comment"></param>
+        /// <param name="buyerID"></param>
+        /// <param name="sellerID"></param>
+        /// <param name="adID"></param>
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public void submitFeedback(int rating, string comment, int buyerID, int sellerID, int adID)
         {
@@ -439,6 +549,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get a List of Offers related to an Ad Id from the database.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Offer> getUserOffers(int userID)
         {
@@ -465,6 +580,14 @@ namespace SmartWay.DAL.Controllers
             return offers;
         }
 
+        /// <summary>
+        /// Adds a User's Ad offer to the database.
+        /// </summary>
+        /// <param name="buyerID"></param>
+        /// <param name="sellerID"></param>
+        /// <param name="adID"></param>
+        /// <param name="offerAmount"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Insert)]
         public int makeOffer(int buyerID, int sellerID, int adID, decimal offerAmount)
         {
@@ -490,6 +613,11 @@ namespace SmartWay.DAL.Controllers
             return returnCode;
         }
 
+        /// <summary>
+        /// Get's the count of how many offers exist for an Ad from the database.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public int getOfferCount(int adID)
         {
@@ -505,6 +633,12 @@ namespace SmartWay.DAL.Controllers
             return count;
         }
 
+        /// <summary>
+        /// Checks the database for if the Ad exists
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public bool offerExists(int adID, int userID)
         {
@@ -524,6 +658,10 @@ namespace SmartWay.DAL.Controllers
             return active;
         }
 
+        /// <summary>
+        /// Cancel an Offer in the database that was made by a user.
+        /// </summary>
+        /// <param name="offerID"></param>
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void cancelOffer(int offerID)
         {
@@ -540,6 +678,10 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Updates an old offer to active in the database.
+        /// </summary>
+        /// <param name="adID"></param>
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void reactivateOffers(int adID)
         {
@@ -556,6 +698,12 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Update offer accepted by the Seller in the Database
+        /// </summary>
+        /// <param name="accepted"></param>
+        /// <param name="offerID"></param>
+        /// <param name="adID"></param>
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void updateOfferAccepted(int accepted, int offerID, int adID)
         {
@@ -573,6 +721,10 @@ namespace SmartWay.DAL.Controllers
             }
         }
 
+        /// <summary>
+        /// Cancel an Offer in the Database.
+        /// </summary>
+        /// <param name="offerID"></param>
         public void deactivateAcceptedOffer(int offerID)
         {
             bool active = false;
@@ -586,6 +738,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get the Current rating for a USer selling an item from the database.
+        /// </summary>
+        /// <param name="sellerID"></param>
+        /// <returns></returns>
         public string getSellerRating(int sellerID)
         {
             string rating = null;
@@ -611,6 +768,10 @@ namespace SmartWay.DAL.Controllers
             return rating;
         }
 
+        /// <summary>
+        /// Upsate Add offer to accepted.
+        /// </summary>
+        /// <param name="adID"></param>
         public void offerAccepted(int adID)
         {
             int notAccepted = 3;
@@ -626,6 +787,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get and address details using a  
+        /// </summary>
+        /// <param name="addressID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Address getAdAddress(int addressID)
         {
@@ -652,6 +818,11 @@ namespace SmartWay.DAL.Controllers
             return address;
         }
 
+        /// <summary>
+        /// Get Offer details by Offer ID
+        /// </summary>
+        /// <param name="offerID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public Offer getOffer(int offerID)
         {
@@ -676,6 +847,12 @@ namespace SmartWay.DAL.Controllers
             return offer;
         }
 
+        /// <summary>
+        /// Get advertisements sold by a user.
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <param name="amount"></param>
+        /// <param name="buyerID"></param>
         [DataObjectMethod(DataObjectMethodType.Update)]
         public void advertisementSold(int adID, decimal amount, int buyerID)
         {
@@ -694,6 +871,11 @@ namespace SmartWay.DAL.Controllers
             connection.Close();
         }
 
+        /// <summary>
+        /// Get all Offers for an Ad via Ad ID
+        /// </summary>
+        /// <param name="adID"></param>
+        /// <returns></returns>
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Offer> getAdOffers(int adID)
         {
